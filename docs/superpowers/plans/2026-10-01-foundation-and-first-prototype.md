@@ -1,4 +1,4 @@
-# Foundation and First Prototype Implementation Plan
+﻿# Foundation and First Prototype Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
@@ -260,3 +260,4 @@
 - [ ] Confirm performance is viable.
 - [ ] Record rulings and deferred minors.
 - [ ] Open/refresh PR with evidence and test results.
+

@@ -1,19 +1,17 @@
-# Progress
+﻿# Progress
 
 Last updated: 2026-10-01
 
 ## Current phase
-**Pre-build handoff complete — waiting for explicit build start in a fresh chat**
+**Prototype implementation — browser 3D bootstrap complete**
 
 ## Current branch
 `prototype/bootstrap-3d`
 
 ## Current status
-**READY TO BUILD, BUT GAMEPLAY/ENGINE IMPLEMENTATION HAS NOT STARTED YET.**
+Implementation has started. **BAC-11 / Task 1 is complete** and the next executable task is **BAC-12 — Typed game state and event model**.
 
-The repository now contains the final pre-build documentation set required to begin the first playable prototype without returning to planning for ordinary questions.
-
-The user has explicitly authorized continuous end-to-end execution **after build start**: once the user gives the explicit start command in the fresh chat, complete one planned task and continue directly to the next actionable task without pausing for routine confirmation. This authorization is recorded in `docs/WORKING_RULES.md`.
+The pre-build documentation remains authoritative for product/architecture direction. Continue implementation task-by-task without returning to completed preparation work.
 
 ## Connected execution environment
 - GitHub: Full Access
@@ -23,7 +21,6 @@ The user has explicitly authorized continuous end-to-end execution **after build
 - Context7: available for current documentation
 - Remote Desktop Commander: Full Access
 - Remote device: `VOSTRO-COREI7G13`
-- Remote device status at last check: **Online**
 
 ## Confirmed project direction
 - true 3D first-person psychological investigation game
@@ -33,86 +30,74 @@ The user has explicitly authorized continuous end-to-end execution **after build
 - investigation/exploration, not combat
 - core mechanic: **Knowledge Changes Reality**
 - approximately 9 chapters
-- realistic, atmospheric Vietnamese environments
 - smooth movement/camera and tactile micro-cinematic interactions are P0
 - GitHub is source of truth; Linear tracks work
 
-## Pre-build documentation completed
-- [x] README / project identity
-- [x] `docs/WORKING_RULES.md`
-- [x] `docs/SESSION_CONTINUITY.md`
-- [x] `docs/PROJECT_MASTER_PLAN.md`
-- [x] `docs/TECHNICAL_REQUIREMENTS.md`
-- [x] `docs/ARCHITECTURE.md`
-- [x] `docs/GAMEPLAY.md`
-- [x] `docs/ART_BIBLE.md`
-- [x] `docs/NARRATIVE_BIBLE.md`
-- [x] `docs/AUDIO_BIBLE.md`
-- [x] `docs/UI_UX.md`
-- [x] `docs/ASSET_PLAN.md`
-- [x] `docs/CONTENT_PIPELINE.md`
-- [x] `docs/TESTING_AND_PLAYTEST.md`
-- [x] `docs/PREBUILD_CHECKLIST.md`
+## Completed preparation
+- [x] Phase 0 documentation set
 - [x] ADR-0001: browser-first Babylon.js
 - [x] detailed first-prototype implementation plan
 - [x] Linear project `P-BAC-1`
 - [x] implementation issues created
 - [x] foundation PR #1 opened
 - [x] prototype implementation branch prepared
-- [x] initial visual concept generated
-- [x] current Babylon.js initialization direction verified with Context7
 
-## Development environment audit
-Remote device `VOSTRO-COREI7G13` was checked before handoff:
-- Node.js: `v24.15.0`
-- npm: `11.12.1`
-- Git: `2.54.0.windows.1`
-- Blender executable: not detected in PATH at handoff; **not a blocker for the first graybox prototype**
-- Chrome/Edge executables: not detected through PATH lookup; **not a blocker**, because preview/browser verification can use deployed web builds and browser automation tooling
+## Prototype implementation progress
+- [x] BAC-11 — Bootstrap browser 3D application
+- [ ] BAC-12 — Typed game state and event model
+- [ ] BAC-13 — First-person controller and camera feel
+- [ ] BAC-14 — Graybox hallway and classroom
+- [ ] BAC-15 — Interaction targeting and state machine
+- [ ] BAC-16 — CameraDirector inspection choreography
+- [ ] BAC-17 — Hero book inspection interaction
+- [ ] BAC-18 — Investigation discovery system
+- [ ] BAC-19 — Knowledge-driven world shift prototype
+- [ ] BAC-20 — Save and load prototype state
+- [ ] BAC-21 — Preview deployment and full playtest gate
 
-Do not install Blender merely to satisfy setup. Install/use it later only when a 3D asset task actually requires it.
+## BAC-11 implementation record
+Implemented:
+- Vite + TypeScript application scaffold
+- Babylon.js `EngineAdapter.create(canvas)`
+- WebGPU initialization via `WebGPUEngine.initAsync()`
+- automatic WebGL `Engine` fallback
+- resize listener lifecycle
+- render-loop run/stop/dispose lifecycle
+- minimal visible 3D smoke scene
+- fatal startup error surface
+- Vitest harness and engine-selection tests
 
-## Build state
-No gameplay/engine implementation has started.
+Verification:
+- RED verified before implementation: EngineAdapter module missing
+- GREEN: 2/2 engine fallback tests pass
+- TypeScript typecheck passes
+- production Vite build passes
+- Chrome runtime smoke passes
+- runtime selected `webgpu` on the checked device
+- canvas rendered at a non-zero backing size
+- no fatal startup state and no Vite error overlay
 
-No TypeScript/Vite project scaffolding, test harness, or Babylon.js runtime code has been created yet.
+Current dependency baseline:
+- `@babylonjs/core ^9.29.0`
+- `@babylonjs/loaders ^9.29.0`
+- `vite ^8.3.2`
+- `typescript ^7.0.2`
+- `vitest ^5.0.3`
 
-Therefore there is no valid test/build result to report.
+Known non-blocking finding:
+- current bootstrap main chunk is approximately 1.28 MB minified / 312 KB gzip and triggers Vite's 500 KB chunk warning.
+- Do not optimize prematurely during BAC-12; revisit code splitting/loading strategy before the vertical-slice performance gate unless growth makes it urgent earlier.
 
-## Queued first build task
-### BAC-11 — Bootstrap browser 3D application
+## Exact next task
+**BAC-12 — Typed game state and event model**
 
-Do **not** begin this task until the user gives the explicit build-start command in the fresh chat.
+Required next steps:
+1. write failing tests for fact/evidence mutation;
+2. implement typed state/store APIs;
+3. verify duplicate evidence handling;
+4. verify typed change event emission;
+5. run full tests/typecheck/build;
+6. commit and continue to BAC-13.
 
-Once authorized, first steps are:
-1. create minimal TypeScript/Vite scaffolding;
-2. create the test harness;
-3. write the first failing bootstrap/engine-selection test;
-4. verify RED;
-5. implement minimum `EngineAdapter`;
-6. verify GREEN;
-7. run production build;
-8. update this file;
-9. continue automatically to the next planned task.
-
-## New-information protocol
-Whenever implementation reveals anything new:
-- requirement → update the relevant spec;
-- architecture decision → add/update an ADR;
-- narrative linkage → update Narrative Bible or chapter data;
-- asset requirement → update Asset Plan/manifest;
-- remaining work → update/create Linear issue;
-- milestone/task status → update this file.
-
-Nothing important should exist only in chat.
-
-## Fresh-chat handoff
-This is the official clean handoff point.
-
-In the new conversation:
-1. read `docs/SESSION_CONTINUITY.md`;
-2. read this file;
-3. inspect `prototype/bootstrap-3d`, PR #1, and Linear project `P-BAC-1`;
-4. confirm that implementation has not started;
-5. wait for / recognize the user's explicit build-start instruction;
-6. then begin BAC-11 and continue according to `docs/WORKING_RULES.md`.
+## Resume rule
+Start from the first unchecked implementation item above. Verify the latest commit/tests before changing code. Update this file after every meaningful milestone.
