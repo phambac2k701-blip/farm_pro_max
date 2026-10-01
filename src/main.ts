@@ -21,6 +21,10 @@ import {
   CH01_FLASHLIGHT_PICKED_FACT,
   CH01_INTERACTION_IDS,
 } from "./content/chapters/ch01/interactions";
+import {
+  ChapterOneRealityController,
+  createChapterOneRealitySystem,
+} from "./content/chapters/ch01/reality";
 import { buildChapterOneScene } from "./content/chapters/ch01/scene/buildChapterOneScene";
 import {
   CH01_CHECKPOINTS,
@@ -160,6 +164,26 @@ async function bootstrap(): Promise<void> {
       },
     });
 
+    const reality = createChapterOneRealitySystem(
+      gameState,
+      chapter,
+    );
+    const chapterReality = new ChapterOneRealityController({
+      state: gameState,
+      evidence,
+      chapterRuntime,
+      reality,
+      onApplied: () => {
+        audio.play(
+          CH01_AUDIO_IDS.kcrChannelClick,
+          chapter.ninthPaStation,
+        );
+        canvas.dataset.kcrApplied = "true";
+        persistSave();
+      },
+    });
+    chapterReality.restore();
+
     const spawn =
       chapter.checkpoints[chapterRuntime.currentCheckpoint]?.position.clone() ??
       chapter.spawn.clone();
@@ -268,6 +292,7 @@ async function bootstrap(): Promise<void> {
         audio.play(CH01_AUDIO_IDS.paper, chapter.rosterProp);
         classroomEvidence?.markRosterReadable();
         chapterRuntime.reachCheckpoint("ch01_classroom_post_c03");
+        chapterReality.syncReady();
         persistSave();
       },
     });
@@ -341,6 +366,77 @@ async function bootstrap(): Promise<void> {
     behaviorHost.register(
       CH01_INTERACTION_IDS.timetable,
       timetableInspection,
+    );
+
+    const paStationLabelsView = new InspectionOverlayView(
+      inspectionOverlay,
+      {
+        eyebrow: "Phòng phát thanh",
+        title: "Nhãn vị trí",
+        body:
+          "Tám vị trí đang dùng được đánh số từ 1 đến 8. Không có nhãn số 9.",
+        footer: "Esc · rời mắt",
+      },
+    );
+    const paStationLabelsInspection = new DocumentInspectionController({
+      cameraDirector,
+      anchor: () => ({
+        position: chapter.paStationLabelsInspectionAnchor.position,
+        rotation: chapter.paStationLabelsInspectionAnchor.rotation,
+        fov: 0.72,
+      }),
+      view: paStationLabelsView,
+      onReadable: () => {
+        canvas.dataset.inspectionReadable = "pa-station-labels";
+        evidence.discover("C04");
+      },
+    });
+    interaction.register(chapter.paStationLabelsProp, {
+      id: CH01_INTERACTION_IDS.paStationLabels,
+      prompt: "E · Xem nhãn vị trí",
+      maxDistance: 1.65,
+      priority: 10,
+    });
+    behaviorHost.register(
+      CH01_INTERACTION_IDS.paStationLabels,
+      paStationLabelsInspection,
+    );
+
+    const paIndexCardView = new InspectionOverlayView(
+      inspectionOverlay,
+      {
+        eyebrow: "Phòng phát thanh · thẻ chỉ mục",
+        title: "09 / 00:17",
+        body: "KHÔNG PHÁT — lưu nội bộ.",
+        footer: "Esc · đặt thẻ xuống",
+      },
+    );
+    const paIndexCardInspection = new DocumentInspectionController({
+      cameraDirector,
+      anchor: () => ({
+        position: chapter.paIndexCardInspectionAnchor.position,
+        rotation: chapter.paIndexCardInspectionAnchor.rotation,
+        fov: 0.68,
+      }),
+      view: paIndexCardView,
+      onReadable: () => {
+        canvas.dataset.inspectionReadable = "pa-index-card";
+        audio.play(CH01_AUDIO_IDS.paper, chapter.paIndexCardProp);
+        evidence.discover("C07");
+        chapterReality.syncReady();
+        chapterReality.markInsideAfterReady();
+        persistSave();
+      },
+    });
+    interaction.register(chapter.paIndexCardProp, {
+      id: CH01_INTERACTION_IDS.paIndexCard,
+      prompt: "E · Xem thẻ 09 / 00:17",
+      maxDistance: 1.7,
+      priority: 12,
+    });
+    behaviorHost.register(
+      CH01_INTERACTION_IDS.paIndexCard,
+      paIndexCardInspection,
     );
 
     classroomEvidence = new ClassroomEvidenceController({
@@ -446,6 +542,11 @@ async function bootstrap(): Promise<void> {
     canvas.dataset.ninthPaStationEnabled = String(
       chapter.ninthPaStation.isEnabled(),
     );
+    canvas.dataset.kcrReady = String(chapterReality.isKnowledgeReady);
+    canvas.dataset.kcrLeftAfterReady = String(
+      chapterReality.hasLeftAfterReady,
+    );
+    canvas.dataset.kcrApplied = String(chapterReality.isApplied);
 
     if (import.meta.env.DEV) {
       const debugWindow = window as typeof window & {
@@ -458,6 +559,8 @@ async function bootstrap(): Promise<void> {
           cameraDirector: CameraDirector;
           gameState: GameState;
           evidence: EvidenceSystem;
+          reality: typeof reality;
+          chapterReality: ChapterOneRealityController;
           chapterRuntime: ChapterRuntime<(typeof CH01_CHECKPOINTS)[number]>;
           opening: ChapterOneOpeningController;
           classroomEvidence: ClassroomEvidenceController;
@@ -468,6 +571,8 @@ async function bootstrap(): Promise<void> {
           rosterInspection: DocumentInspectionController;
           photoInspection: PhotoInspectionController;
           timetableInspection: DocumentInspectionController;
+          paStationLabelsInspection: DocumentInspectionController;
+          paIndexCardInspection: DocumentInspectionController;
         };
       };
       debugWindow.__NTC_DEBUG__ = {
@@ -479,6 +584,8 @@ async function bootstrap(): Promise<void> {
         cameraDirector,
         gameState,
         evidence,
+        reality,
+        chapterReality,
         chapterRuntime,
         opening,
         classroomEvidence,
@@ -489,6 +596,8 @@ async function bootstrap(): Promise<void> {
         rosterInspection,
         photoInspection,
         timetableInspection,
+        paStationLabelsInspection,
+        paIndexCardInspection,
       };
     }
 
@@ -576,6 +685,48 @@ async function bootstrap(): Promise<void> {
         canvas.dataset.corridorBell = "triggered";
       }
 
+      if (
+        chapterReality.isKnowledgeReady &&
+        !chapterReality.isApplied
+      ) {
+        if (
+          !chapterReality.hasEnteredAfterReady &&
+          nearXZ(
+            chapter.paReentryZone.position.x,
+            chapter.paReentryZone.position.z,
+            0.72,
+          ) &&
+          chapterReality.markInsideAfterReady()
+        ) {
+          persistSave();
+        }
+
+        if (
+          chapterReality.hasEnteredAfterReady &&
+          !chapterReality.hasLeftAfterReady &&
+          nearXZ(
+            chapter.paThresholdZone.position.x,
+            chapter.paThresholdZone.position.z,
+            0.82,
+          ) &&
+          chapterReality.markLeftAfterReady()
+        ) {
+          persistSave();
+        }
+
+        if (
+          chapterReality.hasLeftAfterReady &&
+          nearXZ(
+            chapter.paReentryZone.position.x,
+            chapter.paReentryZone.position.z,
+            0.72,
+          ) &&
+          chapterReality.tryApplyOnReentry()
+        ) {
+          persistSave();
+        }
+      }
+
       const prompt = interaction.promptState;
       interactionPrompt.hidden = !prompt.visible;
       interactionPrompt.textContent = prompt.text;
@@ -594,6 +745,17 @@ async function bootstrap(): Promise<void> {
       canvas.dataset.audioReady = String(audio.isReady);
       canvas.dataset.audioFailedCues = String(audio.failedCueIds.length);
       canvas.dataset.openingActive = String(opening.isActive);
+      canvas.dataset.kcrReady = String(chapterReality.isKnowledgeReady);
+      canvas.dataset.kcrEnteredAfterReady = String(
+        chapterReality.hasEnteredAfterReady,
+      );
+      canvas.dataset.kcrLeftAfterReady = String(
+        chapterReality.hasLeftAfterReady,
+      );
+      canvas.dataset.kcrApplied = String(chapterReality.isApplied);
+      canvas.dataset.ninthPaStationEnabled = String(
+        chapter.ninthPaStation.isEnabled(),
+      );
       canvas.dataset.drawerLabel09Enabled = String(
         chapter.drawerLabel09.isEnabled(),
       );

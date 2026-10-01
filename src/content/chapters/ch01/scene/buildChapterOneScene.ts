@@ -33,8 +33,10 @@ export interface ChapterOneProductionScene {
   teacherDesk: TransformNode;
   paStations: TransformNode[];
   ninthPaStation: TransformNode;
+  ninthPaStationCollider: Mesh;
   ninthCable: Mesh;
   paRoomLight: PointLight;
+  paDeskLamp: PointLight;
   paReentryZone: Mesh;
   guardKeyRack: Mesh;
   guardNotebook: Mesh;
@@ -45,11 +47,14 @@ export interface ChapterOneProductionScene {
   rosterProp: Mesh;
   classPhotoProp: Mesh;
   timetableProp: Mesh;
+  paStationLabelsProp: Mesh;
   paIndexCardProp: Mesh;
   corridorPhotoBoard: Mesh;
   rosterInspectionAnchor: TransformNode;
   photoInspectionAnchor: TransformNode;
   timetableInspectionAnchor: TransformNode;
+  paStationLabelsInspectionAnchor: TransformNode;
+  paIndexCardInspectionAnchor: TransformNode;
   corridorReturnZone: Mesh;
   insideOldWingZone: Mesh;
   classroomEntryZone: Mesh;
@@ -897,6 +902,20 @@ export function buildChapterOneScene(
     false,
   );
   ninthPaStation.rotation.y = -0.22;
+  const ninthPaStationCollider = createBox(
+    scene,
+    "ch01-ninth-pa-chair-collider",
+    {
+      width: 0.58,
+      height: 1.12,
+      depth: 0.62,
+      position: new Vector3(0, 0.56, -0.76),
+      material: metal,
+      collisions: true,
+    },
+  );
+  ninthPaStationCollider.parent = ninthPaStation;
+  ninthPaStationCollider.isVisible = false;
   ninthPaStation.setEnabled(false);
 
   const ninthCable = MeshBuilder.CreateCylinder(
@@ -909,6 +928,19 @@ export function buildChapterOneScene(
   ninthCable.material = metal;
   ninthCable.isPickable = false;
 
+  const paStationLabelsProp = createBox(
+    scene,
+    "ch01-pa-station-labels-prop",
+    {
+      width: 0.22,
+      height: 0.1,
+      depth: 0.025,
+      position: new Vector3(2.58, 0.87, 7.83),
+      material: plastic,
+      pickable: true,
+    },
+  );
+
   const paIndexCardProp = createBox(scene, "ch01-pa-index-card-prop", {
     width: 0.34,
     height: 0.02,
@@ -917,6 +949,20 @@ export function buildChapterOneScene(
     material: paper,
     pickable: true,
   });
+
+  const paStationLabelsInspectionAnchor = createAnchor(
+    scene,
+    "ch01-pa-station-labels-inspection-anchor",
+    new Vector3(2.55, 1.52, 7.2),
+  );
+  paStationLabelsInspectionAnchor.rotation.set(0.38, 0, 0);
+
+  const paIndexCardInspectionAnchor = createAnchor(
+    scene,
+    "ch01-pa-index-card-inspection-anchor",
+    new Vector3(3.0, 1.5, 7.45),
+  );
+  paIndexCardInspectionAnchor.rotation.set(0.55, 0, 0);
 
   const corridorPhotoBoard = createBox(scene, "ch01-corridor-photo-board", {
     width: 0.06,
@@ -1037,6 +1083,15 @@ export function buildChapterOneScene(
   paRoomLight.range = 10;
   paRoomLight.diffuse = new Color3(0.65, 0.71, 0.67);
 
+  const paDeskLamp = new PointLight(
+    "ch01-pa-desk-lamp",
+    new Vector3(6.4, 1.25, 10.45),
+    scene,
+  );
+  paDeskLamp.intensity = 0.12;
+  paDeskLamp.range = 4.8;
+  paDeskLamp.diffuse = new Color3(0.74, 0.66, 0.48);
+
   const checkpointPositions: Record<ChapterOneCheckpointId, Vector3> = {
     ch01_gate: new Vector3(0, 0.01, -22.2),
     ch01_inside_old_wing: new Vector3(0, 0.01, -6.7),
@@ -1071,8 +1126,10 @@ export function buildChapterOneScene(
     teacherDesk,
     paStations,
     ninthPaStation,
+    ninthPaStationCollider,
     ninthCable,
     paRoomLight,
+    paDeskLamp,
     paReentryZone,
     guardKeyRack,
     guardNotebook,
@@ -1083,11 +1140,14 @@ export function buildChapterOneScene(
     rosterProp,
     classPhotoProp,
     timetableProp,
+    paStationLabelsProp,
     paIndexCardProp,
     corridorPhotoBoard,
     rosterInspectionAnchor,
     photoInspectionAnchor,
     timetableInspectionAnchor,
+    paStationLabelsInspectionAnchor,
+    paIndexCardInspectionAnchor,
     corridorReturnZone,
     insideOldWingZone,
     classroomEntryZone,

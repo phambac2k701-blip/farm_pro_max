@@ -46,9 +46,11 @@ describe("Chapter 1 production scene shell", () => {
       true,
     );
     expect(chapter.ninthPaStation.isEnabled()).toBe(false);
+    expect(chapter.ninthPaStationCollider.checkCollisions).toBe(true);
     expect(chapter.ninthCable.isEnabled()).toBe(true);
     expect(chapter.paReentryZone.isVisible).toBe(false);
     expect(chapter.paRoomLight.intensity).toBeCloseTo(0.85, 6);
+    expect(chapter.paDeskLamp.intensity).toBeCloseTo(0.12, 6);
 
     scene.dispose();
     engine.dispose();
@@ -67,7 +69,10 @@ describe("Chapter 1 production scene shell", () => {
     expect(chapter.rosterProp.isPickable).toBe(true);
     expect(chapter.classPhotoProp.isPickable).toBe(true);
     expect(chapter.timetableProp.isPickable).toBe(true);
+    expect(chapter.paStationLabelsProp.isPickable).toBe(true);
     expect(chapter.paIndexCardProp.isPickable).toBe(true);
+    expect(chapter.paStationLabelsInspectionAnchor).toBeDefined();
+    expect(chapter.paIndexCardInspectionAnchor).toBeDefined();
     expect(scene.getMeshByName("hero-book")).toBeNull();
 
     scene.dispose();
