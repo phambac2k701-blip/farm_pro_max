@@ -652,14 +652,14 @@ export function buildChapterOneScene(
     "ch01-classroom-door",
     new Vector3(1.48, 0, -0.2),
     fadedBlue,
-    -Math.PI * 0.5,
+    Math.PI * 0.5,
   );
   const paRoomDoor = createDoorAlongZ(
     scene,
     "ch01-pa-room-door",
     new Vector3(1.48, 0, 8.5),
     fadedBlue,
-    -Math.PI * 0.5,
+    Math.PI * 0.5,
   );
 
   createTextSign(
