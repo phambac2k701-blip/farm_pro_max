@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 import { CH01_BOOK_SPREADS } from "../../src/content/chapters/ch01/book";
-import { CH01_EVIDENCE } from "../../src/content/chapters/ch01/evidence";
+import { CH01_PROTOTYPE_EVIDENCE } from "../../src/content/chapters/ch01/evidence";
 import { EvidenceSystem } from "../../src/evidence/EvidenceSystem";
 import { GameState } from "../../src/game/state/GameState";
 import {
@@ -21,7 +21,7 @@ function createVisual(): BookInspectionVisual {
 describe("book evidence integration", () => {
   it("discovers only the relevant spread and remains idempotent", () => {
     const state = new GameState();
-    const evidence = new EvidenceSystem(state, CH01_EVIDENCE);
+    const evidence = new EvidenceSystem(state, CH01_PROTOTYPE_EVIDENCE);
     const controller = new BookInspectionController({
       visual: createVisual(),
       pages: CH01_BOOK_SPREADS,
@@ -53,7 +53,7 @@ describe("book evidence integration", () => {
       "ev_ch01_erased_ninth_line",
     ]);
     expect(evidence.listDiscovered()).toEqual([
-      CH01_EVIDENCE[0],
+      CH01_PROTOTYPE_EVIDENCE[0],
     ]);
   });
 });
