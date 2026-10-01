@@ -3,10 +3,13 @@ import { Vector3 } from "@babylonjs/core/Maths/math.vector";
 import { HemisphericLight } from "@babylonjs/core/Lights/hemisphericLight";
 import { PointLight } from "@babylonjs/core/Lights/pointLight";
 import { StandardMaterial } from "@babylonjs/core/Materials/standardMaterial";
+import { DynamicTexture } from "@babylonjs/core/Materials/Textures/dynamicTexture";
 import type { Mesh } from "@babylonjs/core/Meshes/mesh";
 import { MeshBuilder } from "@babylonjs/core/Meshes/meshBuilder";
 import { TransformNode } from "@babylonjs/core/Meshes/transformNode";
 import type { Scene } from "@babylonjs/core/scene";
+
+import { BookPropVisual } from "../../../interaction/inspection/BookPropVisual";
 
 export interface ChapterOnePrototypeScene {
   spawn: Vector3;
@@ -17,6 +20,7 @@ export interface ChapterOnePrototypeScene {
   book: Mesh;
   bookAnchor: TransformNode;
   bookCameraAnchor: TransformNode;
+  bookVisual: BookPropVisual;
 }
 
 interface BoxSpec {
@@ -304,13 +308,125 @@ export function buildChapterOnePrototypeScene(
 
   const book = box(scene, "hero-book", {
     width: 0.24,
-    height: 0.045,
+    height: 0.035,
     depth: 0.34,
-    position: new Vector3(5.25, 0.845, 5.68),
+    position: new Vector3(5.25, 0.84, 5.68),
     material: bookMaterial,
     collisions: false,
   });
   book.isPickable = true;
+
+  const frontCoverHinge = new TransformNode(
+    "hero-book-front-cover-hinge",
+    scene,
+  );
+  frontCoverHinge.position.set(5.13, 0.86, 5.68);
+
+  const frontCover = box(scene, "hero-book-front-cover", {
+    width: 0.24,
+    height: 0.025,
+    depth: 0.34,
+    position: Vector3.Zero(),
+    material: bookMaterial,
+  });
+  frontCover.parent = frontCoverHinge;
+  frontCover.position.set(0.12, 0, 0);
+  frontCover.isPickable = false;
+
+  const paperMaterial = material(
+    scene,
+    "mat-book-paper",
+    new Color3(0.88, 0.84, 0.72),
+  );
+
+  const supportsCanvasTexture =
+    typeof document !== "undefined" ||
+    typeof OffscreenCanvas !== "undefined";
+
+  let leftTexture: DynamicTexture | undefined;
+  let rightTexture: DynamicTexture | undefined;
+  let leftPageMaterial: StandardMaterial = paperMaterial;
+  let rightPageMaterial: StandardMaterial = paperMaterial;
+
+  if (supportsCanvasTexture) {
+    leftTexture = new DynamicTexture(
+      "hero-book-left-page-texture",
+      { width: 512, height: 512 },
+      scene,
+      false,
+    );
+    leftTexture.vScale = -1;
+    leftTexture.vOffset = 1;
+
+    rightTexture = new DynamicTexture(
+      "hero-book-right-page-texture",
+      { width: 512, height: 512 },
+      scene,
+      false,
+    );
+    rightTexture.vScale = -1;
+    rightTexture.vOffset = 1;
+
+    leftPageMaterial = new StandardMaterial(
+      "mat-book-left-page",
+      scene,
+    );
+    leftPageMaterial.diffuseTexture = leftTexture;
+    leftPageMaterial.specularColor = Color3.Black();
+    leftPageMaterial.backFaceCulling = false;
+
+    rightPageMaterial = new StandardMaterial(
+      "mat-book-right-page",
+      scene,
+    );
+    rightPageMaterial.diffuseTexture = rightTexture;
+    rightPageMaterial.specularColor = Color3.Black();
+    rightPageMaterial.backFaceCulling = false;
+  }
+
+  const leftPage = MeshBuilder.CreateGround(
+    "hero-book-left-page",
+    { width: 0.23, height: 0.33 },
+    scene,
+  );
+  leftPage.position.set(5.005, 0.89, 5.68);
+  leftPage.material = leftPageMaterial;
+  leftPage.isPickable = false;
+
+  const rightPage = MeshBuilder.CreateGround(
+    "hero-book-right-page",
+    { width: 0.23, height: 0.33 },
+    scene,
+  );
+  rightPage.position.set(5.255, 0.89, 5.68);
+  rightPage.material = rightPageMaterial;
+  rightPage.isPickable = false;
+
+  const turningPageHinge = new TransformNode(
+    "hero-book-turning-page-hinge",
+    scene,
+  );
+  turningPageHinge.position.set(5.13, 0.895, 5.68);
+
+  const turningPage = MeshBuilder.CreateGround(
+    "hero-book-turning-page",
+    { width: 0.23, height: 0.33 },
+    scene,
+  );
+  turningPage.parent = turningPageHinge;
+  turningPage.position.set(0.115, 0, 0);
+  turningPage.material = paperMaterial;
+  turningPage.isPickable = false;
+
+  const bookVisual = new BookPropVisual({
+    frontCoverHinge,
+    turningPageHinge,
+    turningPage,
+    leftPage,
+    rightPage,
+    leftTexture,
+    rightTexture,
+  });
 
   const bookAnchor = new TransformNode("hero-book-anchor", scene);
   bookAnchor.position.copyFrom(book.position);
@@ -319,8 +435,8 @@ export function buildChapterOnePrototypeScene(
     "hero-book-camera-anchor",
     scene,
   );
-  bookCameraAnchor.position.set(5.25, 1.35, 4.82);
-  bookCameraAnchor.rotation.set(0.62, 0, 0);
+  bookCameraAnchor.position.set(5.25, 1.38, 5.05);
+  bookCameraAnchor.rotation.set(0.66, 0, 0);
 
   const ambience = new HemisphericLight(
     "prototype-ambient-light",
@@ -356,5 +472,6 @@ export function buildChapterOnePrototypeScene(
     book,
     bookAnchor,
     bookCameraAnchor,
+    bookVisual,
   };
 }

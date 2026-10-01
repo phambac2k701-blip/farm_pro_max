@@ -1,10 +1,16 @@
 import { Scene } from "@babylonjs/core/scene";
 
+import { PrototypeBookAudio } from "./audio/PrototypeBookAudio";
 import { CameraDirector } from "./camera/CameraDirector";
+import {
+  CH01_BOOK_INTERACTION_ID,
+  CH01_BOOK_SPREADS,
+} from "./content/chapters/ch01/book";
 import { buildChapterOnePrototypeScene } from "./content/chapters/ch01/prototypeScene";
 import { EngineAdapter } from "./engine/EngineAdapter";
 import { InteractionStateMachine } from "./interaction/InteractionStateMachine";
 import { InteractionSystem } from "./interaction/InteractionSystem";
+import { BookInspectionController } from "./interaction/inspection/BookInspectionController";
 import { PlayerController } from "./player/PlayerController";
 import "./style.css";
 
@@ -13,8 +19,17 @@ async function bootstrap(): Promise<void> {
   const fatalError = document.querySelector<HTMLDivElement>("#fatal-error");
   const interactionPrompt =
     document.querySelector<HTMLDivElement>("#interaction-prompt");
+  const bookControls =
+    document.querySelector<HTMLDivElement>("#book-inspection-controls");
+  const reticle = document.querySelector<HTMLDivElement>("#reticle");
 
-  if (!canvas || !fatalError || !interactionPrompt) {
+  if (
+    !canvas ||
+    !fatalError ||
+    !interactionPrompt ||
+    !bookControls ||
+    !reticle
+  ) {
     throw new Error("Required application DOM nodes are missing.");
   }
 
@@ -32,14 +47,34 @@ async function bootstrap(): Promise<void> {
       interactionState,
     );
     const cameraDirector = new CameraDirector(player.camera, player);
+    const bookAudio = new PrototypeBookAudio();
+    const bookInspection = new BookInspectionController({
+      visual: chapter.bookVisual,
+      pages: CH01_BOOK_SPREADS,
+      audio: bookAudio,
+      onSpreadViewed: (spread) => {
+        canvas.dataset.bookSpread = spread.id;
+        canvas.dataset.bookDiscoveryCandidate =
+          spread.discoveryId ?? "";
+      },
+      onClosed: () => {
+        if (
+          interaction.activeInteraction?.id ===
+          CH01_BOOK_INTERACTION_ID
+        ) {
+          interaction.cancel();
+        }
+      },
+    });
 
     interaction.register(chapter.book, {
-      id: "int_classroom_hero_book",
+      id: CH01_BOOK_INTERACTION_ID,
       prompt: "E · Xem cuốn sổ",
       maxDistance: 1.8,
       priority: 10,
     });
     interaction.attachInput(canvas);
+    bookInspection.attachInput();
 
     canvas.dataset.renderBackend = engineAdapter.backend;
     canvas.dataset.controllerReady = "true";
@@ -52,6 +87,7 @@ async function bootstrap(): Promise<void> {
           chapter: typeof chapter;
           interaction: InteractionSystem;
           cameraDirector: CameraDirector;
+          bookInspection: BookInspectionController;
         };
       };
       debugWindow.__NTC_DEBUG__ = {
@@ -59,6 +95,7 @@ async function bootstrap(): Promise<void> {
         chapter,
         interaction,
         cameraDirector,
+        bookInspection,
       };
     }
 
@@ -70,20 +107,26 @@ async function bootstrap(): Promise<void> {
         interaction.activeInteraction?.id ?? null;
 
       if (activeInteractionId !== previousInteractionId) {
-        if (activeInteractionId === "int_classroom_hero_book") {
+        if (activeInteractionId === CH01_BOOK_INTERACTION_ID) {
           cameraDirector.focus(
             {
               position: chapter.bookCameraAnchor.position,
               rotation: chapter.bookCameraAnchor.rotation,
-              fov: 0.86,
+              fov: 0.72,
             },
             { duration: 0.48 },
           );
-        } else if (
-          activeInteractionId === null &&
-          cameraDirector.state !== "gameplay"
-        ) {
-          cameraDirector.restore({ duration: 0.34 });
+        } else if (activeInteractionId === null) {
+          if (
+            bookInspection.state !== "idle" &&
+            bookInspection.state !== "closing"
+          ) {
+            bookInspection.requestClose();
+          }
+
+          if (cameraDirector.state !== "gameplay") {
+            cameraDirector.restore({ duration: 0.34 });
+          }
         }
 
         previousInteractionId = activeInteractionId;
@@ -91,7 +134,10 @@ async function bootstrap(): Promise<void> {
 
       if (
         activeInteractionId === null &&
-        cameraDirector.state === "restoring"
+        (
+          cameraDirector.state === "restoring" ||
+          bookInspection.state !== "idle"
+        )
       ) {
         player.setLocomotionEnabled(false);
       }
@@ -100,8 +146,19 @@ async function bootstrap(): Promise<void> {
       cameraDirector.update(deltaSeconds);
 
       if (
+        activeInteractionId === CH01_BOOK_INTERACTION_ID &&
+        cameraDirector.state === "inspection" &&
+        bookInspection.state === "idle"
+      ) {
+        bookInspection.start();
+      }
+
+      bookInspection.update(deltaSeconds);
+
+      if (
         activeInteractionId === null &&
-        cameraDirector.state === "gameplay"
+        cameraDirector.state === "gameplay" &&
+        bookInspection.state === "idle"
       ) {
         player.setLocomotionEnabled(true);
       }
@@ -111,9 +168,26 @@ async function bootstrap(): Promise<void> {
       const prompt = interaction.promptState;
       interactionPrompt.hidden = !prompt.visible;
       interactionPrompt.textContent = prompt.text;
+
+      const bookControlsVisible =
+        bookInspection.state === "reading" ||
+        bookInspection.state === "page-turning";
+      bookControls.hidden = !bookControlsVisible;
+      bookControls.textContent = bookControlsVisible
+        ? `← / → đổi trang · Esc đóng · ${bookInspection.currentPageIndex + 1}/${CH01_BOOK_SPREADS.length}`
+        : "";
+
+      reticle.hidden =
+        activeInteractionId !== null ||
+        cameraDirector.state !== "gameplay";
+
       canvas.dataset.interactionTarget = prompt.interactableId ?? "";
       canvas.dataset.interactionActive =
         interaction.activeInteraction?.id ?? "";
+      canvas.dataset.bookState = bookInspection.state;
+      canvas.dataset.bookPage = String(
+        bookInspection.currentPageIndex,
+      );
 
       if (import.meta.env.DEV) {
         const feet = player.getFeetPosition();
@@ -127,6 +201,8 @@ async function bootstrap(): Promise<void> {
     window.addEventListener(
       "beforeunload",
       () => {
+        bookInspection.dispose();
+        bookAudio.dispose();
         interaction.dispose();
         player.dispose();
         scene.dispose();

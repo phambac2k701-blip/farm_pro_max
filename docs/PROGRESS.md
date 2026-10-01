@@ -9,7 +9,7 @@ Last updated: 2026-10-01
 `prototype/bootstrap-3d`
 
 ## Current status
-Implementation is active. **BAC-11 through BAC-16 are complete** and the next executable task is **BAC-17 — Hero book inspection interaction**.
+Implementation is active. **BAC-11 through BAC-17 are complete** and the next executable task is **BAC-18 — Investigation discovery system**.
 
 The pre-build documentation remains authoritative for product/architecture direction. Continue implementation task-by-task without returning to completed preparation work.
 
@@ -49,7 +49,7 @@ The pre-build documentation remains authoritative for product/architecture direc
 - [x] BAC-14 — Graybox hallway and classroom
 - [x] BAC-15 — Interaction targeting and state machine
 - [x] BAC-16 — CameraDirector inspection choreography
-- [ ] BAC-17 — Hero book inspection interaction
+- [x] BAC-17 — Hero book inspection interaction
 - [ ] BAC-18 — Investigation discovery system
 - [ ] BAC-19 — Knowledge-driven world shift prototype
 - [ ] BAC-20 — Save and load prototype state
@@ -178,17 +178,37 @@ Verification:
 - cancel blends back to the pre-inspection position, rotation, and FOV
 - gameplay look and locomotion are restored after the camera returns
 
+## BAC-17 implementation record
+Implemented:
+- tested `BookInspectionController` state machine for open/read/page-turn/close/cancel
+- temporary two-page 3D book rig with animated cover and page-turn hinge
+- authored Chapter 1 book spreads with a relevant ninth-line discovery candidate
+- dynamic page textures with readable Vietnamese text in browser runtime
+- minimal page navigation controls and inspection reticle suppression
+- non-blocking procedural paper/book SFX placeholder hooks
+- camera framing tuned for readable close inspection
+- headless-safe texture capability fallback so NullEngine tests remain valid
+
+Verification:
+- RED verified before implementation: `BookInspectionController` module missing
+- 20/20 total automated tests pass
+- TypeScript typecheck passes
+- production Vite build passes
+- page 2 resolves to `erased-ninth-line` and exposes only `ev_ch01_erased_ninth_line` as the discovery candidate
+- Escape closes the book, restores gameplay camera, hides controls, restores reticle, look, and locomotion
+- hero book target acquisition passes from front, left, and right approach positions
+- browser visual smoke confirmed readable upright page text after UV and camera-framing refinement
+
 ## Exact next task
-**BAC-17 — Hero book inspection interaction**
+**BAC-18 — Investigation discovery system**
 
 Required next steps:
-1. write state tests for book open/page/close flow and cancel safety;
-2. implement `BookInspectionController` using the existing interaction and camera systems;
-3. animate the temporary book prop into an open state;
-4. add page navigation and a minimal readable inspection surface;
-5. add placeholder paper/book audio hooks without blocking browser startup;
-6. verify cancel from every phase and approach angle;
-7. commit and continue to BAC-18.
+1. write failing evidence discovery/idempotency tests;
+2. implement evidence definitions and registry backed by typed game state;
+3. wire only the relevant book spread to evidence discovery;
+4. add restrained evidence discovery feedback and lookup state;
+5. verify repeated page visits are idempotent and irrelevant pages do not discover evidence;
+6. commit and continue to BAC-19.
 
 ## Resume rule
 Start from the first unchecked implementation item above. Verify the latest commit/tests before changing code. Update this file after every meaningful milestone.

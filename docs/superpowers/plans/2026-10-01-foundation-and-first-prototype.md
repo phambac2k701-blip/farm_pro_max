@@ -159,15 +159,15 @@
 - Consumes: CameraDirector, InteractionSystem.
 - Produces: book open/page/close states and discovery callback.
 
-- [ ] Create temporary book prop.
-- [ ] Author inspection anchor.
-- [ ] Blend camera down toward desk.
-- [ ] Animate book opening.
-- [ ] Add page navigation.
-- [ ] Add paper/book SFX placeholder.
-- [ ] Ensure cancel works at every phase.
-- [ ] Playtest repeatedly from different approach angles.
-- [ ] Commit.
+- [x] Create temporary book prop.
+- [x] Author inspection anchor.
+- [x] Blend camera down toward desk.
+- [x] Animate book opening.
+- [x] Add page navigation.
+- [x] Add paper/book SFX placeholder.
+- [x] Ensure cancel works at every phase.
+- [x] Playtest repeatedly from different approach angles.
+- [x] Commit.
 
 ### Task 8: Add evidence system
 
