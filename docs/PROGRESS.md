@@ -3,20 +3,28 @@
 Last updated: 2026-10-01
 
 ## Current phase
-**TECHNICAL PROTOTYPE V1 COMPLETE + NARRATIVE v1.2 HANDOFF IMPORTED — INTEGRATION PLANNING NEXT**
+**CHAPTER 1 PRODUCTION VERTICAL SLICE — IMPLEMENTATION ACTIVE**
 
 ## Current branch
-`integration/narrative-v1.2` (branched from the clean Technical Prototype V1 checkpoint)
+`integration/narrative-v1.2` (continues from the clean Technical Prototype V1 checkpoint plus the frozen narrative handoff)
 
 ## Current status
-**BAC-11 through BAC-21 are complete. TECHNICAL PROTOTYPE V1 COMPLETE.**
+**Technical Prototype V1 is frozen and complete. Narrative integration planning is complete. BAC-22 is now in progress.**
 
-Technical implementation remains intentionally stopped. Narrative handoff `NAR-PRODUCTION-v1.2` has now been imported under `docs/narrative/`. The next authorized planning step is a narrative-to-technical integration/gap analysis; Chapter 1 production code must not start before that analysis and a new implementation plan.
+Completed production planning:
+- Narrative–Technical Gap Analysis: `docs/production/CH01_NARRATIVE_TECHNICAL_GAP_ANALYSIS.md`
+- Chapter 1 architecture: `docs/production/CH01_PRODUCTION_ARCHITECTURE.md`
+- dependency-ordered implementation plan: `docs/production/CH01_VERTICAL_SLICE_IMPLEMENTATION_PLAN.md`
+- Linear milestone: **CHAPTER 1 VERTICAL SLICE**
+- Linear execution issues: BAC-22 through BAC-31
 
-Branch: `prototype/bootstrap-3d`
-Last code/deployment commit before final checkpoint docs: `432a9a6`
-Final checkpoint ref: git tag `technical-prototype-v1` on the final checkpoint commit
-Preview: https://phambac2k701-blip.github.io/farm_pro_max/
+Current implementation task: **BAC-22 — Production chapter state, checkpoints and save v2**.
+
+The authorized execution path is BAC-22 → BAC-31. After BAC-31, record **CHAPTER 1 VERTICAL SLICE COMPLETE** and STOP. Do not start Chapter 2 gameplay.
+
+Technical Prototype V1 branch: `prototype/bootstrap-3d`
+Technical Prototype V1 checkpoint: tag `technical-prototype-v1`
+Existing preview: https://phambac2k701-blip.github.io/farm_pro_max/
 
 ## Connected execution environment
 - GitHub: Full Access
