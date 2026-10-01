@@ -141,11 +141,11 @@
 - Consumes: gameplay camera and authored interaction anchors.
 - Produces: `focus(anchor, options)`, `restore()`, `cancel()`.
 
-- [ ] Test state transitions gameplay → blending → inspection → restoring.
-- [ ] Test cancel during blend.
-- [ ] Implement transform/FOV interpolation.
-- [ ] Ensure restore has no visible hard snap in runtime.
-- [ ] Commit.
+- [x] Test state transitions gameplay → blending → inspection → restoring.
+- [x] Test cancel during blend.
+- [x] Implement transform/FOV interpolation.
+- [x] Ensure restore has no visible hard snap in runtime.
+- [x] Commit.
 
 ### Task 7: Implement the hero book interaction
 

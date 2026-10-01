@@ -1,5 +1,6 @@
 import { Scene } from "@babylonjs/core/scene";
 
+import { CameraDirector } from "./camera/CameraDirector";
 import { buildChapterOnePrototypeScene } from "./content/chapters/ch01/prototypeScene";
 import { EngineAdapter } from "./engine/EngineAdapter";
 import { InteractionStateMachine } from "./interaction/InteractionStateMachine";
@@ -30,6 +31,7 @@ async function bootstrap(): Promise<void> {
       player.camera,
       interactionState,
     );
+    const cameraDirector = new CameraDirector(player.camera, player);
 
     interaction.register(chapter.book, {
       id: "int_classroom_hero_book",
@@ -49,12 +51,61 @@ async function bootstrap(): Promise<void> {
           player: PlayerController;
           chapter: typeof chapter;
           interaction: InteractionSystem;
+          cameraDirector: CameraDirector;
         };
       };
-      debugWindow.__NTC_DEBUG__ = { player, chapter, interaction };
+      debugWindow.__NTC_DEBUG__ = {
+        player,
+        chapter,
+        interaction,
+        cameraDirector,
+      };
     }
+
+    let previousInteractionId: string | null = null;
+
     engineAdapter.run(() => {
-      player.update(engineAdapter.engine.getDeltaTime() / 1000);
+      const deltaSeconds = engineAdapter.engine.getDeltaTime() / 1000;
+      const activeInteractionId =
+        interaction.activeInteraction?.id ?? null;
+
+      if (activeInteractionId !== previousInteractionId) {
+        if (activeInteractionId === "int_classroom_hero_book") {
+          cameraDirector.focus(
+            {
+              position: chapter.bookCameraAnchor.position,
+              rotation: chapter.bookCameraAnchor.rotation,
+              fov: 0.86,
+            },
+            { duration: 0.48 },
+          );
+        } else if (
+          activeInteractionId === null &&
+          cameraDirector.state !== "gameplay"
+        ) {
+          cameraDirector.restore({ duration: 0.34 });
+        }
+
+        previousInteractionId = activeInteractionId;
+      }
+
+      if (
+        activeInteractionId === null &&
+        cameraDirector.state === "restoring"
+      ) {
+        player.setLocomotionEnabled(false);
+      }
+
+      player.update(deltaSeconds);
+      cameraDirector.update(deltaSeconds);
+
+      if (
+        activeInteractionId === null &&
+        cameraDirector.state === "gameplay"
+      ) {
+        player.setLocomotionEnabled(true);
+      }
+
       interaction.update();
 
       const prompt = interaction.promptState;

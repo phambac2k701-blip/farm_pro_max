@@ -16,6 +16,7 @@ export interface ChapterOnePrototypeScene {
   teacherDesk: TransformNode;
   book: Mesh;
   bookAnchor: TransformNode;
+  bookCameraAnchor: TransformNode;
 }
 
 interface BoxSpec {
@@ -314,6 +315,13 @@ export function buildChapterOnePrototypeScene(
   const bookAnchor = new TransformNode("hero-book-anchor", scene);
   bookAnchor.position.copyFrom(book.position);
 
+  const bookCameraAnchor = new TransformNode(
+    "hero-book-camera-anchor",
+    scene,
+  );
+  bookCameraAnchor.position.set(5.25, 1.35, 4.82);
+  bookCameraAnchor.rotation.set(0.62, 0, 0);
+
   const ambience = new HemisphericLight(
     "prototype-ambient-light",
     new Vector3(0.15, 1, -0.2),
@@ -347,5 +355,6 @@ export function buildChapterOnePrototypeScene(
     teacherDesk,
     book,
     bookAnchor,
+    bookCameraAnchor,
   };
 }

@@ -9,7 +9,7 @@ Last updated: 2026-10-01
 `prototype/bootstrap-3d`
 
 ## Current status
-Implementation is active. **BAC-11 through BAC-15 are complete** and the next executable task is **BAC-16 — CameraDirector inspection choreography**.
+Implementation is active. **BAC-11 through BAC-16 are complete** and the next executable task is **BAC-17 — Hero book inspection interaction**.
 
 The pre-build documentation remains authoritative for product/architecture direction. Continue implementation task-by-task without returning to completed preparation work.
 
@@ -48,7 +48,7 @@ The pre-build documentation remains authoritative for product/architecture direc
 - [x] BAC-13 — First-person controller and camera feel
 - [x] BAC-14 — Graybox hallway and classroom
 - [x] BAC-15 — Interaction targeting and state machine
-- [ ] BAC-16 — CameraDirector inspection choreography
+- [x] BAC-16 — CameraDirector inspection choreography
 - [ ] BAC-17 — Hero book inspection interaction
 - [ ] BAC-18 — Investigation discovery system
 - [ ] BAC-19 — Knowledge-driven world shift prototype
@@ -158,16 +158,37 @@ Verification:
 - simulated pointer-lock loss cancels safely and restores locomotion
 - runtime picking required the Babylon `@babylonjs/core/Culling/ray` side-effect import; added after browser smoke exposed the modular-runtime requirement
 
+## BAC-16 implementation record
+Implemented:
+- reusable `CameraDirector` with gameplay, blending, inspection, and restoring states
+- authored camera transform/FOV focus targets
+- eased position interpolation and shortest-angle rotation interpolation
+- exact gameplay camera snapshot preservation and restoration
+- safe cancel during both focus and restore phases
+- Chapter 1 book inspection camera anchor wired into the live interaction flow
+- look lock during cinematic camera ownership and locomotion lock during restore
+
+Verification:
+- RED verified before implementation: CameraDirector module missing
+- 16/16 total automated tests pass
+- TypeScript typecheck passes
+- production Vite build passes
+- runtime focus reaches the authored book camera anchor exactly
+- inspection FOV reaches 0.86 and look/locomotion remain locked
+- cancel blends back to the pre-inspection position, rotation, and FOV
+- gameplay look and locomotion are restored after the camera returns
+
 ## Exact next task
-**BAC-16 — CameraDirector inspection choreography**
+**BAC-17 — Hero book inspection interaction**
 
 Required next steps:
-1. write failing state-transition tests for focus, restore, and cancel during blend;
-2. implement authored camera anchor focus with transform/FOV interpolation;
-3. preserve and restore gameplay camera state without hard snap;
-4. make cancellation safe during both focus and restore transitions;
-5. wire the book interaction to camera focus for runtime verification;
-6. commit and continue to BAC-17.
+1. write state tests for book open/page/close flow and cancel safety;
+2. implement `BookInspectionController` using the existing interaction and camera systems;
+3. animate the temporary book prop into an open state;
+4. add page navigation and a minimal readable inspection surface;
+5. add placeholder paper/book audio hooks without blocking browser startup;
+6. verify cancel from every phase and approach angle;
+7. commit and continue to BAC-18.
 
 ## Resume rule
 Start from the first unchecked implementation item above. Verify the latest commit/tests before changing code. Update this file after every meaningful milestone.
