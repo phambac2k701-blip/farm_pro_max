@@ -216,12 +216,12 @@
 **Interfaces:**
 - Consumes/produces: serialized GameState snapshot.
 
-- [ ] Test roundtrip.
-- [ ] Test invalid data recovery.
-- [ ] Add schema version.
-- [ ] Persist chapter/evidence/facts/settings.
-- [ ] Verify reality shift survives reload.
-- [ ] Commit.
+- [x] Test roundtrip.
+- [x] Test invalid data recovery.
+- [x] Add schema version.
+- [x] Persist chapter/evidence/facts/settings.
+- [x] Verify reality shift survives reload.
+- [x] Commit.
 
 ### Task 11: Build preview and playtest gate
 

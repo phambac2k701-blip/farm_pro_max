@@ -18,6 +18,7 @@ import {
 } from "./content/chapters/ch01/reality";
 import { EngineAdapter } from "./engine/EngineAdapter";
 import { EvidenceSystem } from "./evidence/EvidenceSystem";
+import { SaveService } from "./game/save/SaveService";
 import { GameState } from "./game/state/GameState";
 import { InteractionStateMachine } from "./interaction/InteractionStateMachine";
 import { InteractionSystem } from "./interaction/InteractionSystem";
@@ -49,11 +50,20 @@ async function bootstrap(): Promise<void> {
   }
 
   try {
+    const saveService = new SaveService(window.localStorage);
+    const loadedSave = saveService.load();
+    const settings = {
+      mouseSensitivity:
+        loadedSave?.settings.mouseSensitivity ?? 0.0022,
+    };
+    const gameState = new GameState(loadedSave?.gameState);
+
     const engineAdapter = await EngineAdapter.create(canvas);
     const scene = new Scene(engineAdapter.engine);
     const chapter = buildChapterOnePrototypeScene(scene);
     const player = PlayerController.create(scene, canvas, {
       spawn: chapter.spawn,
+      mouseSensitivity: settings.mouseSensitivity,
     });
     const interactionState = new InteractionStateMachine(player);
     const interaction = new InteractionSystem(
@@ -62,7 +72,6 @@ async function bootstrap(): Promise<void> {
       interactionState,
     );
     const cameraDirector = new CameraDirector(player.camera, player);
-    const gameState = new GameState();
     const evidence = new EvidenceSystem(gameState, CH01_EVIDENCE);
     const reality = new RealitySystem(gameState, CH01_REALITY_RULES, {
       [CH01_NINTH_DESK_SHIFT_ID]: () => {
@@ -125,6 +134,20 @@ async function bootstrap(): Promise<void> {
     });
     interaction.attachInput(canvas);
     bookInspection.attachInput();
+
+    const persistSave = (): void => {
+      const saved = saveService.save(
+        gameState.snapshot(),
+        settings,
+      );
+      canvas.dataset.saveStatus = saved ? "saved" : "failed";
+    };
+    const unsubscribeAutosave = [
+      gameState.events.on("fact-changed", persistSave),
+      gameState.events.on("evidence-discovered", persistSave),
+      gameState.events.on("chapter-changed", persistSave),
+    ];
+    canvas.dataset.saveLoaded = loadedSave ? "true" : "false";
 
     let evidenceHideTimer: number | undefined;
     const unsubscribeEvidence = gameState.events.on(
@@ -292,6 +315,9 @@ async function bootstrap(): Promise<void> {
       "beforeunload",
       () => {
         unsubscribeEvidence();
+        for (const unsubscribe of unsubscribeAutosave) {
+          unsubscribe();
+        }
         if (evidenceHideTimer !== undefined) {
           window.clearTimeout(evidenceHideTimer);
         }

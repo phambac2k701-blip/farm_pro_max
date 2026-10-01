@@ -9,7 +9,7 @@ Last updated: 2026-10-01
 `prototype/bootstrap-3d`
 
 ## Current status
-Implementation is active. **BAC-11 through BAC-19 are complete** and the next executable task is **BAC-20 — Save and load prototype state**.
+Implementation is active. **BAC-11 through BAC-20 are complete** and the next executable task is **BAC-21 — Preview deployment and full playtest gate**.
 
 The pre-build documentation remains authoritative for product/architecture direction. Continue implementation task-by-task without returning to completed preparation work.
 
@@ -52,7 +52,7 @@ The pre-build documentation remains authoritative for product/architecture direc
 - [x] BAC-17 — Hero book inspection interaction
 - [x] BAC-18 — Investigation discovery system
 - [x] BAC-19 — Knowledge-driven world shift prototype
-- [ ] BAC-20 — Save and load prototype state
+- [x] BAC-20 — Save and load prototype state
 - [ ] BAC-21 — Preview deployment and full playtest gate
 
 ## BAC-11 implementation record
@@ -251,17 +251,46 @@ Verification:
 - ninth desk becomes enabled and classroom light changes from 1.0 to 0.72 with a cooler diffuse tone
 - no explicit “reality changed” UI text is rendered
 
+## BAC-20 reuse-first review
+- Existing codebase: `GameState.snapshot()` already produces the chapter/facts/evidence payload, and browser `localStorage` is sufficient for prototype persistence.
+- Babylon.js: no engine-level save primitive is a better fit for this domain state.
+- External library review: Zod and Valibot are both MIT-licensed runtime schema libraries. Valibot is dependency-free and highly tree-shakeable, so it gives robust validation without a hand-written type-guard layer or a large bundle cost.
+- Decision: add Valibot only beneath `SaveService` for untrusted storage validation. `SaveService` remains the game-owned abstraction; storage remains injected/testable.
+
+## BAC-20 implementation record
+Implemented:
+- versioned `SaveService` with injected storage interface
+- Valibot runtime schema validation for untrusted persisted JSON
+- chapter/facts/evidence/settings persistence
+- safe invalid JSON / invalid schema / unsupported-version recovery
+- save hydration before gameplay systems are constructed
+- autosave on fact, evidence, and chapter changes
+- reality variant restoration through `RealitySystem.syncApplied()`
+
+Verification:
+- RED verified before implementation: `SaveService` module missing
+- 33/33 total automated tests pass
+- TypeScript typecheck passes
+- production Vite build passes
+- browser autosave writes schemaVersion 1 with Chapter 1 facts/evidence/settings
+- full browser reload restores evidence and the ninth-desk applied facts
+- ninth desk and cooler 0.72 classroom light are reapplied immediately after reload
+- corrupted localStorage is cleared safely and the game boots clean with default state
+
 ## Exact next task
-**BAC-20 — Save and load prototype state**
+**BAC-21 — Preview deployment and full playtest gate**
 
 Required next steps:
-1. perform reuse-first review for storage/schema validation;
-2. write failing save roundtrip and invalid-data recovery tests;
-3. add schema versioning and persist chapter/evidence/facts/settings;
-4. load state before gameplay systems are constructed;
-5. autosave meaningful GameState changes;
-6. verify the ninth-desk reality shift survives a browser reload;
-7. commit and continue to BAC-21.
+1. run full automated test/typecheck/production build gate;
+2. run clean-save browser smoke and inspect console/network errors;
+3. play the complete technical prototype flow: movement → interaction → camera inspection → evidence → reality shift;
+4. verify save/load and corrupted-save recovery;
+5. verify obvious movement/collision/camera/interaction regressions;
+6. capture representative screenshots and record `docs/PLAYTEST_LOG.md`;
+7. fix all Critical/Important findings and rerun the full verification gate;
+8. deploy a preview build;
+9. update final progress/continuity checkpoint, Linear, and create the final prototype commit;
+10. STOP after `TECHNICAL PROTOTYPE V1 COMPLETE`; do not start BAC-22 or production content.
 
 ## Resume rule
 Start from the first unchecked implementation item above. Verify the latest commit/tests before changing code. Update this file after every meaningful milestone.
