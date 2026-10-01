@@ -32,13 +32,29 @@ When the user is ready to build, a suitable command is:
    - docs/ASSET_PLAN.md
    - docs/CONTENT_PIPELINE.md
    - docs/TESTING_AND_PLAYTEST.md
+   - docs/TECHNICAL_PROTOTYPE_V1_HANDOFF.md
+   - docs/PLAYTEST_LOG.md
    - relevant docs/DECISIONS/*
    - current docs/superpowers/plans/*
 3. Inspect Linear project `P-BAC-1` and active issues.
 4. Trust `docs/PROGRESS.md` for whether implementation has started.
 5. If build has not been explicitly authorized yet, remain at the pre-build checkpoint.
-6. After explicit build authorization, resume from the first unchecked implementation task.
-7. Update `docs/PROGRESS.md` after every meaningful milestone.
+6. If `docs/PROGRESS.md` marks an intentional STOP POINT, do not execute the next unchecked plan task automatically.
+7. After a new explicit user instruction, create/refresh the next-phase plan before resuming execution.
+8. Update `docs/PROGRESS.md` after every meaningful milestone.
+
+## Current intentional stop point
+Milestone: **TECHNICAL PROTOTYPE V1 COMPLETE**
+
+- BAC-11 through BAC-21 are complete.
+- Branch: `prototype/bootstrap-3d`.
+- Preview: https://phambac2k701-blip.github.io/farm_pro_max/
+- Final checkpoint ref: git tag `technical-prototype-v1` (created on the final checkpoint commit).
+- Verification evidence: `docs/PLAYTEST_LOG.md`.
+- Handoff: `docs/TECHNICAL_PROTOTYPE_V1_HANDOFF.md`.
+- There is no active implementation task after BAC-21.
+- Task 12 in the old foundation plan is intentionally **not started** at this checkpoint.
+- Do not create BAC-22, start Chapter 1, write new narrative/content, expand the map, add mechanics, or begin a production phase until the user supplies a new explicit instruction/handoff.
 
 ## End-of-session checkpoint
 Before ending a long work session, update `docs/PROGRESS.md` with:

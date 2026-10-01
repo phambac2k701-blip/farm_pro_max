@@ -3,21 +3,26 @@
 Last updated: 2026-10-01
 
 ## Current phase
-**Prototype implementation — browser 3D bootstrap complete**
+**TECHNICAL PROTOTYPE V1 COMPLETE — INTENTIONAL STOP POINT**
 
 ## Current branch
 `prototype/bootstrap-3d`
 
 ## Current status
-Implementation is active. **BAC-11 through BAC-20 are complete** and the next executable task is **BAC-21 — Preview deployment and full playtest gate**.
+**BAC-11 through BAC-21 are complete. TECHNICAL PROTOTYPE V1 COMPLETE.**
 
-The pre-build documentation remains authoritative for product/architecture direction. Continue implementation task-by-task without returning to completed preparation work.
+Execution is intentionally stopped. There is **no active next implementation task**. Do not create BAC-22, start Chapter 1 production, write new narrative/content, expand the map, add mechanics, or begin the next production phase until the user provides a new explicit instruction/handoff.
+
+Branch: `prototype/bootstrap-3d`
+Last code/deployment commit before final checkpoint docs: `432a9a6`
+Final checkpoint ref: git tag `technical-prototype-v1` on the final checkpoint commit
+Preview: https://phambac2k701-blip.github.io/farm_pro_max/
 
 ## Connected execution environment
 - GitHub: Full Access
 - Linear: Full Access
 - Figma: Full Access
-- Vercel: Full Access
+- Vercel: connected, but preview deploy was unavailable during BAC-21 because the local CLI token was invalid; GitHub Pages is the verified preview target
 - Context7: available for current documentation
 - Remote Desktop Commander: Full Access
 - Remote device: `VOSTRO-COREI7G13`
@@ -53,7 +58,7 @@ The pre-build documentation remains authoritative for product/architecture direc
 - [x] BAC-18 — Investigation discovery system
 - [x] BAC-19 — Knowledge-driven world shift prototype
 - [x] BAC-20 — Save and load prototype state
-- [ ] BAC-21 — Preview deployment and full playtest gate
+- [x] BAC-21 — Preview deployment and full playtest gate
 
 ## BAC-11 implementation record
 Implemented:
@@ -277,20 +282,47 @@ Verification:
 - ninth desk and cooler 0.72 classroom light are reapplied immediately after reload
 - corrupted localStorage is cleared safely and the game boots clean with default state
 
-## Exact next task
-**BAC-21 — Preview deployment and full playtest gate**
+## BAC-21 implementation record
+Completed:
+- full automated test/typecheck/production-build gate
+- clean-save browser smoke
+- movement, pointer-lock camera, collision, interaction, camera inspection, page navigation, evidence and reality-shift playtest
+- save/load and corrupted-save recovery in both local runtime and deployed production preview
+- console/page-error inspection
+- local and deployed HAR checks
+- representative screenshots and `docs/PLAYTEST_LOG.md`
+- GitHub Pages preview deployment with branch-scoped environment policy
+- final handoff/checkpoint documentation
 
-Required next steps:
-1. run full automated test/typecheck/production build gate;
-2. run clean-save browser smoke and inspect console/network errors;
-3. play the complete technical prototype flow: movement → interaction → camera inspection → evidence → reality shift;
-4. verify save/load and corrupted-save recovery;
-5. verify obvious movement/collision/camera/interaction regressions;
-6. capture representative screenshots and record `docs/PLAYTEST_LOG.md`;
-7. fix all Critical/Important findings and rerun the full verification gate;
-8. deploy a preview build;
-9. update final progress/continuity checkpoint, Linear, and create the final prototype commit;
-10. STOP after `TECHNICAL PROTOTYPE V1 COMPLETE`; do not start BAC-22 or production content.
+Verification:
+- 33/33 automated tests pass across 11 test files
+- TypeScript typecheck passes
+- production Vite build passes
+- final GitHub Pages workflow run `36881182705` passed install/test/typecheck/build/configure/upload/deploy
+- local runtime: no page errors; HAR 89 requests / 0 HTTP >=400
+- deployed preview: no page errors; HAR 21 requests / 0 HTTP >=400
+- deployed preview boots WebGPU with no fatal state
+- production preview save hydration restores `shift_ch01_ninth_desk`
+- production preview corrupt-save recovery clears invalid data and boots clean
+- local RAF smoke sample measured ~60.3 FPS over ~2 seconds
+- no Critical or Important gameplay regressions remained at checkpoint
 
-## Resume rule
-Start from the first unchecked implementation item above. Verify the latest commit/tests before changing code. Update this file after every meaningful milestone.
+Known non-blocking limitations:
+- main production JS chunk remains ~1.36 MB minified / ~332 KB gzip and triggers Vite's chunk-size warning
+- environment/book/material/audio remain prototype quality
+- manual runtime verification was Chromium/WebGPU; WebGL fallback is automated-test covered but not fully cross-browser playtested
+- save schema v1 has validation/versioning but no migration path
+- desktop keyboard/mouse only
+- low-end hardware/network performance not yet profiled
+- Vercel preview was unavailable because the local token was invalid; verified preview uses GitHub Pages
+
+Verification evidence: `docs/PLAYTEST_LOG.md`
+Handoff: `docs/TECHNICAL_PROTOTYPE_V1_HANDOFF.md`
+Preview: https://phambac2k701-blip.github.io/farm_pro_max/
+
+## STOP POINT
+**TECHNICAL PROTOTYPE V1 COMPLETE**
+
+There is no active next task. Task 12 in the old implementation plan remains intentionally unchecked. Do not automatically start BAC-22, Chapter 1, narrative/content expansion, map expansion, new mechanics, foundation review, or the next production phase.
+
+Wait for a new explicit user instruction/handoff before doing any further execution.

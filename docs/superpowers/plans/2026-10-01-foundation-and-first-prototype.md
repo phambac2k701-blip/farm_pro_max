@@ -233,17 +233,19 @@
 **Interfaces:**
 - Produces: reproducible build and preview.
 
-- [ ] Run full automated test suite.
-- [ ] Run production build.
-- [ ] Launch playable build.
-- [ ] Check console/network errors.
-- [ ] Play full prototype from clean save.
-- [ ] Capture representative screenshots.
-- [ ] Record movement/interaction/performance findings.
-- [ ] Fix Critical/Important findings.
-- [ ] Deploy preview.
-- [ ] Update `docs/PROGRESS.md`.
-- [ ] Commit.
+- [x] Run full automated test suite.
+- [x] Run production build.
+- [x] Launch playable build.
+- [x] Check console/network errors.
+- [x] Play full prototype from clean save.
+- [x] Capture representative screenshots.
+- [x] Record movement/interaction/performance findings.
+- [x] Fix Critical/Important findings.
+- [x] Deploy preview.
+- [x] Update `docs/PROGRESS.md`.
+- [x] Commit.
+
+> **INTENTIONAL STOP POINT AFTER TASK 11:** `TECHNICAL PROTOTYPE V1 COMPLETE`. Task 12 must not start automatically; wait for a new explicit user instruction/handoff.
 
 ### Task 12: Foundation review
 
