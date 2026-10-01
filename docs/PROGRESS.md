@@ -3,15 +3,15 @@
 Last updated: 2026-10-01
 
 ## Current phase
-**TECHNICAL PROTOTYPE V1 COMPLETE — INTENTIONAL STOP POINT**
+**TECHNICAL PROTOTYPE V1 COMPLETE + NARRATIVE v1.2 HANDOFF IMPORTED — INTEGRATION PLANNING NEXT**
 
 ## Current branch
-`prototype/bootstrap-3d`
+`integration/narrative-v1.2` (branched from the clean Technical Prototype V1 checkpoint)
 
 ## Current status
 **BAC-11 through BAC-21 are complete. TECHNICAL PROTOTYPE V1 COMPLETE.**
 
-Execution is intentionally stopped. There is **no active next implementation task**. Do not create BAC-22, start Chapter 1 production, write new narrative/content, expand the map, add mechanics, or begin the next production phase until the user provides a new explicit instruction/handoff.
+Technical implementation remains intentionally stopped. Narrative handoff `NAR-PRODUCTION-v1.2` has now been imported under `docs/narrative/`. The next authorized planning step is a narrative-to-technical integration/gap analysis; Chapter 1 production code must not start before that analysis and a new implementation plan.
 
 Branch: `prototype/bootstrap-3d`
 Last code/deployment commit before final checkpoint docs: `432a9a6`
@@ -320,9 +320,13 @@ Verification evidence: `docs/PLAYTEST_LOG.md`
 Handoff: `docs/TECHNICAL_PROTOTYPE_V1_HANDOFF.md`
 Preview: https://phambac2k701-blip.github.io/farm_pro_max/
 
-## STOP POINT
-**TECHNICAL PROTOTYPE V1 COMPLETE**
+## NARRATIVE HANDOFF IMPORT
+- Imported production narrative: `NAR-PRODUCTION-v1.2`.
+- Source baseline: `bcbruh/cottruyen@808cbb7` plus coherence repairs documented in `docs/narrative/NARRATIVE_HANDOFF_METADATA.md`.
+- Production source of truth: `docs/narrative/`.
+- Old `docs/NARRATIVE_BIBLE.md` is retained only as superseded foundation context.
 
-There is no active next task. Task 12 in the old implementation plan remains intentionally unchecked. Do not automatically start BAC-22, Chapter 1, narrative/content expansion, map expansion, new mechanics, foundation review, or the next production phase.
+## NEXT CHECKPOINT
+**INTEGRATION/GAP ANALYSIS — NOT YET EXECUTED**
 
-Wait for a new explicit user instruction/handoff before doing any further execution.
+Do not start Chapter 1 implementation directly. First map narrative requirements to existing prototype systems, identify missing reusable systems/assets/audio/UI/state, record conflicts, and produce a Chapter 1 Vertical Slice implementation plan with dependencies and Definition of Done.

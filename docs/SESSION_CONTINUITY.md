@@ -25,7 +25,16 @@ When the user is ready to build, a suitable command is:
    - docs/TECHNICAL_REQUIREMENTS.md
    - docs/ARCHITECTURE.md
    - docs/GAMEPLAY.md
-   - docs/NARRATIVE_BIBLE.md
+   - docs/NARRATIVE_BIBLE.md (legacy foundation pointer)
+   - docs/narrative/NARRATIVE_HANDOFF_METADATA.md
+   - docs/narrative/00_NARRATIVE_STATUS.md
+   - docs/narrative/04_CANON_STORY.md
+   - docs/narrative/08_CLUE_GRAPH.md
+   - docs/narrative/09_KCR_MATRIX.md
+   - docs/narrative/10_CHAPTER_BIBLE.md
+   - docs/narrative/11_CHAPTER_01_VERTICAL_SLICE.md
+   - docs/narrative/18_IMPLEMENTATION_HANDOFF.md
+   - docs/narrative/28_FULL_GAME_NARRATIVE_AUDIT.md
    - docs/ART_BIBLE.md
    - docs/AUDIO_BIBLE.md
    - docs/UI_UX.md
@@ -52,9 +61,10 @@ Milestone: **TECHNICAL PROTOTYPE V1 COMPLETE**
 - Final checkpoint ref: git tag `technical-prototype-v1` (created on the final checkpoint commit).
 - Verification evidence: `docs/PLAYTEST_LOG.md`.
 - Handoff: `docs/TECHNICAL_PROTOTYPE_V1_HANDOFF.md`.
-- There is no active implementation task after BAC-21.
-- Task 12 in the old foundation plan is intentionally **not started** at this checkpoint.
-- Do not create BAC-22, start Chapter 1, write new narrative/content, expand the map, add mechanics, or begin a production phase until the user supplies a new explicit instruction/handoff.
+- Technical Prototype V1 remains complete and frozen.
+- Narrative handoff `NAR-PRODUCTION-v1.2` is imported on branch `integration/narrative-v1.2` under `docs/narrative/`.
+- The next step is **integration/gap analysis**, not direct Chapter 1 coding.
+- Do not invent or rewrite canon during technical implementation. Narrative conflicts must be documented and resolved against the production package.
 
 ## End-of-session checkpoint
 Before ending a long work session, update `docs/PROGRESS.md` with:
