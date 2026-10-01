@@ -3,15 +3,17 @@
 Last updated: 2026-10-01
 
 ## Current phase
-**Phase 1 — First playable technical prototype**
+**Pre-build handoff complete — waiting for explicit build start in a fresh chat**
 
 ## Current branch
 `prototype/bootstrap-3d`
 
 ## Current status
-Foundation planning is complete enough to begin implementation. The active task is **Task 1: bootstrap the browser 3D application**.
+**READY TO BUILD, BUT GAMEPLAY/ENGINE IMPLEMENTATION HAS NOT STARTED YET.**
 
-The user has explicitly authorized continuous end-to-end execution: after completing one actionable task, continue to the next without pausing for routine confirmation. This authorization is recorded in `docs/WORKING_RULES.md`.
+The repository now contains the final pre-build documentation set required to begin the first playable prototype without returning to planning for ordinary questions.
+
+The user has explicitly authorized continuous end-to-end execution **after build start**: once the user gives the explicit start command in the fresh chat, complete one planned task and continue directly to the next actionable task without pausing for routine confirmation. This authorization is recorded in `docs/WORKING_RULES.md`.
 
 ## Connected execution environment
 - GitHub: Full Access
@@ -23,86 +25,84 @@ The user has explicitly authorized continuous end-to-end execution: after comple
 - Remote device: `VOSTRO-COREI7G13`
 - Remote device status at last check: **Online**
 
-## Confirmed decisions
-- The project is a **true 3D first-person psychological investigation game**.
-- Primary delivery target: **desktop web browser**.
-- Engine direction: **Babylon.js + TypeScript + Vite**.
-- WebGPU is preferred where supported; WebGL fallback is required.
-- Gameplay is investigation/exploration, not combat.
-- Core narrative mechanic: **Knowledge Changes Reality**.
-- The game is chapter-based; current target structure is approximately 9 chapters.
-- Visual direction: realistic, atmospheric, familiar Vietnamese environments, restrained horror.
-- Smooth camera, smooth locomotion, and tactile interaction are top-tier requirements.
-- Important object interactions should use micro-cinematics rather than instant UI popups.
-- GitHub is the source of truth.
-- Linear is task tracking.
-- Figma is UI/visual planning.
-- Vercel is preview/deployment.
-- Context7 is available and has already been used to verify current Babylon.js APIs.
+## Confirmed project direction
+- true 3D first-person psychological investigation game
+- desktop web browser first
+- Babylon.js + TypeScript + Vite
+- WebGPU preferred; WebGL fallback required
+- investigation/exploration, not combat
+- core mechanic: **Knowledge Changes Reality**
+- approximately 9 chapters
+- realistic, atmospheric Vietnamese environments
+- smooth movement/camera and tactile micro-cinematic interactions are P0
+- GitHub is source of truth; Linear tracks work
 
-## Completed
-- [x] Repository ownership/admin access verified.
-- [x] Initial project concept established.
-- [x] Initial visual concept image generated.
-- [x] 3D direction confirmed.
-- [x] Foundation README created.
-- [x] Working rules created.
-- [x] Continuous execution authorization recorded.
-- [x] Session continuity / fresh-chat resume protocol created.
-- [x] Master plan created.
-- [x] Technical requirements created.
-- [x] Architecture created.
-- [x] Gameplay specification created.
-- [x] Art bible created.
-- [x] Content pipeline created.
-- [x] Testing/playtest strategy created.
-- [x] ADR-0001 selects browser-first Babylon.js for prototype.
-- [x] Detailed first prototype implementation plan created.
-- [x] Linear project created: `P-BAC-1`.
-- [x] Linear issues created for bootstrap, GameState, movement, graybox, interaction, camera, book inspection, investigation, reality shift, save/load, and playtest/deploy.
-- [x] Foundation PR opened: GitHub PR #1.
-- [x] GitHub has full access.
-- [x] Linear has full access.
-- [x] Figma has full access.
-- [x] Vercel has full access.
-- [x] Remote Desktop Commander has full access and the development device was verified online.
-- [x] Context7 documentation access verified.
-- [x] Prototype implementation branch created: `prototype/bootstrap-3d`.
+## Pre-build documentation completed
+- [x] README / project identity
+- [x] `docs/WORKING_RULES.md`
+- [x] `docs/SESSION_CONTINUITY.md`
+- [x] `docs/PROJECT_MASTER_PLAN.md`
+- [x] `docs/TECHNICAL_REQUIREMENTS.md`
+- [x] `docs/ARCHITECTURE.md`
+- [x] `docs/GAMEPLAY.md`
+- [x] `docs/ART_BIBLE.md`
+- [x] `docs/NARRATIVE_BIBLE.md`
+- [x] `docs/AUDIO_BIBLE.md`
+- [x] `docs/UI_UX.md`
+- [x] `docs/ASSET_PLAN.md`
+- [x] `docs/CONTENT_PIPELINE.md`
+- [x] `docs/TESTING_AND_PLAYTEST.md`
+- [x] `docs/PREBUILD_CHECKLIST.md`
+- [x] ADR-0001: browser-first Babylon.js
+- [x] detailed first-prototype implementation plan
+- [x] Linear project `P-BAC-1`
+- [x] implementation issues created
+- [x] foundation PR #1 opened
+- [x] prototype implementation branch prepared
+- [x] initial visual concept generated
+- [x] current Babylon.js initialization direction verified with Context7
 
-## Active task
-### Task 1 — Bootstrap browser 3D application
-Linear: `BAC-11`
+## Build state
+No gameplay/engine implementation has started.
 
-Current sub-step:
-- [x] Verify current Babylon.js WebGPU/WebGL initialization docs with Context7.
-- [ ] Create minimal TypeScript/Vite project files.
-- [ ] Create test harness.
-- [ ] Write the first failing bootstrap/engine-selection test.
-- [ ] Run it and confirm the failure is for the expected missing implementation.
-- [ ] Implement `EngineAdapter` with WebGPU attempt and WebGL fallback.
-- [ ] Add resize/render-loop lifecycle.
-- [ ] Run tests.
-- [ ] Run production build.
-- [ ] Commit and update this file.
+No TypeScript/Vite project scaffolding, test harness, or Babylon.js runtime code has been created yet.
 
-## Tests/build status
-Not yet started on the prototype branch. No implementation code has been written yet, so there is currently no valid test/build result to report.
+Therefore there is no valid test/build result to report.
 
-## Exact next action
-Create the minimal project/test scaffolding, then follow TDD:
-1. test first
-2. watch the test fail
-3. implement the minimum engine bootstrap
-4. watch it pass
-5. build the app
+## Queued first build task
+### BAC-11 — Bootstrap browser 3D application
 
-After Task 1 completes, immediately continue to the next actionable task in the implementation plan unless one of the explicit stop conditions in `docs/WORKING_RULES.md` is reached.
+Do **not** begin this task until the user gives the explicit build-start command in the fresh chat.
 
-## Resume checkpoint
-If a future session starts here:
+Once authorized, first steps are:
+1. create minimal TypeScript/Vite scaffolding;
+2. create the test harness;
+3. write the first failing bootstrap/engine-selection test;
+4. verify RED;
+5. implement minimum `EngineAdapter`;
+6. verify GREEN;
+7. run production build;
+8. update this file;
+9. continue automatically to the next planned task.
+
+## New-information protocol
+Whenever implementation reveals anything new:
+- requirement → update the relevant spec;
+- architecture decision → add/update an ADR;
+- narrative linkage → update Narrative Bible or chapter data;
+- asset requirement → update Asset Plan/manifest;
+- remaining work → update/create Linear issue;
+- milestone/task status → update this file.
+
+Nothing important should exist only in chat.
+
+## Fresh-chat handoff
+This is the official clean handoff point.
+
+In the new conversation:
 1. read `docs/SESSION_CONTINUITY.md`;
-2. inspect `prototype/bootstrap-3d`;
-3. inspect PR #1 and Linear project `P-BAC-1`;
-4. resume Task 1 at **Create minimal TypeScript/Vite project files and test harness**;
-5. do not recreate foundation docs or roadmap work already marked complete;
-6. continue automatically to subsequent tasks after each task completes.
+2. read this file;
+3. inspect `prototype/bootstrap-3d`, PR #1, and Linear project `P-BAC-1`;
+4. confirm that implementation has not started;
+5. wait for / recognize the user's explicit build-start instruction;
+6. then begin BAC-11 and continue according to `docs/WORKING_RULES.md`.
