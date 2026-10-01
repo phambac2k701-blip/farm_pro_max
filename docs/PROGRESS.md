@@ -9,7 +9,7 @@ Last updated: 2026-10-01
 `integration/narrative-v1.2` (continues from the clean Technical Prototype V1 checkpoint plus the frozen narrative handoff)
 
 ## Current status
-**Technical Prototype V1 is frozen and complete. Narrative integration planning is complete. BAC-22 is now in progress.**
+**Technical Prototype V1 is frozen and complete. Narrative integration planning is complete. BAC-22 is complete; BAC-23 is now in progress.**
 
 Completed production planning:
 - Narrative–Technical Gap Analysis: `docs/production/CH01_NARRATIVE_TECHNICAL_GAP_ANALYSIS.md`
@@ -18,7 +18,7 @@ Completed production planning:
 - Linear milestone: **CHAPTER 1 VERTICAL SLICE**
 - Linear execution issues: BAC-22 through BAC-31
 
-Current implementation task: **BAC-22 — Production chapter state, checkpoints and save v2**.
+Current implementation task: **BAC-23 — Production Chapter 1 scene shell and traversal**.
 
 The authorized execution path is BAC-22 → BAC-31. After BAC-31, record **CHAPTER 1 VERTICAL SLICE COMPLETE** and STOP. Do not start Chapter 2 gameplay.
 
@@ -338,3 +338,26 @@ Preview: https://phambac2k701-blip.github.io/farm_pro_max/
 **INTEGRATION/GAP ANALYSIS — NOT YET EXECUTED**
 
 Do not start Chapter 1 implementation directly. First map narrative requirements to existing prototype systems, identify missing reusable systems/assets/audio/UI/state, record conflicts, and produce a Chapter 1 Vertical Slice implementation plan with dependencies and Definition of Done.
+
+
+## BAC-22 production record
+Implemented:
+- stable Chapter 1 production checkpoint IDs from `ch01_gate` through `ch01_complete`
+- reusable monotonic `ChapterRuntime` with safe restore and idempotent completion
+- production SaveService schema v2 with explicit checkpoint payload
+- new production save key `nguoi-thu-chin:production:v2`
+- explicit reset of incompatible Technical Prototype V1 saves instead of migrating prototype-only evidence/reality state
+- bootstrap wiring so autosaves include the durable Chapter 1 checkpoint
+- dedicated Chapter 1 production CI workflow for test/typecheck/build verification
+
+Verification:
+- GitHub Actions run `36905157371` completed successfully
+- 12/12 test files pass
+- 38/38 tests pass
+- TypeScript typecheck passes
+- production Vite build passes
+- main bundle remains approximately 1.36 MB minified / 333 KB gzip; existing non-blocking chunk-size warning remains
+- remote browser runtime verification was unavailable during BAC-22 because the authorized desktop device was offline; BAC-22 changed state/persistence only and the automated gate covered the new behavior. Browser traversal verification is required during BAC-23 and later full gates.
+
+Decision:
+- schema v1 is intentionally reset, not migrated, because it can contain the non-production Hero Book evidence ID and prototype ninth-classroom-desk KCR state. Carrying those into production would violate the frozen narrative handoff.
