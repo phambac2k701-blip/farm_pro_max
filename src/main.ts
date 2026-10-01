@@ -1,15 +1,19 @@
-﻿import { Scene } from "@babylonjs/core/scene";
+import { Scene } from "@babylonjs/core/scene";
 
 import { buildChapterOnePrototypeScene } from "./content/chapters/ch01/prototypeScene";
 import { EngineAdapter } from "./engine/EngineAdapter";
+import { InteractionStateMachine } from "./interaction/InteractionStateMachine";
+import { InteractionSystem } from "./interaction/InteractionSystem";
 import { PlayerController } from "./player/PlayerController";
 import "./style.css";
 
 async function bootstrap(): Promise<void> {
   const canvas = document.querySelector<HTMLCanvasElement>("#game-canvas");
   const fatalError = document.querySelector<HTMLDivElement>("#fatal-error");
+  const interactionPrompt =
+    document.querySelector<HTMLDivElement>("#interaction-prompt");
 
-  if (!canvas || !fatalError) {
+  if (!canvas || !fatalError || !interactionPrompt) {
     throw new Error("Required application DOM nodes are missing.");
   }
 
@@ -20,6 +24,20 @@ async function bootstrap(): Promise<void> {
     const player = PlayerController.create(scene, canvas, {
       spawn: chapter.spawn,
     });
+    const interactionState = new InteractionStateMachine(player);
+    const interaction = new InteractionSystem(
+      scene,
+      player.camera,
+      interactionState,
+    );
+
+    interaction.register(chapter.book, {
+      id: "int_classroom_hero_book",
+      prompt: "E · Xem cuốn sổ",
+      maxDistance: 1.8,
+      priority: 10,
+    });
+    interaction.attachInput(canvas);
 
     canvas.dataset.renderBackend = engineAdapter.backend;
     canvas.dataset.controllerReady = "true";
@@ -30,13 +48,21 @@ async function bootstrap(): Promise<void> {
         __NTC_DEBUG__?: {
           player: PlayerController;
           chapter: typeof chapter;
+          interaction: InteractionSystem;
         };
       };
-      debugWindow.__NTC_DEBUG__ = { player, chapter };
+      debugWindow.__NTC_DEBUG__ = { player, chapter, interaction };
     }
-
     engineAdapter.run(() => {
       player.update(engineAdapter.engine.getDeltaTime() / 1000);
+      interaction.update();
+
+      const prompt = interaction.promptState;
+      interactionPrompt.hidden = !prompt.visible;
+      interactionPrompt.textContent = prompt.text;
+      canvas.dataset.interactionTarget = prompt.interactableId ?? "";
+      canvas.dataset.interactionActive =
+        interaction.activeInteraction?.id ?? "";
 
       if (import.meta.env.DEV) {
         const feet = player.getFeetPosition();
@@ -50,6 +76,7 @@ async function bootstrap(): Promise<void> {
     window.addEventListener(
       "beforeunload",
       () => {
+        interaction.dispose();
         player.dispose();
         scene.dispose();
         engineAdapter.dispose();

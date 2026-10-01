@@ -9,7 +9,7 @@ Last updated: 2026-10-01
 `prototype/bootstrap-3d`
 
 ## Current status
-Implementation is active. **BAC-11 through BAC-14 are complete** and the next executable task is **BAC-15 — Interaction targeting and state machine**.
+Implementation is active. **BAC-11 through BAC-15 are complete** and the next executable task is **BAC-16 — CameraDirector inspection choreography**.
 
 The pre-build documentation remains authoritative for product/architecture direction. Continue implementation task-by-task without returning to completed preparation work.
 
@@ -47,7 +47,7 @@ The pre-build documentation remains authoritative for product/architecture direc
 - [x] BAC-12 — Typed game state and event model
 - [x] BAC-13 — First-person controller and camera feel
 - [x] BAC-14 — Graybox hallway and classroom
-- [ ] BAC-15 — Interaction targeting and state machine
+- [x] BAC-15 — Interaction targeting and state machine
 - [ ] BAC-16 — CameraDirector inspection choreography
 - [ ] BAC-17 — Hero book inspection interaction
 - [ ] BAC-18 — Investigation discovery system
@@ -138,16 +138,36 @@ Verification:
 - real-time collision stops at the classroom outer wall near x=9.09
 - furniture collider refinement prevents the player ellipsoid from climbing onto desk tops
 
+## BAC-15 implementation record
+Implemented:
+- typed interactable definitions and prompt state
+- deterministic candidate selection by priority, distance, then stable id
+- per-interactable max-range rejection
+- center-screen Babylon multi-pick with visible geometry occlusion
+- interaction state machine with locomotion ownership
+- safe cancel on Escape or pointer-lock loss
+- minimal reticle/prompt UI and hero-book registration
+
+Verification:
+- RED verified before implementation: interaction modules missing
+- 13/13 total automated tests pass
+- TypeScript typecheck passes
+- production Vite build passes
+- browser runtime finds the hero book and shows the expected prompt
+- enter locks locomotion and cancel restores it
+- simulated pointer-lock loss cancels safely and restores locomotion
+- runtime picking required the Babylon `@babylonjs/core/Culling/ray` side-effect import; added after browser smoke exposed the modular-runtime requirement
+
 ## Exact next task
-**BAC-15 — Interaction targeting and state machine**
+**BAC-16 — CameraDirector inspection choreography**
 
 Required next steps:
-1. write failing tests for deterministic target selection, range rejection, and locomotion locking;
-2. implement typed interactable metadata and center-screen target acquisition;
-3. add prompt state plus interaction enter/exit ownership;
-4. make cancel safe and restore locomotion reliably;
-5. wire the hero book as the first target and run runtime smoke;
-6. commit and continue to BAC-16.
+1. write failing state-transition tests for focus, restore, and cancel during blend;
+2. implement authored camera anchor focus with transform/FOV interpolation;
+3. preserve and restore gameplay camera state without hard snap;
+4. make cancellation safe during both focus and restore transitions;
+5. wire the book interaction to camera focus for runtime verification;
+6. commit and continue to BAC-17.
 
 ## Resume rule
 Start from the first unchecked implementation item above. Verify the latest commit/tests before changing code. Update this file after every meaningful milestone.

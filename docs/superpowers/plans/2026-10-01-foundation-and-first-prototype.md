@@ -122,14 +122,14 @@
 - Consumes: PlayerController, scene meshes.
 - Produces: current target, prompt state, enter/exit interaction events.
 
-- [ ] Test deterministic target selection.
-- [ ] Test max-range rejection.
-- [ ] Test locomotion lock on interaction.
-- [ ] Implement center-screen picking.
-- [ ] Implement prompt state.
-- [ ] Implement safe cancel.
-- [ ] Run tests and runtime smoke test.
-- [ ] Commit.
+- [x] Test deterministic target selection.
+- [x] Test max-range rejection.
+- [x] Test locomotion lock on interaction.
+- [x] Implement center-screen picking.
+- [x] Implement prompt state.
+- [x] Implement safe cancel.
+- [x] Run tests and runtime smoke test.
+- [x] Commit.
 
 ### Task 6: Implement CameraDirector
 
