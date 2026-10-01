@@ -41,6 +41,7 @@ export interface ChapterOneProductionScene {
   flashlight: Mesh;
   raincoat: Mesh;
   classroomDrawer: Mesh;
+  drawerLabel09: Mesh;
   rosterProp: Mesh;
   classPhotoProp: Mesh;
   timetableProp: Mesh;
@@ -48,6 +49,8 @@ export interface ChapterOneProductionScene {
   corridorPhotoBoard: Mesh;
   rosterInspectionAnchor: TransformNode;
   photoInspectionAnchor: TransformNode;
+  timetableInspectionAnchor: TransformNode;
+  corridorReturnZone: Mesh;
 }
 
 interface BoxOptions {
@@ -758,6 +761,17 @@ export function buildChapterOneScene(
     material: wood,
     pickable: true,
   });
+  const drawerLabel09 = createBox(scene, "ch01-drawer-label-09", {
+    width: 0.18,
+    height: 0.012,
+    depth: 0.09,
+    position: new Vector3(0.18, 0.105, -0.05),
+    material: paper,
+    pickable: true,
+  });
+  drawerLabel09.parent = classroomDrawer;
+  drawerLabel09.setEnabled(false);
+
   const rosterProp = createBox(scene, "ch01-roster-prop", {
     width: 0.34,
     height: 0.018,
@@ -789,6 +803,13 @@ export function buildChapterOneScene(
     new Vector3(8.15, 1.55, 1.1),
   );
   photoInspectionAnchor.rotation.set(0, Math.PI / 2, 0);
+
+  const timetableInspectionAnchor = createAnchor(
+    scene,
+    "ch01-timetable-inspection-anchor",
+    new Vector3(-0.62, 1.62, 4.5),
+  );
+  timetableInspectionAnchor.rotation.set(0, -Math.PI / 2, 0);
 
   const timetableProp = createBox(scene, "ch01-timetable-prop", {
     width: 0.72,
@@ -902,6 +923,16 @@ export function buildChapterOneScene(
     pickable: true,
   });
 
+  const corridorReturnZone = createBox(scene, "ch01-corridor-return-zone", {
+    width: 2.4,
+    height: 2.4,
+    depth: 1.2,
+    position: new Vector3(0, 1.2, 5.8),
+    material: plastic,
+  });
+  corridorReturnZone.isVisible = false;
+  corridorReturnZone.isPickable = false;
+
   const paReentryZone = createBox(scene, "ch01-pa-reentry-zone", {
     width: 1.3,
     height: 2.4,
@@ -1014,6 +1045,7 @@ export function buildChapterOneScene(
     flashlight,
     raincoat,
     classroomDrawer,
+    drawerLabel09,
     rosterProp,
     classPhotoProp,
     timetableProp,
@@ -1021,5 +1053,7 @@ export function buildChapterOneScene(
     corridorPhotoBoard,
     rosterInspectionAnchor,
     photoInspectionAnchor,
+    timetableInspectionAnchor,
+    corridorReturnZone,
   };
 }
