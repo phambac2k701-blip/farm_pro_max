@@ -181,12 +181,12 @@
 - Consumes: GameState.
 - Produces: evidence discovery and lookup.
 
-- [ ] Write failing discovery/idempotency tests.
-- [ ] Implement evidence registry.
-- [ ] Wire book page discovery.
-- [ ] Add minimal evidence UI notification/journal entry.
-- [ ] Verify only relevant page triggers evidence.
-- [ ] Commit.
+- [x] Write failing discovery/idempotency tests.
+- [x] Implement evidence registry.
+- [x] Wire book page discovery.
+- [x] Add minimal evidence UI notification/journal entry.
+- [x] Verify only relevant page triggers evidence.
+- [x] Commit.
 
 ### Task 9: Add reality-shift system
 

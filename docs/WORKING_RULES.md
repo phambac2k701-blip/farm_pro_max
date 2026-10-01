@@ -47,6 +47,38 @@ Stop only for:
 - For visual/game-feel work, verification must include a real running build and a playtest pass, not only unit tests.
 - If a plan turns out to be wrong, make the smallest ruling that still satisfies the spec, document it, and continue.
 
+
+## Reuse-first implementation rule (effective from BAC-18)
+Before writing any new subsystem, helper, effect, controller, or utility, perform a short implementation review in this order:
+1. inspect reusable components/patterns already present in this codebase;
+2. check whether Babylon.js already provides the required API/feature;
+3. consult current documentation through Context7 when API behavior/version details matter;
+4. check suitable maintained open-source/library implementations before deciding to build from scratch.
+
+Prefer reuse and composition over reimplementation, especially for:
+- tween/easing/animation;
+- camera blend and camera shake;
+- post-processing, glitch, noise, blur, chromatic aberration, vignette;
+- spatial audio and audio sequencing;
+- timeline/sequence/event orchestration;
+- finite-state-machine/state helpers;
+- interaction helpers;
+- asset loading/management;
+- save/schema utilities;
+- UI transitions.
+
+Constraints:
+- do not change the current architecture merely to fit a library;
+- do not add a heavy dependency when Babylon.js or existing code already solves the problem cleanly;
+- only use third-party/open-source code with a clear compatible license;
+- do not copy external code blindly; understand and adapt the implementation;
+- do not refactor stable BAC-11 through BAC-17 code unless a real regression, architectural blocker, or clearly material benefit is demonstrated;
+- `InteractionSystem`, `CameraDirector`, `GameState`, `RealitySystem`, and other game-core abstractions remain owned by Người Thứ Chín; third-party libraries may sit below these abstractions when useful;
+- object-specific behaviors such as Book, Photo, Drawer, Door, Pickup, Cassette, and Laptop must compose shared systems rather than create separate per-object frameworks;
+- scripted horror events must compose Trigger + Camera/Screen FX + Audio + Lighting + World/Reality changes rather than introduce a dedicated scare framework.
+
+When an external solution is adopted, record a short reason, license/maintenance check, and trade-off in the relevant technical document or progress checkpoint.
+
 ## Quality bar
 The game must prioritize:
 - smooth first-person camera and movement

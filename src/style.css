@@ -72,6 +72,31 @@ body {
   white-space: nowrap;
 }
 
+#evidence-notification {
+  position: fixed;
+  top: 28px;
+  right: 28px;
+  max-width: min(360px, calc(100vw - 56px));
+  padding: 12px 14px;
+  border-left: 2px solid rgb(214 205 175 / 80%);
+  background: rgb(8 9 11 / 76%);
+  color: rgb(244 244 238 / 92%);
+  font-size: 13px;
+  line-height: 1.45;
+  white-space: pre-line;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+#evidence-notification.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 [hidden] {
   display: none !important;
 }

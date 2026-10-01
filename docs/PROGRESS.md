@@ -9,7 +9,7 @@ Last updated: 2026-10-01
 `prototype/bootstrap-3d`
 
 ## Current status
-Implementation is active. **BAC-11 through BAC-17 are complete** and the next executable task is **BAC-18 — Investigation discovery system**.
+Implementation is active. **BAC-11 through BAC-18 are complete** and the next executable task is **BAC-19 — Knowledge-driven world shift prototype**.
 
 The pre-build documentation remains authoritative for product/architecture direction. Continue implementation task-by-task without returning to completed preparation work.
 
@@ -50,7 +50,7 @@ The pre-build documentation remains authoritative for product/architecture direc
 - [x] BAC-15 — Interaction targeting and state machine
 - [x] BAC-16 — CameraDirector inspection choreography
 - [x] BAC-17 — Hero book inspection interaction
-- [ ] BAC-18 — Investigation discovery system
+- [x] BAC-18 — Investigation discovery system
 - [ ] BAC-19 — Knowledge-driven world shift prototype
 - [ ] BAC-20 — Save and load prototype state
 - [ ] BAC-21 — Preview deployment and full playtest gate
@@ -199,16 +199,43 @@ Verification:
 - hero book target acquisition passes from front, left, and right approach positions
 - browser visual smoke confirmed readable upright page text after UV and camera-framing refinement
 
+## BAC-18 reuse-first review
+- Existing codebase: `GameState.discoverEvidence()` already owns idempotent evidence state and emits `evidence-discovered`; `GameEvents` already supplies subscription/unsubscribe behavior.
+- Babylon.js review: Tags and scene Observables are useful for scene-object metadata and engine/input/render events, but they do not replace domain-level persistent investigation state.
+- External library review: XState is maintained and MIT-licensed, but adding a state/orchestration dependency for a small evidence metadata registry would duplicate the existing `GameState` abstraction and increase surface area without a clear benefit.
+- Decision: no new dependency. BAC-18 will compose a thin typed metadata registry over `GameState` and reuse its event bus; UI feedback will use the existing DOM/CSS layer.
+
+## BAC-18 implementation record
+Implemented:
+- typed evidence metadata registry layered over the existing `GameState`
+- rejection of unknown/absent evidence IDs without state mutation
+- idempotent discovery delegated to `GameState.discoverEvidence()`
+- Chapter 1 evidence definition for the erased ninth line
+- book spread discovery wired through the existing `onSpreadViewed` callback
+- restrained DOM/CSS clue notification using the existing UI layer
+- discovered-evidence lookup via `EvidenceSystem.listDiscovered()`
+
+Verification:
+- RED verified before implementation: evidence modules missing
+- 25/25 total automated tests pass
+- TypeScript typecheck passes
+- production Vite build passes
+- first book spread produces no evidence
+- relevant second spread discovers exactly `ev_ch01_erased_ninth_line`
+- repeated visits remain idempotent with evidence count fixed at 1
+- runtime metadata and notification text resolve the discovered clue correctly
+
 ## Exact next task
-**BAC-18 — Investigation discovery system**
+**BAC-19 — Knowledge-driven world shift prototype**
 
 Required next steps:
-1. write failing evidence discovery/idempotency tests;
-2. implement evidence definitions and registry backed by typed game state;
-3. wire only the relevant book spread to evidence discovery;
-4. add restrained evidence discovery feedback and lookup state;
-5. verify repeated page visits are idempotent and irrelevant pages do not discover evidence;
-6. commit and continue to BAC-19.
+1. perform reuse-first review for world-variant orchestration, lighting/audio changes, and transition timing;
+2. write failing knowledge-condition and idempotent-application tests;
+3. implement `RealitySystem` as the game-owned abstraction over shared scene/audio/lighting primitives;
+4. add 8-desk → 9-desk classroom variant plus one subtle lighting/audio difference;
+5. trigger the shift only after required evidence and a controlled revisit/transition;
+6. verify there is no explicit “reality changed” popup;
+7. commit and continue to BAC-20.
 
 ## Resume rule
 Start from the first unchecked implementation item above. Verify the latest commit/tests before changing code. Update this file after every meaningful milestone.

@@ -70,6 +70,8 @@ When something new appears during implementation:
 - If chat memory conflicts with repo state, trust repo state.
 - If plan and implementation conflict, write a ruling in progress/ADR before continuing.
 - Do not repeat completed work unless verification shows it is actually missing.
+- From BAC-18 onward, apply the reuse-first implementation rule in `docs/WORKING_RULES.md` before creating any subsystem/helper/effect/controller/utility.
+- Do not revisit BAC-11 through BAC-17 unless verification finds a real regression or architectural blocker.
 
 ## Context compaction strategy
 When context becomes large:

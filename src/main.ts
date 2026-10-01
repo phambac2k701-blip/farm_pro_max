@@ -6,8 +6,11 @@ import {
   CH01_BOOK_INTERACTION_ID,
   CH01_BOOK_SPREADS,
 } from "./content/chapters/ch01/book";
+import { CH01_EVIDENCE } from "./content/chapters/ch01/evidence";
 import { buildChapterOnePrototypeScene } from "./content/chapters/ch01/prototypeScene";
 import { EngineAdapter } from "./engine/EngineAdapter";
+import { EvidenceSystem } from "./evidence/EvidenceSystem";
+import { GameState } from "./game/state/GameState";
 import { InteractionStateMachine } from "./interaction/InteractionStateMachine";
 import { InteractionSystem } from "./interaction/InteractionSystem";
 import { BookInspectionController } from "./interaction/inspection/BookInspectionController";
@@ -21,6 +24,8 @@ async function bootstrap(): Promise<void> {
     document.querySelector<HTMLDivElement>("#interaction-prompt");
   const bookControls =
     document.querySelector<HTMLDivElement>("#book-inspection-controls");
+  const evidenceNotification =
+    document.querySelector<HTMLDivElement>("#evidence-notification");
   const reticle = document.querySelector<HTMLDivElement>("#reticle");
 
   if (
@@ -28,6 +33,7 @@ async function bootstrap(): Promise<void> {
     !fatalError ||
     !interactionPrompt ||
     !bookControls ||
+    !evidenceNotification ||
     !reticle
   ) {
     throw new Error("Required application DOM nodes are missing.");
@@ -47,6 +53,8 @@ async function bootstrap(): Promise<void> {
       interactionState,
     );
     const cameraDirector = new CameraDirector(player.camera, player);
+    const gameState = new GameState();
+    const evidence = new EvidenceSystem(gameState, CH01_EVIDENCE);
     const bookAudio = new PrototypeBookAudio();
     const bookInspection = new BookInspectionController({
       visual: chapter.bookVisual,
@@ -56,6 +64,7 @@ async function bootstrap(): Promise<void> {
         canvas.dataset.bookSpread = spread.id;
         canvas.dataset.bookDiscoveryCandidate =
           spread.discoveryId ?? "";
+        evidence.discover(spread.discoveryId);
       },
       onClosed: () => {
         if (
@@ -76,6 +85,40 @@ async function bootstrap(): Promise<void> {
     interaction.attachInput(canvas);
     bookInspection.attachInput();
 
+    let evidenceHideTimer: number | undefined;
+    const unsubscribeEvidence = gameState.events.on(
+      "evidence-discovered",
+      ({ evidenceId }) => {
+        const definition = evidence.get(evidenceId);
+        if (!definition) {
+          return;
+        }
+
+        if (evidenceHideTimer !== undefined) {
+          window.clearTimeout(evidenceHideTimer);
+        }
+
+        evidenceNotification.hidden = false;
+        evidenceNotification.textContent =
+          `Manh mối mới · ${definition.title}\n${definition.summary}`;
+        window.requestAnimationFrame(() => {
+          evidenceNotification.classList.add("visible");
+        });
+
+        evidenceHideTimer = window.setTimeout(() => {
+          evidenceNotification.classList.remove("visible");
+          window.setTimeout(() => {
+            evidenceNotification.hidden = true;
+          }, 220);
+        }, 2800);
+
+        canvas.dataset.evidenceLast = evidenceId;
+        canvas.dataset.evidenceCount = String(
+          evidence.listDiscovered().length,
+        );
+      },
+    );
+
     canvas.dataset.renderBackend = engineAdapter.backend;
     canvas.dataset.controllerReady = "true";
     canvas.dataset.sceneReady = "ch01-prototype";
@@ -88,6 +131,8 @@ async function bootstrap(): Promise<void> {
           interaction: InteractionSystem;
           cameraDirector: CameraDirector;
           bookInspection: BookInspectionController;
+          gameState: GameState;
+          evidence: EvidenceSystem;
         };
       };
       debugWindow.__NTC_DEBUG__ = {
@@ -96,6 +141,8 @@ async function bootstrap(): Promise<void> {
         interaction,
         cameraDirector,
         bookInspection,
+        gameState,
+        evidence,
       };
     }
 
@@ -201,6 +248,10 @@ async function bootstrap(): Promise<void> {
     window.addEventListener(
       "beforeunload",
       () => {
+        unsubscribeEvidence();
+        if (evidenceHideTimer !== undefined) {
+          window.clearTimeout(evidenceHideTimer);
+        }
         bookInspection.dispose();
         bookAudio.dispose();
         interaction.dispose();
