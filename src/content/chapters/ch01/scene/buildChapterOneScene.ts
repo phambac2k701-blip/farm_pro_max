@@ -46,6 +46,8 @@ export interface ChapterOneProductionScene {
   timetableProp: Mesh;
   paIndexCardProp: Mesh;
   corridorPhotoBoard: Mesh;
+  rosterInspectionAnchor: TransformNode;
+  photoInspectionAnchor: TransformNode;
 }
 
 interface BoxOptions {
@@ -774,6 +776,20 @@ export function buildChapterOneScene(
   });
   classPhotoProp.rotation.y = -Math.PI / 2;
 
+  const rosterInspectionAnchor = createAnchor(
+    scene,
+    "ch01-roster-inspection-anchor",
+    new Vector3(7.35, 1.62, 2.45),
+  );
+  rosterInspectionAnchor.rotation.set(0.62, 0, 0);
+
+  const photoInspectionAnchor = createAnchor(
+    scene,
+    "ch01-photo-inspection-anchor",
+    new Vector3(8.15, 1.55, 1.1),
+  );
+  photoInspectionAnchor.rotation.set(0, Math.PI / 2, 0);
+
   const timetableProp = createBox(scene, "ch01-timetable-prop", {
     width: 0.72,
     height: 0.52,
@@ -1003,5 +1019,7 @@ export function buildChapterOneScene(
     timetableProp,
     paIndexCardProp,
     corridorPhotoBoard,
+    rosterInspectionAnchor,
+    photoInspectionAnchor,
   };
 }
