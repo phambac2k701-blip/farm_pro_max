@@ -369,9 +369,8 @@ function createTextSign(
     context.fillRect(0, 0, 768, 180);
     context.fillStyle = "#20211f";
     context.font = "600 54px Arial";
-    context.textAlign = "center";
-    context.textBaseline = "middle";
-    context.fillText(text, 384, 90);
+    const textWidth = context.measureText(text).width;
+    context.fillText(text, Math.max(24, (768 - textWidth) / 2), 108);
     texture.update(false);
     signMaterial.diffuseTexture = texture;
   }
