@@ -64,7 +64,7 @@ export class InspectionSession implements InteractionBehavior {
     return true;
   }
 
-  update(): void {
+  update(_deltaSeconds: number): void {
     if (
       this.state === "focusing" &&
       this.options.cameraDirector.state === "inspection"
