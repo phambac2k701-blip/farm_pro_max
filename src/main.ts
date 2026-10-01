@@ -222,7 +222,7 @@ async function bootstrap(): Promise<void> {
       title: "Danh sách lớp · 2012",
       body:
         "Danh sách có tám dòng tên.\nMép giấy đã ố, phần cuối không có dòng thứ chín.",
-      footer: "Esc · đặt tài liệu xuống",
+      footer: "C · so sánh sau khi đã xem ảnh lớp   ·   Esc · đặt tài liệu xuống",
     });
     const rosterInspection = new DocumentInspectionController({
       cameraDirector,
@@ -252,7 +252,7 @@ async function bootstrap(): Promise<void> {
       title: "Ảnh tập thể cũ",
       body:
         "Khung hình bị cắt sát ở mép phải.\nMột khoảng vai áo còn sót lại ngoài hàng người.",
-      footer: "Esc · hạ ảnh xuống",
+      footer: "C · so sánh sau khi đã xem danh sách   ·   Esc · hạ ảnh xuống",
     });
     const photoInspection = new PhotoInspectionController({
       cameraDirector,
