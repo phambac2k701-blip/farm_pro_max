@@ -44,13 +44,13 @@
 - Produces: `EngineAdapter.create(canvas): Promise<EngineAdapter>`
 - Produces: `engineAdapter.run(render: () => void): void`
 
-- [ ] Install minimal dependencies and scripts.
-- [ ] Add bootstrap test/check that fails before implementation.
-- [ ] Implement canvas/engine initialization.
-- [ ] Attempt WebGPU and provide fallback.
-- [ ] Add resize handling.
-- [ ] Run tests/build.
-- [ ] Commit.
+- [x] Install minimal dependencies and scripts.
+- [x] Add bootstrap test/check that fails before implementation.
+- [x] Implement canvas/engine initialization.
+- [x] Attempt WebGPU and provide fallback.
+- [x] Add resize handling.
+- [x] Run tests/build.
+- [x] Commit.
 
 ### Task 2: Add typed game state and events
 
@@ -64,12 +64,12 @@
 - Produces: fact/evidence read/write APIs
 - Produces: typed change events
 
-- [ ] Write failing tests for fact/evidence mutation.
-- [ ] Implement minimal typed store.
-- [ ] Verify duplicate evidence handling.
-- [ ] Verify change event emission.
-- [ ] Run tests.
-- [ ] Commit.
+- [x] Write failing tests for fact/evidence mutation.
+- [x] Implement minimal typed store.
+- [x] Verify duplicate evidence handling.
+- [x] Verify change event emission.
+- [x] Run tests.
+- [x] Commit.
 
 ### Task 3: Build the first-person controller
 

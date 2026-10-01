@@ -9,7 +9,7 @@ Last updated: 2026-10-01
 `prototype/bootstrap-3d`
 
 ## Current status
-Implementation has started. **BAC-11 / Task 1 is complete** and the next executable task is **BAC-12 — Typed game state and event model**.
+Implementation is active. **BAC-11 and BAC-12 are complete** and the next executable task is **BAC-13 — First-person controller and camera feel**.
 
 The pre-build documentation remains authoritative for product/architecture direction. Continue implementation task-by-task without returning to completed preparation work.
 
@@ -44,7 +44,7 @@ The pre-build documentation remains authoritative for product/architecture direc
 
 ## Prototype implementation progress
 - [x] BAC-11 — Bootstrap browser 3D application
-- [ ] BAC-12 — Typed game state and event model
+- [x] BAC-12 — Typed game state and event model
 - [ ] BAC-13 — First-person controller and camera feel
 - [ ] BAC-14 — Graybox hallway and classroom
 - [ ] BAC-15 — Interaction targeting and state machine
@@ -88,16 +88,30 @@ Known non-blocking finding:
 - current bootstrap main chunk is approximately 1.28 MB minified / 312 KB gzip and triggers Vite's 500 KB chunk warning.
 - Do not optimize prematurely during BAC-12; revisit code splitting/loading strategy before the vertical-slice performance gate unless growth makes it urgent earlier.
 
+## BAC-12 implementation record
+Implemented:
+- typed boolean/number/string world facts
+- idempotent evidence discovery
+- chapter state changes
+- typed event bus with unsubscribe support
+- serializable state snapshot
+
+Verification:
+- RED verified before implementation: GameEvents/GameState modules missing
+- GREEN: 5/5 total tests pass
+- TypeScript typecheck passes
+- production Vite build passes
+
 ## Exact next task
-**BAC-12 — Typed game state and event model**
+**BAC-13 — First-person controller and camera feel**
 
 Required next steps:
-1. write failing tests for fact/evidence mutation;
-2. implement typed state/store APIs;
-3. verify duplicate evidence handling;
-4. verify typed change event emission;
-5. run full tests/typecheck/build;
-6. commit and continue to BAC-13.
+1. write failing tests for normalized movement input and locomotion state;
+2. implement pointer-lock input and grounded frame-rate-independent movement;
+3. add sensitivity configuration and focus/pointer-lock loss safety;
+4. wire the controller into the running prototype;
+5. run tests/typecheck/build and runtime movement smoke;
+6. commit and continue to BAC-14.
 
 ## Resume rule
 Start from the first unchecked implementation item above. Verify the latest commit/tests before changing code. Update this file after every meaningful milestone.
