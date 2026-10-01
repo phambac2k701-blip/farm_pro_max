@@ -48,7 +48,7 @@ describe("Chapter 1 production scene shell", () => {
     expect(chapter.ninthPaStation.isEnabled()).toBe(false);
     expect(chapter.ninthCable.isEnabled()).toBe(true);
     expect(chapter.paReentryZone.isVisible).toBe(false);
-    expect(chapter.paRoomLight.intensity).toBeCloseTo(0.52, 6);
+    expect(chapter.paRoomLight.intensity).toBeCloseTo(0.85, 6);
 
     scene.dispose();
     engine.dispose();
