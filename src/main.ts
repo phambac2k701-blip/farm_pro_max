@@ -1,5 +1,6 @@
 import { Scene } from "@babylonjs/core/scene";
 
+import { AudioDirector } from "./audio/AudioDirector";
 import { CameraDirector } from "./camera/CameraDirector";
 import {
   CH01_OPENING_COMPLETE_FACT,
@@ -10,6 +11,11 @@ import {
   ClassroomEvidenceController,
 } from "./content/chapters/ch01/ClassroomEvidenceController";
 import { DomChapterOnePhoneView } from "./content/chapters/ch01/DomChapterOnePhoneView";
+import {
+  CH01_AMBIENCE_IDS,
+  CH01_AUDIO,
+  CH01_AUDIO_IDS,
+} from "./content/chapters/ch01/audio";
 import { CH01_EVIDENCE } from "./content/chapters/ch01/evidence";
 import {
   CH01_FLASHLIGHT_PICKED_FACT,
@@ -54,6 +60,7 @@ async function bootstrap(): Promise<void> {
     document.querySelector<HTMLElement>("#phone-overlay");
   const evidenceNotification =
     document.querySelector<HTMLDivElement>("#evidence-notification");
+  const subtitle = document.querySelector<HTMLDivElement>("#subtitle");
   const reticle = document.querySelector<HTMLDivElement>("#reticle");
 
   if (
@@ -63,6 +70,7 @@ async function bootstrap(): Promise<void> {
     !inspectionOverlay ||
     !phoneOverlay ||
     !evidenceNotification ||
+    !subtitle ||
     !reticle
   ) {
     throw new Error("Required application DOM nodes are missing.");
@@ -133,6 +141,25 @@ async function bootstrap(): Promise<void> {
     const engineAdapter = await EngineAdapter.create(canvas);
     const scene = new Scene(engineAdapter.engine);
     const chapter = buildChapterOneScene(scene);
+
+    let subtitleTimer: number | null = null;
+    const audio = await AudioDirector.create(CH01_AUDIO, {
+      baseUrl: new URL(import.meta.env.BASE_URL, window.location.origin).toString(),
+      masterVolume: 0.9,
+      onCaption(caption) {
+        subtitle.textContent = caption;
+        subtitle.hidden = false;
+        if (subtitleTimer !== null) {
+          window.clearTimeout(subtitleTimer);
+        }
+        subtitleTimer = window.setTimeout(() => {
+          subtitle.hidden = true;
+          subtitle.textContent = "";
+          subtitleTimer = null;
+        }, 3400);
+      },
+    });
+
     const spawn =
       chapter.checkpoints[chapterRuntime.currentCheckpoint]?.position.clone() ??
       chapter.spawn.clone();
@@ -163,6 +190,9 @@ async function bootstrap(): Promise<void> {
         ),
         duration: 0.42,
         initiallyOpen: true,
+        onStableState: () => {
+          audio.play(CH01_AUDIO_IDS.door, door.leaf);
+        },
       });
       interaction.register(door.leaf, {
         id,
@@ -202,6 +232,7 @@ async function bootstrap(): Promise<void> {
       ),
       duration: 0.32,
       onStableState(open) {
+        audio.play(CH01_AUDIO_IDS.drawer, chapter.classroomDrawer);
         if (!open || !classroomEvidence || !evidence.has("C03")) {
           return;
         }
@@ -234,6 +265,7 @@ async function bootstrap(): Promise<void> {
       view: rosterView,
       onReadable: () => {
         canvas.dataset.inspectionReadable = "roster";
+        audio.play(CH01_AUDIO_IDS.paper, chapter.rosterProp);
         classroomEvidence?.markRosterReadable();
         chapterRuntime.reachCheckpoint("ch01_classroom_post_c03");
         persistSave();
@@ -264,6 +296,7 @@ async function bootstrap(): Promise<void> {
       view: photoView,
       onReadable: () => {
         canvas.dataset.inspectionReadable = "class-photo";
+        audio.play(CH01_AUDIO_IDS.paper, chapter.classPhotoProp);
         classroomEvidence?.markPhotoReadable();
       },
     });
@@ -295,6 +328,7 @@ async function bootstrap(): Promise<void> {
       view: timetableView,
       onReadable: () => {
         canvas.dataset.inspectionReadable = "timetable";
+        audio.play(CH01_AUDIO_IDS.paper, chapter.timetableProp);
         evidence.discover("C14");
       },
     });
@@ -325,6 +359,33 @@ async function bootstrap(): Promise<void> {
       view: new DomChapterOnePhoneView(phoneOverlay),
       inputLock: player,
     });
+
+    let audioStarted = false;
+    const startAudio = async (): Promise<void> => {
+      if (audioStarted) {
+        return;
+      }
+      const shouldVibrate = opening.isActive;
+      const unlocked = await audio.unlock();
+      if (!unlocked) {
+        return;
+      }
+
+      audioStarted = true;
+      audio.startAmbience(CH01_AMBIENCE_IDS);
+      audio.play(CH01_AUDIO_IDS.paHum, chapter.paStations[0]);
+      if (shouldVibrate) {
+        audio.play(CH01_AUDIO_IDS.phoneVibration);
+      }
+      canvas.dataset.audioUnlocked = "true";
+      window.removeEventListener("pointerdown", onAudioGesture, true);
+      window.removeEventListener("keydown", onAudioGesture, true);
+    };
+    const onAudioGesture = (): void => {
+      void startAudio();
+    };
+    window.addEventListener("pointerdown", onAudioGesture, true);
+    window.addEventListener("keydown", onAudioGesture, true);
 
     const flashlightPickup = new PickupController({
       mesh: chapter.flashlight,
@@ -370,6 +431,8 @@ async function bootstrap(): Promise<void> {
     }
 
     canvas.dataset.renderBackend = engineAdapter.backend;
+    canvas.dataset.audioReady = String(audio.isReady);
+    canvas.dataset.audioFailedCues = String(audio.failedCueIds.length);
     canvas.dataset.controllerReady = "true";
     canvas.dataset.sceneReady = "ch01-production-shell";
     canvas.dataset.behaviorHostReady = "true";
@@ -388,6 +451,7 @@ async function bootstrap(): Promise<void> {
       const debugWindow = window as typeof window & {
         __NTC_DEBUG__?: {
           player: PlayerController;
+          audio: AudioDirector;
           chapter: typeof chapter;
           interaction: InteractionSystem;
           behaviorHost: InteractionBehaviorHost;
@@ -408,6 +472,7 @@ async function bootstrap(): Promise<void> {
       };
       debugWindow.__NTC_DEBUG__ = {
         player,
+        audio,
         chapter,
         interaction,
         behaviorHost,
@@ -427,6 +492,8 @@ async function bootstrap(): Promise<void> {
       };
     }
 
+    let footstepElapsed = 0;
+
     engineAdapter.run(() => {
       const deltaSeconds = engineAdapter.engine.getDeltaTime() / 1000;
 
@@ -435,6 +502,21 @@ async function bootstrap(): Promise<void> {
       behaviorHost.update(deltaSeconds);
       opening.update(deltaSeconds);
       interaction.update();
+
+      const movement = player.input.getMovementAxes();
+      const moving =
+        player.isLocomotionEnabled &&
+        cameraDirector.state === "gameplay" &&
+        (Math.abs(movement.x) > 0.05 || Math.abs(movement.z) > 0.05);
+      if (moving && audioStarted) {
+        footstepElapsed -= deltaSeconds;
+        if (footstepElapsed <= 0) {
+          audio.play(CH01_AUDIO_IDS.footstep);
+          footstepElapsed = 0.56;
+        }
+      } else {
+        footstepElapsed = 0;
+      }
 
       const feet = player.getFeetPosition();
       const nearXZ = (x: number, z: number, radius: number): boolean => {
@@ -490,6 +572,7 @@ async function bootstrap(): Promise<void> {
         )
       ) {
         gameState.setFact(CH01_CORRIDOR_BELL_FACT, true);
+        audio.play(CH01_AUDIO_IDS.corridorBell, chapter.corridorPhotoBoard);
         canvas.dataset.corridorBell = "triggered";
       }
 
@@ -531,7 +614,13 @@ async function bootstrap(): Promise<void> {
         if (evidenceTimer !== null) {
           window.clearTimeout(evidenceTimer);
         }
+        if (subtitleTimer !== null) {
+          window.clearTimeout(subtitleTimer);
+        }
+        window.removeEventListener("pointerdown", onAudioGesture, true);
+        window.removeEventListener("keydown", onAudioGesture, true);
         window.removeEventListener("keydown", onChapterKeyDown, true);
+        audio.dispose();
         opening.dispose();
         behaviorHost.dispose();
         interaction.dispose();
