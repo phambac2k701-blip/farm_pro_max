@@ -9,7 +9,7 @@ Last updated: 2026-10-01
 `prototype/bootstrap-3d`
 
 ## Current status
-Implementation is active. **BAC-11 and BAC-12 are complete** and the next executable task is **BAC-13 — First-person controller and camera feel**.
+Implementation is active. **BAC-11, BAC-12, and BAC-13 are complete** and the next executable task is **BAC-14 — Graybox hallway and classroom**.
 
 The pre-build documentation remains authoritative for product/architecture direction. Continue implementation task-by-task without returning to completed preparation work.
 
@@ -45,7 +45,7 @@ The pre-build documentation remains authoritative for product/architecture direc
 ## Prototype implementation progress
 - [x] BAC-11 — Bootstrap browser 3D application
 - [x] BAC-12 — Typed game state and event model
-- [ ] BAC-13 — First-person controller and camera feel
+- [x] BAC-13 — First-person controller and camera feel
 - [ ] BAC-14 — Graybox hallway and classroom
 - [ ] BAC-15 — Interaction targeting and state machine
 - [ ] BAC-16 — CameraDirector inspection choreography
@@ -102,16 +102,34 @@ Verification:
 - TypeScript typecheck passes
 - production Vite build passes
 
+## BAC-13 implementation record
+Implemented:
+- normalized WASD/arrow movement input without diagonal speed boost
+- pointer-lock mouse input with accumulated look deltas
+- focus/pointer-lock loss input clearing
+- grounded frame-rate-independent collision movement
+- configurable/clamped mouse sensitivity
+- locomotion and look enable/disable APIs for future interactions
+- gameplay FreeCamera wired into the live bootstrap scene
+
+Verification:
+- 8/8 total automated tests pass
+- TypeScript typecheck passes
+- production Vite build passes
+- browser runtime smoke passes on WebGPU
+- forward movement reached the obstacle and collision stopped the player before penetration
+- locomotion lock held position while movement input was active
+
 ## Exact next task
-**BAC-13 — First-person controller and camera feel**
+**BAC-14 — Graybox hallway and classroom**
 
 Required next steps:
-1. write failing tests for normalized movement input and locomotion state;
-2. implement pointer-lock input and grounded frame-rate-independent movement;
-3. add sensitivity configuration and focus/pointer-lock loss safety;
-4. wire the controller into the running prototype;
-5. run tests/typecheck/build and runtime movement smoke;
-6. commit and continue to BAC-14.
+1. build the hallway/classroom graybox as a dedicated Chapter 1 prototype scene;
+2. add static collision and practical placeholder lighting;
+3. define spawn, desk layout, teacher desk, and book anchor location;
+4. walk every reachable area and verify scale/collision;
+5. run tests/typecheck/build and browser runtime smoke;
+6. commit and continue to BAC-15.
 
 ## Resume rule
 Start from the first unchecked implementation item above. Verify the latest commit/tests before changing code. Update this file after every meaningful milestone.

@@ -83,14 +83,14 @@
 - Consumes: engine/scene lifecycle.
 - Produces: gameplay camera transform and locomotion enable/disable API.
 
-- [ ] Test normalized movement input.
-- [ ] Test locomotion enable/disable state.
-- [ ] Implement pointer-lock input.
-- [ ] Implement grounded movement and collision.
-- [ ] Add sensitivity config.
-- [ ] Add safe focus/pointer-lock loss behavior.
-- [ ] Playtest movement in graybox.
-- [ ] Commit.
+- [x] Test normalized movement input.
+- [x] Test locomotion enable/disable state.
+- [x] Implement pointer-lock input.
+- [x] Implement grounded movement and collision.
+- [x] Add sensitivity config.
+- [x] Add safe focus/pointer-lock loss behavior.
+- [x] Playtest movement in graybox.
+- [x] Commit.
 
 ### Task 4: Build the graybox classroom and hallway
 
