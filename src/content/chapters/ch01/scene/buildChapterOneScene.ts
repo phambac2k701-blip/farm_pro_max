@@ -51,6 +51,9 @@ export interface ChapterOneProductionScene {
   photoInspectionAnchor: TransformNode;
   timetableInspectionAnchor: TransformNode;
   corridorReturnZone: Mesh;
+  insideOldWingZone: Mesh;
+  classroomEntryZone: Mesh;
+  paThresholdZone: Mesh;
 }
 
 interface BoxOptions {
