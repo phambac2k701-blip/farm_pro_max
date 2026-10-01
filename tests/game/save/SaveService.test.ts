@@ -1,6 +1,7 @@
-﻿import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "vitest";
 
 import {
+  LEGACY_SAVE_STORAGE_KEY,
   SAVE_SCHEMA_VERSION,
   SaveService,
   type StorageLike,
@@ -24,26 +25,35 @@ class MemoryStorage implements StorageLike {
 }
 
 describe("SaveService", () => {
-  it("roundtrips versioned game state and settings", () => {
+  it("roundtrips versioned game state, checkpoint and settings", () => {
     const storage = new MemoryStorage();
     const service = new SaveService(storage);
     const state = new GameState({
       chapterId: "ch01",
       facts: {
-        reality_ch01_ninth_desk_applied: true,
+        knowledge_09_exists: true,
       },
-      evidence: ["ev_ch01_erased_ninth_line"],
+      evidence: ["C03"],
     });
 
-    service.save(state.snapshot(), {
-      mouseSensitivity: 0.0028,
-    });
+    service.save(
+      state.snapshot(),
+      {
+        checkpointId: "ch01_classroom_post_c03",
+      },
+      {
+        mouseSensitivity: 0.0028,
+      },
+    );
 
     const loaded = service.load();
 
     expect(loaded).toEqual({
       schemaVersion: SAVE_SCHEMA_VERSION,
       gameState: state.snapshot(),
+      checkpoint: {
+        checkpointId: "ch01_classroom_post_c03",
+      },
       settings: {
         mouseSensitivity: 0.0028,
       },
@@ -71,6 +81,9 @@ describe("SaveService", () => {
           facts: {},
           evidence: [],
         },
+        checkpoint: {
+          checkpointId: "ch01_gate",
+        },
         settings: {
           mouseSensitivity: 0.0022,
         },
@@ -93,7 +106,10 @@ describe("SaveService", () => {
           facts: {
             invalid: { nested: true },
           },
-          evidence: ["ev_ch01_erased_ninth_line"],
+          evidence: ["C03"],
+        },
+        checkpoint: {
+          checkpointId: "",
         },
         settings: {
           mouseSensitivity: 4,
@@ -102,6 +118,31 @@ describe("SaveService", () => {
     );
 
     expect(service.load()).toBeNull();
+    expect(storage.getItem(service.storageKey)).toBeNull();
+  });
+
+  it("intentionally resets the incompatible Technical Prototype V1 save", () => {
+    const storage = new MemoryStorage();
+    const service = new SaveService(storage);
+    storage.setItem(
+      LEGACY_SAVE_STORAGE_KEY,
+      JSON.stringify({
+        schemaVersion: 1,
+        gameState: {
+          chapterId: "ch01",
+          facts: {
+            reality_ch01_ninth_desk_applied: true,
+          },
+          evidence: ["ev_ch01_erased_ninth_line"],
+        },
+        settings: {
+          mouseSensitivity: 0.0022,
+        },
+      }),
+    );
+
+    expect(service.load()).toBeNull();
+    expect(storage.getItem(LEGACY_SAVE_STORAGE_KEY)).toBeNull();
     expect(storage.getItem(service.storageKey)).toBeNull();
   });
 });
