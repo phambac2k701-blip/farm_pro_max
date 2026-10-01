@@ -19,6 +19,26 @@ Before making changes:
 6. Check the branch and recent commits.
 7. Continue from the first unfinished checklist item. Do not restart completed work.
 
+## Continuous execution authorization
+The user has explicitly requested continuous end-to-end execution for this project.
+
+This means:
+- when one planned task is completed, immediately continue to the next actionable task;
+- do not pause merely to ask “should I continue?”;
+- do not require confirmation for ordinary reversible development work already covered by the project plan;
+- keep `docs/PROGRESS.md` current so a future session can resume from the first unfinished item;
+- if chat context is compacted or a fresh conversation is used, re-read the repository checkpoint and continue instead of reconstructing from memory;
+- use connected tools autonomously when they are relevant: GitHub, Linear, Figma, Vercel, Context7, image generation, and Remote Desktop Commander.
+
+This authorization does **not** override platform/runtime limits. A ChatGPT turn may end even when work remains. Therefore every meaningful milestone must leave a recoverable repository checkpoint.
+
+Stop only for:
+- a genuinely irreversible/destructive operation;
+- a security-sensitive action not already authorized;
+- a required credential/consent the tools cannot obtain autonomously;
+- a technical blocker where proceeding would be blind guessing;
+- a platform/runtime/tool limit that ends the active execution.
+
 ## Execution behavior
 - Work continuously through the current plan until a genuine blocker, destructive action, security-sensitive action, or external approval is required.
 - Do not stop after completing a single small item if the plan has more actionable work.
