@@ -201,14 +201,8 @@ export class InteractionSystem {
   }
 
   private acquireTarget(): InteractionCandidate | null {
-    const engine = this.scene.getEngine();
     const hits =
-      this.scene.multiPick(
-        engine.getRenderWidth() / 2,
-        engine.getRenderHeight() / 2,
-        undefined,
-        this.camera,
-      ) ?? [];
+      this.scene.multiPickWithRay(this.camera.getForwardRay()) ?? [];
 
     hits.sort((a, b) => a.distance - b.distance);
     const candidates: InteractionCandidate[] = [];
