@@ -9,7 +9,7 @@ Last updated: 2026-10-01
 `integration/narrative-v1.2` (continues from the clean Technical Prototype V1 checkpoint plus the frozen narrative handoff)
 
 ## Current status
-**Technical Prototype V1 is frozen and complete. Narrative integration planning is complete. BAC-22, BAC-23 and BAC-24 are complete. BAC-25 implementation is integrated and automated verification is green; its manual interaction playthrough remains pending because the authorized desktop device is currently offline. BAC-26 may proceed in parallel because its dependency is BAC-23.**
+**Technical Prototype V1 is frozen and complete. Narrative integration planning is complete. BAC-22 through BAC-25 are complete. BAC-25 passed real keyboard/mouse runtime verification, save/reload verification, local automated gates and remote CI. BAC-26 is now the active implementation focus.**
 
 Completed production planning:
 - Narrative–Technical Gap Analysis: `docs/production/CH01_NARRATIVE_TECHNICAL_GAP_ANALYSIS.md`
@@ -18,7 +18,7 @@ Completed production planning:
 - Linear milestone: **CHAPTER 1 VERTICAL SLICE**
 - Linear execution issues: BAC-22 through BAC-31
 
-Current implementation focus: **BAC-25 runtime verification + BAC-26 Production AudioDirector/audio assets**.
+Current implementation focus: **BAC-26 Production AudioDirector and Chapter 1 audio assets**.
 
 The authorized execution path is BAC-22 → BAC-31. After BAC-31, record **CHAPTER 1 VERTICAL SLICE COMPLETE** and STOP. Do not start Chapter 2 gameplay.
 
@@ -335,7 +335,7 @@ Preview: https://phambac2k701-blip.github.io/farm_pro_max/
 - Old `docs/NARRATIVE_BIBLE.md` is retained only as superseded foundation context.
 
 ## NEXT CHECKPOINT
-Continue the dependency-ordered Chapter 1 vertical-slice plan. Do not redo completed integration/gap analysis or BAC-22→BAC-24. BAC-25 code is present and CI-green; finish its real interaction playthrough when the desktop runtime is available, while BAC-26 may proceed independently.
+Continue the dependency-ordered Chapter 1 vertical-slice plan. Do not redo completed integration/gap analysis or BAC-22→BAC-25. Start BAC-26 Production AudioDirector/audio assets next; BAC-27 remains blocked until BAC-26 is complete.
 
 
 ## BAC-22 production record
@@ -410,8 +410,19 @@ Automated verification:
 - headless browser boot smoke passes
 - ChapterOneOpeningController and ClassroomEvidenceController have dedicated tests for resume, idempotence, compare gating and optional-clue independence
 
-Pending runtime verification:
-- real keyboard/mouse playthrough from gate through the classroom contradiction
-- deliberately skip C14 and confirm progression
-- repeated roster/photo/drawer interaction and Escape/focus-loss smoke
-- the authorized Remote Desktop Commander device is currently offline, so these checks remain part of BAC-25 completion rather than being guessed
+Runtime verification:
+- real Chrome keyboard interaction completed on Windows at 125% display scale
+- opening phone awards C01 and restores look/locomotion
+- checkpoint progression reaches old wing, classroom pre-roster, post-C03 and PA pre-C07
+- roster inspection awards C03; photo + explicit C comparison awards C02
+- reopening the drawer after C03 reveals 09 and awards C05
+- C14 was deliberately skipped and did not block PA-threshold progression
+- repeated drawer interaction remained evidence-idempotent
+- Escape restored gameplay camera/locomotion; blur cleared held movement input
+- save/reload preserved C01/C02/C03/C05, opening completion, 09 reveal and `ch01_pa_pre_c07`
+- runtime discovered a 125%-DPI interaction targeting bug; `InteractionSystem` now uses `camera.getForwardRay()` + `multiPickWithRay()` instead of render-pixel screen coordinates
+- roster/photo inspection footers now expose the C comparison input
+- Chapter 1 production lighting received a readability pass while retaining the night/rain tone
+- local gate: 16 test files / 52 tests pass; TypeScript typecheck and production build pass
+- final remote Chapter 1 CI run `36915394107` passed on commit `6f2c0fc1a1e0d7ecfc90820b5ae4bbfd2538ae96`
+- Linear BAC-25 is Done
