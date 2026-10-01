@@ -62,6 +62,16 @@ The user has explicitly authorized continuous end-to-end execution **after build
 - [x] initial visual concept generated
 - [x] current Babylon.js initialization direction verified with Context7
 
+## Development environment audit
+Remote device `VOSTRO-COREI7G13` was checked before handoff:
+- Node.js: `v24.15.0`
+- npm: `11.12.1`
+- Git: `2.54.0.windows.1`
+- Blender executable: not detected in PATH at handoff; **not a blocker for the first graybox prototype**
+- Chrome/Edge executables: not detected through PATH lookup; **not a blocker**, because preview/browser verification can use deployed web builds and browser automation tooling
+
+Do not install Blender merely to satisfy setup. Install/use it later only when a 3D asset task actually requires it.
+
 ## Build state
 No gameplay/engine implementation has started.
 
