@@ -9,7 +9,7 @@ Last updated: 2026-10-01
 `prototype/bootstrap-3d`
 
 ## Current status
-Implementation is active. **BAC-11, BAC-12, and BAC-13 are complete** and the next executable task is **BAC-14 — Graybox hallway and classroom**.
+Implementation is active. **BAC-11 through BAC-14 are complete** and the next executable task is **BAC-15 — Interaction targeting and state machine**.
 
 The pre-build documentation remains authoritative for product/architecture direction. Continue implementation task-by-task without returning to completed preparation work.
 
@@ -46,7 +46,7 @@ The pre-build documentation remains authoritative for product/architecture direc
 - [x] BAC-11 — Bootstrap browser 3D application
 - [x] BAC-12 — Typed game state and event model
 - [x] BAC-13 — First-person controller and camera feel
-- [ ] BAC-14 — Graybox hallway and classroom
+- [x] BAC-14 — Graybox hallway and classroom
 - [ ] BAC-15 — Interaction targeting and state machine
 - [ ] BAC-16 — CameraDirector inspection choreography
 - [ ] BAC-17 — Hero book inspection interaction
@@ -120,16 +120,34 @@ Verification:
 - forward movement reached the obstacle and collision stopped the player before penetration
 - locomotion lock held position while movement input was active
 
+## BAC-14 implementation record
+Implemented:
+- dedicated Chapter 1 hallway/classroom graybox scene
+- collision-enabled floors, corridor/classroom walls, and furniture blockers
+- eight student desk/chair sets, teacher desk, hero book, and stable book anchor
+- authored corridor spawn plus classroom/corridor reference points
+- practical placeholder ambient, corridor, and classroom lighting
+- dev runtime metadata for scene readiness and inspection
+
+Verification:
+- 10/10 total automated tests pass
+- TypeScript typecheck passes
+- production Vite build passes
+- browser runtime loads the Chapter 1 prototype on WebGPU with no fatal state
+- live movement passes through the classroom doorway and traverses the room
+- real-time collision stops at the classroom outer wall near x=9.09
+- furniture collider refinement prevents the player ellipsoid from climbing onto desk tops
+
 ## Exact next task
-**BAC-14 — Graybox hallway and classroom**
+**BAC-15 — Interaction targeting and state machine**
 
 Required next steps:
-1. build the hallway/classroom graybox as a dedicated Chapter 1 prototype scene;
-2. add static collision and practical placeholder lighting;
-3. define spawn, desk layout, teacher desk, and book anchor location;
-4. walk every reachable area and verify scale/collision;
-5. run tests/typecheck/build and browser runtime smoke;
-6. commit and continue to BAC-15.
+1. write failing tests for deterministic target selection, range rejection, and locomotion locking;
+2. implement typed interactable metadata and center-screen target acquisition;
+3. add prompt state plus interaction enter/exit ownership;
+4. make cancel safe and restore locomotion reliably;
+5. wire the hero book as the first target and run runtime smoke;
+6. commit and continue to BAC-16.
 
 ## Resume rule
 Start from the first unchecked implementation item above. Verify the latest commit/tests before changing code. Update this file after every meaningful milestone.

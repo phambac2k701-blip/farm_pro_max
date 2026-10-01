@@ -102,13 +102,13 @@
 **Interfaces:**
 - Produces: spawn point, classroom, desk, book anchor location.
 
-- [ ] Build minimal hallway/classroom geometry.
-- [ ] Add static collision.
-- [ ] Add practical lighting placeholder.
-- [ ] Verify scale.
-- [ ] Walk every reachable area.
-- [ ] Verify no wall clipping/soft-lock.
-- [ ] Commit.
+- [x] Build minimal hallway/classroom geometry.
+- [x] Add static collision.
+- [x] Add practical lighting placeholder.
+- [x] Verify scale.
+- [x] Walk every reachable area.
+- [x] Verify no wall clipping/soft-lock.
+- [x] Commit.
 
 ### Task 5: Create interaction targeting and interaction state machine
 
