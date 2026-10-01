@@ -9,7 +9,7 @@ Last updated: 2026-10-01
 `integration/narrative-v1.2` (continues from the clean Technical Prototype V1 checkpoint plus the frozen narrative handoff)
 
 ## Current status
-**Technical Prototype V1 is frozen and complete. Narrative integration planning is complete. BAC-22 is complete; BAC-23 is now in progress.**
+**Technical Prototype V1 is frozen and complete. Narrative integration planning is complete. BAC-22, BAC-23 and BAC-24 are complete. BAC-25 implementation is integrated and automated verification is green; its manual interaction playthrough remains pending because the authorized desktop device is currently offline. BAC-26 may proceed in parallel because its dependency is BAC-23.**
 
 Completed production planning:
 - Narrative–Technical Gap Analysis: `docs/production/CH01_NARRATIVE_TECHNICAL_GAP_ANALYSIS.md`
@@ -18,7 +18,7 @@ Completed production planning:
 - Linear milestone: **CHAPTER 1 VERTICAL SLICE**
 - Linear execution issues: BAC-22 through BAC-31
 
-Current implementation task: **BAC-23 — Production Chapter 1 scene shell and traversal**.
+Current implementation focus: **BAC-25 runtime verification + BAC-26 Production AudioDirector/audio assets**.
 
 The authorized execution path is BAC-22 → BAC-31. After BAC-31, record **CHAPTER 1 VERTICAL SLICE COMPLETE** and STOP. Do not start Chapter 2 gameplay.
 
@@ -335,9 +335,7 @@ Preview: https://phambac2k701-blip.github.io/farm_pro_max/
 - Old `docs/NARRATIVE_BIBLE.md` is retained only as superseded foundation context.
 
 ## NEXT CHECKPOINT
-**INTEGRATION/GAP ANALYSIS — NOT YET EXECUTED**
-
-Do not start Chapter 1 implementation directly. First map narrative requirements to existing prototype systems, identify missing reusable systems/assets/audio/UI/state, record conflicts, and produce a Chapter 1 Vertical Slice implementation plan with dependencies and Definition of Done.
+Continue the dependency-ordered Chapter 1 vertical-slice plan. Do not redo completed integration/gap analysis or BAC-22→BAC-24. BAC-25 code is present and CI-green; finish its real interaction playthrough when the desktop runtime is available, while BAC-26 may proceed independently.
 
 
 ## BAC-22 production record
@@ -361,3 +359,59 @@ Verification:
 
 Decision:
 - schema v1 is intentionally reset, not migrated, because it can contain the non-production Hero Book evidence ID and prototype ninth-classroom-desk KCR state. Carrying those into production would violate the frozen narrative handoff.
+
+
+## BAC-23 production record
+Implemented:
+- typed production scene shell for gate, guard shelter, side entrance, corridor, classroom and PA room
+- durable checkpoint anchors plus trigger-zone references
+- eight PA stations in the before-state and disabled ninth station variant
+- Vietnamese-school signage, worn primitive materials, low fluorescent/night lighting
+- production bootstrap no longer depends on the Technical Prototype Hero Book or prototype ninth-desk KCR content
+- browser-smoke metadata for production scene readiness and station counts
+
+Verification:
+- Chapter 1 production scene tests cover required refs, checkpoint anchors, before-state station count, hidden ninth variant, production props and collision mesh presence
+- Linear BAC-23 is Done
+- later Chapter 1 CI runs include this scene shell in test/typecheck/build/browser boot smoke
+
+## BAC-24 production record
+Implemented:
+- InteractionBehaviorHost under existing InteractionSystem ownership
+- shared OpenableController for hinged doors and linear drawers
+- InspectionSession composed with CameraDirector
+- DocumentInspectionController and PhotoInspectionController
+- lightweight PickupController
+- runtime wiring for side entrance, classroom door, PA door, classroom drawer, roster, class photo and flashlight
+
+Verification:
+- production behavior and inspection tests pass
+- Linear BAC-24 is Done
+- existing InteractionSystem and CameraDirector regression tests remain in the green Chapter 1 CI gate
+
+## BAC-25 implementation record
+Implemented:
+- production Chapter 1 evidence catalog C01/C02/C03/C04/C05/C07/C14
+- resume-safe 00:17 opening phone sequence and phone UI
+- C01 awarded only after the player dismisses the completed message sequence
+- classroom roster tactile inspection awards C03
+- class-photo inspection plus explicit compare action awards C02
+- 09 drawer label reveal and C05 discovery after the roster contradiction
+- optional C14 timetable inspection without progression dependency
+- one-shot corridor-return bell state fact
+- checkpoint progression through old wing, classroom and PA threshold
+- restrained evidence notification using the existing DOM UI layer
+
+Automated verification:
+- CI run `36910173879` succeeded after the BAC-25 integration commits
+- 16 test files / 52 tests pass in that gate
+- TypeScript typecheck passes
+- production build passes
+- headless browser boot smoke passes
+- ChapterOneOpeningController and ClassroomEvidenceController have dedicated tests for resume, idempotence, compare gating and optional-clue independence
+
+Pending runtime verification:
+- real keyboard/mouse playthrough from gate through the classroom contradiction
+- deliberately skip C14 and confirm progression
+- repeated roster/photo/drawer interaction and Escape/focus-loss smoke
+- the authorized Remote Desktop Commander device is currently offline, so these checks remain part of BAC-25 completion rather than being guessed
