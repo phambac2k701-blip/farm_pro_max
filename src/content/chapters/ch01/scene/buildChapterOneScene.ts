@@ -405,7 +405,7 @@ function createFluorescentFixture(
 export function buildChapterOneScene(
   scene: Scene,
 ): ChapterOneProductionScene {
-  scene.clearColor = new Color4(0.012, 0.017, 0.024, 1);
+  scene.clearColor = new Color4(0.016, 0.022, 0.03, 1);\n  scene.imageProcessingConfiguration.exposure = 1.2;
 
   const plaster = createMaterial(
     scene,
@@ -982,17 +982,17 @@ export function buildChapterOneScene(
     new Vector3(0.2, 1, -0.15),
     scene,
   );
-  ambience.intensity = 0.2;
+  ambience.intensity = 0.5;
   ambience.diffuse = new Color3(0.48, 0.56, 0.62);
-  ambience.groundColor = new Color3(0.03, 0.04, 0.045);
+  ambience.groundColor = new Color3(0.075, 0.085, 0.09);
 
   const shelterLight = new PointLight(
     "ch01-shelter-light",
     new Vector3(-4.4, 2.45, -15.7),
     scene,
   );
-  shelterLight.intensity = 0.72;
-  shelterLight.range = 7;
+  shelterLight.intensity = 1.0;
+  shelterLight.range = 9.5;
   shelterLight.diffuse = new Color3(0.74, 0.8, 0.69);
   createFluorescentFixture(
     scene,
@@ -1007,8 +1007,8 @@ export function buildChapterOneScene(
       new Vector3(0, 2.75, z),
       scene,
     );
-    light.intensity = index === 2 ? 0.42 : 0.58;
-    light.range = 6.3;
+    light.intensity = index === 2 ? 0.68 : 0.9;
+    light.range = 8.5;
     light.diffuse = new Color3(0.66, 0.76, 0.7);
     createFluorescentFixture(
       scene,
@@ -1023,8 +1023,8 @@ export function buildChapterOneScene(
     new Vector3(5.5, 2.75, 0.5),
     scene,
   );
-  classroomLight.intensity = 0.62;
-  classroomLight.range = 8;
+  classroomLight.intensity = 0.95;
+  classroomLight.range = 10;
   classroomLight.diffuse = new Color3(0.7, 0.76, 0.68);
 
   const paRoomLight = new PointLight(
@@ -1032,8 +1032,8 @@ export function buildChapterOneScene(
     new Vector3(5.5, 2.65, 9.5),
     scene,
   );
-  paRoomLight.intensity = 0.52;
-  paRoomLight.range = 8;
+  paRoomLight.intensity = 0.85;
+  paRoomLight.range = 10;
   paRoomLight.diffuse = new Color3(0.65, 0.71, 0.67);
 
   const checkpointPositions: Record<ChapterOneCheckpointId, Vector3> = {
