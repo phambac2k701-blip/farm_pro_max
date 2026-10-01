@@ -26,7 +26,7 @@ SaveService remains the only browser storage boundary. Schema v2 adds checkpoint
 
 Do not serialize camera blends, active door tween frames or inspection animation progress. If a save occurs during an inspection, reload at the nearest safe checkpoint with persistent facts/evidence intact.
 
-Prototype schema v1 is pre-production. Either migrate it deterministically to a safe Chapter 1 checkpoint or explicitly reset it with a documented version reason. Never silently reinterpret v1 as v2.
+Prototype schema v1 is pre-production. **Implementation decision (BAC-22): reset v1 explicitly instead of migrating it.** The prototype save can contain non-production evidence IDs and the prototype ninth-classroom-desk reality fact, so carrying it into NAR-PRODUCTION-v1.2 would preserve invalid narrative state. SaveService uses a new v2 storage key, detects the legacy prototype key when no v2 save exists, removes that incompatible prototype save, and starts a clean Chapter 1 production state. Never silently reinterpret v1 as v2.
 
 ## Production scene composition
 Replace the prototype scene content with a typed Chapter 1 production builder covering:
