@@ -140,28 +140,24 @@ class BabylonAudioBackend implements AudioBackend {
 export class AudioDirector {
   private readonly sounds = new Map<string, AudioSoundHandle>();
   private readonly failed = new Set<string>();
+  private backend: AudioBackend | null;
+  private initializationComplete = false;
   private disposed = false;
 
   private constructor(
-    private readonly backend: AudioBackend | null,
+    backend: AudioBackend | null,
     private readonly manifest: AudioManifest,
     private readonly options: AudioDirectorOptions,
-  ) {}
+  ) {
+    this.backend = backend;
+  }
 
   static async create(
     manifest: AudioManifest,
     options: AudioDirectorOptions,
   ): Promise<AudioDirector> {
-    let backend: AudioBackend | null = null;
-    try {
-      backend = await BabylonAudioBackend.create();
-      backend.setVolume(options.masterVolume ?? 0.9);
-    } catch {
-      return new AudioDirector(null, manifest, options);
-    }
-
-    const director = new AudioDirector(backend, manifest, options);
-    await director.loadAll();
+    const director = new AudioDirector(null, manifest, options);
+    void director.initialize();
     return director;
   }
 
@@ -172,10 +168,16 @@ export class AudioDirector {
   ): Promise<AudioDirector> {
     const director = new AudioDirector(backend, manifest, options);
     await director.loadAll();
+    director.initializationComplete = true;
     return director;
   }
+
   get isReady(): boolean {
-    return this.backend !== null && !this.disposed;
+    return (
+      this.backend !== null &&
+      this.initializationComplete &&
+      !this.disposed
+    );
   }
 
   get failedCueIds(): readonly string[] {
@@ -221,7 +223,7 @@ export class AudioDirector {
   }
 
   async unlock(): Promise<boolean> {
-    if (!this.backend || this.disposed) {
+    if (!this.isReady || !this.backend) {
       return false;
     }
     try {
@@ -309,6 +311,26 @@ export class AudioDirector {
     }
   }
 
+  private async initialize(): Promise<void> {
+    try {
+      const backend = await BabylonAudioBackend.create();
+      if (this.disposed) {
+        backend.dispose();
+        return;
+      }
+
+      this.backend = backend;
+      backend.setVolume(this.options.masterVolume ?? 0.9);
+      await this.loadAll();
+
+      if (!this.disposed) {
+        this.initializationComplete = true;
+      }
+    } catch {
+      this.initializationComplete = false;
+    }
+  }
+
   private async loadAll(): Promise<void> {
     if (!this.backend) {
       return;
@@ -319,6 +341,10 @@ export class AudioDirector {
         try {
           const source = new URL(definition.file, this.options.baseUrl).toString();
           const sound = await this.backend!.load(id, source, definition);
+          if (this.disposed) {
+            sound.dispose();
+            return;
+          }
           this.sounds.set(id, sound);
         } catch {
           this.failed.add(id);

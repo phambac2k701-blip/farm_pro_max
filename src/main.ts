@@ -591,6 +591,8 @@ async function bootstrap(): Promise<void> {
       canvas.dataset.drawerState = drawer.state;
       canvas.dataset.chapterCheckpoint = chapterRuntime.currentCheckpoint;
       canvas.dataset.evidenceCount = String(evidence.listDiscovered().length);
+      canvas.dataset.audioReady = String(audio.isReady);
+      canvas.dataset.audioFailedCues = String(audio.failedCueIds.length);
       canvas.dataset.openingActive = String(opening.isActive);
       canvas.dataset.drawerLabel09Enabled = String(
         chapter.drawerLabel09.isEnabled(),
