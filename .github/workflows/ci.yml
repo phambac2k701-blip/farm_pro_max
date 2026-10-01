@@ -1,0 +1,42 @@
+name: Chapter 1 production CI
+
+on:
+  push:
+    branches:
+      - integration/narrative-v1.2
+  pull_request:
+    branches:
+      - prototype/bootstrap-3d
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ch01-production-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Test
+        run: npm test
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Build
+        run: npm run build
