@@ -936,6 +936,36 @@ export function buildChapterOneScene(
   corridorReturnZone.isVisible = false;
   corridorReturnZone.isPickable = false;
 
+  const insideOldWingZone = createBox(scene, "ch01-inside-old-wing-zone", {
+    width: 2.4,
+    height: 2.4,
+    depth: 1.2,
+    position: new Vector3(0, 1.2, -6.6),
+    material: plastic,
+  });
+  insideOldWingZone.isVisible = false;
+  insideOldWingZone.isPickable = false;
+
+  const classroomEntryZone = createBox(scene, "ch01-classroom-entry-zone", {
+    width: 1.8,
+    height: 2.4,
+    depth: 1.8,
+    position: new Vector3(2.3, 1.2, 0.45),
+    material: plastic,
+  });
+  classroomEntryZone.isVisible = false;
+  classroomEntryZone.isPickable = false;
+
+  const paThresholdZone = createBox(scene, "ch01-pa-threshold-zone", {
+    width: 1.8,
+    height: 2.4,
+    depth: 1.8,
+    position: new Vector3(0.35, 1.2, 8.8),
+    material: plastic,
+  });
+  paThresholdZone.isVisible = false;
+  paThresholdZone.isPickable = false;
+
   const paReentryZone = createBox(scene, "ch01-pa-reentry-zone", {
     width: 1.3,
     height: 2.4,
@@ -1058,5 +1088,8 @@ export function buildChapterOneScene(
     photoInspectionAnchor,
     timetableInspectionAnchor,
     corridorReturnZone,
+    insideOldWingZone,
+    classroomEntryZone,
+    paThresholdZone,
   };
 }
