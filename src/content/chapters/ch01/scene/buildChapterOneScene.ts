@@ -405,7 +405,8 @@ function createFluorescentFixture(
 export function buildChapterOneScene(
   scene: Scene,
 ): ChapterOneProductionScene {
-  scene.clearColor = new Color4(0.016, 0.022, 0.03, 1);\n  scene.imageProcessingConfiguration.exposure = 1.2;
+  scene.clearColor = new Color4(0.016, 0.022, 0.03, 1);
+  scene.imageProcessingConfiguration.exposure = 1.2;
 
   const plaster = createMaterial(
     scene,
