@@ -52,7 +52,7 @@ jobs:
             fi
             sleep 1
           done
-          google-chrome --headless=new --no-sandbox --use-angle=swiftshader --enable-webgl --ignore-gpu-blocklist --virtual-time-budget=5000 --dump-dom http://127.0.0.1:5173/ > /tmp/ch01-dom.html
+          google-chrome --headless=new --no-sandbox --use-angle=swiftshader --enable-unsafe-swiftshader --enable-webgl --ignore-gpu-blocklist --virtual-time-budget=5000 --dump-dom http://127.0.0.1:5173/ > /tmp/ch01-dom.html
           grep -q 'data-scene-ready="ch01-production-shell"' /tmp/ch01-dom.html
           grep -q 'data-pa-station-count="8"' /tmp/ch01-dom.html
           grep -q 'data-ninth-pa-station-enabled="false"' /tmp/ch01-dom.html
