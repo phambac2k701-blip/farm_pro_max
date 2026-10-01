@@ -9,7 +9,7 @@ Last updated: 2026-10-01
 `prototype/bootstrap-3d`
 
 ## Current status
-Implementation is active. **BAC-11 through BAC-18 are complete** and the next executable task is **BAC-19 — Knowledge-driven world shift prototype**.
+Implementation is active. **BAC-11 through BAC-19 are complete** and the next executable task is **BAC-20 — Save and load prototype state**.
 
 The pre-build documentation remains authoritative for product/architecture direction. Continue implementation task-by-task without returning to completed preparation work.
 
@@ -51,7 +51,7 @@ The pre-build documentation remains authoritative for product/architecture direc
 - [x] BAC-16 — CameraDirector inspection choreography
 - [x] BAC-17 — Hero book inspection interaction
 - [x] BAC-18 — Investigation discovery system
-- [ ] BAC-19 — Knowledge-driven world shift prototype
+- [x] BAC-19 — Knowledge-driven world shift prototype
 - [ ] BAC-20 — Save and load prototype state
 - [ ] BAC-21 — Preview deployment and full playtest gate
 
@@ -225,17 +225,43 @@ Verification:
 - repeated visits remain idempotent with evidence count fixed at 1
 - runtime metadata and notification text resolve the discovered clue correctly
 
+## BAC-19 reuse-first review
+- Existing codebase: `GameState` already owns evidence/facts and serialization-ready state; RealitySystem should evaluate those facts rather than introduce another store or FSM.
+- Babylon.js: reuse `ActionManager.OnIntersectionEnterTrigger` + `ExecuteCodeAction` for the controlled doorway/corridor transition instead of creating a custom trigger framework. Babylon Animation/Easing are available if a timed property transition becomes necessary.
+- External library review: `@tweenjs/tween.js` is MIT-licensed and suitable for generic tweening, but adding it here would duplicate Babylon capabilities for a shift that can be applied while the player is outside the room.
+- Decision: no new dependency. Apply the world variant during the controlled corridor transition after knowledge is acquired, so the changed room is already stable when revisited.
+
+## BAC-19 implementation record
+Implemented:
+- data-driven `RealitySystem` with evidence/fact condition evaluation
+- idempotent world-variant application with persisted applied facts
+- `syncApplied()` path for restoring persisted world variants after load
+- hidden ninth desk variant composed from the existing shared desk builder
+- subtle classroom light intensity/color shift
+- Babylon `ActionManager.OnIntersectionEnterTrigger` transition zone reused for the controlled exit/revisit moment
+- no reality-change popup or dedicated scare framework
+
+Verification:
+- RED verified before implementation: `RealitySystem` module missing
+- 29/29 total automated tests pass
+- TypeScript typecheck passes
+- production Vite build passes
+- transition zone has no effect before required evidence
+- after evidence, crossing the controlled corridor transition sets the revisit fact and applies the shift exactly once
+- ninth desk becomes enabled and classroom light changes from 1.0 to 0.72 with a cooler diffuse tone
+- no explicit “reality changed” UI text is rendered
+
 ## Exact next task
-**BAC-19 — Knowledge-driven world shift prototype**
+**BAC-20 — Save and load prototype state**
 
 Required next steps:
-1. perform reuse-first review for world-variant orchestration, lighting/audio changes, and transition timing;
-2. write failing knowledge-condition and idempotent-application tests;
-3. implement `RealitySystem` as the game-owned abstraction over shared scene/audio/lighting primitives;
-4. add 8-desk → 9-desk classroom variant plus one subtle lighting/audio difference;
-5. trigger the shift only after required evidence and a controlled revisit/transition;
-6. verify there is no explicit “reality changed” popup;
-7. commit and continue to BAC-20.
+1. perform reuse-first review for storage/schema validation;
+2. write failing save roundtrip and invalid-data recovery tests;
+3. add schema versioning and persist chapter/evidence/facts/settings;
+4. load state before gameplay systems are constructed;
+5. autosave meaningful GameState changes;
+6. verify the ninth-desk reality shift survives a browser reload;
+7. commit and continue to BAC-21.
 
 ## Resume rule
 Start from the first unchecked implementation item above. Verify the latest commit/tests before changing code. Update this file after every meaningful milestone.

@@ -101,6 +101,10 @@ export class PlayerController {
     return this.lookEnabled;
   }
 
+  get collisionBody(): AbstractMesh | undefined {
+    return this.body;
+  }
+
   setLocomotionEnabled(enabled: boolean): void {
     this.locomotionEnabled = enabled;
   }

@@ -1,3 +1,5 @@
+import { ActionManager } from "@babylonjs/core/Actions/actionManager";
+import { ExecuteCodeAction } from "@babylonjs/core/Actions/directActions";
 import { Scene } from "@babylonjs/core/scene";
 
 import { PrototypeBookAudio } from "./audio/PrototypeBookAudio";
@@ -8,6 +10,12 @@ import {
 } from "./content/chapters/ch01/book";
 import { CH01_EVIDENCE } from "./content/chapters/ch01/evidence";
 import { buildChapterOnePrototypeScene } from "./content/chapters/ch01/prototypeScene";
+import {
+  applyChapterOneNinthDeskVariant,
+  CH01_NINTH_DESK_SHIFT_ID,
+  CH01_REALITY_RULES,
+  CH01_REVISIT_AFTER_CLUE_FACT,
+} from "./content/chapters/ch01/reality";
 import { EngineAdapter } from "./engine/EngineAdapter";
 import { EvidenceSystem } from "./evidence/EvidenceSystem";
 import { GameState } from "./game/state/GameState";
@@ -15,6 +23,7 @@ import { InteractionStateMachine } from "./interaction/InteractionStateMachine";
 import { InteractionSystem } from "./interaction/InteractionSystem";
 import { BookInspectionController } from "./interaction/inspection/BookInspectionController";
 import { PlayerController } from "./player/PlayerController";
+import { RealitySystem } from "./reality/RealitySystem";
 import "./style.css";
 
 async function bootstrap(): Promise<void> {
@@ -55,6 +64,38 @@ async function bootstrap(): Promise<void> {
     const cameraDirector = new CameraDirector(player.camera, player);
     const gameState = new GameState();
     const evidence = new EvidenceSystem(gameState, CH01_EVIDENCE);
+    const reality = new RealitySystem(gameState, CH01_REALITY_RULES, {
+      [CH01_NINTH_DESK_SHIFT_ID]: () => {
+        applyChapterOneNinthDeskVariant(chapter);
+        canvas.dataset.realityShift = CH01_NINTH_DESK_SHIFT_ID;
+      },
+    });
+    reality.syncApplied();
+
+    const playerBody = player.collisionBody;
+    if (!playerBody) {
+      throw new Error("Player collision body is required for reality triggers.");
+    }
+
+    playerBody.actionManager =
+      playerBody.actionManager ?? new ActionManager(scene);
+    playerBody.actionManager.registerAction(
+      new ExecuteCodeAction(
+        {
+          trigger: ActionManager.OnIntersectionEnterTrigger,
+          parameter: chapter.realityTransitionZone,
+        },
+        () => {
+          if (!evidence.has("ev_ch01_erased_ninth_line")) {
+            return;
+          }
+
+          gameState.setFact(CH01_REVISIT_AFTER_CLUE_FACT, true);
+          reality.apply(CH01_NINTH_DESK_SHIFT_ID);
+        },
+      ),
+    );
+
     const bookAudio = new PrototypeBookAudio();
     const bookInspection = new BookInspectionController({
       visual: chapter.bookVisual,
@@ -133,6 +174,7 @@ async function bootstrap(): Promise<void> {
           bookInspection: BookInspectionController;
           gameState: GameState;
           evidence: EvidenceSystem;
+          reality: RealitySystem;
         };
       };
       debugWindow.__NTC_DEBUG__ = {
@@ -143,6 +185,7 @@ async function bootstrap(): Promise<void> {
         bookInspection,
         gameState,
         evidence,
+        reality,
       };
     }
 

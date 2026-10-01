@@ -12,6 +12,9 @@ describe("chapter one prototype scene", () => {
     const prototype = buildChapterOnePrototypeScene(scene);
 
     expect(prototype.studentDesks).toHaveLength(8);
+    expect(prototype.ninthDesk.isEnabled()).toBe(false);
+    expect(prototype.realityTransitionZone.isVisible).toBe(false);
+    expect(prototype.classroomLight.intensity).toBeCloseTo(1, 6);
     expect(prototype.book.name).toBe("hero-book");
     expect(prototype.bookAnchor.position.equals(prototype.book.position)).toBe(
       true,

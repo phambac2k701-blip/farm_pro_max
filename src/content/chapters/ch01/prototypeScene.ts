@@ -16,7 +16,10 @@ export interface ChapterOnePrototypeScene {
   corridorCenter: Vector3;
   classroomCenter: Vector3;
   studentDesks: TransformNode[];
+  ninthDesk: TransformNode;
   teacherDesk: TransformNode;
+  realityTransitionZone: Mesh;
+  classroomLight: PointLight;
   book: Mesh;
   bookAnchor: TransformNode;
   bookCameraAnchor: TransformNode;
@@ -298,6 +301,15 @@ export function buildChapterOnePrototypeScene(
     }
   }
 
+  const ninthDesk = createDesk(
+    scene,
+    "student-desk-ninth",
+    new Vector3(5.5, 0, 3.05),
+    wood,
+    metal,
+  );
+  ninthDesk.setEnabled(false);
+
   const teacherDesk = createDesk(
     scene,
     "teacher-desk",
@@ -305,6 +317,16 @@ export function buildChapterOnePrototypeScene(
     wood,
     metal,
   );
+
+  const realityTransitionZone = MeshBuilder.CreateBox(
+    "reality-transition-zone",
+    { width: 1.1, height: 2.4, depth: 1.2 },
+    scene,
+  );
+  realityTransitionZone.position.set(0.72, 1.2, 2);
+  realityTransitionZone.isVisible = false;
+  realityTransitionZone.isPickable = false;
+  realityTransitionZone.checkCollisions = false;
 
   const book = box(scene, "hero-book", {
     width: 0.24,
@@ -468,7 +490,10 @@ export function buildChapterOnePrototypeScene(
     corridorCenter: new Vector3(0, 0, 0),
     classroomCenter: new Vector3(5.5, 0, 3),
     studentDesks,
+    ninthDesk,
     teacherDesk,
+    realityTransitionZone,
+    classroomLight,
     book,
     bookAnchor,
     bookCameraAnchor,

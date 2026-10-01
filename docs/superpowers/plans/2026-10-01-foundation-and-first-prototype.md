@@ -199,13 +199,13 @@
 - Consumes: GameState facts/evidence.
 - Produces: world-variant application.
 
-- [ ] Test knowledge condition evaluation.
-- [ ] Test idempotent shift application.
-- [ ] Add 8-desk → 9-desk classroom variant.
-- [ ] Add one subtle audio/lighting difference.
-- [ ] Trigger only after required evidence and controlled revisit/transition.
-- [ ] Verify the game never displays an explicit “reality changed” popup.
-- [ ] Commit.
+- [x] Test knowledge condition evaluation.
+- [x] Test idempotent shift application.
+- [x] Add 8-desk → 9-desk classroom variant.
+- [x] Add one subtle audio/lighting difference.
+- [x] Trigger only after required evidence and controlled revisit/transition.
+- [x] Verify the game never displays an explicit “reality changed” popup.
+- [x] Commit.
 
 ### Task 10: Add save/load
 
