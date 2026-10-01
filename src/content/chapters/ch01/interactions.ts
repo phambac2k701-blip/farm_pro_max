@@ -5,6 +5,8 @@ export const CH01_INTERACTION_IDS = {
   classroomDrawer: "ch01-classroom-drawer",
   roster: "ch01-roster",
   classPhoto: "ch01-class-photo",
+  timetable: "ch01-timetable",
+  drawerLabel09: "ch01-drawer-label-09",
   flashlight: "ch01-flashlight",
 } as const;
 
