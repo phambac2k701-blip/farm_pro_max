@@ -2,6 +2,16 @@ import { Scene } from "@babylonjs/core/scene";
 
 import { CameraDirector } from "./camera/CameraDirector";
 import {
+  CH01_OPENING_COMPLETE_FACT,
+  ChapterOneOpeningController,
+} from "./content/chapters/ch01/ChapterOneOpeningController";
+import {
+  CH01_CORRIDOR_BELL_FACT,
+  ClassroomEvidenceController,
+} from "./content/chapters/ch01/ClassroomEvidenceController";
+import { DomChapterOnePhoneView } from "./content/chapters/ch01/DomChapterOnePhoneView";
+import { CH01_EVIDENCE } from "./content/chapters/ch01/evidence";
+import {
   CH01_FLASHLIGHT_PICKED_FACT,
   CH01_INTERACTION_IDS,
 } from "./content/chapters/ch01/interactions";
@@ -14,6 +24,7 @@ import {
   isChapterOneCheckpointId,
 } from "./content/chapters/ch01/state";
 import { EngineAdapter } from "./engine/EngineAdapter";
+import { EvidenceSystem } from "./evidence/EvidenceSystem";
 import { ChapterRuntime } from "./game/chapter/ChapterRuntime";
 import { SaveService } from "./game/save/SaveService";
 import { GameState } from "./game/state/GameState";
@@ -39,6 +50,10 @@ async function bootstrap(): Promise<void> {
     document.querySelector<HTMLDivElement>("#interaction-prompt");
   const inspectionOverlay =
     document.querySelector<HTMLElement>("#inspection-overlay");
+  const phoneOverlay =
+    document.querySelector<HTMLElement>("#phone-overlay");
+  const evidenceNotification =
+    document.querySelector<HTMLDivElement>("#evidence-notification");
   const reticle = document.querySelector<HTMLDivElement>("#reticle");
 
   if (
@@ -46,6 +61,8 @@ async function bootstrap(): Promise<void> {
     !fatalError ||
     !interactionPrompt ||
     !inspectionOverlay ||
+    !phoneOverlay ||
+    !evidenceNotification ||
     !reticle
   ) {
     throw new Error("Required application DOM nodes are missing.");
@@ -59,6 +76,7 @@ async function bootstrap(): Promise<void> {
         loadedSave?.settings.mouseSensitivity ?? 0.0022,
     };
     const gameState = new GameState(loadedSave?.gameState);
+    const evidence = new EvidenceSystem(gameState, CH01_EVIDENCE);
     const restoredCheckpoint =
       loadedSave &&
       isChapterOneCheckpointId(loadedSave.checkpoint.checkpointId)
@@ -73,6 +91,44 @@ async function bootstrap(): Promise<void> {
       nextChapterId: "ch02",
       restoredCheckpoint,
     });
+
+    const persistSave = (): void => {
+      const saved = saveService.save(
+        gameState.snapshot(),
+        chapterRuntime.snapshot(),
+        settings,
+      );
+      canvas.dataset.saveStatus = saved ? "saved" : "failed";
+      canvas.dataset.chapterCheckpoint = chapterRuntime.currentCheckpoint;
+    };
+    const unsubscribeAutosave = [
+      gameState.events.on("fact-changed", persistSave),
+      gameState.events.on("evidence-discovered", persistSave),
+      gameState.events.on("chapter-changed", persistSave),
+    ];
+
+    let evidenceTimer: number | null = null;
+    const unsubscribeEvidenceNotice = gameState.events.on(
+      "evidence-discovered",
+      ({ evidenceId }) => {
+        const definition = evidence.get(evidenceId);
+        if (!definition) {
+          return;
+        }
+        evidenceNotification.textContent =
+          `Đã ghi nhận · ${definition.title}\n${definition.summary}`;
+        evidenceNotification.hidden = false;
+        evidenceNotification.classList.add("visible");
+        if (evidenceTimer !== null) {
+          window.clearTimeout(evidenceTimer);
+        }
+        evidenceTimer = window.setTimeout(() => {
+          evidenceNotification.classList.remove("visible");
+          evidenceNotification.hidden = true;
+          evidenceTimer = null;
+        }, 3200);
+      },
+    );
 
     const engineAdapter = await EngineAdapter.create(canvas);
     const scene = new Scene(engineAdapter.engine);
@@ -92,6 +148,7 @@ async function bootstrap(): Promise<void> {
     );
     const cameraDirector = new CameraDirector(player.camera, player);
     const behaviorHost = new InteractionBehaviorHost(interaction);
+    let classroomEvidence: ClassroomEvidenceController | null = null;
 
     const registerDoor = (
       id: string,
@@ -144,6 +201,13 @@ async function bootstrap(): Promise<void> {
         drawerOpen,
       ),
       duration: 0.32,
+      onStableState(open) {
+        if (!open || !classroomEvidence || !evidence.has("C03")) {
+          return;
+        }
+        chapter.drawerLabel09.setEnabled(true);
+        evidence.discover("C05");
+      },
     });
     interaction.register(chapter.classroomDrawer, {
       id: CH01_INTERACTION_IDS.classroomDrawer,
@@ -170,6 +234,9 @@ async function bootstrap(): Promise<void> {
       view: rosterView,
       onReadable: () => {
         canvas.dataset.inspectionReadable = "roster";
+        classroomEvidence?.markRosterReadable();
+        chapterRuntime.reachCheckpoint("ch01_classroom_post_c03");
+        persistSave();
       },
     });
     interaction.register(chapter.rosterProp, {
@@ -197,6 +264,7 @@ async function bootstrap(): Promise<void> {
       view: photoView,
       onReadable: () => {
         canvas.dataset.inspectionReadable = "class-photo";
+        classroomEvidence?.markPhotoReadable();
       },
     });
     interaction.register(chapter.classPhotoProp, {
@@ -209,6 +277,54 @@ async function bootstrap(): Promise<void> {
       CH01_INTERACTION_IDS.classPhoto,
       photoInspection,
     );
+
+    const timetableView = new InspectionOverlayView(inspectionOverlay, {
+      eyebrow: "Hành lang · 2012",
+      title: "Thời khóa biểu cũ",
+      body:
+        "Ở mép cuối bảng vẫn còn một dòng viết tay: 00:17 · kiểm tra thiết bị ban đêm.",
+      footer: "Esc · rời mắt",
+    });
+    const timetableInspection = new DocumentInspectionController({
+      cameraDirector,
+      anchor: () => ({
+        position: chapter.timetableInspectionAnchor.position,
+        rotation: chapter.timetableInspectionAnchor.rotation,
+        fov: 0.72,
+      }),
+      view: timetableView,
+      onReadable: () => {
+        canvas.dataset.inspectionReadable = "timetable";
+        evidence.discover("C14");
+      },
+    });
+    interaction.register(chapter.timetableProp, {
+      id: CH01_INTERACTION_IDS.timetable,
+      prompt: "E · Xem thời khóa biểu",
+      maxDistance: 1.8,
+      priority: 9,
+    });
+    behaviorHost.register(
+      CH01_INTERACTION_IDS.timetable,
+      timetableInspection,
+    );
+
+    classroomEvidence = new ClassroomEvidenceController({
+      state: gameState,
+      evidence,
+      isRosterReading: () => rosterInspection.state === "reading",
+      isPhotoReading: () => photoInspection.state === "reading",
+      onCompared: () => {
+        canvas.dataset.lastComparison = "C02";
+      },
+    });
+
+    const opening = new ChapterOneOpeningController({
+      state: gameState,
+      evidence,
+      view: new DomChapterOnePhoneView(phoneOverlay),
+      inputLock: player,
+    });
 
     const flashlightPickup = new PickupController({
       mesh: chapter.flashlight,
@@ -233,21 +349,25 @@ async function bootstrap(): Promise<void> {
       flashlightPickup,
     );
 
-    interaction.attachInput(canvas);
+    const onChapterKeyDown = (event: KeyboardEvent): void => {
+      if (opening.handleKey(event.code)) {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        return;
+      }
 
-    const persistSave = (): void => {
-      const saved = saveService.save(
-        gameState.snapshot(),
-        chapterRuntime.snapshot(),
-        settings,
-      );
-      canvas.dataset.saveStatus = saved ? "saved" : "failed";
+      if (classroomEvidence?.handleKey(event.code)) {
+        event.preventDefault();
+      }
     };
-    const unsubscribeAutosave = [
-      gameState.events.on("fact-changed", persistSave),
-      gameState.events.on("evidence-discovered", persistSave),
-      gameState.events.on("chapter-changed", persistSave),
-    ];
+    window.addEventListener("keydown", onChapterKeyDown, true);
+    interaction.attachInput(canvas);
+    opening.start();
+
+    chapter.drawerLabel09.setEnabled(evidence.has("C03"));
+    if (evidence.has("C03")) {
+      chapterRuntime.reachCheckpoint("ch01_classroom_post_c03");
+    }
 
     canvas.dataset.renderBackend = engineAdapter.backend;
     canvas.dataset.controllerReady = "true";
@@ -255,6 +375,10 @@ async function bootstrap(): Promise<void> {
     canvas.dataset.behaviorHostReady = "true";
     canvas.dataset.saveLoaded = loadedSave ? "true" : "false";
     canvas.dataset.chapterCheckpoint = chapterRuntime.currentCheckpoint;
+    canvas.dataset.evidenceCount = String(evidence.listDiscovered().length);
+    canvas.dataset.openingComplete = String(
+      gameState.getFact<boolean>(CH01_OPENING_COMPLETE_FACT) === true,
+    );
     canvas.dataset.paStationCount = String(chapter.paStations.length);
     canvas.dataset.ninthPaStationEnabled = String(
       chapter.ninthPaStation.isEnabled(),
@@ -269,13 +393,17 @@ async function bootstrap(): Promise<void> {
           behaviorHost: InteractionBehaviorHost;
           cameraDirector: CameraDirector;
           gameState: GameState;
+          evidence: EvidenceSystem;
           chapterRuntime: ChapterRuntime<(typeof CH01_CHECKPOINTS)[number]>;
+          opening: ChapterOneOpeningController;
+          classroomEvidence: ClassroomEvidenceController;
           sideDoor: OpenableController;
           classroomDoor: OpenableController;
           paDoor: OpenableController;
           drawer: OpenableController;
           rosterInspection: DocumentInspectionController;
           photoInspection: PhotoInspectionController;
+          timetableInspection: DocumentInspectionController;
         };
       };
       debugWindow.__NTC_DEBUG__ = {
@@ -285,13 +413,17 @@ async function bootstrap(): Promise<void> {
         behaviorHost,
         cameraDirector,
         gameState,
+        evidence,
         chapterRuntime,
+        opening,
+        classroomEvidence,
         sideDoor,
         classroomDoor,
         paDoor,
         drawer,
         rosterInspection,
         photoInspection,
+        timetableInspection,
       };
     }
 
@@ -301,12 +433,71 @@ async function bootstrap(): Promise<void> {
       player.update(deltaSeconds);
       cameraDirector.update(deltaSeconds);
       behaviorHost.update(deltaSeconds);
+      opening.update(deltaSeconds);
       interaction.update();
+
+      const feet = player.getFeetPosition();
+      const nearXZ = (x: number, z: number, radius: number): boolean => {
+        const dx = feet.x - x;
+        const dz = feet.z - z;
+        return dx * dx + dz * dz <= radius * radius;
+      };
+
+      if (
+        chapterRuntime.currentCheckpoint === "ch01_gate" &&
+        nearXZ(
+          chapter.insideOldWingZone.position.x,
+          chapter.insideOldWingZone.position.z,
+          1.35,
+        ) &&
+        chapterRuntime.reachCheckpoint("ch01_inside_old_wing")
+      ) {
+        persistSave();
+      }
+
+      if (
+        !chapterRuntime.hasReached("ch01_classroom_pre_roster") &&
+        nearXZ(
+          chapter.classroomEntryZone.position.x,
+          chapter.classroomEntryZone.position.z,
+          1.4,
+        ) &&
+        chapterRuntime.reachCheckpoint("ch01_classroom_pre_roster")
+      ) {
+        persistSave();
+      }
+
+      if (
+        evidence.has("C03") &&
+        !chapterRuntime.hasReached("ch01_pa_pre_c07") &&
+        nearXZ(
+          chapter.paThresholdZone.position.x,
+          chapter.paThresholdZone.position.z,
+          1.4,
+        ) &&
+        chapterRuntime.reachCheckpoint("ch01_pa_pre_c07")
+      ) {
+        persistSave();
+      }
+
+      if (
+        evidence.has("C03") &&
+        gameState.getFact<boolean>(CH01_CORRIDOR_BELL_FACT) !== true &&
+        nearXZ(
+          chapter.corridorReturnZone.position.x,
+          chapter.corridorReturnZone.position.z,
+          1.4,
+        )
+      ) {
+        gameState.setFact(CH01_CORRIDOR_BELL_FACT, true);
+        canvas.dataset.corridorBell = "triggered";
+      }
 
       const prompt = interaction.promptState;
       interactionPrompt.hidden = !prompt.visible;
       interactionPrompt.textContent = prompt.text;
       reticle.hidden =
+        opening.isActive ||
         interaction.activeInteraction !== null ||
         cameraDirector.state !== "gameplay";
 
@@ -315,9 +506,14 @@ async function bootstrap(): Promise<void> {
         interaction.activeInteraction?.id ?? "";
       canvas.dataset.cameraState = cameraDirector.state;
       canvas.dataset.drawerState = drawer.state;
+      canvas.dataset.chapterCheckpoint = chapterRuntime.currentCheckpoint;
+      canvas.dataset.evidenceCount = String(evidence.listDiscovered().length);
+      canvas.dataset.openingActive = String(opening.isActive);
+      canvas.dataset.drawerLabel09Enabled = String(
+        chapter.drawerLabel09.isEnabled(),
+      );
 
       if (import.meta.env.DEV) {
-        const feet = player.getFeetPosition();
         canvas.dataset.playerFeet =
           `${feet.x.toFixed(3)},${feet.y.toFixed(3)},${feet.z.toFixed(3)}`;
       }
@@ -331,6 +527,12 @@ async function bootstrap(): Promise<void> {
         for (const unsubscribe of unsubscribeAutosave) {
           unsubscribe();
         }
+        unsubscribeEvidenceNotice();
+        if (evidenceTimer !== null) {
+          window.clearTimeout(evidenceTimer);
+        }
+        window.removeEventListener("keydown", onChapterKeyDown, true);
+        opening.dispose();
         behaviorHost.dispose();
         interaction.dispose();
         player.dispose();
