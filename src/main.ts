@@ -11,6 +11,13 @@ import {
 import { CH01_EVIDENCE } from "./content/chapters/ch01/evidence";
 import { buildChapterOnePrototypeScene } from "./content/chapters/ch01/prototypeScene";
 import {
+  CH01_CHECKPOINTS,
+  CH01_COMPLETE_CHECKPOINT,
+  CH01_COMPLETE_FACT,
+  CH01_INITIAL_CHECKPOINT,
+  isChapterOneCheckpointId,
+} from "./content/chapters/ch01/state";
+import {
   applyChapterOneNinthDeskVariant,
   CH01_NINTH_DESK_SHIFT_ID,
   CH01_REALITY_RULES,
@@ -18,6 +25,7 @@ import {
 } from "./content/chapters/ch01/reality";
 import { EngineAdapter } from "./engine/EngineAdapter";
 import { EvidenceSystem } from "./evidence/EvidenceSystem";
+import { ChapterRuntime } from "./game/chapter/ChapterRuntime";
 import { SaveService } from "./game/save/SaveService";
 import { GameState } from "./game/state/GameState";
 import { InteractionStateMachine } from "./interaction/InteractionStateMachine";
@@ -57,6 +65,20 @@ async function bootstrap(): Promise<void> {
         loadedSave?.settings.mouseSensitivity ?? 0.0022,
     };
     const gameState = new GameState(loadedSave?.gameState);
+    const restoredCheckpoint =
+      loadedSave &&
+      isChapterOneCheckpointId(loadedSave.checkpoint.checkpointId)
+        ? loadedSave.checkpoint.checkpointId
+        : CH01_INITIAL_CHECKPOINT;
+    const chapterRuntime = new ChapterRuntime({
+      state: gameState,
+      checkpoints: CH01_CHECKPOINTS,
+      initialCheckpoint: CH01_INITIAL_CHECKPOINT,
+      completeCheckpoint: CH01_COMPLETE_CHECKPOINT,
+      completeFactId: CH01_COMPLETE_FACT,
+      nextChapterId: "ch02",
+      restoredCheckpoint,
+    });
 
     const engineAdapter = await EngineAdapter.create(canvas);
     const scene = new Scene(engineAdapter.engine);
@@ -138,6 +160,7 @@ async function bootstrap(): Promise<void> {
     const persistSave = (): void => {
       const saved = saveService.save(
         gameState.snapshot(),
+        chapterRuntime.snapshot(),
         settings,
       );
       canvas.dataset.saveStatus = saved ? "saved" : "failed";
@@ -196,6 +219,7 @@ async function bootstrap(): Promise<void> {
           cameraDirector: CameraDirector;
           bookInspection: BookInspectionController;
           gameState: GameState;
+          chapterRuntime: ChapterRuntime<(typeof CH01_CHECKPOINTS)[number]>;
           evidence: EvidenceSystem;
           reality: RealitySystem;
         };
@@ -207,6 +231,7 @@ async function bootstrap(): Promise<void> {
         cameraDirector,
         bookInspection,
         gameState,
+        chapterRuntime,
         evidence,
         reality,
       };
