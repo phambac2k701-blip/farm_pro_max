@@ -3,18 +3,18 @@
 Last updated: 2026-10-01
 
 ## Current phase
-**Phase 0 — Pre-production / technical foundation**
+**Phase 1 — First playable technical prototype**
 
 ## Current branch
-`phase-0-foundation`
+`prototype/bootstrap-3d`
 
 ## Current status
-Foundation documentation is being created before gameplay implementation.
+Foundation planning is complete enough to begin implementation. The active task is **Task 1: bootstrap the browser 3D application**.
 
 ## Confirmed decisions
-- The project is now a **true 3D first-person psychological investigation game**.
+- The project is a **true 3D first-person psychological investigation game**.
 - Primary delivery target: **desktop web browser**.
-- Initial engine direction: **Babylon.js + TypeScript**.
+- Engine direction: **Babylon.js + TypeScript + Vite**.
 - WebGPU is preferred where supported; WebGL fallback is required.
 - Gameplay is investigation/exploration, not combat.
 - Core narrative mechanic: **Knowledge Changes Reality**.
@@ -26,7 +26,7 @@ Foundation documentation is being created before gameplay implementation.
 - Linear is task tracking.
 - Figma is UI/visual planning.
 - Vercel is preview/deployment.
-- Context7 is available for current library documentation.
+- Context7 is available and has already been used to verify current Babylon.js APIs.
 
 ## Completed
 - [x] Repository ownership/admin access verified.
@@ -34,30 +34,58 @@ Foundation documentation is being created before gameplay implementation.
 - [x] Initial visual concept image generated.
 - [x] 3D direction confirmed.
 - [x] Foundation README created.
-- [x] Foundation branch created.
-- [x] Working rules drafted.
-- [x] Progress ledger drafted.
-- [ ] Master plan finalized.
-- [ ] Technical requirements finalized.
-- [ ] Architecture finalized.
-- [ ] Gameplay specification finalized.
-- [ ] Art bible finalized.
-- [ ] Content pipeline finalized.
-- [ ] First implementation plan finalized.
-- [ ] Linear roadmap created.
-- [ ] Foundation PR opened.
+- [x] Working rules created.
+- [x] Session continuity / fresh-chat resume protocol created.
+- [x] Master plan created.
+- [x] Technical requirements created.
+- [x] Architecture created.
+- [x] Gameplay specification created.
+- [x] Art bible created.
+- [x] Content pipeline created.
+- [x] Testing/playtest strategy created.
+- [x] ADR-0001 selects browser-first Babylon.js for prototype.
+- [x] Detailed first prototype implementation plan created.
+- [x] Linear project created: `P-BAC-1`.
+- [x] Linear issues created for bootstrap, GameState, movement, graybox, interaction, camera, book inspection, investigation, reality shift, save/load, and playtest/deploy.
+- [x] Foundation PR opened: GitHub PR #1.
+- [x] GitHub has full access.
+- [x] Linear has full access.
+- [x] Figma has full access.
+- [x] Vercel has full access.
+- [x] Context7 documentation access verified.
+- [x] Prototype implementation branch created: `prototype/bootstrap-3d`.
 
-## Next executable work
-1. Finish Phase 0 docs.
-2. Create Linear project/roadmap.
-3. Open foundation PR.
-4. Bootstrap the playable prototype.
-5. Build the first-person controller.
-6. Build the interaction framework.
-7. Build a graybox classroom/hallway.
-8. Add the first cinematic “inspect book” interaction.
-9. Add one evidence item and one reality-shift state.
-10. Deploy and playtest the first vertical prototype.
+## Active task
+### Task 1 — Bootstrap browser 3D application
+Linear: `BAC-11`
+
+Current sub-step:
+- [x] Verify current Babylon.js WebGPU/WebGL initialization docs with Context7.
+- [ ] Create minimal TypeScript/Vite project files.
+- [ ] Create test harness.
+- [ ] Write the first failing bootstrap/engine-selection test.
+- [ ] Run it and confirm the failure is for the expected missing implementation.
+- [ ] Implement `EngineAdapter` with WebGPU attempt and WebGL fallback.
+- [ ] Add resize/render-loop lifecycle.
+- [ ] Run tests.
+- [ ] Run production build.
+- [ ] Commit and update this file.
+
+## Tests/build status
+Not yet started on the prototype branch. No implementation code has been written yet, so there is currently no valid test/build result to report.
+
+## Exact next action
+Create the minimal project/test scaffolding, then follow TDD:
+1. test first
+2. watch the test fail
+3. implement the minimum engine bootstrap
+4. watch it pass
+5. build the app
 
 ## Resume checkpoint
-If a future session starts here, continue from the first unchecked item above and verify recent commits before redoing anything.
+If a future session starts here:
+1. read `docs/SESSION_CONTINUITY.md`;
+2. inspect `prototype/bootstrap-3d`;
+3. inspect PR #1 and Linear project `P-BAC-1`;
+4. resume Task 1 at **Create minimal TypeScript/Vite project files and test harness**;
+5. do not recreate foundation docs or roadmap work already marked complete.
