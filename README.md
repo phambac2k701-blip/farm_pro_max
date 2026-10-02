@@ -1,30 +1,39 @@
-# Student-Life 3D Game — working project
+# UET không tệ
 
 Browser-first true-3D first-person student-life narrative game.
 
 ## Current direction
 
-The active project focuses on grounded university life at a fictional technology university in Hanoi.
+The active project follows the timeline of a UET student in Hanoi.
 
-The previous project story has been retired from the active tree.
+The current story is open-ended. It is not being written toward a forced ending; future chapters may be added later as more lived material exists.
 
-Current priorities:
-- finish P202 as the first reusable golden classroom
-- establish modular 3D asset production
-- build believable student-life interactions
-- design the new nine-chapter macro structure from the university timeline
-- preserve reusable technical foundations without preserving obsolete story canon
+Current approved macro:
+- Chapter 0: entering university / admission-confirmation period / first Hanoi-UET impressions
+- Chapter 1: first-year military-training period
+- Chapter 2: ordinary university life begins; Giảng đường 4 becomes important
+- Chapter 3: everyday student life broadens; vibe coding appears as a subtle reflection of the creator's present self
+- Chapter 4+: locked / TBD future life
+
+Detailed chapter events are not approved yet.
 
 ## Core promises
 
 - true 3D first-person presence
-- smooth movement and camera
-- tactile ordinary interactions
-- bright/readable student-life baseline
-- humor from believable situations
+- believable student-life interactions
+- bright/readable ordinary baseline
+- humor from real situations and people
+- recurring characters/places with continuity and payoff
+- study as context/background rather than the whole subject
 - modular reusable environments
 - controlled player choice without uncontrolled branching scope
 - desktop web first
+
+## Current parallel production
+
+Environment/art work is happening separately on the classroom/Giảng đường 4 production branch.
+
+Narrative cleanup/planning is kept on a separate branch to avoid interfering with that big update.
 
 ## Stack
 
@@ -40,9 +49,10 @@ Before continuing work, read:
 1. `docs/WORKING_RULES.md`
 2. `docs/PROGRESS.md`
 3. `docs/PROJECT_MASTER_PLAN.md`
-4. `docs/design/GAME_PIVOT_V2_DRAFT_NOTES.md`
-5. relevant current production/art/design docs
-6. `docs/TECHNICAL_REQUIREMENTS.md`
-7. `docs/ARCHITECTURE.md`
+4. `docs/design/CURRENT_STORY_MACRO.md`
+5. `docs/design/GAME_PIVOT_V2_DRAFT_NOTES.md`
+6. relevant current production/art/design docs
+7. `docs/TECHNICAL_REQUIREMENTS.md`
+8. `docs/ARCHITECTURE.md`
 
-Major narrative and identity decisions must be approved by the user and written to the repository.
+The user is the primary narrative authority. Do not invent Chapter 4+ or detailed chapter events without approval.
