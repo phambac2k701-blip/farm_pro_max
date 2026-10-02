@@ -31,6 +31,23 @@ describe("Chapter 1 production scene shell", () => {
       );
     }
 
+    expect(scene.imageProcessingConfiguration.exposure).toBeCloseTo(
+      1.3,
+      6,
+    );
+    const entranceLight = scene.getLightByName("ch01-entrance-light");
+    expect(entranceLight?.intensity).toBeCloseTo(0.82, 6);
+    expect(entranceLight?.range).toBeCloseTo(16, 6);
+    expect(scene.getLightByName("ch01-night-ambient")?.intensity).toBeCloseTo(
+      0.68,
+      6,
+    );
+    expect(scene.getLightByName("ch01-classroom-light")?.intensity).toBeCloseTo(
+      1.35,
+      6,
+    );
+    expect(scene.getMeshByName("ch01-school-sign")?.rotation.y).toBe(0);
+
     scene.dispose();
     engine.dispose();
   });

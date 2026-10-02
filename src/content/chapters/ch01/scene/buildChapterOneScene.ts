@@ -389,7 +389,7 @@ function createTextSign(
     context.font = "600 54px Arial";
     const textWidth = context.measureText(text).width;
     context.fillText(text, Math.max(24, (768 - textWidth) / 2), 108);
-    texture.update(false);
+    texture.update(true);
     signMaterial.diffuseTexture = texture;
   }
 
@@ -416,7 +416,7 @@ export function buildChapterOneScene(
   scene: Scene,
 ): ChapterOneProductionScene {
   scene.clearColor = new Color4(0.016, 0.022, 0.03, 1);
-  scene.imageProcessingConfiguration.exposure = 1.2;
+  scene.imageProcessingConfiguration.exposure = 1.3;
 
   const plaster = createMaterial(
     scene,
@@ -438,17 +438,17 @@ export function buildChapterOneScene(
   const tile = createMaterial(
     scene,
     "ch01-mat-tile",
-    new Color3(0.11, 0.12, 0.105),
+    new Color3(0.15, 0.16, 0.14),
   );
   const wood = createMaterial(
     scene,
     "ch01-mat-old-wood",
-    new Color3(0.2, 0.135, 0.075),
+    new Color3(0.28, 0.19, 0.11),
   );
   const metal = createMaterial(
     scene,
     "ch01-mat-painted-metal",
-    new Color3(0.09, 0.12, 0.13),
+    new Color3(0.13, 0.16, 0.17),
   );
   const plastic = createMaterial(
     scene,
@@ -505,7 +505,7 @@ export function buildChapterOneScene(
     "ch01-school-sign",
     "TRƯỜNG THPT CŨ",
     new Vector3(-2.3, 2.9, -19.92),
-    Math.PI,
+    0,
     2.7,
   );
 
@@ -1120,9 +1120,24 @@ export function buildChapterOneScene(
     new Vector3(0.2, 1, -0.15),
     scene,
   );
-  ambience.intensity = 0.5;
+  ambience.intensity = 0.68;
   ambience.diffuse = new Color3(0.48, 0.56, 0.62);
   ambience.groundColor = new Color3(0.075, 0.085, 0.09);
+
+  const entranceLight = new PointLight(
+    "ch01-entrance-light",
+    new Vector3(0, 3.1, -18.3),
+    scene,
+  );
+  entranceLight.intensity = 0.82;
+  entranceLight.range = 16;
+  entranceLight.diffuse = new Color3(0.62, 0.72, 0.68);
+  createFluorescentFixture(
+    scene,
+    "ch01-entrance-fluorescent",
+    new Vector3(0, 3.0, -18.3),
+    fluorescent,
+  );
 
   const shelterLight = new PointLight(
     "ch01-shelter-light",
@@ -1161,8 +1176,8 @@ export function buildChapterOneScene(
     new Vector3(5.5, 2.75, 0.5),
     scene,
   );
-  classroomLight.intensity = 0.95;
-  classroomLight.range = 10;
+  classroomLight.intensity = 1.35;
+  classroomLight.range = 11;
   classroomLight.diffuse = new Color3(0.7, 0.76, 0.68);
 
   const paRoomLight = new PointLight(
