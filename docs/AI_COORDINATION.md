@@ -190,11 +190,16 @@ User direction on 2026-10-02: **audio is deferred to a later/final production pa
 
 Current priority:
 
-**Chapter Event Set V1 — Ch0, Ch1, Ch2, Ch3**
+**Narrative material capture + author-assist workflow for Ch0–Ch3**
 
-Sources:
-- `docs/design/CHAPTER_EVENT_SET_V1.md`
+Source:
 - `docs/design/NARRATIVE_EVENT_STYLE_V2.md`
+
+Important correction:
+- no detailed Ch0–Ch3 event set is approved yet
+- do not invent a chapter event catalog from the macro alone
+- detailed events must be derived from user-supplied lived material and then reviewed/approved
+- any previously generated speculative event list is non-authoritative and must not be treated as canon or production input
 
 Narrative production model:
 - Worker A = Event Architect / Branch Designer: derives event structure, options, consequences, reconvergence and continuity from user-supplied material; does not finalize dialogue.
@@ -203,7 +208,8 @@ Narrative production model:
 - User remains final canon authority and primary source for lived experience, important characters, major turns, persistent routes and endings.
 
 Rules:
-- complete the structural event set before implementing chapter events
+- capture user-supplied lived material before constructing detailed chapter events
+- only build an event set from that material after review
 - preserve the approved Ch0–Ch3 macro and four-map scope
 - do not invent Chapter 4+
 - important NPC identities, exact dialogue, major relationship arcs and exact lived-event canon remain user-approval-gated
