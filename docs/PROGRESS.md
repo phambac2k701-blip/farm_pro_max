@@ -4,104 +4,130 @@ Last updated: 2026-10-02
 
 ## Current phase
 
-**STUDENT-LIFE REFOUNDATION — LEGACY STORY PURGE + P202 GOLDEN CLASSROOM**
+**UET KHÔNG TỆ — NARRATIVE REFOUNDATION + GIẢNG ĐƯỜNG 4 PARALLEL ART PRODUCTION**
 
-## Current cleanup branch
+## Current narrative/cleanup branch
 
 `cleanup/remove-legacy-story-v1`
 
-Base: `phase-v2/foundation-hardening`.
+This branch is intentionally separated from the active environment/art branch so narrative cleanup does not interfere with the user's reported big Giảng đường 4 update.
 
-## Current product direction
+## Parallel art branch
 
-- browser-first true-3D first-person student-life narrative game
-- fictional technology university in Hanoi
-- ordinary, bright, readable university life is the baseline
+Visible branch:
+- `phase-v2/classroom-asset-production-v1`
+- last visible committed checkpoint at time of this note: `b709607e014b85f0bc4dd578ccc040ab46bd45fa`
+
+The user reports a larger Giảng đường 4 map update is currently in progress.
+
+Do not overwrite or rebase that active production work from this narrative branch.
+
+## Current product identity
+
+Approved:
+- title: **UET không tệ**
+- first-person 3D student-life narrative game
+- UET student timeline in Hanoi
 - humor and believable student behavior are core
-- narrative material is being rebuilt from the beginning of university through the protagonist's current second-year period
-- approximately nine chapters remains a structural target only; the new chapter contents have not been approved
-- later-year material should not be invented merely to fill the outline
-- strange/uncanny material may exist as a secondary layer, but its final rules and meaning are not yet canon
+- study is important context/background, not the only subject
+- story is open-ended and may continue in future years
+
+Not automatically approved:
+- official UET logo/colors/insignia
+- copied official institutional visual identity
+- full canonical campus master map
+- implication of official UET affiliation
+
+## Current story macro
+
+Authoritative current macro:
+- `docs/design/CURRENT_STORY_MACRO.md`
+
+Approved high-level direction:
+
+### Chapter 0
+- entering university
+- admission-confirmation period
+- first major contact with the Xuân Thủy/main-campus context
+- new city, roads, traffic, metro, people, food, school
+- protagonist comes from far away
+- curiosity + overload + humor
+
+### Chapter 1
+- first-year military-training period
+- approximately 45 days as current remembered scale
+- communal life, routine, people, discipline, comedy
+- chapter must carry relationships/details forward rather than become an isolated side-story
+
+### Chapter 2
+- ordinary university life actually begins
+- Giảng đường 4 becomes an important location
+- expectation vs reality
+- everyday commuting/traffic/spatial friction can support humor
+- study/class timetable provides structure but should not dominate the narrative
+
+### Chapter 3
+- broader everyday student life
+- friends, movement, food, chats, habits, small incidents and routine
+- vibe coding appears as a subtle reflection of the creator's current self
+- the meta connection should remain understated
+
+### Chapter 4+
+- **LOCKED / NOT DESIGNED**
+- do not write a finale
+- do not add retrospective closure
+- do not invent future-life chapters merely to satisfy a chapter count
+
+Placeholder: `TBD_FUTURE_LIFE_CHAPTERS`
+
+## Narrative continuity rule
+
+Chapters must feel like one life, not an anthology.
+
+Every chapter should identify:
+- what carries in from the previous chapter
+- what is being established for later
+- which people/places/habits recur
+- which foreground details deserve payoff
+
+Background may simply create life.
+
+Foreground emphasis should have a reason.
 
 ## Legacy narrative status
 
-The previous story package has been retired.
+The previous story package has been retired and removed from the active narrative source of truth.
 
-Removed from the active tree:
-- the complete retired narrative document package
-- obsolete earlier prototype production/final-gate documents
-- obsolete old prototype/vertical-slice screenshot evidence
-
-The old story must not be treated as canon or used as the basis for new chapter planning.
-
-Git history may still contain historical versions, but they are not active project source-of-truth content.
-
-## What is intentionally reused
-
-Reusable technical/art infrastructure remains valuable:
+Reusable technical/art infrastructure remains valuable where generic:
 - TypeScript + Vite + Babylon.js
-- WebGPU preferred / WebGL fallback
-- first-person movement and input
-- collision and safety recovery
-- interaction targeting/state ownership
-- camera choreography
-- save/load and typed state/events
-- openable/pickup/inspection behavior infrastructure
+- WebGPU/WebGL foundation
+- first-person movement/input
+- collision/safety recovery
+- interaction/camera systems
+- generic save/state/events
 - AudioDirector
-- modular environment kit
-- PBR material foundation
-- signage system
+- modular environment/material/signage foundations
 - testing/build/deployment infrastructure
 
-Legacy story-specific runtime wiring is to be removed or generalized only when doing so does not destroy the active P202 production work.
+Story-specific runtime wiring should be removed or generalized only when doing so will not disrupt the active Giảng đường 4 production work.
 
-## Current environment target
+## Current environment relationship
 
-P202 is the first **golden classroom**:
-- larger room and higher ceiling
-- approximately 10 rows × 3 desks
-- 2 chairs per desk
-- teacher desk facing students
-- front board
-- specified window layout
-- AC
-- ceiling fans
-- brighter ordinary classroom baseline
-- real/reusable production assets rather than only primitive boxes
+Older P202/room-level documents are still useful as technical references.
 
-## Current narrative status
+However, the active art branch is currently moving toward a larger Giảng đường 4 map.
 
-No new nine-chapter canon is locked yet.
+Do not assume final P202-to-building topology until that update lands and is reviewed.
 
-The next narrative task is:
-1. map the student's real/grounded timeline from university entry through the current second-year period
-2. identify meaningful phases/events
-3. group those into a nine-chapter macro structure
-4. only then design chapter-level events
+## Immediate narrative order
 
-Do not implement final chapter beats before that macro structure is approved.
-
-## Immediate production order
-
-1. complete P202 asset/layout correction
-2. freeze P202 golden-room baseline
-3. finish legacy runtime-content extraction/generalization as needed
-4. design the approved nine-chapter macro structure
-5. implement the first polished P202 student-life gameplay sequence
-6. expand systems/assets only when concrete gameplay requires them
-
-## Approval gates
-
-User approval remains required for:
-- chapter canon/order
-- major story beats
-- important NPC identities/roles
-- protagonist final identity/look
-- institutional identity
-- major route decisions
-- uncanny/mystery explanation
-- endings
+1. keep the current macro fixed at Chapters 0–3
+2. wait for detailed Chapter 0 material from the user
+3. organize Chapter 0 into scenes/events
+4. identify links/payoffs into Chapters 1–3
+5. repeat chapter-by-chapter only after user input
+6. keep Chapter 4+ locked
 
 ## Existing preview
 
-Current preview infrastructure remains GitHub Pages. Preview content may lag the new direction until the active implementation branch is updated and deployed.
+Current GitHub Pages preview may lag the new narrative/art direction until the active implementation branch is updated and deployed.
