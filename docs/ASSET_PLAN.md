@@ -2,137 +2,164 @@
 
 ## Purpose
 
-Reach believable visual quality without producing uncontrolled asset volume.
+Keep visual production focused around the current **four major maps** while building a separate reusable library for smaller objects.
 
-The project should build a reusable modular asset library, beginning with P202.
+Authoritative references:
+- `docs/design/CURRENT_WORLD_MAP_SCOPE.md`
+- `docs/art/ASSET_PRODUCTION_PIPELINE_V2.md`
 
-## Asset categories
+## Two production layers
 
-### A. Environment
-- walls/floors/ceilings
+### Layer A — Major maps
+
+Current approved high-level map set:
+1. Giảng đường 4
+2. Giảng đường Xuân Thủy
+3. Khu phố / phố trà đá
+4. Hòa Lạc / khu quân sự
+
+Large maps are authored as scene-level environments.
+
+For them, prioritize:
+- overall shell/frame
+- scale
+- traversal
+- major openings
+- stairs/corridors/roads
+- collision
+- lighting blockout
+- gameplay/social zones
+
+Only after that should the scene receive dense prop dressing.
+
+Do not require a whole large environment to be decomposed into dozens of small reusable modules before production can move forward.
+
+### Layer B — Reusable assets
+
+Small/repeated assets are produced separately and reused across the four maps.
+
+Examples:
+- bạt / tarps
+- ghế nhựa / chairs
+- tables
+- classroom desks/chairs
 - doors/frames
 - windows/frames
-- corridor/classroom architecture
-- stairs/railings
-- large furniture
-
-### B. Classroom props
-- student desks
-- student chairs
-- teacher desk
-- board
 - fans
-- air conditioner
-- lighting fixtures
-- sockets/switches/conduits
-- cabinets/shelves
-- notice boards
-
-### C. Student-life props
+- air conditioners
+- lights
+- boards
+- signs/sign mounts
+- bins/benches/stools
+- bottles/cups
 - backpacks
 - books/notebooks
-- pens/paper
-- bottles
 - laptops
 - chargers/cables
-- phones or generic device props where needed
-- ordinary classroom clutter
+- food/drink props
+- street furniture
+- camp/military-living props
+- plants and ordinary utility objects
 
-### D. Materials/decals
-- painted plaster
-- tile
-- concrete
-- metal
-- laminate/wood
-- plastic
-- glass
-- paper/fabric
-- restrained scuffs/tape/wear/dirt
+## Sourcing options
 
-### E. Characters
-Future reusable pipeline:
-- base body/rig
-- clothing variants
-- hair/face variation
-- sitting
-- phone use
-- talking/listening
-- typing
-- classroom idle/locomotion
+For a reusable asset, choose the most practical route:
 
-### F. Audio
-Tracked separately but versioned as production assets.
+### Custom
+- Blender/authored modeling
+- suitable when exact proportions, interaction or visual identity matter
 
-## Production strategy
+### Existing online asset
+Allowed when:
+- source is known
+- license is compatible
+- attribution requirements are recorded
+- modification is permitted when needed
+- final asset is appropriate for shipping
 
-Use Blender/authored 3D or properly licensed external assets for visible production objects.
+### Generated/assisted asset
+May be used when the available production tooling can create a useful base/reference/output.
 
-Procedural geometry remains useful for:
-- blockout
-- collision proxies
-- simple invisible helpers
-- fast technical prototypes
+Generated assets still require:
+- visual review
+- cleanup
+- scale/origin checking
+- license/provenance notes when relevant
+- real-engine testing
 
-Do not stop at primitive boxes for player-facing production assets when better authored geometry is required.
+Do not use uncertain-license ripped assets.
 
-## External assets
+## Reusable asset packaging standard
 
-Free assets may be used when their license is clear and compatible.
+Each reusable production asset should have:
+- stable asset ID
+- source/master file where appropriate
+- runtime GLB/glTF when appropriate
+- consistent meter scale
+- sensible origin/pivot
+- reusable materials
+- simple collision proxy when needed
+- variants only when useful
+- source/license/provenance metadata
+- scene usage notes
+- in-engine visual check
 
-For every external production asset, record:
-- source
-- license
-- modifications
-- attribution requirements
-- runtime path
-- shipping suitability
+## Major-map production order
 
-Do not use assets with unclear permission.
+For each of the four major maps:
 
-## Golden classroom target
+1. reference/user description
+2. blockout / shell
+3. scale and traversal test
+4. major architecture/openings
+5. collision/player safety
+6. daylight/practical-light blockout
+7. gameplay/social anchors
+8. reusable-asset dressing
+9. material/surface pass
+10. secondary clutter/decals
+11. optimization
+12. actual-browser review
 
-P202 should establish the first reusable classroom kit:
-- classroom shell
-- approximately 10 rows × 3 desks
-- two chairs per desk
-- teacher zone
-- board
-- windows
-- door
-- AC
-- ceiling fans
-- lighting
-- believable material response
-- a small set of ordinary props
+## Iteration rule
 
-## Fidelity rule
+Preferred loop:
 
-Spend detail where the player gets close.
+**map shell → walk/playtest → identify missing objects → produce/source reusable asset → place it → playtest again**
 
-Priority:
-1. desk/chair and immediate seat area
-2. teacher/board area
-3. door/window/fan/AC assets
-4. ordinary interactive props
-5. room shell/materials
-6. distant/background detail
+Avoid:
+- building a huge speculative asset library first
+- fully polishing small props before map scale is correct
+- embedding separate copies of the same prop into every map
+- expanding beyond the four-map scope without approval
 
-## Runtime format
+## Current map relationship
 
-- GLB/glTF preferred for 3D runtime
-- source/master assets kept separately from runtime-optimized output
-- collision meshes may be simpler than render meshes
-- repeated furniture should use instancing/thin instances where appropriate
-- texture reuse/compression should be evaluated against browser performance
+- Giảng đường 4: active production on the separate environment branch
+- Giảng đường Xuân Thủy: planned for Chapter 0
+- Khu phố / phố trà đá: planned recurring social-life scene
+- Hòa Lạc / khu quân sự: planned for Chapter 1
+
+## Runtime/performance
+
+- GLB/glTF preferred
+- reuse materials/textures
+- instance repeated props when appropriate
+- simple collision meshes
+- load by map/zone rather than all environments at startup
+- optimize based on real profiling, not speculation
 
 ## Asset manifest
 
-Maintain:
+Track:
 - asset ID
 - type
+- custom / external / generated
 - source
-- scene/usage
-- status
+- license
+- modifications
 - runtime path
+- maps/scenes used in
+- status
 - variants
-- rights/provenance notes
+- attribution/provenance notes
