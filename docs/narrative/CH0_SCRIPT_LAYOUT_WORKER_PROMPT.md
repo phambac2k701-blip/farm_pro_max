@@ -10,6 +10,9 @@ Read and follow:
 
 Task:
 - produce the Chapter 0 playable narrative/script/interaction layout;
+- write the **actual story content** inside each scene: concrete dialogue, actions, reactions, timing, option-specific responses, inaction behavior and transitions;
+- do not submit an architecture-only/event-outline draft;
+- do not create a separate prose novelization: the story belongs inside the playable script/layout;
 - creatively develop the existing material rather than merely transcribing it;
 - follow all repo-local skill, character, provenance, trend, continuity, approval and self-review rules;
 - create/update `docs/narrative/CH0_SCRIPT_LAYOUT_V0.md`;
