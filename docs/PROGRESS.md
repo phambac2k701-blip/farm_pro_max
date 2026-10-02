@@ -113,11 +113,28 @@ Story-specific runtime wiring should be removed or generalized only when doing s
 
 ## Current environment relationship
 
-Older P202/room-level documents are still useful as technical references.
+Current large-map scope:
+1. Giảng đường 4
+2. Giảng đường Xuân Thủy
+3. Khu phố / phố trà đá
+4. Hòa Lạc / khu quân sự
 
-However, the active art branch is currently moving toward a larger Giảng đường 4 map.
+Source of truth:
+- `docs/design/CURRENT_WORLD_MAP_SCOPE.md`
+- `docs/art/ASSET_PRODUCTION_PIPELINE_V2.md`
 
-Do not assume final P202-to-building topology until that update lands and is reviewed.
+Large maps are produced as authored scene shells first. Smaller repeated items such as bạt, ghế, bàn, doors, windows, fans, bags, bottles, signs and similar props are produced/sourced separately and then used for scene dressing.
+
+The active art branch is currently moving toward the larger Giảng đường 4 map. Do not touch or reconcile that implementation until the user reports the big update is finished.
+
+## Current asset-production order
+
+1. keep Giảng đường 4 production isolated on the active art branch
+2. keep the current four-map scope fixed
+3. for future large maps, build shell/scale/traversal first
+4. create/source small reusable assets only when a real map needs them
+5. external assets are allowed only with clear source/license/provenance
+6. integrate/reconcile Giảng đường 4 only after the user says the big update is complete
 
 ## Immediate narrative order
 
