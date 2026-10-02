@@ -280,11 +280,43 @@ Do not use the mother to dump backstory.
 Provide 2–3 concise dialogue treatments only if they are genuinely different.
 Do not select final wording for the user.
 
-### Wrong-place bus attempt
+### Wrong-place bus attempt + recurring Grab driver
 This is a core comedic scene.
 Use repetition/timing carefully.
 Let the player misunderstand the rule before explanation.
-The staff correction should be the reveal.
+
+**Correction / current user direction:**
+- do NOT use the old version where a bus conductor leans out to explain the bus stop;
+- after the mother call and repeated failed waving, a Grab driver approaches and offers the protagonist a ride;
+- conversation reveals the protagonist is newly arrived / unfamiliar with the system;
+- the Grab driver explains how/where to catch the bus correctly;
+- the driver is approved to reappear later in the game.
+
+Treat this as the driver's first casual encounter, not a dramatic "important character reveal".
+
+You may creatively develop:
+- the sales-pitch opening;
+- how the driver notices the protagonist is new;
+- player reply options;
+- a local joke/twist;
+- how the driver points out the actual stop.
+
+Do not invent the driver's final name, biography, appearance, or later relationship arc without approval.
+
+### Red-light NPC micro-event
+Add/develop a small red-light waiting beat at a natural point in the early route.
+
+The worker may create several tiny NPC interactions or observations.
+
+Exact user-supplied overheard line to preserve:
+
+> "Tôi nổi tiếng, đẹp trai, nhà giàu, tôi có gì không tốt?"
+
+Requirements:
+- keep the two speakers local/ambient unless later approved otherwise;
+- develop context around the line if useful;
+- use timing, traffic, player look direction, interruption, or awkward proximity as comedy;
+- this is a good place to demonstrate that the user's scene ideas are seeds, not a closed list.
 
 ### Bus-stop boarding
 Design both:
@@ -344,10 +376,19 @@ A subtle callback is allowed.
 
 ### Chapter ending
 End near the rented room / after getting off the bus.
-Desired energy is ordinary relief:
+
+Desired energy starts as ordinary relief:
 "Đến rồi. Đến nhà rồi. Xuống thôi."
 
-Do not force cliffhanger/drama.
+Then include the newly supplied closing beat:
+- protagonist steps off;
+- a vehicle suddenly flies past;
+- user describes it as a "boy phố lướt qua" moment.
+
+Use this as a short city-life micro-startle / punchline.
+It must resolve immediately as ordinary street chaos.
+
+Do not turn it into an accident, chase, danger plot, mystery sting, or cliffhanger.
 
 ## Research requirement
 
