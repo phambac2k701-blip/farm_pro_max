@@ -46,7 +46,7 @@ Never add:
 - Chapter 4+ content;
 - important NPC identity without approval;
 - major relationship canon without approval;
-- final protagonist identity without approval;
+- changes to the approved protagonist identity/personality without approval;
 - giant life-sim scope;
 - dialogue-heavy visual-novel structure;
 - permanent branching for ordinary choices by default;
@@ -70,6 +70,31 @@ A worker may move material from candidate to selected only as a recommendation.
 Only explicit user approval can authorize user-approved.
 Do not mark material canonical until the approved decision is recorded in the authoritative repo source-of-truth.
 Do not mark material implemented until the runtime/content proof exists.
+
+## Project-local authoritative inputs
+
+For canon-facing narrative work, the worker must read the current project-local sources before generating content.
+
+At minimum, when present:
+- `docs/narrative/PROTAGONIST_CHARACTER_BIBLE_V0.md`;
+- the target chapter lived-material ledger;
+- the target chapter story package;
+- current story macro;
+- narrative event style;
+- user approval gates;
+- runtime/world-event architecture;
+- AI coordination/source-of-truth notes.
+
+For Chapter 0 specifically:
+- `docs/narrative/CH0_LIVED_MATERIAL_LEDGER.md`;
+- `docs/narrative/CH0_STORY_PACKAGE_V0.md`;
+- `docs/narrative/PROTAGONIST_CHARACTER_BIBLE_V0.md`.
+
+Character writing rules:
+- the Character Bible governs protagonist voice, social behavior, option plausibility, humor compatibility and emotional range;
+- never simplify introversion into silence unless the Character Bible explicitly says so;
+- if a scene only works by violating the Character Bible, revise the scene before revising the character;
+- recurring-character seeds may be developed locally, but unapproved identity/appearance/relationship/arc details remain proposals.
 
 ## Source priority
 
@@ -204,6 +229,10 @@ The coordinator receives raw material from the user, preserves provenance, assig
 The user remains the primary writer and final canon authority.
 
 ## Required working rule
+
+The external task prompt should remain thin.
+
+Narrative behavior belongs in this skill and the project-local source files, not in a giant one-off chat prompt. A worker should be able to receive a short command, read the repo, reconstruct the current narrative context, perform the pass, critique its own work, revise it, and report only what still needs user attention.
 
 Do not write polished dialogue or prose before:
 - relevant user-supplied lived material exists or the user has explicitly authorized fictionalization;
@@ -776,7 +805,91 @@ A choice is fake if:
 
 A low-stakes expressive choice may still be valid if the game acknowledges it honestly.
 
-# Phase 10 — Production Spec
+# Phase 10 — Autonomous Self-Review and Revision
+
+After a complete draft exists, the worker must critique its own output before presenting it to the user.
+
+This is not a request to endlessly rewrite. Run at least one deliberate full pass, fix issues that are within worker authority, then surface only remaining approval-sensitive or genuinely unresolved problems.
+
+## Character consistency checks
+- protagonist voice contradicts the Character Bible;
+- introversion is incorrectly written as silence/minimal speech;
+- familiarity level with the other person is ignored;
+- dialogue is too polished, generic or unlike the established person;
+- options feel like different protagonists instead of different intentions from the same protagonist.
+
+## Scene checks
+- scene exists mainly to dump exposition;
+- player only walks to a marker and listens;
+- comedy is explained rather than played;
+- AI-added micro-event feels random rather than causally connected;
+- ambient texture has been inflated into a major plot beat;
+- pacing drags because routine is over-authored;
+- the same joke or interaction pattern repeats without changed context.
+
+## Humor / trend checks
+- meme/reference is contextless;
+- repetition has no escalation, timing or payoff;
+- a deliberately stale joke is used accidentally rather than knowingly;
+- concrete trend falls outside the target time window;
+- a controversy/allegation is repeated as fact without verification.
+
+## Choice checks
+- options express the same intention;
+- reactions are effectively identical;
+- inaction is ignored where the world should reasonably respond;
+- punishment is arbitrary;
+- reconvergence has no in-world cause;
+- persistent state is created without a real future consumer.
+
+## Provenance / authority checks
+- AI proposal is written as lived fact;
+- research overwrites user memory;
+- selected material is mislabeled as approved;
+- an unapproved NPC identity/relationship has slipped into canon-facing prose;
+- missing lived experience was silently fabricated.
+
+## Continuity checks
+- callback lacks setup;
+- foregrounded setup has no plausible future role;
+- recurring NPC behaves as if a later relationship already exists;
+- writer knowledge leaks into character behavior;
+- character familiarity regresses without cause.
+
+## Revision rule
+
+Fix issues directly when the repair:
+- preserves approved meaning;
+- does not create important new canon;
+- stays within the current chapter/map scope;
+- does not require choosing a user-only creative fact.
+
+If a repair would require:
+- changing approved canon;
+- deciding an important character identity/relationship;
+- inventing missing lived experience as truth;
+- choosing a persistent route;
+- opening Chapter 4+;
+- adding a fifth major map;
+
+mark `TBD_USER_APPROVAL` instead.
+
+After revision, rerun the relevant checks.
+
+## Final worker report
+
+Report:
+- artifact path;
+- branch + HEAD;
+- meaningful AI-proposed expansions;
+- research-based additions;
+- unresolved approvals;
+- strongest remaining beat;
+- weakest remaining beat;
+- continuity/production risks;
+- readiness for user review.
+
+# Phase 11 — Production Spec
 
 Only user-approved/canonical events should become production specs for final content.
 
@@ -840,7 +953,7 @@ Only user-approved/canonical events should become production specs for final con
 
 Do not embed unapproved dialogue as if final.
 
-# Phase 11 — Narrative QA
+# Phase 12 — Narrative QA
 
 Run QA at two moments:
 1. before implementation handoff;
