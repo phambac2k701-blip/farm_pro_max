@@ -55,6 +55,7 @@ function instantiate(
   container: AssetContainer,
   name: string,
   placement: ClassroomPlacement,
+  parent?: TransformNode,
 ): TransformNode {
   const entries = container.instantiateModelsToScene(
     (sourceName) => `${name}-${sourceName}`,
@@ -65,6 +66,7 @@ function instantiate(
   }
 
   const placementRoot = new TransformNode(name, scene);
+  placementRoot.parent = parent ?? null;
   placementRoot.position.set(placement.x, placement.y, placement.z);
   placementRoot.rotation.y = placement.rotationY;
   entries.rootNodes.forEach((root) => {
@@ -73,25 +75,33 @@ function instantiate(
   return placementRoot;
 }
 
+export interface ClassroomAssetInstance {
+  parent?: TransformNode;
+  prefix: string;
+}
+
 export interface ClassroomProductionAssetResult {
   roots: TransformNode[];
   sourceContainers: AssetContainer[];
 }
 
-export async function hydrateClassroomProductionAssets(
+function instantiateClassroomAssetSet(
   scene: Scene,
-  baseUrl: string,
-): Promise<ClassroomProductionAssetResult> {
-  const assets = await loadAssets(scene, baseUrl);
+  assets: LoadedClassroomAssets,
+  instance: ClassroomAssetInstance,
+): TransformNode[] {
   const roots: TransformNode[] = [];
+  const prefix = instance.prefix;
+  const parent = instance.parent;
 
   CLASSROOM_DESKS.forEach((placement) => {
     roots.push(
       instantiate(
         scene,
         assets.desk,
-        `classroom-desk-r${placement.row}-c${placement.column}`,
+        `${prefix}-desk-r${placement.row}-c${placement.column}`,
         placement,
+        parent,
       ),
     );
   });
@@ -101,8 +111,9 @@ export async function hydrateClassroomProductionAssets(
       instantiate(
         scene,
         assets.chair,
-        `classroom-chair-r${placement.row}-c${placement.column}-${placement.seat}`,
+        `${prefix}-chair-r${placement.row}-c${placement.column}-${placement.seat}`,
         placement,
+        parent,
       ),
     );
   });
@@ -111,11 +122,24 @@ export async function hydrateClassroomProductionAssets(
     instantiate(
       scene,
       assets.teacherDesk,
-      "classroom-teacher-desk-visual",
+      `${prefix}-teacher-desk-visual`,
       CLASSROOM_TEACHER_DESK,
+      parent,
     ),
-    instantiate(scene, assets.board, "classroom-board-visual", CLASSROOM_BOARD),
-    instantiate(scene, assets.ac, "classroom-wall-ac-visual", CLASSROOM_AC),
+    instantiate(
+      scene,
+      assets.board,
+      `${prefix}-board-visual`,
+      CLASSROOM_BOARD,
+      parent,
+    ),
+    instantiate(
+      scene,
+      assets.ac,
+      `${prefix}-wall-ac-visual`,
+      CLASSROOM_AC,
+      parent,
+    ),
   );
 
   CLASSROOM_FANS.forEach((placement, index) => {
@@ -123,8 +147,9 @@ export async function hydrateClassroomProductionAssets(
       instantiate(
         scene,
         assets.fan,
-        `classroom-ceiling-fan-${index + 1}`,
+        `${prefix}-ceiling-fan-${index + 1}`,
         placement,
+        parent,
       ),
     );
   });
@@ -134,11 +159,25 @@ export async function hydrateClassroomProductionAssets(
       instantiate(
         scene,
         assets.fixture,
-        `classroom-light-fixture-${index + 1}`,
+        `${prefix}-light-fixture-${index + 1}`,
         placement,
+        parent,
       ),
     );
   });
+
+  return roots;
+}
+
+export async function hydrateClassroomProductionAssets(
+  scene: Scene,
+  baseUrl: string,
+  instances: ClassroomAssetInstance[] = [{ prefix: "classroom" }],
+): Promise<ClassroomProductionAssetResult> {
+  const assets = await loadAssets(scene, baseUrl);
+  const roots = instances.flatMap((instance) =>
+    instantiateClassroomAssetSet(scene, assets, instance),
+  );
 
   return {
     roots,

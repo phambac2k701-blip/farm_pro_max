@@ -52,21 +52,47 @@ When the user is ready to build, a suitable command is:
 7. After a new explicit user instruction, create/refresh the next-phase plan before resuming execution.
 8. Update `docs/PROGRESS.md` after every meaningful milestone.
 
-## Current intentional stop point
-Milestone: **CHAPTER 1 VERTICAL SLICE COMPLETE**
+## Current active checkpoint
+Milestone: **GAME PIVOT V2 — GIẢNG ĐƯỜNG 4 PLAYABLE MAP FOUNDATION**
 
+Historical preserved checkpoint:
 - BAC-11 through BAC-21 remain frozen as Technical Prototype V1.
-- BAC-22 through BAC-31 are complete and verified.
-- Current branch: `integration/narrative-v1.2`.
-- Final checkpoint ref: git tag `chapter-1-vertical-slice` (created on the final BAC-31 checkpoint commit).
-- Preview: https://phambac2k701-blip.github.io/farm_pro_max/
-- Chapter 1 final gate: `docs/production/CH01_BAC31_FINAL_GATE.md`.
-- Machine-readable clean-playthrough evidence: `docs/playtest/ch01-bac31-full-playthrough.json`.
-- BAC-30 presentation/recovery evidence: `docs/production/CH01_BAC30_REGRESSION.md`.
-- Production narrative source of truth remains `docs/narrative/`.
-- The implementation intentionally stops at the Chapter 2 boundary.
-- **Do not start Chapter 2 gameplay automatically.** A new explicit user instruction and next-phase plan are required.
-- Do not invent or rewrite canon during technical implementation. Narrative conflicts must be documented and resolved against the production package.
+- BAC-22 through BAC-31 remain complete and preserved by tag `chapter-1-vertical-slice`.
+- Do not alter/delete that tag.
+
+Current active branch:
+- `phase-v2/giang-duong-4-map-shell`
+
+Current runtime source of truth:
+- `docs/design/GIANG_DUONG_4_LAYOUT_V1.md`
+- `docs/PROGRESS.md`
+- Linear issue `BAC-45`
+
+Current user-directed spatial rules:
+- runtime boots **Giảng đường 4**, not the retired old Chapter 1 campus
+- yellow sketch outline = **gameplay boundary**, not visual world boundary
+- west gate is **walk-through**; a short bounded apron exists outside it before the true movement limit
+- Căn tin stays at campus ground level
+- Tòa A/B ground-floor slabs + corridors are elevated about **0.6 m**
+- A/B are visually **3-storey academic buildings**, but only tầng 1 is playable
+- each floor visually implies around **10 classroom bays**
+- only the **first 2 classrooms per building** are full playable interiors in this slice
+- remaining bays are lightweight visual-only continuation facade/corridor geometry with no interior/interactions/gameplay collision
+- Tòa A playable labels: `P 101`, `P 102`
+- Tòa B playable labels remain `TBD_USER_APPROVAL`
+- no dedicated parking-shelter structure
+- outside gameplay bounds, keep lightweight visual city/campus background so the world does not terminate at the boundary
+- city/background and building-continuation geometry are visual-only and may later be replaced by optimized cards/impostors/distant meshes
+- the production classroom prefab remains reusable across future chapters/routes
+- do not invent final university identity, campus canon, final protagonist/NPC cast, chapter canon, twist, ending or KCR explanation without explicit user approval
+
+Current runtime evidence:
+- `docs/playtest/gd4-current-layout-runtime/`
+- gate traversal verified
+- elevated corridor stair traversal verified
+- runtime visual continuation/background present without gameplay collision
+
+**Do not resume the old Chapter 2 implementation path automatically.** Continue only from the current user-directed Giảng đường 4 / room-prefab pivot unless the user explicitly changes direction.
 
 ## End-of-session checkpoint
 Before ending a long work session, update `docs/PROGRESS.md` with:

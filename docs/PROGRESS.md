@@ -3,39 +3,59 @@
 Last updated: 2026-10-02
 
 ## Current phase
-**GAME PIVOT V2 — BRIGHT ROOM-FOCUSED STUDENT-LIFE FOUNDATION**
+**GAME PIVOT V2 — GIẢNG ĐƯỜNG 4 PLAYABLE MAP FOUNDATION**
 
 ## Current branch
-`phase-v2/classroom-asset-production-v1` (branched from the V2 foundation checkpoint; the old `chapter-1-vertical-slice` tag remains preserved)
+`phase-v2/giang-duong-4-map-shell` (branched from the classroom-production checkpoint; the old `chapter-1-vertical-slice` tag remains preserved)
 
 ## Current status
-**The preserved `chapter-1-vertical-slice` remains a completed technical/tonal prototype. The active direction has pivoted to a bright, readable, ordinary Vietnamese student-life baseline centered on one dense classroom/main-room slice. Dark/uncanny presentation is reserved for specific authored twist/event states, not the default whole-game lighting model.**
+**The preserved `chapter-1-vertical-slice` remains a completed technical/tonal prototype. The current playable runtime has moved to the user-directed `Giảng đường 4` map. The gameplay boundary follows the user's yellow outline, but the visible world continues beyond it. The west gate is walk-through and leads to a short bounded exterior apron; căn tin remains at ground level; Tòa A/B are elevated, visually multi-storey academic buildings; only the first two classrooms per building are fully playable, while the rest of each roughly 10-room floor is represented by lightweight visual-only continuation facade/corridor bays. The old gate/guard/old-wing/PA campus prototype is retired from the active runtime. Baseline presentation remains bright/readable/ordinary; uncanny/darker presentation is reserved for later authored events.**
 
 Active direction documents:
+- `docs/design/GIANG_DUONG_4_LAYOUT_V1.md`
 - `docs/design/CH01_ROOM_FOCUSED_STUDENT_SLICE.md`
 - `docs/art/CH01_BRIGHT_BASELINE_VISUAL_GUIDE.md`
 - `docs/production/CH01_POST_VS_USER_PLAYTEST_ISSUES.md` Section 9
 - `docs/production/V2_FOUNDATION_VISUAL_RUNTIME_AUDIT.md`
 
-Latest retained-room implementation corrections:
-- room signage uses working labels `P 202` / `P 204`; final building topology remains `TBD_USER_APPROVAL`
-- reusable classroom desk/chair modules are used for the retained room; obvious orientation/alignment/collision/repetition defects were corrected
-- corridor-to-classroom door opening/frame/header/leaf fit was corrected through reusable opening conventions
-- default classroom lighting/material response was moved away from the old dark-horror baseline and verified in Chrome
-- no final university identity, protagonist design, important NPC canon, final chapter canon or Chapter 2 gameplay has been approved
+Current Giảng đường 4 implementation:
+- gameplay perimeter follows the user-supplied sketch boundary, while visual world/background continues beyond it
+- west gate is walk-through; a short bounded exterior apron exists outside the gate before the true movement limit
+- lower-left canteen remains at campus ground level
+- Tòa A/B ground-floor slabs and corridors are elevated about **0.6 m** with playable steps/ramp collision
+- Tòa A and Tòa B each have **2 full playable classroom-prefab rooms**, but visually continue to imply roughly **10 classroom bays per floor**
+- the extra classroom bays are lightweight facade/corridor continuation only: no interior, no interaction, no gameplay collision
+- Tòa A visible room labels are `P 101` and `P 102`
+- Tòa B room numbers remain `TBD_USER_APPROVAL` and no invented number is rendered
+- no dedicated parking-shelter structure is present
+- vehicle lanes exist above/between the building blocks plus the compact gate approach
+- classroom prefab remains **10 rows × 3 desks × 2 chairs = ~60 seats**
+- classroom entrance/teacher-desk/board corrections remain preserved inside every prefab instance
+- Tòa A/B read as **3-storey buildings visually**, but only tầng 1 is playable
+- current runtime loads 4 classroom instances / 408 production classroom asset roots
+- visual city/background blockout exists outside the gameplay bounds and has no collision
+- old gate/guard/old-wing/PA runtime path is no longer booted by `src/main.ts`
+- current runtime evidence: `docs/playtest/gd4-current-layout-runtime/`
 
-Current implementation focus: **BAC-44 — Classroom Asset Production Pass V1 (In Progress).**
+Current verification:
+- full repository tests: **16/16 test files, 53/53 tests pass**
+- TypeScript typecheck: pass
+- production Vite build: pass
+- `git diff --check`: pass
+- fresh Chrome runtime exceptions: 0
+- fresh Chrome console warning/error entries: 0
+- fresh Chrome HTTP >=400 responses: 0
+- open-gate traversal: pass
+- elevated-corridor stair traversal: pass
+- continuation facade collision: disabled as intended
+- city/background collision: visual-only
+- foreground RAF sample: ~**59.76 FPS**
+- runtime scene: ~3069 meshes / ~474k vertices, ~497 active at the sampled view
+- known non-blocking build debt: main bundle ~1.767 MB / ~425 KB gzip and Vite chunk-size warning
 
-Latest user-directed classroom correction:
-- authoritative layout is **10 rows × 3 separated two-seat desks = 30 desks / 60 seats**
-- students sit behind each desk and face the front board
-- the room is intentionally larger with a higher ceiling for believable university-classroom circulation
-- main classroom entrance is on the **left wall when viewed from the back row**, close to the front/board wall
-- teacher desk is shifted to the **right side**, aligned with the inner/right student-desk column
-- front board is enlarged and kept flat/aligned to the front wall
-- seven project-authored classroom GLBs are loading successfully in Chrome
-- current correction evidence: `docs/playtest/classroom-layout-fix-review/`
-- no additional classroom-detail pass should proceed until these layout corrections remain stable
+Current implementation focus: **BAC-45 — Giảng đường 4 playable map shell (In Progress).**
+
+BAC-44 remains the reusable classroom asset-production dependency; its layout is now reused by the Giảng đường 4 scene rather than rendered as a separate standalone room slice.
 
 **Do not start Chapter 2, full-campus production, final institutional identity, final protagonist/NPC cast, or canonical new chapter beats without explicit user approval.**
 
