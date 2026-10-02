@@ -6,6 +6,23 @@ Started: 2026-10-02
 
 Purpose: preserve user-supplied lived material separately from interpretation, fictionalization, event design, scene writing, and canon.
 
+## Capture rule
+
+During live story capture, **no user-supplied narrative detail is discarded as meaningless**.
+
+This includes:
+- remembered facts;
+- uncertain memories;
+- hypothetical examples;
+- improvised dialogue;
+- fictional ideas;
+- jokes;
+- scene fragments;
+- interaction ideas;
+- wording that may later inspire tone, pacing, character voice, or callbacks.
+
+Every item is preserved and labeled by provenance rather than deleted. A hypothetical or fictional detail may later be developed if it serves the story, but its provenance must remain visible until the user approves its final use.
+
 ---
 
 ## LM-CH0-001 — First bus experience in Hanoi
