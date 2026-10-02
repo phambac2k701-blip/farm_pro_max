@@ -28,8 +28,7 @@ Base: `phase-v2/foundation-hardening`.
 The previous story package has been retired.
 
 Removed from the active tree:
-- the complete old `docs/narrative/` production package
-- the old `docs/NARRATIVE_BIBLE.md`
+- the complete retired narrative document package
 - obsolete earlier prototype production/final-gate documents
 - obsolete old prototype/vertical-slice screenshot evidence
 
