@@ -192,8 +192,15 @@ Current priority:
 
 **Chapter Event Set V1 — Ch0, Ch1, Ch2, Ch3**
 
-Source:
+Sources:
 - `docs/design/CHAPTER_EVENT_SET_V1.md`
+- `docs/design/NARRATIVE_EVENT_STYLE_V2.md`
+
+Narrative production model:
+- Worker A = Event Architect / Branch Designer: derives event structure, options, consequences, reconvergence and continuity from user-supplied material; does not finalize dialogue.
+- Worker B = Scene / Interaction Writer: consumes an approved event graph and writes playable scene beats, concise dialogue, option-specific reactions, timing and object/NPC interaction presentation; does not alter approved causality/canon.
+- Coordinator = narrative lead / producer: receives raw experience from the user, separates raw memory from interpretation/canon, reviews both workers, and owns cross-chapter continuity/integration control.
+- User remains final canon authority and primary source for lived experience, important characters, major turns, persistent routes and endings.
 
 Rules:
 - complete the structural event set before implementing chapter events
