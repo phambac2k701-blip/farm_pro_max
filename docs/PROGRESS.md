@@ -1,6 +1,6 @@
 ﻿# Progress
 
-Last updated: 2026-10-01
+Last updated: 2026-10-02
 
 ## Current phase
 **CHAPTER 1 PRODUCTION VERTICAL SLICE — IMPLEMENTATION ACTIVE**
@@ -9,7 +9,7 @@ Last updated: 2026-10-01
 `integration/narrative-v1.2` (continues from the clean Technical Prototype V1 checkpoint plus the frozen narrative handoff)
 
 ## Current status
-**Technical Prototype V1 is frozen and complete. Narrative integration planning is complete. BAC-22 through BAC-25 are complete. BAC-25 passed real keyboard/mouse runtime verification, save/reload verification, local automated gates and remote CI. BAC-26 is now the active implementation focus.**
+**Technical Prototype V1 is frozen and complete. Narrative integration planning is complete. BAC-22 through BAC-29 are complete and verified. Production audio, deterministic KCR-A, the ninth-headset climax, and the final reflection/Chapter 2 boundary all passed automated and real-browser runtime gates. BAC-30 presentation/recovery/regression is now active.**
 
 Completed production planning:
 - Narrative–Technical Gap Analysis: `docs/production/CH01_NARRATIVE_TECHNICAL_GAP_ANALYSIS.md`
@@ -18,7 +18,7 @@ Completed production planning:
 - Linear milestone: **CHAPTER 1 VERTICAL SLICE**
 - Linear execution issues: BAC-22 through BAC-31
 
-Current implementation focus: **BAC-26 Production AudioDirector and Chapter 1 audio assets**.
+Current implementation focus: **BAC-30 vertical-slice presentation, recovery and regression pass**.
 
 The authorized execution path is BAC-22 → BAC-31. After BAC-31, record **CHAPTER 1 VERTICAL SLICE COMPLETE** and STOP. Do not start Chapter 2 gameplay.
 
@@ -335,7 +335,7 @@ Preview: https://phambac2k701-blip.github.io/farm_pro_max/
 - Old `docs/NARRATIVE_BIBLE.md` is retained only as superseded foundation context.
 
 ## NEXT CHECKPOINT
-Continue the dependency-ordered Chapter 1 vertical-slice plan. Do not redo completed integration/gap analysis or BAC-22→BAC-25. Start BAC-26 Production AudioDirector/audio assets next; BAC-27 remains blocked until BAC-26 is complete.
+Execute BAC-30: bounded presentation polish plus the full save/recovery/regression matrix. After BAC-30, execute BAC-31 full Chapter 1 verification, deployment and clean checkpoint. Do not start Chapter 2 gameplay.
 
 
 ## BAC-22 production record
@@ -426,3 +426,77 @@ Runtime verification:
 - local gate: 16 test files / 52 tests pass; TypeScript typecheck and production build pass
 - final remote Chapter 1 CI run `36915394107` passed on commit `6f2c0fc1a1e0d7ecfc90820b5ae4bbfd2538ae96`
 - Linear BAC-25 is Done
+
+
+## BAC-26 production record
+Implemented:
+- game-owned `AudioDirector` over Babylon AudioV2 with non-blocking async initialization and browser unlock
+- typed Chapter 1 audio manifest with ambience, object one-shots, spatial PA/headset cues and critical-clue captions
+- committed runtime WAV assets for rain, traffic, fluorescent hum, room tone, footsteps, phone vibration, doors/drawer/paper, corridor bell, PA hum, KCR click, headset breathing/chair scrape, relay click and Khang climax line
+- source/tooling record in `docs/production/CH01_AUDIO_ASSET_SOURCES.md`
+- audio failure path remains non-blocking for interaction and progression
+- no additional runtime audio dependency beyond Babylon
+
+Verification:
+- AudioDirector unit tests cover load, unlock, spatial attachment, captions, failed assets and disposal
+- browser runtime confirmed audio unlock, zero failed cues and HRTF spatial attachment for narrative-critical PA audio
+- TypeScript typecheck, test suite and production build pass
+- GitHub Actions run `36919060215` passed on the BAC-26 checkpoint
+- Linear BAC-26 is Done
+
+## BAC-27 production record
+Implemented:
+- tactile PA-room C04/C07 inspections
+- production KCR-A rule driven only by C03 + C07 knowledge
+- explicit post-ready inside → leave → re-enter PA sequence
+- ninth PA chair/headset variant replaces the prototype ninth-classroom-desk content
+- RealitySystem applier restores ninth station, collision and subtle warmer desk lamp deterministically
+- checkpoint progression through `ch01_kcr_ready` and `ch01_kcr_applied`
+- no popup announces the world change
+
+Verification:
+- dedicated KCR tests cover clue-alone insufficiency, readiness, re-entry gating, one-shot apply, ready-before-reentry reload and post-apply reload
+- real browser runtime confirmed the ninth station remains hidden while ready, appears only on re-entry, gains collision, warms the desk lamp and restores after reload
+- 19 test files / 63 tests passed at the BAC-27 local gate
+- GitHub Actions run `36924056149` passed on commit `b997d10`
+- Linear BAC-27 is Done
+
+## BAC-28 production record
+Implemented:
+- KCR-gated ninth-headset interaction with a dedicated invisible pick proxy over the authored headset geometry
+- one-shot spatial 2.5s breathing/chair-scrape proximity cue
+- deterministic `ChapterOneClimaxController`
+- climax sequence: headset inspection → phone “Đừng để nó thành người.” → pause → PA relay click → Khang line
+- captions for narrative-critical headset/PA/Khang audio
+- persisted climax steps and `ch01_climax_complete` checkpoint
+- `InspectionSession.onClosed` and interaction callback ordering fixes so camera restoration cannot overwrite the following phone input lock
+- large frame/focus-gap deltas are clamped to prevent skipping climax beats
+
+Verification:
+- runtime acquired the ninth headset through the normal InteractionSystem ray target path
+- Escape restores the inspection camera cleanly and hands control to the climax phone without a locomotion/look deadlock
+- focus loss leaves the sequence recoverable
+- reload after completion does not replay the climax
+- 20 test files / 68 tests pass; typecheck and production build pass
+- GitHub Actions run `36944163218` passed on commit `92f7b9d`
+- Linear BAC-28 is Done
+
+## BAC-29 production record
+Implemented:
+- subtle authored extra-shoulder representation on the corridor photo glass, with no monster model
+- post-climax distance gate and deterministic sustained direct-look disappearance
+- final relay-click hook when the reflection disappears
+- a real collision-enabled corridor exit door registered only after the climax
+- Chapter 1 completion occurs only when that exit is opened
+- completion sets `ch01_complete`, advances to `ch01_complete`, changes chapter state to `ch02`, locks gameplay and shows a Chapter 2 boundary card only
+- complete-save restore returns directly to the boundary and never starts Chapter 2 gameplay
+- shared OpenableController completion ordering hardened so follow-on input locks are not overwritten
+
+Verification:
+- runtime confirmed the reflection arms near the photo, remains subtle, vanishes on sustained direct look and stays gone
+- runtime acquired the final exit through InteractionSystem and completed the chapter only after the door opened
+- resulting state: chapter `ch02`, checkpoint `ch01_complete`, transition visible, locomotion/look locked
+- reload of the complete save shows only the boundary; opening, KCR, reflection and climax do not replay
+- 21 test files / 72 tests pass; TypeScript typecheck and production build pass
+- GitHub Actions run `36945489518` passed on commit `f5d3144`
+- Linear BAC-29 is Done
