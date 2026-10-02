@@ -18,8 +18,8 @@ The repository is the project source of truth. New sessions should resume from t
    - `docs/PROJECT_MASTER_PLAN.md`
    - `docs/design/GAME_PIVOT_V2_DRAFT_NOTES.md`
    - `docs/design/USER_APPROVAL_GATES.md`
-   - `docs/design/CH01_ROOM_FOCUSED_STUDENT_SLICE.md`
-   - `docs/art/CH01_BRIGHT_BASELINE_VISUAL_GUIDE.md`
+   - `docs/design/P202_ROOM_FOCUSED_STUDENT_SLICE.md`
+   - `docs/art/P202_GOLDEN_CLASSROOM_VISUAL_GUIDE.md`
    - `docs/art/VISUAL_PRODUCTION_WORKSHOP_V1_DRAFT.md`
    - current `docs/production/` files
    - `docs/TECHNICAL_REQUIREMENTS.md`
