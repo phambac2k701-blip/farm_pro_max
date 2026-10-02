@@ -73,7 +73,7 @@ Constraints:
 - only use third-party/open-source code with a clear compatible license;
 - do not copy external code blindly; understand and adapt the implementation;
 - do not refactor stable BAC-11 through BAC-17 code unless a real regression, architectural blocker, or clearly material benefit is demonstrated;
-- `InteractionSystem`, `CameraDirector`, `GameState`, `RealitySystem`, and other game-core abstractions remain owned by Người Thứ Chín; third-party libraries may sit below these abstractions when useful;
+- `InteractionSystem`, `CameraDirector`, `GameState`, and other game-core abstractions remain project-owned; third-party libraries may sit below these abstractions when useful;
 - object-specific behaviors such as Book, Photo, Drawer, Door, Pickup, Cassette, and Laptop must compose shared systems rather than create separate per-object frameworks;
 - scripted horror events must compose Trigger + Camera/Screen FX + Audio + Lighting + World/Reality changes rather than introduce a dedicated scare framework.
 
@@ -84,7 +84,7 @@ The game must prioritize:
 - smooth first-person camera and movement
 - tactile, cinematic interactions
 - atmosphere and visual fidelity
-- understandable investigation logic
+- understandable student-life interaction logic
 - stable performance
 - consistent art direction
 - no obvious “AI-generated patchwork” in code, UI, art, or writing
@@ -113,13 +113,14 @@ For each playable milestone:
 
 ## Scope discipline
 Do not expand the game simply because a feature is technically possible.
-The MVP exists to prove:
+The current milestone exists to prove:
 - first-person movement feels good
 - interaction feels good
-- investigation loop is compelling
-- “Knowledge Changes Reality” works
-- one short chapter can look and sound polished
+- one classroom can feel lived-in and fun
+- modular assets can reach production quality
+- small player choices can produce polished local reactions
+- one focused student-life sequence can look and sound polished
 
 ## Naming
-Working title: **Người Thứ Chín**.
+Working title: **TBD_USER_APPROVAL**.
 Repository name may remain `farm_pro_max` until renaming is intentionally decided.
