@@ -117,11 +117,19 @@ export const CH01_AUDIO: AudioManifest = {
       rolloffFactor: 1.15,
       panningModel: "HRTF",
     },
+    caption: "[Tiếng thở khẽ và ghế cọ trong tai nghe.]",
   },
   [CH01_AUDIO_IDS.relayClick]: {
     file: p("relay_click.wav"),
     volume: 0.16,
     maxInstances: 1,
+    spatial: {
+      minDistance: 0.8,
+      maxDistance: 12,
+      rolloffFactor: 0.9,
+      panningModel: "HRTF",
+    },
+    caption: "[Loa phát thanh bật tách.]",
   },
   [CH01_AUDIO_IDS.khangClimax]: {
     file: p("khang_climax_line.wav"),

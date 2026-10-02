@@ -3,6 +3,11 @@ import { Scene } from "@babylonjs/core/scene";
 import { AudioDirector } from "./audio/AudioDirector";
 import { CameraDirector } from "./camera/CameraDirector";
 import {
+  CH01_HEADSET_PROXIMITY_CUE_PLAYED_FACT,
+  CH01_NINTH_HEADSET_INSPECTED_FACT,
+  ChapterOneClimaxController,
+} from "./content/chapters/ch01/ChapterOneClimaxController";
+import {
   CH01_OPENING_COMPLETE_FACT,
   ChapterOneOpeningController,
 } from "./content/chapters/ch01/ChapterOneOpeningController";
@@ -10,6 +15,7 @@ import {
   CH01_CORRIDOR_BELL_FACT,
   ClassroomEvidenceController,
 } from "./content/chapters/ch01/ClassroomEvidenceController";
+import { DomChapterOneClimaxPhoneView } from "./content/chapters/ch01/DomChapterOneClimaxPhoneView";
 import { DomChapterOnePhoneView } from "./content/chapters/ch01/DomChapterOnePhoneView";
 import {
   CH01_AMBIENCE_IDS,
@@ -456,6 +462,69 @@ async function bootstrap(): Promise<void> {
       inputLock: player,
     });
 
+    const climax = new ChapterOneClimaxController({
+      state: gameState,
+      chapterRuntime,
+      view: new DomChapterOneClimaxPhoneView(phoneOverlay),
+      inputLock: player,
+      playPhoneVibration: () => {
+        audio.play(CH01_AUDIO_IDS.phoneVibration);
+      },
+      playRelayClick: () => {
+        audio.play(CH01_AUDIO_IDS.relayClick, chapter.paSpeakerProp);
+      },
+      playKhangLine: () => {
+        audio.play(CH01_AUDIO_IDS.khangClimax, chapter.paSpeakerProp);
+      },
+      onComplete: () => {
+        canvas.dataset.climaxComplete = "true";
+        persistSave();
+      },
+    });
+
+    const ninthHeadsetView = new InspectionOverlayView(
+      inspectionOverlay,
+      {
+        eyebrow: "Phòng phát thanh · vị trí thứ chín",
+        title: "Tai nghe",
+        body:
+          "Tai nghe nằm trên ghế. Dây jack không nối vào bất kỳ ổ nào.",
+        footer: "Esc · rời tai nghe",
+      },
+    );
+    const ninthHeadsetInspection = new DocumentInspectionController({
+      cameraDirector,
+      anchor: () => ({
+        position: chapter.ninthHeadsetInspectionAnchor.position,
+        rotation: chapter.ninthHeadsetInspectionAnchor.rotation,
+        fov: 0.64,
+      }),
+      view: ninthHeadsetView,
+      onReadable: () => {
+        canvas.dataset.inspectionReadable = "ninth-headset";
+        gameState.setFact(CH01_NINTH_HEADSET_INSPECTED_FACT, true);
+      },
+      onClosed: () => {
+        if (
+          gameState.getFact<boolean>(
+            CH01_NINTH_HEADSET_INSPECTED_FACT,
+          ) === true
+        ) {
+          climax.start();
+        }
+      },
+    });
+    interaction.register(chapter.ninthHeadsetProp, {
+      id: CH01_INTERACTION_IDS.ninthHeadset,
+      prompt: "E · Xem tai nghe thứ chín",
+      maxDistance: 1.45,
+      priority: 14,
+    });
+    behaviorHost.register(
+      CH01_INTERACTION_IDS.ninthHeadset,
+      ninthHeadsetInspection,
+    );
+
     let audioStarted = false;
     const startAudio = async (): Promise<void> => {
       if (audioStarted) {
@@ -513,6 +582,12 @@ async function bootstrap(): Promise<void> {
         return;
       }
 
+      if (climax.handleKey(event.code)) {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        return;
+      }
+
       if (classroomEvidence?.handleKey(event.code)) {
         event.preventDefault();
       }
@@ -520,6 +595,7 @@ async function bootstrap(): Promise<void> {
     window.addEventListener("keydown", onChapterKeyDown, true);
     interaction.attachInput(canvas);
     opening.start();
+    climax.resume();
 
     chapter.drawerLabel09.setEnabled(evidence.has("C03"));
     if (evidence.has("C03")) {
@@ -563,6 +639,7 @@ async function bootstrap(): Promise<void> {
           chapterReality: ChapterOneRealityController;
           chapterRuntime: ChapterRuntime<(typeof CH01_CHECKPOINTS)[number]>;
           opening: ChapterOneOpeningController;
+          climax: ChapterOneClimaxController;
           classroomEvidence: ClassroomEvidenceController;
           sideDoor: OpenableController;
           classroomDoor: OpenableController;
@@ -573,6 +650,7 @@ async function bootstrap(): Promise<void> {
           timetableInspection: DocumentInspectionController;
           paStationLabelsInspection: DocumentInspectionController;
           paIndexCardInspection: DocumentInspectionController;
+          ninthHeadsetInspection: DocumentInspectionController;
         };
       };
       debugWindow.__NTC_DEBUG__ = {
@@ -588,6 +666,7 @@ async function bootstrap(): Promise<void> {
         chapterReality,
         chapterRuntime,
         opening,
+        climax,
         classroomEvidence,
         sideDoor,
         classroomDoor,
@@ -598,6 +677,7 @@ async function bootstrap(): Promise<void> {
         timetableInspection,
         paStationLabelsInspection,
         paIndexCardInspection,
+        ninthHeadsetInspection,
       };
     }
 
@@ -610,6 +690,7 @@ async function bootstrap(): Promise<void> {
       cameraDirector.update(deltaSeconds);
       behaviorHost.update(deltaSeconds);
       opening.update(deltaSeconds);
+      climax.update(deltaSeconds);
       interaction.update();
 
       const movement = player.input.getMovementAxes();
@@ -727,11 +808,35 @@ async function bootstrap(): Promise<void> {
         }
       }
 
+      if (
+        chapterReality.isApplied &&
+        audioStarted &&
+        gameState.getFact<boolean>(
+          CH01_HEADSET_PROXIMITY_CUE_PLAYED_FACT,
+        ) !== true
+      ) {
+        const headsetPosition =
+          chapter.ninthHeadsetProp.getAbsolutePosition();
+        if (
+          nearXZ(headsetPosition.x, headsetPosition.z, 1.0) &&
+          audio.play(
+            CH01_AUDIO_IDS.headsetBreathingChair,
+            chapter.ninthHeadsetProp,
+          )
+        ) {
+          gameState.setFact(
+            CH01_HEADSET_PROXIMITY_CUE_PLAYED_FACT,
+            true,
+          );
+        }
+      }
+
       const prompt = interaction.promptState;
       interactionPrompt.hidden = !prompt.visible;
       interactionPrompt.textContent = prompt.text;
       reticle.hidden =
         opening.isActive ||
+        (climax.isActive && climax.currentStep === 1) ||
         interaction.activeInteraction !== null ||
         cameraDirector.state !== "gameplay";
 
@@ -753,6 +858,13 @@ async function bootstrap(): Promise<void> {
         chapterReality.hasLeftAfterReady,
       );
       canvas.dataset.kcrApplied = String(chapterReality.isApplied);
+      canvas.dataset.climaxStep = String(climax.currentStep);
+      canvas.dataset.climaxComplete = String(climax.isComplete);
+      canvas.dataset.headsetCuePlayed = String(
+        gameState.getFact<boolean>(
+          CH01_HEADSET_PROXIMITY_CUE_PLAYED_FACT,
+        ) === true,
+      );
       canvas.dataset.ninthPaStationEnabled = String(
         chapter.ninthPaStation.isEnabled(),
       );
@@ -785,6 +897,7 @@ async function bootstrap(): Promise<void> {
         window.removeEventListener("keydown", onAudioGesture, true);
         window.removeEventListener("keydown", onChapterKeyDown, true);
         audio.dispose();
+        climax.dispose();
         opening.dispose();
         behaviorHost.dispose();
         interaction.dispose();

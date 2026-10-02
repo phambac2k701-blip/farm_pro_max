@@ -34,7 +34,9 @@ export interface ChapterOneProductionScene {
   paStations: TransformNode[];
   ninthPaStation: TransformNode;
   ninthPaStationCollider: Mesh;
+  ninthHeadsetProp: Mesh;
   ninthCable: Mesh;
+  paSpeakerProp: Mesh;
   paRoomLight: PointLight;
   paDeskLamp: PointLight;
   paReentryZone: Mesh;
@@ -55,6 +57,7 @@ export interface ChapterOneProductionScene {
   timetableInspectionAnchor: TransformNode;
   paStationLabelsInspectionAnchor: TransformNode;
   paIndexCardInspectionAnchor: TransformNode;
+  ninthHeadsetInspectionAnchor: TransformNode;
   corridorReturnZone: Mesh;
   insideOldWingZone: Mesh;
   classroomEntryZone: Mesh;
@@ -916,6 +919,37 @@ export function buildChapterOneScene(
   );
   ninthPaStationCollider.parent = ninthPaStation;
   ninthPaStationCollider.isVisible = false;
+
+  const ninthHeadsetBand = scene.getMeshByName(
+    "pa-station-9-headset-band",
+  ) as Mesh | null;
+  if (!ninthHeadsetBand) {
+    throw new Error("Ninth PA headset mesh was not created.");
+  }
+  ninthHeadsetBand.isPickable = false;
+
+  const ninthHeadsetProp = createBox(
+    scene,
+    "ch01-ninth-headset-interaction-proxy",
+    {
+      width: 0.42,
+      height: 0.34,
+      depth: 0.34,
+      position: new Vector3(0, 0.96, -0.73),
+      material: plastic,
+      pickable: true,
+    },
+  );
+  ninthHeadsetProp.parent = ninthPaStation;
+  ninthHeadsetProp.visibility = 0.001;
+
+  const ninthHeadsetInspectionAnchor = createAnchor(
+    scene,
+    "ch01-ninth-headset-inspection-anchor",
+    new Vector3(7.78, 1.45, 10.82),
+  );
+  ninthHeadsetInspectionAnchor.rotation.set(0.18, 0.56, 0);
+
   ninthPaStation.setEnabled(false);
 
   const ninthCable = MeshBuilder.CreateCylinder(
@@ -963,6 +997,15 @@ export function buildChapterOneScene(
     new Vector3(3.0, 1.5, 7.45),
   );
   paIndexCardInspectionAnchor.rotation.set(0.55, 0, 0);
+
+  const paSpeakerProp = createBox(scene, "ch01-pa-speaker", {
+    width: 0.42,
+    height: 0.52,
+    depth: 0.16,
+    position: new Vector3(9.34, 2.25, 9.35),
+    material: metal,
+  });
+  paSpeakerProp.rotation.y = -Math.PI / 2;
 
   const corridorPhotoBoard = createBox(scene, "ch01-corridor-photo-board", {
     width: 0.06,
@@ -1127,7 +1170,9 @@ export function buildChapterOneScene(
     paStations,
     ninthPaStation,
     ninthPaStationCollider,
+    ninthHeadsetProp,
     ninthCable,
+    paSpeakerProp,
     paRoomLight,
     paDeskLamp,
     paReentryZone,
@@ -1148,6 +1193,7 @@ export function buildChapterOneScene(
     timetableInspectionAnchor,
     paStationLabelsInspectionAnchor,
     paIndexCardInspectionAnchor,
+    ninthHeadsetInspectionAnchor,
     corridorReturnZone,
     insideOldWingZone,
     classroomEntryZone,

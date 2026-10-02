@@ -33,7 +33,13 @@ describe("Chapter 1 production audio manifest", () => {
     expect(CH01_AUDIO[CH01_AUDIO_IDS.khangClimax].spatial).toBeDefined();
   });
 
-  it("provides a subtitle for Khang's critical climax line", () => {
+  it("provides captions for the narrative-critical headset and PA cues", () => {
+    expect(
+      CH01_AUDIO[CH01_AUDIO_IDS.headsetBreathingChair].caption,
+    ).toContain("Tiếng thở");
+    expect(CH01_AUDIO[CH01_AUDIO_IDS.relayClick].caption).toContain(
+      "Loa phát thanh",
+    );
     expect(CH01_AUDIO[CH01_AUDIO_IDS.khangClimax].caption).toContain(
       "An? Mày tới rồi à?",
     );

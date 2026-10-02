@@ -24,6 +24,7 @@ export interface InspectionSessionOptions {
   focusDuration?: number;
   restoreDuration?: number;
   onReadable?: () => void;
+  onClosed?: () => void;
 }
 
 export class InspectionSession implements InteractionBehavior {
@@ -87,6 +88,7 @@ export class InspectionSession implements InteractionBehavior {
       const actions = this.actions;
       this.actions = null;
       actions?.complete();
+      this.options.onClosed?.();
     }
   }
 

@@ -20,6 +20,7 @@ describe("InspectionSession", () => {
       hide: vi.fn(),
     };
     const onReadable = vi.fn();
+    const onClosed = vi.fn();
     const complete = vi.fn();
     const session = new InspectionSession({
       cameraDirector: director,
@@ -32,6 +33,7 @@ describe("InspectionSession", () => {
       focusDuration: 0.2,
       restoreDuration: 0.2,
       onReadable,
+      onClosed,
     });
 
     expect(
@@ -51,6 +53,7 @@ describe("InspectionSession", () => {
     session.update(0);
 
     expect(session.state).toBe("idle");
+    expect(onClosed).toHaveBeenCalledTimes(1);
     expect(complete).toHaveBeenCalledTimes(1);
     expect(camera.position).toEqual(new Vector3(0, 1.6, 0));
     expect(camera.rotation).toEqual(new Vector3(0, 0, 0));

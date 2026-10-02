@@ -71,8 +71,11 @@ describe("Chapter 1 production scene shell", () => {
     expect(chapter.timetableProp.isPickable).toBe(true);
     expect(chapter.paStationLabelsProp.isPickable).toBe(true);
     expect(chapter.paIndexCardProp.isPickable).toBe(true);
+    expect(chapter.ninthHeadsetProp.isPickable).toBe(true);
+    expect(chapter.paSpeakerProp.isPickable).toBe(false);
     expect(chapter.paStationLabelsInspectionAnchor).toBeDefined();
     expect(chapter.paIndexCardInspectionAnchor).toBeDefined();
+    expect(chapter.ninthHeadsetInspectionAnchor).toBeDefined();
     expect(scene.getMeshByName("hero-book")).toBeNull();
 
     scene.dispose();
