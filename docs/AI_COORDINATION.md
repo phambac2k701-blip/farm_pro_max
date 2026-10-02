@@ -31,8 +31,13 @@ Commit:
 
 ## Active / planned AI lanes
 
+Parallelism policy: **maximum 2 worker AIs active at once, plus 1 coordinator**. Do not open extra worker lanes unless the user explicitly changes this cap.
+
 ### Lane 1 — Character Animation Prototype V0
-Status: ACTIVE
+Status: DONE / COMMITTED / PUSHED
+
+Final known commit:
+`498cf6c46c6cb981b43e190c778abc49df866cec`
 
 Worktree:
 `C:\Users\Dell\projects\farm_pro_max`
@@ -54,7 +59,12 @@ Current scope:
 - tests/performance/evidence before commit
 
 ### Lane 2 — Performance / Optimization Foundation V1
-Status: WORKTREE CREATED; implementation not yet observed
+Status: DONE EXCEPT ONE DOCUMENTATION CORRECTION
+
+Current known commit:
+`5bebb9f2a35b7bdffc50cf8e8210fe30829c2008`
+
+Remaining task: correct `PERFORMANCE_BUDGET_V1.md` so the `activeMeshes` description matches the implementation based on `scene.getActiveMeshes().length`, then commit/push and STOP.
 
 Worktree:
 `C:\Users\Dell\projects\farm_pro_max_perf`
@@ -80,7 +90,10 @@ Purpose:
 reusable measurement/regression tooling and performance-budget policy, not runtime redesign.
 
 ### Lane 3 — Event / Choice Flow Foundation V1
-Status: ACTIVE / early implementation observed
+Status: DONE / COMMITTED / PUSHED
+
+Final known commit:
+`a0af3735a60aa71fa33479850ac3963ae02dbc6a`
 
 Worktree:
 `C:\Users\Dell\projects\farm_pro_max_event`
@@ -88,8 +101,10 @@ Worktree:
 Branch:
 `phase-v2/event-flow-foundation-v1`
 
-Observed WIP:
+Delivered:
 - `src/game/events/ChoiceEventFlow.ts`
+- `tests/game/events/ChoiceEventFlow.test.ts`
+- `docs/design/CHOICE_EVENT_FLOW_V1.md`
 
 Ownership:
 - generic typed event/choice-flow core
@@ -109,13 +124,20 @@ Purpose:
 branch-and-reconverge technical foundation using existing GameState/Event systems.
 
 ### Lane 4 — Audio Asset Library V1
-Status: PLANNED; worktree not yet created at last check
+Status: ACTIVE / WIP / NOT COMMITTED YET
 
-Planned worktree:
+Worktree:
 `C:\Users\Dell\projects\farm_pro_max_audio`
 
-Planned branch:
+Branch:
 `phase-v2/audio-asset-library-v1`
+
+Observed WIP:
+- local candidate audio asset tree
+- `assets/audio/catalog/audio_candidates.json`
+- audio curation/download tooling under `tools/audio_library/`
+
+Do not reset/clean this worktree while WIP is uncommitted.
 
 Ownership:
 - candidate audio library
