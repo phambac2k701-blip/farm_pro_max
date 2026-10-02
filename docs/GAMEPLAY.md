@@ -10,16 +10,16 @@ Ordinary actions are allowed to carry gameplay value.
 
 A typical student-life sequence may involve:
 
-1. arrive in a familiar place
+1. arrive in a place
 2. understand the immediate situation
 3. move and look around naturally
 4. interact with people or ordinary objects
 5. make one or more small choices
 6. receive believable reactions/consequences
 7. continue the routine or objective
-8. occasionally encounter a larger narrative or uncanny event
+8. reach a larger social, personal, or narrative event when the scene calls for it
 
-The exact story beats are not yet canon.
+Exact scene/event details remain user-approval-gated.
 
 ## Movement and camera
 
@@ -27,11 +27,11 @@ Movement should be:
 - grounded
 - smooth
 - responsive
-- precise in classrooms and corridors
+- precise in classrooms/corridors
 - comfortable for long first-person sessions
-- resistant to input sticking, clipping and out-of-bounds falls
+- resistant to stuck input, clipping and out-of-bounds falls
 
-Avoid exaggerated head bob, excessive inertia and effects that make ordinary navigation tiring.
+Avoid exaggerated head bob, excessive inertia and tiring camera effects.
 
 ## Interaction language
 
@@ -50,7 +50,7 @@ Reusable interaction categories:
 - talk / respond
 - transition between authored zones
 
-Important interactions may use short camera/animation choreography, but the game should return control cleanly.
+Important interactions may use short camera/animation choreography, but the game must return control cleanly.
 
 ## Small-choice structure
 
@@ -58,16 +58,16 @@ Not every choice needs a permanent route.
 
 For low-stakes choices:
 - allow the player to try alternatives
-- give each alternative a distinct reaction, joke, inconvenience or small consequence
+- give alternatives distinct reactions, jokes, inconveniences or small consequences
 - when needed, guide the player naturally back toward the state required for the main narrative to continue
 
-Avoid obvious invisible walls in choice design when a believable in-world consequence can redirect the player.
+Prefer believable in-world consequences over obvious invisible choice walls.
 
-## Major-choice structure
+## Long-term choices
 
-Only decisions with sufficient narrative weight should create long-term state or route divergence.
+Only decisions with sufficient narrative weight should create expensive long-term route divergence.
 
-The exact major route system is not yet approved.
+The exact long-term route system remains TBD.
 
 ## Student-life systems to validate gradually
 
@@ -77,44 +77,53 @@ Potential reusable systems:
 - phone/messages
 - dialogue/reaction state
 - NPC presence/schedules where useful
-- timetable/calendar later if justified
-- classroom props and personal items
+- timetable/calendar when justified
+- classroom/student props
 - modular scene/zone transitions
 - persistent choice/world-state flags
 
-Do not implement a giant life-sim framework before concrete gameplay needs it.
+Do not implement a giant life-sim framework before concrete scenes need it.
 
-## Fail states
+## Academic-life rule
 
-Routine student-life sequences should prefer recoverable consequences over traditional death/fail screens.
+Study is a background structure, not the sole gameplay subject.
 
-A wrong low-stakes choice can:
-- create an awkward interaction
-- waste time
-- trigger a funny response
-- force the player to reconsider
-- redirect to another valid action
+Classes, schedules, assignments and exams may create:
+- timing pressure
+- reasons to travel
+- social situations
+- group interactions
+- routine
+- jokes
+- changes of plan
 
-Soft-lock prevention remains mandatory.
+Do not turn the game into a study simulator unless a specific academic activity is genuinely interesting to play.
 
-## Strange / uncanny gameplay
+## Current narrative-gameplay boundary
 
-The project may later use altered information, changed objects, contradictory spaces or other uncanny events.
+The approved Chapter 0–3 macro is grounded student life.
 
-These are secondary to the student-life baseline and must be authored for specific scenes.
+Do not add unrelated mystery/special-event content into those chapters unless the user later approves it.
 
-Do not make ordinary rooms permanently dark, distorted or horror-coded by default.
+Generic conditional-state technology may remain in the engine, but content should be driven by approved student-life scenes, character continuity, humor and personal development.
 
-## Current gameplay proof target
+## Current environment/gameplay proof target
 
-The first proof target is a **single polished classroom experience in P202**.
+The room-level proof target is still a polished classroom/student-life interaction set.
 
-It should prove:
+The active art branch is simultaneously expanding toward a larger Giảng đường 4 map.
+
+Therefore:
+- build reusable room interactions
+- avoid assuming the final building topology until the art update lands
+- integrate gameplay with the map rather than forcing the map to fit an old scene script
+
+The first classroom gameplay should prove:
 - believable movement at classroom scale
-- useful desk/chair interactions
+- useful desk/chair interaction
 - natural first-person roleplay
-- at least one polished social or situational gameplay sequence
+- polished social/situational micro-events
 - smooth camera/control ownership
-- reusable foundations for later classroom scenes
+- reusable foundations for later student-life scenes
 
-Exact event dialogue and chapter canon require user approval before being treated as final.
+Exact dialogue and detailed chapter events require user approval.
