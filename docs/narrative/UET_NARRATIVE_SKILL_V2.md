@@ -6,7 +6,9 @@ Canon authority: User / primary writer
 
 ## Purpose
 
-Use this skill to research, organize, generate, critique, revise, approve, and hand off narrative events for **UET không tệ** without allowing AI-generated material to silently become canon.
+Use this skill to help the user research, organize, generate alternatives from, critique, revise, approve, and hand off narrative material for **UET không tệ** without allowing AI-generated material to replace the user's lived experience or silently become canon.
+
+This is an **author-assist skill, not an author-replacement skill**. The user supplies lived experience, personal intent, important creative judgment and final canon decisions. AI structures, proposes, compares, critiques and converts approved material into playable narrative.
 
 This skill is for:
 - lived-material extraction;
@@ -30,6 +32,8 @@ Always preserve:
 - ordinary student life as the subject;
 - study/class structure as background;
 - humor from believable situations;
+- ordinary scenes may use deadpan/absurd ("vô tri") comedy, contemporary rhythm and small reversals/twists when grounded in the situation;
+- trend-aware presentation is allowed, but concrete trends are replaceable presentation details rather than core canon;
 - Chapters 0–3 only;
 - exactly four current major map families;
 - user as final canon authority.
@@ -45,7 +49,10 @@ Never add:
 - final protagonist identity without approval;
 - giant life-sim scope;
 - dialogue-heavy visual-novel structure;
-- permanent branching for ordinary choices by default.
+- permanent branching for ordinary choices by default;
+- a detailed chapter event catalog generated from the macro alone;
+- fabricated lived experience used merely to make a chapter feel complete;
+- narrator-heavy comedy that explains the joke instead of letting the player participate in it.
 
 ## Canon lifecycle
 
@@ -113,14 +120,60 @@ A routine system is not automatically a named story event.
 ### Ambient beat
 Optional texture that makes the world feel lived-in without being required for progression.
 
+## Two-worker narrative model
+
+Narrative production uses at most two narrative workers at once, plus the coordinator.
+
+### Worker A — Event Architect / Branch Designer
+
+Consumes:
+- user-supplied lived material and provenance;
+- approved macro/canon;
+- current character and continuity state;
+- map/gameplay constraints.
+
+Owns:
+- content classification;
+- event purpose;
+- player verbs;
+- option intent;
+- local consequences;
+- authored reconvergence;
+- setup/payoff and continuity implications.
+
+Worker A does **not** finalize dialogue and may not manufacture missing lived experience.
+
+### Worker B — Scene / Interaction Writer
+
+Consumes an already selected/approved event structure.
+
+Owns:
+- playable scene beats;
+- concise dialogue;
+- option-specific reactions;
+- pauses/timing;
+- visual or object-based comedy;
+- short internal thoughts only when the scene cannot communicate the information itself.
+
+Worker B may not change event causality, create important canon, or add a new relationship/major event to improve the scene.
+
+### Coordinator
+
+The coordinator receives raw material from the user, preserves provenance, assigns the correct worker, reviews both outputs, and owns cross-chapter continuity/integration control.
+
+The user remains the primary writer and final canon authority.
+
 ## Required working rule
 
 Do not write polished dialogue or prose before:
+- relevant user-supplied lived material exists or the user has explicitly authorized fictionalization;
 - the event function is clear;
 - the gameplay structure works;
 - continuity checks pass;
 - the event is selected;
 - and the relevant approval gate is known.
+
+A chapter macro is not sufficient source material for a detailed event catalog.
 
 Fluency is not evidence of narrative quality.
 
@@ -323,13 +376,11 @@ merge them or convert some material to routine/ambient content.
 
 # Phase 4 — Event Candidate Generation
 
-Generate multiple candidates at low resolution.
+Generate multiple candidates at low resolution only when multiple alternatives would help the user make a decision.
 
-Default exploration batch:
-- 6–12 candidates when the space is broad;
-- 3–6 when constraints are narrow.
+There is **no default candidate quota**. Generate the smallest useful set that exposes meaningfully different approaches. Expand only when the options are genuinely distinct in function, player verb, tone, spatial use, or continuity consequence.
 
-This is an exploration range, not a production quota.
+Do not generate extra candidates merely to fill a batch.
 
 ## Candidate format
 
@@ -383,6 +434,43 @@ Possible low-stakes friction:
 
 The point is not “conflict for conflict’s sake.”
 The point is to create a believable reason for the player to notice, choose, adapt, react, or reinterpret.
+
+## Comedy / trend / twist pass
+
+For ordinary comedic scenes, prefer **participatory comedy** over narrated jokes.
+
+Useful structures include:
+- player confidently chooses something that is locally wrong;
+- an NPC is equally confident and also wrong;
+- awkward silence or delayed realization;
+- expectation → interruption/reversal;
+- a mundane object or environment creates the punchline;
+- a callback changes the meaning of an earlier ordinary detail;
+- a small tension spike is immediately recontextualized into something mundane or funny.
+
+The desired tone may be deadpan, absurd or "vô tri", but it must remain grounded in believable student behavior.
+
+Trend-aware rhythm is allowed. Concrete TikTok/meme/trend references:
+- must be researched near the time the scene is written;
+- must fit the character/context rather than being pasted in;
+- should be replaceable without breaking event causality;
+- must not become permanent canon solely because they are currently popular.
+
+A small twist should be prepared by information available in the scene and make sense after the reveal. Do not fake information, inject mystery lore, or escalate stakes merely to produce a twist.
+
+## First-person presentation pass
+
+POV does not justify continuous narration.
+
+Prefer:
+- visible behavior;
+- short dialogue;
+- player-controlled looking/movement;
+- pauses and reaction timing;
+- environment/object feedback;
+- internal thought only when it adds information or characterization the scene cannot already show.
+
+If a joke works only because a narrator explains why it is funny, redesign the scene.
 
 ## Intensity ceiling
 
@@ -600,14 +688,28 @@ Default branch shape:
 
 choice
 → distinct local response
-→ optional short variation
+→ optional short detour / consequence
+→ believable in-world correction or redirect
 → remembered local state if useful
 → reconvergence
+
+For ordinary low-stakes scenes, it is valid for several options to be locally suboptimal, awkward, inefficient or "wrong" as long as each produces authored content and none becomes an arbitrary bad ending.
+
+Examples of valid reconvergence causes:
+- the person the player followed was also wrong and turns back;
+- a room/office is closed;
+- a message or notice corrects the information;
+- an NPC redirects the player;
+- an attempted interaction fails for a believable reason;
+- schedule/timing forces the routes back together;
+- the player discovers missing context and self-corrects.
 
 ## Small branch requirements
 - options express distinguishable player intentions;
 - the player has enough information for the claimed choice;
 - immediate feedback acknowledges the choice;
+- each meaningful detour produces a distinct local consequence/reaction;
+- reconvergence has an authored in-world cause rather than an invisible reset;
 - any persistent flag has a named future purpose;
 - reconvergence does not erase the fact that the response differed.
 
@@ -791,17 +893,16 @@ For every chapter event registry:
 9. identify production-heavy beats with low narrative value;
 10. identify continuity carry-in/carry-out.
 
-A useful initial production envelope is roughly 4–8 must-play authored event units per chapter plus reusable routine systems and optional beats.
+There is **no target event count per chapter**.
 
-This is a project planning heuristic, not a narrative law.
-A shorter or longer chapter is correct if its function coverage and runtime pacing justify it.
+A chapter is correct when its required functions, memorable anchors, continuity obligations and runtime pacing are satisfied. It may be short or long. Event count must emerge from user material and playable pacing, not from a planning quota.
 
 # Context Pack for an AI Worker
 
 Before event work, provide only:
 
 ## Project constraints
-Current chapter scope, four-map rule, tone, approval gates.
+Current chapter scope, four-map rule, approval gates, current narrative-event style, humor/twist rules, and author-assist boundary.
 
 ## Target scope
 Chapter, map/zone, purpose of this pass.
@@ -842,6 +943,7 @@ Return blockers/majors/moderates/optional findings with evidence.
 # Stop Conditions
 
 Stop candidate development and mark TBD_USER_APPROVAL when:
+- detailed event generation would require lived material the user has not supplied or authorized for fictionalization;
 - an important missing fact would materially alter the event;
 - an important NPC identity/relationship must be invented;
 - a fifth major map appears necessary;

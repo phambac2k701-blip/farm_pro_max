@@ -24,7 +24,7 @@ This report does not create story canon. Candidate, selected, approved, canonica
   - docs/narrative/RESEARCH_AND_SKILL_AUDIT.md
   - docs/narrative/19_SKILL_TEST_RESULTS.md
 
-Important repository fact: docs/design/CHAPTER_EVENT_SET_V1.md is not present in the current source-of-truth worktree, the narrative cleanup worktree, or local git history. The requested event-by-event audit therefore cannot be performed honestly against that artifact yet.
+Current repository status: there is **no approved detailed Ch0–Ch3 event set**. A speculative AI-generated event draft briefly existed on the coordinator integration branch but was removed after the user clarified that those events had never been discussed or approved. It must not be recovered as narrative source material.
 
 # 1. Executive conclusion
 
@@ -34,22 +34,27 @@ The recommended unit is not “chapter prose.” It is an event candidate with e
 
 The recommended authoring loop is:
 
-source facts
-→ lived-material extraction
+user-supplied lived material / explicit fictionalization permission
+→ provenance-preserving lived-material extraction
 → current state snapshot
-→ narrative-function slots
-→ multiple low-resolution event candidates
+→ narrative-function analysis
+→ smallest useful set of low-resolution alternatives when alternatives help
 → critique/red-team
 → user selection
 → gameplay conversion
 → continuity/knowledge check
 → user approval
+→ scene/interaction writing
 → production spec
 → implementation QA
 
 Do not use one-shot “write Chapter X” generation for canon-facing work.
 
-The core design stance is: ordinary life becomes interesting through friction, timing, changing interpretation, relationships, and repeated places — not through adding artificial mystery, horror, or oversized drama.
+Do not construct a detailed chapter event catalog from the macro alone. The macro defines direction; the user's lived material supplies the actual narrative substance.
+
+The core design stance is: ordinary life becomes interesting through friction, timing, changing interpretation, relationships, repeated places, participatory comedy and small reversals — not through adding artificial mystery, horror, or oversized drama.
+
+The desired comedic presentation can be deadpan/absurd ("vô tri") and trend-aware, but concrete trends should remain replaceable presentation details. A small twist should reframe a believable situation rather than manufacture mystery lore.
 
 ## Recommended content architecture
 
@@ -65,17 +70,11 @@ Do not count routine systems as named story events merely because they are inter
 
 A chapter should be measured by function coverage and remembered anchors, not by raw event count.
 
-Project-specific planning envelope before runtime duration is known:
-- 1 opening/continuity handoff;
-- 1–2 memorable anchor events;
-- 1–3 meaningful character/state progression events;
-- 1 closing/reorientation beat;
-- reusable routine systems threaded through several moments;
-- optional ambient/character beats as needed.
+Do not set a default event-count target before real material and playable pacing exist.
 
-This gives roughly 4–8 must-play authored event units per chapter as an initial production budget, not a quota. Add more only when a candidate has a distinct function, distinct gameplay, or a continuity obligation that cannot be merged.
+Instead ask whether the chapter has the functions it actually needs: a clear entry/handoff when appropriate, memorable anchors, character/state progression, routine variation, continuity carry-out and a usable exit/reorientation. These are diagnostic functions, not slots that must each become separate events.
 
-If two adjacent events use the same map, same actors, same verbs, same emotional function, and neither needs an independent state boundary, merge them.
+If two adjacent events use the same map, same actors, same verbs, same emotional function, and neither needs an independent state boundary, merge them. If the user's material naturally supports only a few strong events, do not inflate the chapter to satisfy a quota.
 
 ## Slice-of-life rule
 
@@ -120,7 +119,7 @@ Project inference from these sources:
 
 No trustworthy source found gives a universal “N scenes/events per chapter” rule for interactive narrative. Professional material instead treats pacing as a relationship among gameplay, space, interaction, assets, narrative beats and player attention.
 
-Therefore the 4–8 must-play-event range in this report is explicitly a **project planning heuristic**, not an industry rule. It must be replaced by measured runtime pacing once playable chapter material exists.
+Therefore this project should use **no fixed event-count heuristic**. Event density must emerge from user material, narrative function and measured runtime pacing once playable chapter material exists.
 
 # 2. Skills researched
 
@@ -342,20 +341,22 @@ Use single-pass only for disposable exploratory samples, never as an approval sh
 3. Snapshot chapter/world/character state.
 4. List missing narrative functions before generating scenes.
 5. Build a gameplay envelope for each function: allowed map/zone, available verbs, spatial affordances, reusable systems, and repetition risks.
-6. Generate 6–12 low-resolution candidates inside those gameplay envelopes, not prose.
+6. Generate only the smallest useful set of low-resolution alternatives inside those gameplay envelopes, not prose.
 7. Run a red-team pass against each candidate.
 8. Eliminate contradiction, filler, fifth-map creep and duplicated gameplay.
 9. Present surviving candidates to the user for selection.
-10. Deepen selected candidates into full gameplay/event structure.
-11. Run continuity + character-knowledge simulation.
-12. User approves or rejects the event.
-13. Promote approved facts to canonical source-of-truth records.
-14. Convert canonical event to implementation spec.
-15. After implementation, run narrative QA against actual runtime behavior.
+10. Worker A deepens selected candidates into full gameplay/event structure.
+11. Run continuity + character-knowledge checks.
+12. User approves, revises or rejects the event structure.
+13. Worker B writes scene/interaction presentation inside the approved structure: concise dialogue, timing, option-specific reactions and visual/object comedy.
+14. User approval remains required for any new canon-sensitive dialogue/detail introduced during scene writing.
+15. Promote approved facts to canonical source-of-truth records.
+16. Convert canonical event to implementation spec.
+17. After implementation, run narrative QA against actual runtime behavior.
 
-## Generate many → select few
+## Generate alternatives → select deliberately
 
-Recommended, but at low resolution.
+Recommended only when multiple alternatives would materially help the user compare directions. Keep the set small and low resolution.
 
 Good candidate format:
 - one-sentence situation;
@@ -644,21 +645,13 @@ Required checks:
 - event fits FULL/NORMAL/LIGHT/BACKGROUND runtime model;
 - no speculative system built for one weak beat.
 
-# 10. Audit of current CHAPTER_EVENT_SET_V1
+# 10. Current event-set status / audit boundary
 
-## Blocking repository fact
+There is currently **no approved detailed Ch0–Ch3 event set**.
 
-The requested file docs/design/CHAPTER_EVENT_SET_V1.md is absent from the current source-of-truth branch/worktree.
+A detailed event catalog must not be reconstructed from the macro or recovered from any speculative AI-generated draft that was created without user discussion.
 
-Checks performed:
-- current integration source-of-truth design directory;
-- narrative cleanup worktree;
-- local git history for that path;
-- remote historical narrative branch tree.
-
-No event-set artifact was found.
-
-Therefore this report does not fabricate an event-by-event audit.
+Therefore this report does not fabricate an event-by-event audit. The valid input for future event construction is user-supplied lived material plus explicitly approved fictionalization.
 
 ## What can be audited safely from current macro
 
@@ -753,25 +746,26 @@ The objective is not fewer events. It is fewer named events that are pretending 
 
 # 11. Recommended next narrative task
 
-Recover or create the missing CHAPTER_EVENT_SET_V1 artifact from user-approved/lived material, then run classification before any more story expansion.
+Do **not** create a Ch0–Ch3 event registry yet.
 
 Exact next action:
 
-Create a non-canon event registry for Chapters 0–3 in which every existing proposed item receives:
-- source fact;
-- content class;
-- narrative function;
-- player verbs;
-- map/zone;
-- pre-state;
-- post-state;
-- continuity carry;
-- production cost;
-- lifecycle state.
+Run **Lived Material Capture** with the user, beginning with Chapter 0.
 
-Do not write dialogue and do not add new major events during that classification pass.
+The user may recall material loosely, incompletely or out of order. Capture it without forcing it into a scene. Record:
+- what the user remembers as fact;
+- what is uncertain;
+- people/places involved;
+- chronology if known;
+- emotion/reaction;
+- funny or awkward friction;
+- mundane objects/routines;
+- details the user wants preserved;
+- places where the user explicitly permits fictionalization.
 
-Once that registry exists, run the Phase 5 red-team and Phase 6 selection pass.
+Only after enough material exists for a meaningful narrative function should Worker A create low-resolution event alternatives. Do not generate missing life experiences merely to fill a chapter.
+
+Worker B should not write final scene/dialogue until an event structure has been selected/approved.
 
 # Research conclusion
 
@@ -782,13 +776,17 @@ Narrative Skill V2 should keep the governance/continuity discipline, replace clu
 The strongest combined architecture is:
 
 human-owned source of truth
++ author-assist rather than author replacement
 + lived-material provenance
 + constraint-first event generation
++ participatory deadpan/trend-aware comedy when appropriate
++ small grounded twists/reversals
 + storylet-style preconditions/effects
 + character knowledge/goal state
 + player-verb conversion
-+ micro-branch/reconverge
++ locally wrong/suboptimal options with authored consequence and believable reconvergence
 + explicit lifecycle states
++ two-worker split: event architecture first, scene/dialogue second
 + red-team/continuity lint
 + targeted upstream revision
 + production handoff
