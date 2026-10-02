@@ -3,7 +3,7 @@
 Status: **APPROVED FOR P202 CLASSROOM ASSET PRODUCTION — broader campus expansion still approval/scope controlled**  
 Purpose: establish a reusable art-production pipeline capable of supporting the larger campus-life game.
 
-> **2026-10-02 direction update:** use `P202_GOLDEN_CLASSROOM_VISUAL_GUIDE.md` for the current slice. Baseline student-life scenes are bright, ordinary and readable; dark/uncanny lighting is reserved for specific narrative events. Prior night/dark/tension presentation is historical prototype evidence, not the default visual target.
+> **2026-10-02 direction update:** baseline student-life scenes are bright, ordinary and readable. The active art branch is expanding toward a larger Giảng đường 4 map; P202 documents remain room-level references until that update lands.
 
 ## 1. Goal
 
@@ -11,7 +11,7 @@ Move away from primary-player-facing scenes being dominated by procedural boxes 
 
 Target:
 
-> High-quality indie first-person student-life game with believable Vietnamese environments, strong lighting, reusable assets, consistent materials, and production-safe browser performance. Any unusual/uncanny layer is secondary and event-specific.
+> High-quality indie first-person student-life game with believable Vietnamese environments, strong lighting, reusable assets, consistent materials, and production-safe browser performance.
 
 This is not a one-scene beautification task.
 
@@ -147,7 +147,7 @@ Reusable restrained decals:
 
 Do not turn every surface into abandoned-dark/tension grime.
 
-The world is an active university first and an uncanny space second.
+The world should read as an active university environment, not as an abandoned or permanently tension-coded space.
 
 ## 6. Lighting workshop
 
@@ -243,7 +243,7 @@ Possible reusable systems:
 - screen-space or particle dust only where justified
 - fluorescent/light instability
 - screen/monitor glow
-- restrained uncanny special-event effects
+- restrained authored event effects when an approved scene needs them
 
 Effects must support gameplay readability.
 
@@ -297,8 +297,8 @@ Do not import uncertain-license assets into production.
 
 Final versions of the following require user approval:
 
-- university identity
-- logo
+- changes to the approved UET setting/context
+- official UET logo use
 - canonical signage style
 - campus master layout
 - protagonist design
@@ -310,4 +310,20 @@ Generic technical kits and placeholders may proceed before approval.
 
 ## 15. Current status
 
-This workshop is approved for the current P202 classroom production pass. Do not interpret that approval as authorization to build the entire campus or finalize institutional identity.
+This workshop is approved for the current classroom/Giảng đường 4 production work. Do not interpret that approval as authorization to reproduce a full official UET campus map or use official branding assets without review.
+
+
+## 16. Current identity update
+
+Approved narrative identity:
+- title: **UET không tệ**
+- UET student-life setting/context
+
+This does not automatically approve:
+- official UET logo
+- official colors/insignia
+- copied official signage identity
+- an exact official-campus reproduction
+- any implication of official affiliation
+
+The current environment goal is a believable Giảng đường 4 game map based on the user's approved reference/production direction, with quality and gameplay taking priority over blindly reproducing every real-world detail.
