@@ -31,7 +31,7 @@ Branch:
 `phase-v2/narrative-skill-v2-research`
 
 Expected methodology head:
-`74ed567ea216b7020f77510fd1ad5fb7ae23a8ef`
+**inspect latest remote HEAD; do not rely on an older pinned SHA**
 
 Inspect actual state first.
 If either source has moved forward, read the newer state and report it.
