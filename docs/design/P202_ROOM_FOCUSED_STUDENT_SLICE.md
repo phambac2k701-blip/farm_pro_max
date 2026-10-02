@@ -6,11 +6,9 @@ Working production focus: P202 golden classroom
 
 ## 1. Direction
 
-The next playable slice is no longer a dark-horror corridor route by default.
-
 Its working role is a **small, dense, room-focused Vietnamese student-life slice** built around one classroom/main room. The player's ordinary student experience is the primary source of charm: arriving, finding a place, handling small objects, reading the room, dealing with awkward social moments, checking information, and reacting to mundane problems.
 
-The uncanny layer exists only as a restrained interruption to an otherwise readable, familiar, lightly humorous baseline.
+Any unusual event layer is secondary to the readable, familiar, lightly humorous student-life baseline and remains approval-gated.
 
 This document defines production direction, not final chapter canon. Exact dialogue, named characters, institutional identity, major beats, twist meaning, and final chapter order remain behind `USER_APPROVAL_GATES.md`.
 
@@ -130,8 +128,8 @@ Priority order for the next implementation phase:
 3. make the room feel occupied by believable student-life props and interaction density
 4. harden controls/collision needed inside this room
 5. create generic social/humor interaction hooks
-6. add only the minimum event-state machinery needed for one subtle informational and/or physical contradiction
-7. verify before/after lighting and interaction readability in the actual browser build
+6. add event-state machinery only when an approved gameplay sequence needs it
+7. verify lighting and interaction readability in the actual browser build
 
 ## 11. Acceptance for the room-focused slice
 
@@ -164,7 +162,7 @@ Before this technical slice becomes canonical narrative content, user approval i
 - exact social/humor beats and dialogue
 - important NPC identities/roles
 - protagonist final name/look/personality details
-- exact uncanny contradiction(s)
+- any exact unusual/special-event beat
 - any school/university name, logo, colors, slogan or recognizable institutional identity
 - final room/campus relationship and canonical map topology
 
@@ -174,6 +172,6 @@ The latest user playtest corrections are now part of the implementation directio
 - visible ordinary room labels use the approved working examples `P 202` and `P 204`; complete building topology remains `TBD_USER_APPROVAL`
 - classroom desks and chairs are solved through reusable environment modules rather than one-off geometry; current pass fixes chair orientation, floor alignment, collision footprint and overly perfect placement
 - the corridor-to-classroom doorway uses a reusable fitted-opening convention so frame, header infill and leaf dimensions agree with the wall opening
-- the normal classroom presentation is bright/readable by default; darker/KCR lighting is treated as an event state
+- the normal classroom presentation is bright/readable by default; any altered lighting is treated as a specific event state
 
-These corrections are technical/presentation decisions only. They do not approve a canonical university, room map, chapter premise, important character or final uncanny event.
+These corrections are technical/presentation decisions only. They do not approve a canonical university, room map, chapter premise, important character, or final special-event concept.
