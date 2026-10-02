@@ -36,7 +36,7 @@ src/performance/ScenePerformanceSnapshot.ts supports:
 - RAF FPS sampled across multiple animation frames
 - Babylon engine FPS via engine.getFps()
 - total scene meshes
-- active meshes, including object-renderer active meshes
+- scene active meshes as reported by `scene.getActiveMeshes().length`; object-renderer active meshes are not added separately
 - total vertices
 - active indices
 - active triangles when active indices form complete triangles
