@@ -183,3 +183,30 @@ When a lane reports complete, the coordinator should verify:
 Then decide integration order based on dependency/conflict risk.
 
 Do not assume all parallel branches can be merged blindly.
+
+## Coordinator ruling — next production milestone after current lane integration
+
+After Audio Asset Library V1 is completed, reviewed, and the current Performance / Event Flow / Audio / Character Animation lanes are integrated and pass the final integration gate, the next production milestone is:
+
+**GD4 Classroom Student-Life Vertical Slice V1**
+
+Production intent:
+- use one existing playable classroom inside the approved Giảng đường 4 map
+- compose existing systems into actual student-life gameplay instead of creating more disconnected foundations
+- first concrete missing gameplay capability is reliable seat selection + sit/stand
+- reuse existing InteractionSystem, CameraDirector, GameState, SaveService, ChoiceEventFlow, classroom production assets and approved audio when available
+- use generic/non-canon placeholders for any social beat; no important NPC identity or final dialogue may be invented
+- prove at least one small branch-and-reconverge interaction in the real runtime
+- keep the default gameplay HUD minimal and preserve current GD4 topology
+- verify the slice in the browser with tests, runtime/console/network checks and performance regression measurement
+
+Explicit non-goals for this milestone:
+- no fifth map and no new major map production
+- no Chapter 4+ work
+- no final protagonist or important NPC design
+- no large NPC simulation/schedule system
+- no speculative phone/timetable/life-sim framework
+- no expansion of the animation backlog without a concrete slice requirement
+- no runtime use of an audio candidate as approved shipping audio until the user has approved that asset
+
+This is a production-order ruling, not new narrative canon. Detailed scene dialogue, important NPCs and canonical story events remain user-approval-gated.
