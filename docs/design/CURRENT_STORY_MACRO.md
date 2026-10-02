@@ -1,4 +1,4 @@
-# CURRENT STORY MACRO — UET KHÔNG TỆ
+# CURRENT STORY MACRO — UETỐT
 
 Status: **APPROVED MACRO DIRECTION — CHAPTER DETAILS STILL TBD**
 Date: 2026-10-02
@@ -8,7 +8,7 @@ Narrative owner: **User / primary writer**
 
 Approved current title:
 
-> **UET không tệ**
+> **UETốt**
 
 The project follows the timeline of a UET student.
 

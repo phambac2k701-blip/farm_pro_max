@@ -2,7 +2,7 @@
 
 ## Status
 
-The project is in active implementation under the **UET không tệ** direction.
+The project is in active implementation under the **UETốt** direction.
 
 ## Product
 
@@ -49,7 +49,7 @@ Unchecked environment/character items are **not** permission to start them autom
 ## Narrative
 
 - [x] retired story package removed from active narrative source-of-truth
-- [x] UET không tệ identity approved
+- [x] UETốt identity approved
 - [x] Chapter 0 macro approved at high level
 - [x] Chapter 1 macro approved at high level
 - [x] Chapter 2 macro approved at high level

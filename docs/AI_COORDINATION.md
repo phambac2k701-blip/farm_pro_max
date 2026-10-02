@@ -1,4 +1,4 @@
-# AI COORDINATION — UET KHÔNG TỆ
+# AI COORDINATION — UETỐT
 
 Last updated: 2026-10-02
 

@@ -5,7 +5,7 @@ import type { GameStateSnapshot } from "../state/types";
 export const SAVE_SCHEMA_VERSION = 2 as const;
 
 // Keep the historical storage namespace for save compatibility only.
-// It is not the current product identity; the active project is "UET không tệ".
+// It is not the current product identity; the active project is "UETốt".
 export const DEFAULT_SAVE_STORAGE_KEY =
   "nguoi-thu-chin:production:v2";
 export const LEGACY_SAVE_STORAGE_KEY =

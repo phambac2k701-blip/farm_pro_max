@@ -4,11 +4,11 @@
 
 The repository is the project source of truth.
 
-All new sessions must resume from the current **UET không tệ** direction. Retired story packages/mechanics may remain only as explicitly historical material and must not be treated as current canon.
+All new sessions must resume from the current **UETốt** direction. Retired story packages/mechanics may remain only as explicitly historical material and must not be treated as current canon.
 
 ## Fresh-session resume instruction
 
-> Continue the **UET không tệ** project in `phambac2k701-blip/farm_pro_max`. Read the current source-of-truth docs first. Preserve the approved Giảng đường 4 checkpoint. Chapter 4+ is locked. Do not restore retired story canon or the removed automatic player respawn system.
+> Continue the **UETốt** project in `phambac2k701-blip/farm_pro_max`. Read the current source-of-truth docs first. Preserve the approved Giảng đường 4 checkpoint. Chapter 4+ is locked. Do not restore retired story canon or the removed automatic player respawn system.
 
 ## Required resume sequence
 
@@ -37,7 +37,7 @@ All new sessions must resume from the current **UET không tệ** direction. Ret
 
 ## Current identity
 
-- title: **UET không tệ**
+- title: **UETốt**
 - true-3D first-person student-life narrative game
 - UET student timeline in Hanoi
 - grounded ordinary-life baseline

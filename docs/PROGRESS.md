@@ -4,7 +4,7 @@ Last updated: 2026-10-02
 
 ## Current phase
 
-**UET KHÔNG TỆ — GD4 + NARRATIVE/PRODUCTION RECONCILIATION**
+**UETỐT — GD4 + NARRATIVE/PRODUCTION RECONCILIATION**
 
 ## Current branch
 
@@ -20,7 +20,7 @@ This branch starts from the approved GD4 checkpoint. The reconciliation pass upd
 
 Approved current title:
 
-**UET không tệ**
+**UETốt**
 
 Current direction:
 - first-person 3D student-life narrative game
@@ -138,7 +138,7 @@ Final integration gate:
 - production build: pass
 - `git diff --check`: pass
 - fresh Chrome/WebGPU GD4 smoke: pass
-- document title / viewport identity: **UET không tệ**
+- document title / viewport identity: **UETốt**
 - runtime exceptions: **0**
 - console errors: **0**
 - HTTP >=400: **0**

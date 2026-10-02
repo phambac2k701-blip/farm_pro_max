@@ -17,7 +17,7 @@ Do not silently convert placeholders into canon.
 ## Already approved in current direction
 
 As of 2026-10-02, the user has explicitly approved:
-- project title: **UET không tệ**
+- project title: **UETốt**
 - UET as the student-life setting/context
 - current macro limited to Chapters 0–3
 - Chapter 4+ locked as future-life material

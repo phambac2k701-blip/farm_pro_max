@@ -7,7 +7,7 @@ Owner: **User / primary writer**
 
 Project title:
 
-> **UET không tệ**
+> **UETốt**
 
 The project follows a UET student timeline in Hanoi.
 

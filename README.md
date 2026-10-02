@@ -1,10 +1,10 @@
-# UET không tệ
+# UETốt
 
 Browser-first true-3D first-person student-life narrative game set around a UET student timeline in Hanoi.
 
 ## Current project identity
 
-**UET không tệ** is the active project identity.
+**UETốt** is the active project identity.
 
 The current direction is grounded student life: ordinary movement, friends, food, classes as context, recurring places, humor, routines, small incidents and longer continuity across chapters.
 

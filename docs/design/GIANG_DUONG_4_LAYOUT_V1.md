@@ -6,7 +6,7 @@ Branch: `phase-v2/gd4-geometry-corrections`
 
 ## 1. Scope
 
-This is the approved Giảng đường 4 playable-world footprint for **UET không tệ**. Detailed chapter/event content remains separately approval-gated.
+This is the approved Giảng đường 4 playable-world footprint for **UETốt**. Detailed chapter/event content remains separately approval-gated.
 
 The old Chapter 1 campus prototype is **retired from the current runtime**. Its technical checkpoint remains preserved by `chapter-1-vertical-slice`.
 

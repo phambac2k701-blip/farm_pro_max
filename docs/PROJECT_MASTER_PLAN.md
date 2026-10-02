@@ -2,7 +2,7 @@
 
 ## Product definition
 
-**UET không tệ** is a browser-first true-3D first-person student-life narrative game following the timeline of a UET student in Hanoi.
+**UETốt** is a browser-first true-3D first-person student-life narrative game following the timeline of a UET student in Hanoi.
 
 The game is grounded in lived/observed student experience. It should feel like one continuing life rather than a collection of disconnected episodes.
 
@@ -132,7 +132,7 @@ The former automatic PlayerSafety/respawn controller is not part of the current 
 ## Identity boundaries
 
 Approved:
-- project title: **UET không tệ**
+- project title: **UETốt**
 - UET student-life setting/context
 
 Not automatically approved:
