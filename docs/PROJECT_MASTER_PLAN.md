@@ -78,14 +78,20 @@ Small choices may create short alternate reactions/micro-events and then reconve
 
 Major branching is reserved for decisions that genuinely justify long-term production cost.
 
-### 8. Modular world production
-Build the world as reusable modules/zones:
-- Giảng đường 4 map and room modules
-- classroom prefabs
-- corridors/stairs/transitions
-- campus/commuting/food/student-life locations
-- reusable props/furniture
-- later variants built from shared assets
+### 8. Four-map world production
+Current large-environment scope is deliberately limited to:
+1. Giảng đường 4
+2. Giảng đường Xuân Thủy
+3. Khu phố / phố trà đá
+4. Hòa Lạc / khu quân sự
+
+Large environments are authored shell-first. Smaller repeated props are produced through a separate reusable asset pipeline.
+
+See:
+- `docs/design/CURRENT_WORLD_MAP_SCOPE.md`
+- `docs/art/ASSET_PRODUCTION_PIPELINE_V2.md`
+
+Do not add new major maps without user approval.
 
 ## Current production focus
 
@@ -95,6 +101,8 @@ Art/environment:
 - active visible branch: `phase-v2/classroom-asset-production-v1`
 - user reports a larger Giảng đường 4 map update is currently in progress
 - do not interfere with that branch from narrative cleanup
+- current high-level world scope is four maps only: Giảng đường 4, Giảng đường Xuân Thủy, khu phố/trà đá, Hòa Lạc
+- small props/items are produced or sourced separately and then used to dress those maps
 
 Narrative:
 - maintain current macro for Chapters 0–3
