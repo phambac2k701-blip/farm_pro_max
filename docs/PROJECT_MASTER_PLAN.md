@@ -8,7 +8,7 @@ The primary material comes from grounded university-life experiences: entering u
 
 The current narrative scope should be built from experiences covering **the beginning of university through the protagonist's current second-year period**. Later years are not to be invented merely to fill a roadmap. If the project continues in the future, later student-life material may be added when there is enough lived, observed, researched, or intentionally fictionalized material to support it.
 
-The previous "Người Thứ Chín" narrative is retired and is not project canon.
+The previous narrative framework is retired and is not project canon.
 
 ## Product pillars
 
