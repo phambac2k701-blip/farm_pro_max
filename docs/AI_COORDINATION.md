@@ -124,7 +124,7 @@ Purpose:
 branch-and-reconverge technical foundation using existing GameState/Event systems.
 
 ### Lane 4 — Audio Asset Library V1
-Status: ACTIVE / WIP / NOT COMMITTED YET
+Status: PARKED / WIP PRESERVED / NOT A CURRENT BLOCKER
 
 Worktree:
 `C:\Users\Dell\projects\farm_pro_max_audio`
@@ -146,7 +146,7 @@ Ownership:
 - audio candidate asset folders
 
 Purpose:
-read project needs, shortlist roughly 3–5 suitable candidates per sound type, download legally usable candidates locally, label provenance/license/context, and leave all candidates pending user review.
+preserve the current candidate library, catalog, provenance and tooling for a later audio-production pass. Audio is no longer a dependency for current event design or initial event gameplay implementation.
 
 Must not:
 - implement playback/runtime integration
@@ -184,29 +184,34 @@ Then decide integration order based on dependency/conflict risk.
 
 Do not assume all parallel branches can be merged blindly.
 
-## Coordinator ruling — next production milestone after current lane integration
+## Coordinator ruling — current production priority
 
-After Audio Asset Library V1 is completed, reviewed, and the current Performance / Event Flow / Audio / Character Animation lanes are integrated and pass the final integration gate, the next production milestone is:
+User direction on 2026-10-02: **audio is deferred to a later/final production pass; complete the event set for the approved chapters first.**
 
-**GD4 Classroom Student-Life Vertical Slice V1**
+Current priority:
 
-Production intent:
-- use one existing playable classroom inside the approved Giảng đường 4 map
-- compose existing systems into actual student-life gameplay instead of creating more disconnected foundations
-- first concrete missing gameplay capability is reliable seat selection + sit/stand
-- reuse existing InteractionSystem, CameraDirector, GameState, SaveService, ChoiceEventFlow, classroom production assets and approved audio when available
-- use generic/non-canon placeholders for any social beat; no important NPC identity or final dialogue may be invented
-- prove at least one small branch-and-reconverge interaction in the real runtime
-- keep the default gameplay HUD minimal and preserve current GD4 topology
-- verify the slice in the browser with tests, runtime/console/network checks and performance regression measurement
+**Chapter Event Set V1 — Ch0, Ch1, Ch2, Ch3**
 
-Explicit non-goals for this milestone:
-- no fifth map and no new major map production
-- no Chapter 4+ work
-- no final protagonist or important NPC design
-- no large NPC simulation/schedule system
-- no speculative phone/timetable/life-sim framework
-- no expansion of the animation backlog without a concrete slice requirement
-- no runtime use of an audio candidate as approved shipping audio until the user has approved that asset
+Source:
+- `docs/design/CHAPTER_EVENT_SET_V1.md`
 
-This is a production-order ruling, not new narrative canon. Detailed scene dialogue, important NPCs and canonical story events remain user-approval-gated.
+Rules:
+- complete the structural event set before implementing chapter events
+- preserve the approved Ch0–Ch3 macro and four-map scope
+- do not invent Chapter 4+
+- important NPC identities, exact dialogue, major relationship arcs and exact lived-event canon remain user-approval-gated
+- small choices should branch locally and reconverge unless a user-approved long-term consequence justifies persistence
+- Audio Asset Library V1 remains preserved WIP and is not a blocker for event design/implementation
+- do not reset/clean the audio worktree merely because the lane is parked
+
+After the event set is reviewed, production should integrate **Choice Event Flow V1** and validate the first concrete gameplay event slice in the already-approved GD4 environment. Production order may begin with Chapter 2/GD4 because its playable map exists; this does not alter narrative chronology.
+
+The first gameplay slice should prove:
+- seat selection + sit/stand
+- ordinary object/room interaction
+- one real micro-branch and reconvergence
+- GameState/save integration where needed
+- clean camera/input ownership
+- runtime/browser verification and performance regression checks
+
+Audio selection and runtime audio integration occur later and must use only user-approved candidates.
