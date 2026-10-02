@@ -185,6 +185,31 @@ Do not reduce this to a "meme list". Analyze humor mechanisms such as:
 
 Concrete references must be date-appropriate and replaceable. When based on real controversies, separate verified fact from meme culture and avoid treating unverified claims as truth.
 
+## Scene-writing requirement for script/layout passes
+
+When the requested deliverable is a **script / interaction layout**, the output must contain the **actual playable story content**, not only event architecture.
+
+A valid scene draft includes, where relevant:
+- concrete scene progression;
+- character actions;
+- protagonist actions/reactions;
+- actual dialogue lines;
+- option-specific dialogue/reactions;
+- pauses / silence / timing;
+- NPC interruptions;
+- visual/environmental beats;
+- inaction behavior;
+- branch consequence and reconvergence;
+- scene transition.
+
+"Dialogue candidate" means real draft lines that a user can read and judge, not placeholders such as `NPC says something funny here`.
+
+The worker must write enough concrete content that a reader can follow **what actually happens from the beginning of the scene to the end**.
+
+This does **not** mean writing a separate prose short story or novelization. The story should live **inside the playable scene/script layout**.
+
+Architecture-only output is incomplete for a script/layout task.
+
 ## Two-worker narrative model
 
 Narrative production uses at most two narrative workers at once, plus the coordinator.
