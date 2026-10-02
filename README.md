@@ -29,9 +29,23 @@ Detailed chapter events are not approved yet.
 - controlled player choice without uncontrolled branching scope
 - desktop web first
 
+## Current world scope
+
+Current major maps:
+1. Giảng đường 4
+2. Giảng đường Xuân Thủy
+3. Khu phố / phố trà đá
+4. Hòa Lạc / khu quân sự
+
+Large maps are authored as scene-level environments. Small repeated items are built/sourced separately as reusable assets.
+
+See:
+- `docs/design/CURRENT_WORLD_MAP_SCOPE.md`
+- `docs/art/ASSET_PRODUCTION_PIPELINE_V2.md`
+
 ## Current parallel production
 
-Environment/art work is happening separately on the classroom/Giảng đường 4 production branch.
+Environment/art work is happening separately on the Giảng đường 4 production branch.
 
 Narrative cleanup/planning is kept on a separate branch to avoid interfering with that big update.
 
