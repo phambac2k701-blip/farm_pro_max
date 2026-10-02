@@ -1,9 +1,9 @@
 # VISUAL PRODUCTION WORKSHOP V1 — DRAFT
 
-Status: **DRAFT — WAITING FOR USER REVIEW**  
+Status: **APPROVED FOR P202 CLASSROOM ASSET PRODUCTION — broader campus expansion still approval/scope controlled**  
 Purpose: establish a reusable art-production pipeline capable of supporting the larger campus-life game.
 
-> **2026-10-02 direction update:** use `CH01_BRIGHT_BASELINE_VISUAL_GUIDE.md` for the current slice. Baseline student-life scenes are bright, ordinary and readable; dark/uncanny lighting is reserved for specific narrative events. Prior night/horror presentation is historical prototype evidence, not the default visual target.
+> **2026-10-02 direction update:** use `P202_GOLDEN_CLASSROOM_VISUAL_GUIDE.md` for the current slice. Baseline student-life scenes are bright, ordinary and readable; dark/uncanny lighting is reserved for specific narrative events. Prior night/horror presentation is historical prototype evidence, not the default visual target.
 
 ## 1. Goal
 
@@ -11,7 +11,7 @@ Move away from primary-player-facing scenes being dominated by procedural boxes 
 
 Target:
 
-> High-quality indie first-person campus RPG / psychological-uncanny game with believable Vietnamese environments, strong lighting, reusable assets, consistent materials, and production-safe browser performance.
+> High-quality indie first-person student-life game with believable Vietnamese environments, strong lighting, reusable assets, consistent materials, and production-safe browser performance. Any unusual/uncanny layer is secondary and event-specific.
 
 This is not a one-scene beautification task.
 
@@ -310,6 +310,4 @@ Generic technical kits and placeholders may proceed before approval.
 
 ## 15. Current status
 
-This workshop is a draft specification only.
-
-Do not begin a large art-production implementation until the user reviews/accepts the workshop scope and the GAME PIVOT V2 direction.
+This workshop is approved for the current P202 classroom production pass. Do not interpret that approval as authorization to build the entire campus or finalize institutional identity.
