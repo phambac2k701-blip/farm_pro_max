@@ -15,6 +15,8 @@ export interface InteractionCandidate {
   distance: number;
 }
 
+export type InteractionCancelRequestHandler = () => boolean;
+
 export function selectInteractionCandidate(
   candidates: readonly InteractionCandidate[],
 ): InteractionCandidate | null {
@@ -48,6 +50,7 @@ export class InteractionSystem {
   private target: InteractionCandidate | null = null;
   private canvas: HTMLCanvasElement | null = null;
   private inputAttached = false;
+  private cancelRequestHandler: InteractionCancelRequestHandler | null = null;
 
   private readonly onKeyDown = (event: KeyboardEvent): void => {
     if (event.repeat) {
@@ -61,7 +64,7 @@ export class InteractionSystem {
       return;
     }
 
-    if (event.code === "Escape" && this.cancel()) {
+    if (event.code === "Escape" && this.requestCancel()) {
       event.preventDefault();
     }
   };
@@ -72,7 +75,7 @@ export class InteractionSystem {
       this.canvas &&
       document.pointerLockElement !== this.canvas
     ) {
-      this.cancel();
+      this.requestCancel();
     }
   };
 
@@ -171,22 +174,35 @@ export class InteractionSystem {
     return this.stateMachine.cancel();
   }
 
+  setCancelRequestHandler(
+    handler: InteractionCancelRequestHandler | null,
+  ): void {
+    this.cancelRequestHandler = handler;
+  }
+
+  requestCancel(): boolean {
+    if (!this.stateMachine.activeInteraction) {
+      return false;
+    }
+
+    if (this.cancelRequestHandler?.()) {
+      return true;
+    }
+
+    return this.cancel();
+  }
+
   dispose(): void {
     this.cancel();
     this.detachInput();
     this.registry.clear();
+    this.cancelRequestHandler = null;
     this.target = null;
   }
 
   private acquireTarget(): InteractionCandidate | null {
-    const engine = this.scene.getEngine();
     const hits =
-      this.scene.multiPick(
-        engine.getRenderWidth() / 2,
-        engine.getRenderHeight() / 2,
-        undefined,
-        this.camera,
-      ) ?? [];
+      this.scene.multiPickWithRay(this.camera.getForwardRay()) ?? [];
 
     hits.sort((a, b) => a.distance - b.distance);
     const candidates: InteractionCandidate[] = [];

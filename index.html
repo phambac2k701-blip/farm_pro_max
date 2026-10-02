@@ -5,13 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#090a0d" />
     <title>Người Thứ Chín</title>
+    <link rel="icon" href="data:," />
   </head>
   <body>
     <canvas id="game-canvas" aria-label="Người Thứ Chín 3D viewport"></canvas>
     <div id="reticle" aria-hidden="true"></div>
     <div id="interaction-prompt" aria-live="polite" hidden></div>
+    <section id="inspection-overlay" aria-live="polite" hidden></section>
+    <section id="phone-overlay" aria-live="assertive" hidden></section>
     <div id="book-inspection-controls" aria-live="polite" hidden></div>
     <div id="evidence-notification" aria-live="polite" hidden></div>
+    <div id="subtitle" aria-live="polite" hidden></div>
+    <div id="chapter-transition" role="status" aria-live="polite" hidden></div>
     <div id="fatal-error" role="alert" hidden></div>
     <script type="module" src="/src/main.ts"></script>
   </body>

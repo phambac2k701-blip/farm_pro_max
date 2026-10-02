@@ -1,5 +1,9 @@
 # Narrative Bible
 
+> **SUPERSEDED FOR PRODUCTION NARRATIVE**
+>
+> This file is the pre-build foundation only. Production canon is now `NAR-CANON-v1.0 / NAR-PRODUCTION-v1.2` under `docs/narrative/`. Start with `docs/narrative/NARRATIVE_HANDOFF_METADATA.md` and `docs/narrative/00_NARRATIVE_STATUS.md`. If this file conflicts with the production package, the production package wins.
+
 ## Status
 Version 0.1 — pre-build narrative foundation. Specific names, exact dates, and final reveal details remain editable until their chapter enters production.
 

@@ -1,22 +1,31 @@
 ﻿# Progress
 
-Last updated: 2026-10-01
+Last updated: 2026-10-02
 
 ## Current phase
-**TECHNICAL PROTOTYPE V1 COMPLETE — INTENTIONAL STOP POINT**
+**CHAPTER 1 VERTICAL SLICE COMPLETE — INTENTIONAL STOP POINT**
 
 ## Current branch
-`prototype/bootstrap-3d`
+`integration/narrative-v1.2` (continues from the clean Technical Prototype V1 checkpoint plus the frozen narrative handoff)
 
 ## Current status
-**BAC-11 through BAC-21 are complete. TECHNICAL PROTOTYPE V1 COMPLETE.**
+**Technical Prototype V1 remains frozen. BAC-22 through BAC-31 are complete and verified. Chapter 1 presentation/readability, recovery/regression, deterministic KCR-A, the ninth-headset climax, final reflection, Chapter 2 boundary, clean-save browser traversal, automated gates and deployment all passed the Chapter 1 vertical-slice checkpoint.**
 
-Execution is intentionally stopped. There is **no active next implementation task**. Do not create BAC-22, start Chapter 1 production, write new narrative/content, expand the map, add mechanics, or begin the next production phase until the user provides a new explicit instruction/handoff.
+Completed production planning:
+- Narrative–Technical Gap Analysis: `docs/production/CH01_NARRATIVE_TECHNICAL_GAP_ANALYSIS.md`
+- Chapter 1 architecture: `docs/production/CH01_PRODUCTION_ARCHITECTURE.md`
+- dependency-ordered implementation plan: `docs/production/CH01_VERTICAL_SLICE_IMPLEMENTATION_PLAN.md`
+- Linear milestone: **CHAPTER 1 VERTICAL SLICE**
+- Linear execution issues: BAC-22 through BAC-31
 
-Branch: `prototype/bootstrap-3d`
-Last code/deployment commit before final checkpoint docs: `432a9a6`
-Final checkpoint ref: git tag `technical-prototype-v1` on the final checkpoint commit
-Preview: https://phambac2k701-blip.github.io/farm_pro_max/
+Current implementation focus: **none — intentional stop after BAC-31**.
+
+**CHAPTER 1 VERTICAL SLICE COMPLETE.** Do not start Chapter 2 gameplay without a new explicit user instruction and a new next-phase implementation plan.
+
+Technical Prototype V1 branch: `prototype/bootstrap-3d`
+Technical Prototype V1 checkpoint: tag `technical-prototype-v1`
+Chapter 1 vertical-slice checkpoint: tag `chapter-1-vertical-slice`
+Existing preview: https://phambac2k701-blip.github.io/farm_pro_max/
 
 ## Connected execution environment
 - GitHub: Full Access
@@ -320,9 +329,209 @@ Verification evidence: `docs/PLAYTEST_LOG.md`
 Handoff: `docs/TECHNICAL_PROTOTYPE_V1_HANDOFF.md`
 Preview: https://phambac2k701-blip.github.io/farm_pro_max/
 
-## STOP POINT
-**TECHNICAL PROTOTYPE V1 COMPLETE**
+## NARRATIVE HANDOFF IMPORT
+- Imported production narrative: `NAR-PRODUCTION-v1.2`.
+- Source baseline: `bcbruh/cottruyen@808cbb7` plus coherence repairs documented in `docs/narrative/NARRATIVE_HANDOFF_METADATA.md`.
+- Production source of truth: `docs/narrative/`.
+- Old `docs/NARRATIVE_BIBLE.md` is retained only as superseded foundation context.
 
-There is no active next task. Task 12 in the old implementation plan remains intentionally unchecked. Do not automatically start BAC-22, Chapter 1, narrative/content expansion, map expansion, new mechanics, foundation review, or the next production phase.
+## NEXT CHECKPOINT
+Intentional STOP POINT: **CHAPTER 1 VERTICAL SLICE COMPLETE**. BAC-30 and BAC-31 are complete. Do not start Chapter 2 gameplay. Resume only after a new explicit instruction and next-phase plan.
 
-Wait for a new explicit user instruction/handoff before doing any further execution.
+
+## BAC-22 production record
+Implemented:
+- stable Chapter 1 production checkpoint IDs from `ch01_gate` through `ch01_complete`
+- reusable monotonic `ChapterRuntime` with safe restore and idempotent completion
+- production SaveService schema v2 with explicit checkpoint payload
+- new production save key `nguoi-thu-chin:production:v2`
+- explicit reset of incompatible Technical Prototype V1 saves instead of migrating prototype-only evidence/reality state
+- bootstrap wiring so autosaves include the durable Chapter 1 checkpoint
+- dedicated Chapter 1 production CI workflow for test/typecheck/build verification
+
+Verification:
+- GitHub Actions run `36905157371` completed successfully
+- 12/12 test files pass
+- 38/38 tests pass
+- TypeScript typecheck passes
+- production Vite build passes
+- main bundle remains approximately 1.36 MB minified / 333 KB gzip; existing non-blocking chunk-size warning remains
+- remote browser runtime verification was unavailable during BAC-22 because the authorized desktop device was offline; BAC-22 changed state/persistence only and the automated gate covered the new behavior. Browser traversal verification is required during BAC-23 and later full gates.
+
+Decision:
+- schema v1 is intentionally reset, not migrated, because it can contain the non-production Hero Book evidence ID and prototype ninth-classroom-desk KCR state. Carrying those into production would violate the frozen narrative handoff.
+
+
+## BAC-23 production record
+Implemented:
+- typed production scene shell for gate, guard shelter, side entrance, corridor, classroom and PA room
+- durable checkpoint anchors plus trigger-zone references
+- eight PA stations in the before-state and disabled ninth station variant
+- Vietnamese-school signage, worn primitive materials, low fluorescent/night lighting
+- production bootstrap no longer depends on the Technical Prototype Hero Book or prototype ninth-desk KCR content
+- browser-smoke metadata for production scene readiness and station counts
+
+Verification:
+- Chapter 1 production scene tests cover required refs, checkpoint anchors, before-state station count, hidden ninth variant, production props and collision mesh presence
+- Linear BAC-23 is Done
+- later Chapter 1 CI runs include this scene shell in test/typecheck/build/browser boot smoke
+
+## BAC-24 production record
+Implemented:
+- InteractionBehaviorHost under existing InteractionSystem ownership
+- shared OpenableController for hinged doors and linear drawers
+- InspectionSession composed with CameraDirector
+- DocumentInspectionController and PhotoInspectionController
+- lightweight PickupController
+- runtime wiring for side entrance, classroom door, PA door, classroom drawer, roster, class photo and flashlight
+
+Verification:
+- production behavior and inspection tests pass
+- Linear BAC-24 is Done
+- existing InteractionSystem and CameraDirector regression tests remain in the green Chapter 1 CI gate
+
+## BAC-25 implementation record
+Implemented:
+- production Chapter 1 evidence catalog C01/C02/C03/C04/C05/C07/C14
+- resume-safe 00:17 opening phone sequence and phone UI
+- C01 awarded only after the player dismisses the completed message sequence
+- classroom roster tactile inspection awards C03
+- class-photo inspection plus explicit compare action awards C02
+- 09 drawer label reveal and C05 discovery after the roster contradiction
+- optional C14 timetable inspection without progression dependency
+- one-shot corridor-return bell state fact
+- checkpoint progression through old wing, classroom and PA threshold
+- restrained evidence notification using the existing DOM UI layer
+
+Automated verification:
+- CI run `36910173879` succeeded after the BAC-25 integration commits
+- 16 test files / 52 tests pass in that gate
+- TypeScript typecheck passes
+- production build passes
+- headless browser boot smoke passes
+- ChapterOneOpeningController and ClassroomEvidenceController have dedicated tests for resume, idempotence, compare gating and optional-clue independence
+
+Runtime verification:
+- real Chrome keyboard interaction completed on Windows at 125% display scale
+- opening phone awards C01 and restores look/locomotion
+- checkpoint progression reaches old wing, classroom pre-roster, post-C03 and PA pre-C07
+- roster inspection awards C03; photo + explicit C comparison awards C02
+- reopening the drawer after C03 reveals 09 and awards C05
+- C14 was deliberately skipped and did not block PA-threshold progression
+- repeated drawer interaction remained evidence-idempotent
+- Escape restored gameplay camera/locomotion; blur cleared held movement input
+- save/reload preserved C01/C02/C03/C05, opening completion, 09 reveal and `ch01_pa_pre_c07`
+- runtime discovered a 125%-DPI interaction targeting bug; `InteractionSystem` now uses `camera.getForwardRay()` + `multiPickWithRay()` instead of render-pixel screen coordinates
+- roster/photo inspection footers now expose the C comparison input
+- Chapter 1 production lighting received a readability pass while retaining the night/rain tone
+- local gate: 16 test files / 52 tests pass; TypeScript typecheck and production build pass
+- final remote Chapter 1 CI run `36915394107` passed on commit `6f2c0fc1a1e0d7ecfc90820b5ae4bbfd2538ae96`
+- Linear BAC-25 is Done
+
+
+## BAC-26 production record
+Implemented:
+- game-owned `AudioDirector` over Babylon AudioV2 with non-blocking async initialization and browser unlock
+- typed Chapter 1 audio manifest with ambience, object one-shots, spatial PA/headset cues and critical-clue captions
+- committed runtime WAV assets for rain, traffic, fluorescent hum, room tone, footsteps, phone vibration, doors/drawer/paper, corridor bell, PA hum, KCR click, headset breathing/chair scrape, relay click and Khang climax line
+- source/tooling record in `docs/production/CH01_AUDIO_ASSET_SOURCES.md`
+- audio failure path remains non-blocking for interaction and progression
+- no additional runtime audio dependency beyond Babylon
+
+Verification:
+- AudioDirector unit tests cover load, unlock, spatial attachment, captions, failed assets and disposal
+- browser runtime confirmed audio unlock, zero failed cues and HRTF spatial attachment for narrative-critical PA audio
+- TypeScript typecheck, test suite and production build pass
+- GitHub Actions run `36919060215` passed on the BAC-26 checkpoint
+- Linear BAC-26 is Done
+
+## BAC-27 production record
+Implemented:
+- tactile PA-room C04/C07 inspections
+- production KCR-A rule driven only by C03 + C07 knowledge
+- explicit post-ready inside → leave → re-enter PA sequence
+- ninth PA chair/headset variant replaces the prototype ninth-classroom-desk content
+- RealitySystem applier restores ninth station, collision and subtle warmer desk lamp deterministically
+- checkpoint progression through `ch01_kcr_ready` and `ch01_kcr_applied`
+- no popup announces the world change
+
+Verification:
+- dedicated KCR tests cover clue-alone insufficiency, readiness, re-entry gating, one-shot apply, ready-before-reentry reload and post-apply reload
+- real browser runtime confirmed the ninth station remains hidden while ready, appears only on re-entry, gains collision, warms the desk lamp and restores after reload
+- 19 test files / 63 tests passed at the BAC-27 local gate
+- GitHub Actions run `36924056149` passed on commit `b997d10`
+- Linear BAC-27 is Done
+
+## BAC-28 production record
+Implemented:
+- KCR-gated ninth-headset interaction with a dedicated invisible pick proxy over the authored headset geometry
+- one-shot spatial 2.5s breathing/chair-scrape proximity cue
+- deterministic `ChapterOneClimaxController`
+- climax sequence: headset inspection → phone “Đừng để nó thành người.” → pause → PA relay click → Khang line
+- captions for narrative-critical headset/PA/Khang audio
+- persisted climax steps and `ch01_climax_complete` checkpoint
+- `InspectionSession.onClosed` and interaction callback ordering fixes so camera restoration cannot overwrite the following phone input lock
+- large frame/focus-gap deltas are clamped to prevent skipping climax beats
+
+Verification:
+- runtime acquired the ninth headset through the normal InteractionSystem ray target path
+- Escape restores the inspection camera cleanly and hands control to the climax phone without a locomotion/look deadlock
+- focus loss leaves the sequence recoverable
+- reload after completion does not replay the climax
+- 20 test files / 68 tests pass; typecheck and production build pass
+- GitHub Actions run `36944163218` passed on commit `92f7b9d`
+- Linear BAC-28 is Done
+
+## BAC-29 production record
+Implemented:
+- subtle authored extra-shoulder representation on the corridor photo glass, with no monster model
+- post-climax distance gate and deterministic sustained direct-look disappearance
+- final relay-click hook when the reflection disappears
+- a real collision-enabled corridor exit door registered only after the climax
+- Chapter 1 completion occurs only when that exit is opened
+- completion sets `ch01_complete`, advances to `ch01_complete`, changes chapter state to `ch02`, locks gameplay and shows a Chapter 2 boundary card only
+- complete-save restore returns directly to the boundary and never starts Chapter 2 gameplay
+- shared OpenableController completion ordering hardened so follow-on input locks are not overwritten
+
+Verification:
+- runtime confirmed the reflection arms near the photo, remains subtle, vanishes on sustained direct look and stays gone
+- runtime acquired the final exit through InteractionSystem and completed the chapter only after the door opened
+- resulting state: chapter `ch02`, checkpoint `ch01_complete`, transition visible, locomotion/look locked
+- reload of the complete save shows only the boundary; opening, KCR, reflection and climax do not replay
+- 21 test files / 72 tests pass; TypeScript typecheck and production build pass
+- GitHub Actions run `36945489518` passed on commit `f5d3144`
+- Linear BAC-29 is Done
+
+## BAC-30 production record
+Completed:
+- bounded lighting/material/signage/readability polish, including raised exposure and practical light readability while retaining the night/rain horror palette
+- full save/recovery matrix across clean, mid-Ch1, pre-KCR, ready-before-reentry, post-KCR, inspection, climax, chapter-end and corrupt-save states
+- repeated interaction, Escape/cancel, focus-loss, collision, console/network and performance regression checks
+- representative actual-build screenshots and `docs/production/CH01_BAC30_REGRESSION.md`
+
+Verification:
+- 21 test files / 72 tests pass; TypeScript typecheck and production build pass
+- real Chromium regression matrix passed with no Critical/Important Chapter 1 regression
+- GitHub Actions runs `36947214132` and `36947218814` passed on commit `9e4918697663330e02bcfab226c2e823960dbab1`
+- Linear BAC-30 is Done
+
+## BAC-31 final checkpoint record
+Completed:
+- full automated gate rerun on the polished Chapter 1 build
+- clean-save real-browser traversal from opening through classroom evidence, PA investigation, KCR-A, ninth-headset climax, final reflection and Chapter 2 boundary
+- optional C14 intentionally skipped without blocking progression
+- final save persisted chapter `ch02` at checkpoint `ch01_complete`; gameplay remains locked at the boundary
+- machine-readable playthrough evidence saved at `docs/playtest/ch01-bac31-full-playthrough.json`
+- final gate record saved at `docs/production/CH01_BAC31_FINAL_GATE.md`
+- GitHub Pages deployment succeeded as run `36949570331`; public smoke returned HTTP 200 with `ch01-production-shell` ready, WebGL active, audio ready and fatal UI hidden
+
+Verification:
+- 21/21 test files and 72/72 tests pass
+- TypeScript typecheck passes
+- production Vite build passes
+- `git diff --check` passes
+- browser runtime exceptions: 0; console errors: 0; HTTP responses >=400: 0
+- AudioDirector unlocked after trusted input with 0 failed cues; one benign Chromium pre-gesture autoplay warning is recorded as non-blocking
+- foreground browser render sample remained approximately 60 FPS
+- **CHAPTER 1 VERTICAL SLICE COMPLETE**
+- STOP: do not start Chapter 2 gameplay without a new explicit instruction and next-phase plan

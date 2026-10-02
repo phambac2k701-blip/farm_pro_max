@@ -25,7 +25,16 @@ When the user is ready to build, a suitable command is:
    - docs/TECHNICAL_REQUIREMENTS.md
    - docs/ARCHITECTURE.md
    - docs/GAMEPLAY.md
-   - docs/NARRATIVE_BIBLE.md
+   - docs/NARRATIVE_BIBLE.md (legacy foundation pointer)
+   - docs/narrative/NARRATIVE_HANDOFF_METADATA.md
+   - docs/narrative/00_NARRATIVE_STATUS.md
+   - docs/narrative/04_CANON_STORY.md
+   - docs/narrative/08_CLUE_GRAPH.md
+   - docs/narrative/09_KCR_MATRIX.md
+   - docs/narrative/10_CHAPTER_BIBLE.md
+   - docs/narrative/11_CHAPTER_01_VERTICAL_SLICE.md
+   - docs/narrative/18_IMPLEMENTATION_HANDOFF.md
+   - docs/narrative/28_FULL_GAME_NARRATIVE_AUDIT.md
    - docs/ART_BIBLE.md
    - docs/AUDIO_BIBLE.md
    - docs/UI_UX.md
@@ -44,17 +53,20 @@ When the user is ready to build, a suitable command is:
 8. Update `docs/PROGRESS.md` after every meaningful milestone.
 
 ## Current intentional stop point
-Milestone: **TECHNICAL PROTOTYPE V1 COMPLETE**
+Milestone: **CHAPTER 1 VERTICAL SLICE COMPLETE**
 
-- BAC-11 through BAC-21 are complete.
-- Branch: `prototype/bootstrap-3d`.
+- BAC-11 through BAC-21 remain frozen as Technical Prototype V1.
+- BAC-22 through BAC-31 are complete and verified.
+- Current branch: `integration/narrative-v1.2`.
+- Final checkpoint ref: git tag `chapter-1-vertical-slice` (created on the final BAC-31 checkpoint commit).
 - Preview: https://phambac2k701-blip.github.io/farm_pro_max/
-- Final checkpoint ref: git tag `technical-prototype-v1` (created on the final checkpoint commit).
-- Verification evidence: `docs/PLAYTEST_LOG.md`.
-- Handoff: `docs/TECHNICAL_PROTOTYPE_V1_HANDOFF.md`.
-- There is no active implementation task after BAC-21.
-- Task 12 in the old foundation plan is intentionally **not started** at this checkpoint.
-- Do not create BAC-22, start Chapter 1, write new narrative/content, expand the map, add mechanics, or begin a production phase until the user supplies a new explicit instruction/handoff.
+- Chapter 1 final gate: `docs/production/CH01_BAC31_FINAL_GATE.md`.
+- Machine-readable clean-playthrough evidence: `docs/playtest/ch01-bac31-full-playthrough.json`.
+- BAC-30 presentation/recovery evidence: `docs/production/CH01_BAC30_REGRESSION.md`.
+- Production narrative source of truth remains `docs/narrative/`.
+- The implementation intentionally stops at the Chapter 2 boundary.
+- **Do not start Chapter 2 gameplay automatically.** A new explicit user instruction and next-phase plan are required.
+- Do not invent or rewrite canon during technical implementation. Narrative conflicts must be documented and resolved against the production package.
 
 ## End-of-session checkpoint
 Before ending a long work session, update `docs/PROGRESS.md` with:
