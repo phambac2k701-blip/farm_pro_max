@@ -34,8 +34,11 @@ export function applyChapterOneKcrAWorld(
   chapter.ninthPaStation.setEnabled(true);
   chapter.ninthPaStationCollider.checkCollisions = true;
 
-  chapter.paDeskLamp.intensity = 0.2;
-  chapter.paDeskLamp.diffuse = new Color3(0.9, 0.68, 0.44);
+  chapter.paRoomLight.intensity = 1.18;
+  chapter.paDeskLamp.intensity = 0.72;
+  chapter.paDeskLamp.diffuse = new Color3(0.94, 0.7, 0.42);
+  chapter.paKcrAccentLight.intensity = 1.0;
+  chapter.paKcrAccentLight.diffuse = new Color3(0.95, 0.6, 0.3);
 }
 
 export function createChapterOneRealitySystem(

@@ -5,6 +5,8 @@ Owner of final narrative/canon decisions: **User / primary writer**
 Base technical checkpoint: `chapter-1-vertical-slice`  
 Implementation status: **DESIGN ONLY — DO NOT START CHAPTER 2**
 
+> **2026-10-02 direction update:** the immediate playable target is now the room-focused, bright/readable student-life slice in `CH01_ROOM_FOCUSED_STUDENT_SLICE.md`. Normal gameplay is ordinary and well lit; dark/uncanny presentation is event-specific. This supersedes any interpretation of the old Chapter 1 night/horror presentation as the baseline for the new game.
+
 ## 1. Purpose of the pivot
 
 The project is pivoting from a mostly linear first-person psychological investigation/horror structure into a broader first-person narrative campus-life RPG / life-sim structure.

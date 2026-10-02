@@ -3,13 +3,33 @@ import { Vector3 } from "@babylonjs/core/Maths/math.vector";
 import { HemisphericLight } from "@babylonjs/core/Lights/hemisphericLight";
 import { PointLight } from "@babylonjs/core/Lights/pointLight";
 import { StandardMaterial } from "@babylonjs/core/Materials/standardMaterial";
-import { DynamicTexture } from "@babylonjs/core/Materials/Textures/dynamicTexture";
 import type { Mesh } from "@babylonjs/core/Meshes/mesh";
 import { MeshBuilder } from "@babylonjs/core/Meshes/meshBuilder";
 import { TransformNode } from "@babylonjs/core/Meshes/transformNode";
 import type { Scene } from "@babylonjs/core/scene";
 
+import { createSurfaceDecal } from "../../../../art/environment/DecalKit";
+import {
+  createCabinetModule,
+  createClassroomChairModule,
+  createClassroomDeskModule,
+  createConduitModule,
+  createDoorFrameModule,
+  createFittedDoorOpeningModule,
+  createFluorescentFixtureModule,
+  createNoticeBoardModule,
+  createRailingModule,
+  createSocketSwitchModule,
+} from "../../../../art/environment/EnvironmentKit";
+import { createProductionMaterialLibrary } from "../../../../art/materials/ProductionMaterialLibrary";
+import { createSignageV2 } from "../../../../art/signage/SignageV2";
 import type { ChapterOneCheckpointId } from "../state";
+
+// User-approved working room-number examples only. Final building topology remains TBD_USER_APPROVAL.
+export const CH01_WORKING_ROOM_SIGN_LABELS = {
+  classroom: "P 202",
+  adjacentRoom: "P 204",
+} as const;
 
 export interface ChapterOneDoorAssembly {
   hinge: TransformNode;
@@ -40,6 +60,7 @@ export interface ChapterOneProductionScene {
   paSpeakerProp: Mesh;
   paRoomLight: PointLight;
   paDeskLamp: PointLight;
+  paKcrAccentLight: PointLight;
   paReentryZone: Mesh;
   guardKeyRack: Mesh;
   guardNotebook: Mesh;
@@ -161,13 +182,13 @@ function createDoorAlongZ(
   const leaf = createBox(scene, `${name}-leaf`, {
     width: 0.075,
     height: 2.35,
-    depth: 1.3,
+    depth: 1.38,
     position: Vector3.Zero(),
     material,
     collisions: true,
   });
   leaf.parent = hinge;
-  leaf.position.set(0, 1.175, 0.65);
+  leaf.position.set(0, 1.175, 0.69);
   hinge.rotation.y = openRotationY;
 
   return {
@@ -176,54 +197,6 @@ function createDoorAlongZ(
     closedRotationY: 0,
     openRotationY,
   };
-}
-
-function createDesk(
-  scene: Scene,
-  name: string,
-  position: Vector3,
-  wood: StandardMaterial,
-  metal: StandardMaterial,
-): TransformNode {
-  const root = createAnchor(scene, name, position);
-
-  const top = createBox(scene, `${name}-top`, {
-    width: 1.1,
-    height: 0.08,
-    depth: 0.6,
-    position: new Vector3(0, 0.78, 0),
-    material: wood,
-  });
-  top.parent = root;
-
-  const blocker = createBox(scene, `${name}-collider`, {
-    width: 1.1,
-    height: 2.1,
-    depth: 0.6,
-    position: new Vector3(0, 1.05, 0),
-    material: metal,
-    collisions: true,
-  });
-  blocker.parent = root;
-  blocker.isVisible = false;
-
-  for (const [x, z] of [
-    [-0.46, -0.23],
-    [0.46, -0.23],
-    [-0.46, 0.23],
-    [0.46, 0.23],
-  ] as const) {
-    const leg = createBox(scene, `${name}-leg-${x}-${z}`, {
-      width: 0.04,
-      height: 0.72,
-      depth: 0.04,
-      position: new Vector3(x, 0.36, z),
-      material: metal,
-    });
-    leg.parent = root;
-  }
-
-  return root;
 }
 
 function createChair(
@@ -357,44 +330,17 @@ function createTextSign(
   rotationY: number,
   width = 1.8,
 ): Mesh {
-  const sign = MeshBuilder.CreatePlane(
-    name,
-    { width, height: 0.42 },
-    scene,
-  );
-  sign.position.copyFrom(position);
-  sign.rotation.y = rotationY;
-  sign.isPickable = false;
-
-  const signMaterial = new StandardMaterial(`${name}-material`, scene);
-  signMaterial.backFaceCulling = false;
-  signMaterial.diffuseColor = new Color3(0.78, 0.78, 0.68);
-  signMaterial.emissiveColor = new Color3(0.05, 0.05, 0.04);
-
-  const supportsCanvas =
-    typeof document !== "undefined" ||
-    typeof OffscreenCanvas !== "undefined";
-
-  if (supportsCanvas) {
-    const texture = new DynamicTexture(
-      `${name}-texture`,
-      { width: 768, height: 180 },
-      scene,
-      false,
-    );
-    const context = texture.getContext();
-    context.fillStyle = "#d8d2b7";
-    context.fillRect(0, 0, 768, 180);
-    context.fillStyle = "#20211f";
-    context.font = "600 54px Arial";
-    const textWidth = context.measureText(text).width;
-    context.fillText(text, Math.max(24, (768 - textWidth) / 2), 108);
-    texture.update(true);
-    signMaterial.diffuseTexture = texture;
-  }
-
-  sign.material = signMaterial;
-  return sign;
+  return createSignageV2(scene, name, {
+    text,
+    position,
+    rotationY,
+    width,
+    height: 0.42,
+    variant:
+      name.includes("school") || name.includes("old-wing")
+        ? "building"
+        : "room",
+  }).face;
 }
 
 function createFluorescentFixture(
@@ -415,45 +361,45 @@ function createFluorescentFixture(
 export function buildChapterOneScene(
   scene: Scene,
 ): ChapterOneProductionScene {
-  scene.clearColor = new Color4(0.016, 0.022, 0.03, 1);
-  scene.imageProcessingConfiguration.exposure = 1.3;
+  scene.clearColor = new Color4(0.17, 0.22, 0.25, 1);
+  scene.imageProcessingConfiguration.exposure = 1.4;
 
   const plaster = createMaterial(
     scene,
     "ch01-mat-aged-plaster",
-    new Color3(0.42, 0.4, 0.31),
+    new Color3(0.58, 0.56, 0.46),
   );
   const lowerWall = createMaterial(
     scene,
     "ch01-mat-lower-wall",
-    new Color3(0.12, 0.24, 0.21),
+    new Color3(0.22, 0.33, 0.29),
   );
   const wetConcrete = createMaterial(
     scene,
     "ch01-mat-wet-concrete",
-    new Color3(0.055, 0.065, 0.07),
+    new Color3(0.16, 0.18, 0.19),
   );
   wetConcrete.specularColor = new Color3(0.28, 0.31, 0.34);
 
   const tile = createMaterial(
     scene,
     "ch01-mat-tile",
-    new Color3(0.15, 0.16, 0.14),
+    new Color3(0.28, 0.29, 0.27),
   );
   const wood = createMaterial(
     scene,
     "ch01-mat-old-wood",
-    new Color3(0.28, 0.19, 0.11),
+    new Color3(0.36, 0.24, 0.13),
   );
   const metal = createMaterial(
     scene,
     "ch01-mat-painted-metal",
-    new Color3(0.13, 0.16, 0.17),
+    new Color3(0.2, 0.24, 0.25),
   );
   const plastic = createMaterial(
     scene,
     "ch01-mat-aged-plastic",
-    new Color3(0.43, 0.42, 0.36),
+    new Color3(0.52, 0.51, 0.45),
   );
   const paper = createMaterial(
     scene,
@@ -463,22 +409,43 @@ export function buildChapterOneScene(
   const fluorescent = createMaterial(
     scene,
     "ch01-mat-fluorescent",
-    new Color3(0.75, 0.82, 0.78),
-    new Color3(0.34, 0.39, 0.36),
+    new Color3(0.84, 0.9, 0.86),
+    new Color3(0.48, 0.54, 0.5),
   );
   const fadedBlue = createMaterial(
     scene,
     "ch01-mat-faded-blue",
-    new Color3(0.12, 0.2, 0.25),
+    new Color3(0.2, 0.31, 0.36),
   );
+  const v2Materials = createProductionMaterialLibrary(scene, "ch01-v2-mat");
 
   // Exterior approach and half-open gate.
   createBox(scene, "ch01-yard-ground", {
     width: 18,
     height: 0.1,
-    depth: 16,
-    position: new Vector3(0, -0.05, -16),
+    depth: 24,
+    position: new Vector3(0, -0.05, -20),
     material: wetConcrete,
+    collisions: true,
+  });
+  createRailingModule(scene, "ch01-v2-rear-railing", {
+    position: new Vector3(0, 0, -31.55),
+    length: 17.2,
+    material: v2Materials.paintedMetal,
+    collisions: true,
+  });
+  createRailingModule(scene, "ch01-v2-west-railing", {
+    position: new Vector3(-8.65, 0, -20),
+    rotationY: Math.PI / 2,
+    length: 23.1,
+    material: v2Materials.paintedMetal,
+    collisions: true,
+  });
+  createRailingModule(scene, "ch01-v2-east-railing", {
+    position: new Vector3(8.65, 0, -20),
+    rotationY: Math.PI / 2,
+    length: 23.1,
+    material: v2Materials.paintedMetal,
     collisions: true,
   });
 
@@ -612,7 +579,7 @@ export function buildChapterOneScene(
     "ch01-old-wing-sign",
     "DÃY NHÀ CŨ",
     new Vector3(2.3, 2.65, -7.93),
-    Math.PI,
+    0,
     1.7,
   );
 
@@ -708,18 +675,61 @@ export function buildChapterOneScene(
   createTextSign(
     scene,
     "ch01-classroom-sign",
-    "PHÒNG HỌC CŨ",
+    CH01_WORKING_ROOM_SIGN_LABELS.classroom,
     new Vector3(1.43, 2.55, 0.5),
-    -Math.PI / 2,
-    1.5,
+    Math.PI / 2,
+    0.95,
   );
   createTextSign(
     scene,
     "ch01-pa-room-sign",
-    "PHÒNG PHÁT THANH",
+    CH01_WORKING_ROOM_SIGN_LABELS.adjacentRoom,
     new Vector3(1.43, 2.55, 9.2),
+    Math.PI / 2,
+    0.95,
+  );
+
+  createDoorFrameModule(scene, "ch01-v2-side-entrance-frame", {
+    position: new Vector3(0, 0, -7.92),
+    width: 1.55,
+    height: 2.48,
+    material: v2Materials.paintedMetal,
+  });
+  createFittedDoorOpeningModule(scene, "ch01-v2-classroom-door-opening", {
+    position: new Vector3(1.5, 0, 0.5),
+    rotationY: Math.PI / 2,
+    openingWidth: 1.4,
+    wallHeight: 3.2,
+    doorHeight: 2.35,
+    wallDepth: 0.12,
+    frameMaterial: v2Materials.paintedMetal,
+    wallMaterial: lowerWall,
+  });
+  createFittedDoorOpeningModule(scene, "ch01-v2-pa-door-opening", {
+    position: new Vector3(1.5, 0, 9.2),
+    rotationY: Math.PI / 2,
+    openingWidth: 1.4,
+    wallHeight: 3.2,
+    doorHeight: 2.35,
+    wallDepth: 0.12,
+    frameMaterial: v2Materials.paintedMetal,
+    wallMaterial: lowerWall,
+  });
+  createNoticeBoardModule(
+    scene,
+    "ch01-v2-corridor-notice-board",
+    new Vector3(-1.43, 1.65, 1.9),
     -Math.PI / 2,
-    1.85,
+    v2Materials.woodLaminate,
+    v2Materials.paperCardboard,
+  );
+  createConduitModule(
+    scene,
+    "ch01-v2-corridor-conduit",
+    new Vector3(-1.43, 2.35, 5.0),
+    0,
+    5.6,
+    v2Materials.paintedMetal,
   );
 
   // Classroom.
@@ -764,32 +774,76 @@ export function buildChapterOneScene(
   });
 
   const studentDesks: TransformNode[] = [];
-  const classroomColumns = [4.2, 6.8];
-  const classroomRows = [-1.7, -0.25, 1.2, 2.65];
-  for (let row = 0; row < classroomRows.length; row += 1) {
-    for (let column = 0; column < classroomColumns.length; column += 1) {
-      studentDesks.push(
-        createDesk(
-          scene,
-          `ch01-student-desk-${row + 1}-${column + 1}`,
-          new Vector3(
-            classroomColumns[column],
-            0,
-            classroomRows[row],
-          ),
-          wood,
-          metal,
-        ),
-      );
-    }
-  }
+  const classroomSeatPlan = [
+    { x: 4.12, z: -1.58, rotationY: -0.025 },
+    { x: 6.68, z: -1.62, rotationY: 0.018 },
+    { x: 4.18, z: -0.16, rotationY: 0.016 },
+    { x: 6.62, z: -0.2, rotationY: -0.022 },
+    { x: 4.1, z: 1.24, rotationY: -0.018 },
+    { x: 6.72, z: 1.18, rotationY: 0.024 },
+    { x: 4.2, z: 2.56, rotationY: 0.02 },
+    { x: 6.64, z: 2.52, rotationY: -0.016 },
+  ] as const;
+  const classroomDeskMaterials = {
+    top: v2Materials.woodLaminate,
+    frame: v2Materials.paintedMetal,
+  };
 
-  const teacherDesk = createDesk(
+  classroomSeatPlan.forEach((seat, index) => {
+    const desk = createClassroomDeskModule(
+      scene,
+      `ch01-student-desk-${index + 1}`,
+      new Vector3(seat.x, 0, seat.z),
+      classroomDeskMaterials,
+      0.96,
+      seat.rotationY,
+    );
+    studentDesks.push(desk);
+
+    createClassroomChairModule(
+      scene,
+      `ch01-v2-student-chair-${index + 1}`,
+      new Vector3(seat.x, 0, seat.z - 0.64),
+      classroomDeskMaterials,
+      seat.rotationY,
+    );
+  });
+
+  const teacherDesk = createClassroomDeskModule(
     scene,
     "ch01-teacher-desk",
     new Vector3(7.6, 0, 3.2),
-    wood,
-    metal,
+    classroomDeskMaterials,
+    1.05,
+  );
+
+  createCabinetModule(
+    scene,
+    "ch01-v2-classroom-cabinet",
+    new Vector3(8.82, 0, -2.72),
+    v2Materials.paintedMetal,
+    v2Materials.woodLaminate,
+  );
+  createSocketSwitchModule(
+    scene,
+    "ch01-v2-classroom-switch",
+    new Vector3(3.0, 1.22, -2.93),
+    0,
+    v2Materials.plastic,
+  );
+  createFluorescentFixtureModule(
+    scene,
+    "ch01-v2-classroom-fixture-a",
+    new Vector3(4.25, 3.08, 0.5),
+    v2Materials.paintedMetal,
+    fluorescent,
+  );
+  createFluorescentFixtureModule(
+    scene,
+    "ch01-v2-classroom-fixture-b",
+    new Vector3(6.75, 3.08, 0.5),
+    v2Materials.paintedMetal,
+    fluorescent,
   );
 
   const classroomDrawer = createBox(scene, "ch01-classroom-drawer", {
@@ -900,6 +954,35 @@ export function buildChapterOneScene(
     material: plaster,
     collisions: true,
   });
+
+  createCabinetModule(
+    scene,
+    "ch01-v2-pa-cabinet",
+    new Vector3(2.15, 0, 12.18),
+    v2Materials.paintedMetal,
+    v2Materials.woodLaminate,
+  );
+  createSocketSwitchModule(
+    scene,
+    "ch01-v2-pa-switch",
+    new Vector3(2.15, 1.2, 6.57),
+    0,
+    v2Materials.plastic,
+  );
+  createFluorescentFixtureModule(
+    scene,
+    "ch01-v2-pa-fixture-a",
+    new Vector3(4.2, 3.08, 9.4),
+    v2Materials.paintedMetal,
+    fluorescent,
+  );
+  createFluorescentFixtureModule(
+    scene,
+    "ch01-v2-pa-fixture-b",
+    new Vector3(6.8, 3.08, 9.4),
+    v2Materials.paintedMetal,
+    fluorescent,
+  );
 
   const paStations: TransformNode[] = [];
   const paColumns = [3.0, 4.7, 6.4, 8.1];
@@ -1114,24 +1197,65 @@ export function buildChapterOneScene(
   paReentryZone.isVisible = false;
   paReentryZone.isPickable = false;
 
-  // Low, practical fluorescent lighting.
+  createSurfaceDecal(scene, "ch01-v2-guard-water-stain", {
+    position: new Vector3(-4.95, 1.25, -14.205),
+    rotation: new Vector3(0, 0, 0),
+    width: 0.72,
+    height: 0.9,
+    kind: "water-stain",
+    alpha: 0.14,
+  });
+  createSurfaceDecal(scene, "ch01-v2-corridor-scuff", {
+    position: new Vector3(-1.435, 0.55, 3.0),
+    rotation: new Vector3(0, -Math.PI / 2, 0),
+    width: 1.2,
+    height: 0.3,
+    kind: "scuff",
+    alpha: 0.15,
+  });
+  createSurfaceDecal(scene, "ch01-v2-classroom-tape-mark", {
+    position: new Vector3(5.0, 1.72, -2.935),
+    rotation: new Vector3(0, 0, 0),
+    width: 0.46,
+    height: 0.12,
+    kind: "tape-mark",
+    alpha: 0.2,
+  });
+  createSurfaceDecal(scene, "ch01-v2-classroom-edge-wear", {
+    position: new Vector3(9.435, 0.85, 1.75),
+    rotation: new Vector3(0, Math.PI / 2, 0),
+    width: 0.72,
+    height: 0.18,
+    kind: "edge-wear",
+    alpha: 0.13,
+  });
+  createSurfaceDecal(scene, "ch01-v2-pa-small-crack", {
+    position: new Vector3(7.2, 2.15, 12.435),
+    rotation: new Vector3(0, Math.PI, 0),
+    width: 0.5,
+    height: 0.22,
+    kind: "small-crack",
+    alpha: 0.14,
+  });
+
+  // Bright, ordinary baseline. Uncanny/darker changes belong to authored events.
   const ambience = new HemisphericLight(
-    "ch01-night-ambient",
+    "ch01-baseline-ambient",
     new Vector3(0.2, 1, -0.15),
     scene,
   );
-  ambience.intensity = 0.68;
-  ambience.diffuse = new Color3(0.48, 0.56, 0.62);
-  ambience.groundColor = new Color3(0.075, 0.085, 0.09);
+  ambience.intensity = 1.15;
+  ambience.diffuse = new Color3(0.78, 0.8, 0.76);
+  ambience.groundColor = new Color3(0.26, 0.28, 0.26);
 
   const entranceLight = new PointLight(
     "ch01-entrance-light",
     new Vector3(0, 3.1, -18.3),
     scene,
   );
-  entranceLight.intensity = 0.82;
-  entranceLight.range = 16;
-  entranceLight.diffuse = new Color3(0.62, 0.72, 0.68);
+  entranceLight.intensity = 1.45;
+  entranceLight.range = 19;
+  entranceLight.diffuse = new Color3(0.76, 0.82, 0.76);
   createFluorescentFixture(
     scene,
     "ch01-entrance-fluorescent",
@@ -1139,14 +1263,23 @@ export function buildChapterOneScene(
     fluorescent,
   );
 
+  const exteriorFill = new PointLight(
+    "ch01-v2-exterior-fill",
+    new Vector3(0, 1.55, -26.0),
+    scene,
+  );
+  exteriorFill.intensity = 0.78;
+  exteriorFill.range = 15;
+  exteriorFill.diffuse = new Color3(0.58, 0.66, 0.7);
+
   const shelterLight = new PointLight(
     "ch01-shelter-light",
     new Vector3(-4.4, 2.45, -15.7),
     scene,
   );
-  shelterLight.intensity = 1.0;
-  shelterLight.range = 9.5;
-  shelterLight.diffuse = new Color3(0.74, 0.8, 0.69);
+  shelterLight.intensity = 1.45;
+  shelterLight.range = 11.5;
+  shelterLight.diffuse = new Color3(0.82, 0.84, 0.72);
   createFluorescentFixture(
     scene,
     "ch01-shelter-fluorescent",
@@ -1160,9 +1293,9 @@ export function buildChapterOneScene(
       new Vector3(0, 2.75, z),
       scene,
     );
-    light.intensity = index === 2 ? 0.68 : 0.9;
-    light.range = 8.5;
-    light.diffuse = new Color3(0.66, 0.76, 0.7);
+    light.intensity = index === 2 ? 1.18 : index === 3 ? 1.28 : 1.35;
+    light.range = 10.2;
+    light.diffuse = new Color3(0.76, 0.82, 0.76);
     createFluorescentFixture(
       scene,
       `ch01-corridor-fluorescent-${index + 1}`,
@@ -1176,27 +1309,63 @@ export function buildChapterOneScene(
     new Vector3(5.5, 2.75, 0.5),
     scene,
   );
-  classroomLight.intensity = 1.35;
-  classroomLight.range = 11;
-  classroomLight.diffuse = new Color3(0.7, 0.76, 0.68);
+  classroomLight.intensity = 2.35;
+  classroomLight.range = 14;
+  classroomLight.diffuse = new Color3(0.9, 0.88, 0.78);
+
+  const classroomPracticalA = new PointLight(
+    "ch01-v2-classroom-practical-a",
+    new Vector3(3.8, 2.35, -1.4),
+    scene,
+  );
+  classroomPracticalA.intensity = 1.05;
+  classroomPracticalA.range = 7.4;
+  classroomPracticalA.diffuse = new Color3(0.82, 0.86, 0.79);
+
+  const classroomPracticalB = new PointLight(
+    "ch01-v2-classroom-practical-b",
+    new Vector3(7.15, 2.25, 2.0),
+    scene,
+  );
+  classroomPracticalB.intensity = 0.98;
+  classroomPracticalB.range = 7.6;
+  classroomPracticalB.diffuse = new Color3(0.84, 0.83, 0.75);
 
   const paRoomLight = new PointLight(
     "ch01-pa-room-light",
     new Vector3(5.5, 2.65, 9.5),
     scene,
   );
-  paRoomLight.intensity = 0.85;
-  paRoomLight.range = 10;
-  paRoomLight.diffuse = new Color3(0.65, 0.71, 0.67);
+  paRoomLight.intensity = 1.75;
+  paRoomLight.range = 13;
+  paRoomLight.diffuse = new Color3(0.8, 0.82, 0.76);
 
   const paDeskLamp = new PointLight(
     "ch01-pa-desk-lamp",
     new Vector3(6.4, 1.25, 10.45),
     scene,
   );
-  paDeskLamp.intensity = 0.12;
-  paDeskLamp.range = 4.8;
-  paDeskLamp.diffuse = new Color3(0.74, 0.66, 0.48);
+  paDeskLamp.intensity = 0.45;
+  paDeskLamp.range = 6;
+  paDeskLamp.diffuse = new Color3(0.84, 0.72, 0.52);
+
+  const paWallPractical = new PointLight(
+    "ch01-v2-pa-wall-practical",
+    new Vector3(2.4, 2.05, 10.8),
+    scene,
+  );
+  paWallPractical.intensity = 0.72;
+  paWallPractical.range = 6.4;
+  paWallPractical.diffuse = new Color3(0.78, 0.8, 0.73);
+
+  const paKcrAccentLight = new PointLight(
+    "ch01-v2-pa-kcr-accent",
+    new Vector3(8.45, 1.35, 11.45),
+    scene,
+  );
+  paKcrAccentLight.intensity = 0.02;
+  paKcrAccentLight.range = 6.5;
+  paKcrAccentLight.diffuse = new Color3(0.82, 0.62, 0.38);
 
   const checkpointPositions: Record<ChapterOneCheckpointId, Vector3> = {
     ch01_gate: new Vector3(0, 0.01, -22.2),
@@ -1239,6 +1408,7 @@ export function buildChapterOneScene(
     paSpeakerProp,
     paRoomLight,
     paDeskLamp,
+    paKcrAccentLight,
     paReentryZone,
     guardKeyRack,
     guardNotebook,

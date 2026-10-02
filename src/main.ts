@@ -59,6 +59,7 @@ import { DocumentInspectionController } from "./interaction/inspection/DocumentI
 import { InspectionOverlayView } from "./interaction/inspection/InspectionOverlayView";
 import { PhotoInspectionController } from "./interaction/inspection/PhotoInspectionController";
 import { PlayerController } from "./player/PlayerController";
+import { PlayerSafetyController } from "./player/PlayerSafetyController";
 import "./style.css";
 
 async function bootstrap(): Promise<void> {
@@ -210,6 +211,26 @@ async function bootstrap(): Promise<void> {
     );
     const cameraDirector = new CameraDirector(player.camera, player);
     const behaviorHost = new InteractionBehaviorHost(interaction);
+    const playerSafety = new PlayerSafetyController({
+      player,
+      bounds: {
+        minX: -9.5,
+        maxX: 10,
+        minY: -2.5,
+        maxY: 6,
+        minZ: -33,
+        maxZ: 14.5,
+      },
+      getRecoveryPosition: () =>
+        chapter.checkpoints[chapterRuntime.currentCheckpoint]?.position.clone() ??
+        chapter.spawn.clone(),
+      recoveryCooldownSeconds: 0.25,
+      onRecover(from, to) {
+        canvas.dataset.safetyRecovery =
+          `${from.x.toFixed(2)},${from.y.toFixed(2)},${from.z.toFixed(2)}` +
+          `->${to.x.toFixed(2)},${to.y.toFixed(2)},${to.z.toFixed(2)}`;
+      },
+    });
     let classroomEvidence: ClassroomEvidenceController | null = null;
 
     const registerDoor = (
@@ -763,6 +784,7 @@ async function bootstrap(): Promise<void> {
       const deltaSeconds = engineAdapter.engine.getDeltaTime() / 1000;
 
       player.update(deltaSeconds);
+      playerSafety.update(deltaSeconds);
       cameraDirector.update(deltaSeconds);
       behaviorHost.update(deltaSeconds);
       opening.update(deltaSeconds);

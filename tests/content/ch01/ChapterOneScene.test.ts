@@ -3,7 +3,10 @@ import { Scene } from "@babylonjs/core/scene";
 import { describe, expect, it } from "vitest";
 
 import { CH01_CHECKPOINTS } from "../../../src/content/chapters/ch01/state";
-import { buildChapterOneScene } from "../../../src/content/chapters/ch01/scene/buildChapterOneScene";
+import {
+  buildChapterOneScene,
+  CH01_WORKING_ROOM_SIGN_LABELS,
+} from "../../../src/content/chapters/ch01/scene/buildChapterOneScene";
 
 describe("Chapter 1 production scene shell", () => {
   it("builds every required production zone and checkpoint anchor", () => {
@@ -32,21 +35,45 @@ describe("Chapter 1 production scene shell", () => {
     }
 
     expect(scene.imageProcessingConfiguration.exposure).toBeCloseTo(
-      1.3,
+      1.4,
       6,
     );
     const entranceLight = scene.getLightByName("ch01-entrance-light");
-    expect(entranceLight?.intensity).toBeCloseTo(0.82, 6);
-    expect(entranceLight?.range).toBeCloseTo(16, 6);
-    expect(scene.getLightByName("ch01-night-ambient")?.intensity).toBeCloseTo(
-      0.68,
+    expect(entranceLight?.intensity).toBeCloseTo(1.45, 6);
+    expect(entranceLight?.range).toBeCloseTo(19, 6);
+    expect(scene.getLightByName("ch01-baseline-ambient")?.intensity).toBeCloseTo(
+      1.15,
       6,
     );
     expect(scene.getLightByName("ch01-classroom-light")?.intensity).toBeCloseTo(
-      1.35,
+      2.35,
       6,
     );
-    expect(scene.getMeshByName("ch01-school-sign")?.rotation.y).toBe(0);
+    expect(scene.getTransformNodeByName("ch01-school-sign-root")?.rotation.y).toBe(0);
+    expect(scene.getTransformNodeByName("ch01-old-wing-sign-root")?.rotation.y).toBe(0);
+    expect(scene.getTransformNodeByName("ch01-classroom-sign-root")?.rotation.y).toBeCloseTo(Math.PI / 2, 6);
+    expect(scene.getTransformNodeByName("ch01-pa-room-sign-root")?.rotation.y).toBeCloseTo(Math.PI / 2, 6);
+    expect(scene.getMeshByName("ch01-school-sign-backing")).not.toBeNull();
+    expect(scene.getMeshByName("ch01-school-sign")?.material?.backFaceCulling).toBe(true);
+    expect(CH01_WORKING_ROOM_SIGN_LABELS).toEqual({
+      classroom: "P 202",
+      adjacentRoom: "P 204",
+    });
+    expect(
+      scene.getMeshByName(
+        "ch01-v2-classroom-door-opening-header-infill",
+      )?.checkCollisions,
+    ).toBe(true);
+    expect(chapter.studentDesks).toHaveLength(8);
+    expect(
+      scene.getMeshByName("ch01-student-desk-1-collider")?.isVisible,
+    ).toBe(false);
+    expect(
+      scene.getMeshByName("ch01-student-desk-1-collider")?.checkCollisions,
+    ).toBe(true);
+    expect(
+      scene.getMeshByName("ch01-v2-student-chair-1-back")?.position.z,
+    ).toBeLessThan(0);
 
     scene.dispose();
     engine.dispose();
@@ -66,8 +93,9 @@ describe("Chapter 1 production scene shell", () => {
     expect(chapter.ninthPaStationCollider.checkCollisions).toBe(true);
     expect(chapter.ninthCable.isEnabled()).toBe(true);
     expect(chapter.paReentryZone.isVisible).toBe(false);
-    expect(chapter.paRoomLight.intensity).toBeCloseTo(0.85, 6);
-    expect(chapter.paDeskLamp.intensity).toBeCloseTo(0.12, 6);
+    expect(chapter.paRoomLight.intensity).toBeCloseTo(1.75, 6);
+    expect(chapter.paDeskLamp.intensity).toBeCloseTo(0.45, 6);
+    expect(chapter.paKcrAccentLight.intensity).toBeCloseTo(0.02, 6);
 
     scene.dispose();
     engine.dispose();

@@ -136,21 +136,33 @@ export class PlayerController {
       const yaw = this.camera.rotation.y;
       const forward = new Vector3(Math.sin(yaw), 0, Math.cos(yaw));
       const right = new Vector3(Math.cos(yaw), 0, -Math.sin(yaw));
-      const movement = forward
+      const horizontalMovement = forward
         .scale(axes.z)
         .addInPlace(right.scale(axes.x))
         .scaleInPlace(this.movementSpeed * safeDelta);
 
-      movement.y = -this.groundStickSpeed * safeDelta;
-      this.body.moveWithCollisions(movement);
-    } else {
-      this.body.moveWithCollisions(
-        new Vector3(0, -this.groundStickSpeed * safeDelta, 0),
-      );
+      if (horizontalMovement.lengthSquared() > 0) {
+        this.body.moveWithCollisions(horizontalMovement);
+      }
     }
 
-    this.camera.position.copyFrom(this.body.position);
-    this.camera.position.y += this.eyeHeight;
+    this.body.moveWithCollisions(
+      new Vector3(0, -this.groundStickSpeed * safeDelta, 0),
+    );
+
+    this.syncCameraToBody();
+  }
+
+  teleport(feetPosition: Vector3): void {
+    if (this.body) {
+      this.body.position.copyFrom(feetPosition);
+      this.body.computeWorldMatrix(true);
+    } else {
+      this.camera.position.copyFrom(feetPosition);
+    }
+
+    this.syncCameraToBody();
+    this.input.clearTransientInput();
   }
 
   getFeetPosition(): Vector3 {
@@ -165,6 +177,15 @@ export class PlayerController {
     this.input.detach();
     this.body?.dispose();
     this.camera.dispose();
+  }
+
+  private syncCameraToBody(): void {
+    if (!this.body) {
+      return;
+    }
+
+    this.camera.position.copyFrom(this.body.position);
+    this.camera.position.y += this.eyeHeight;
   }
 
   private updateLook(): void {

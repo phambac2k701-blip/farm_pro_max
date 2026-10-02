@@ -170,8 +170,10 @@ describe("Chapter 1 KCR-A", () => {
     expect(controller.restore()).toBe(1);
     expect(chapter.ninthPaStation.isEnabled()).toBe(true);
     expect(chapter.ninthPaStationCollider.checkCollisions).toBe(true);
-    expect(chapter.paDeskLamp.intensity).toBeCloseTo(0.2, 6);
-    expect(chapter.paDeskLamp.diffuse.r).toBeCloseTo(0.9, 6);
+    expect(chapter.paRoomLight.intensity).toBeCloseTo(1.18, 6);
+    expect(chapter.paDeskLamp.intensity).toBeCloseTo(0.72, 6);
+    expect(chapter.paDeskLamp.diffuse.r).toBeCloseTo(0.94, 6);
+    expect(chapter.paKcrAccentLight.intensity).toBeCloseTo(1.0, 6);
     expect(chapterRuntime.currentCheckpoint).toBe("ch01_kcr_applied");
     expect(onApplied).not.toHaveBeenCalled();
 

@@ -3,6 +3,8 @@
 Status: **DRAFT — WAITING FOR USER REVIEW**  
 Purpose: establish a reusable art-production pipeline capable of supporting the larger campus-life game.
 
+> **2026-10-02 direction update:** use `CH01_BRIGHT_BASELINE_VISUAL_GUIDE.md` for the current slice. Baseline student-life scenes are bright, ordinary and readable; dark/uncanny lighting is reserved for specific narrative events. Prior night/horror presentation is historical prototype evidence, not the default visual target.
+
 ## 1. Goal
 
 Move away from primary-player-facing scenes being dominated by procedural boxes + flat StandardMaterial placeholders.

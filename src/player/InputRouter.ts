@@ -50,6 +50,8 @@ export class InputRouter {
   private lookY = 0;
   private canvas: HTMLCanvasElement | null = null;
   private attached = false;
+  private hadPointerLock = false;
+  private pointerLockSuspended = false;
 
   private readonly onKeyDown = (event: KeyboardEvent): void => {
     if (MOVEMENT_CODES.has(event.code)) {
@@ -75,9 +77,11 @@ export class InputRouter {
   };
 
   private readonly onPointerLockChange = (): void => {
-    if (!this.canvas || document.pointerLockElement !== this.canvas) {
-      this.clearTransientInput();
+    if (!this.canvas) {
+      return;
     }
+
+    this.syncPointerLockState(document.pointerLockElement === this.canvas);
   };
 
   private readonly onBlur = (): void => {
@@ -123,6 +127,8 @@ export class InputRouter {
     this.canvas?.removeEventListener("click", this.onCanvasClick);
     this.canvas = null;
     this.attached = false;
+    this.hadPointerLock = false;
+    this.pointerLockSuspended = false;
     this.clearTransientInput();
   }
 
@@ -138,7 +144,25 @@ export class InputRouter {
     }
   }
 
+  syncPointerLockState(locked: boolean): void {
+    if (locked) {
+      this.hadPointerLock = true;
+      this.pointerLockSuspended = false;
+      this.clearLookInput();
+      return;
+    }
+
+    this.clearLookInput();
+    if (this.hadPointerLock) {
+      this.pointerLockSuspended = true;
+    }
+  }
+
   getMovementAxes(): MovementAxes {
+    if (this.pointerLockSuspended) {
+      return { x: 0, z: 0 };
+    }
+
     return calculateMovementAxes({
       forward:
         this.pressedKeys.has("KeyW") || this.pressedKeys.has("ArrowUp"),
@@ -160,6 +184,10 @@ export class InputRouter {
 
   clearTransientInput(): void {
     this.pressedKeys.clear();
+    this.clearLookInput();
+  }
+
+  private clearLookInput(): void {
     this.lookX = 0;
     this.lookY = 0;
   }

@@ -32,6 +32,32 @@ describe("calculateMovementAxes", () => {
   });
 });
 
+describe("InputRouter pointer-lock lifecycle", () => {
+  it("suspends movement while unlocked and resumes a held key on relock", () => {
+    const input = new InputRouter();
+    input.setKeyState("KeyW", true);
+
+    input.syncPointerLockState(true);
+    expect(input.getMovementAxes().z).toBe(1);
+
+    input.syncPointerLockState(false);
+    expect(input.getMovementAxes()).toEqual({ x: 0, z: 0 });
+
+    input.syncPointerLockState(true);
+    expect(input.getMovementAxes().z).toBe(1);
+  });
+
+  it("still allows an explicit safety clear to drop held movement", () => {
+    const input = new InputRouter();
+    input.setKeyState("KeyW", true);
+    input.syncPointerLockState(true);
+
+    input.clearTransientInput();
+
+    expect(input.getMovementAxes()).toEqual({ x: 0, z: 0 });
+  });
+});
+
 describe("PlayerController locomotion state", () => {
   it("can disable and restore locomotion without losing input state", () => {
     const input = new InputRouter();

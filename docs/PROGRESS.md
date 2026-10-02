@@ -3,24 +3,30 @@
 Last updated: 2026-10-02
 
 ## Current phase
-**CHAPTER 1 VERTICAL SLICE COMPLETE — INTENTIONAL STOP POINT**
+**GAME PIVOT V2 — BRIGHT ROOM-FOCUSED STUDENT-LIFE FOUNDATION**
 
 ## Current branch
-`integration/narrative-v1.2` (continues from the clean Technical Prototype V1 checkpoint plus the frozen narrative handoff)
+`phase-v2/foundation-hardening` (branched from `design/game-pivot-v2-draft`; the old Chapter 1 checkpoint remains preserved)
 
 ## Current status
-**Technical Prototype V1 remains frozen. BAC-22 through BAC-31 are complete and verified. Chapter 1 presentation/readability, recovery/regression, deterministic KCR-A, the ninth-headset climax, final reflection, Chapter 2 boundary, clean-save browser traversal, automated gates and deployment all passed the Chapter 1 vertical-slice checkpoint.**
+**The preserved `chapter-1-vertical-slice` remains a completed technical/tonal prototype. The active direction has pivoted to a bright, readable, ordinary Vietnamese student-life baseline centered on one dense classroom/main-room slice. Dark/uncanny presentation is reserved for specific authored twist/event states, not the default whole-game lighting model.**
 
-Completed production planning:
-- Narrative–Technical Gap Analysis: `docs/production/CH01_NARRATIVE_TECHNICAL_GAP_ANALYSIS.md`
-- Chapter 1 architecture: `docs/production/CH01_PRODUCTION_ARCHITECTURE.md`
-- dependency-ordered implementation plan: `docs/production/CH01_VERTICAL_SLICE_IMPLEMENTATION_PLAN.md`
-- Linear milestone: **CHAPTER 1 VERTICAL SLICE**
-- Linear execution issues: BAC-22 through BAC-31
+Active direction documents:
+- `docs/design/CH01_ROOM_FOCUSED_STUDENT_SLICE.md`
+- `docs/art/CH01_BRIGHT_BASELINE_VISUAL_GUIDE.md`
+- `docs/production/CH01_POST_VS_USER_PLAYTEST_ISSUES.md` Section 9
+- `docs/production/V2_FOUNDATION_VISUAL_RUNTIME_AUDIT.md`
 
-Current implementation focus: **none — intentional stop after BAC-31**.
+Latest retained-room implementation corrections:
+- room signage uses working labels `P 202` / `P 204`; final building topology remains `TBD_USER_APPROVAL`
+- reusable classroom desk/chair modules are used for the retained room; obvious orientation/alignment/collision/repetition defects were corrected
+- corridor-to-classroom door opening/frame/header/leaf fit was corrected through reusable opening conventions
+- default classroom lighting/material response was moved away from the old dark-horror baseline and verified in Chrome
+- no final university identity, protagonist design, important NPC canon, final chapter canon or Chapter 2 gameplay has been approved
 
-**CHAPTER 1 VERTICAL SLICE COMPLETE.** Do not start Chapter 2 gameplay without a new explicit user instruction and a new next-phase implementation plan.
+Current implementation focus: **stop after this direction/correction checkpoint; next room-focused student-life interactions and narrative beats require a fresh implementation pass and applicable USER APPROVAL gates.**
+
+**Do not start Chapter 2, full-campus production, final institutional identity, final protagonist/NPC cast, or canonical new chapter beats without explicit user approval.**
 
 Technical Prototype V1 branch: `prototype/bootstrap-3d`
 Technical Prototype V1 checkpoint: tag `technical-prototype-v1`
