@@ -24,6 +24,7 @@ All new sessions must resume from the current **UET không tệ** direction. Ret
    - `docs/design/GIANG_DUONG_4_LAYOUT_V1.md`
    - `docs/art/ASSET_PRODUCTION_PIPELINE_V2.md`
    - `docs/art/CHARACTER_ANIMATION_PLAN_V1.md`
+   - `docs/AI_COORDINATION.md`
    - `docs/GAMEPLAY.md`
    - `docs/ARCHITECTURE.md`
    - `docs/TECHNICAL_REQUIREMENTS.md`
