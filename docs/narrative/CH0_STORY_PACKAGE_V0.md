@@ -87,32 +87,65 @@ Do not explain the protagonist's entire backstory through the mother.
 
 ---
 
-## CH0-S02 — First attempt to catch a bus
+## CH0-S02 — First attempt to catch a bus / first Grab-driver encounter
 
 Source type:
-- core lived material from user.
+- core lived material + user-directed recurring-character seed.
 
-User-recalled basis:
+User basis:
 - protagonist is not standing at a marked bus stop;
 - protagonist waves at approaching buses expecting them to stop;
 - buses do not stop;
 - this happens repeatedly enough to become funny/confusing;
-- eventually a bus staff member/conductor calls out that the protagonist has to go to the proper stop.
+- after the mother-call opening, a Grab driver approaches and offers the protagonist a ride;
+- through the conversation the driver realizes the protagonist is newly arrived / new to Hanoi;
+- the driver explains the bus-stop rule / points the protagonist toward the proper stop;
+- this **replaces** the earlier conductor-leaning-out explanation.
 
 Presentation principle:
-- let the player physically wave / attempt to flag the bus;
-- show the buses continuing past;
+- let the player physically wave / attempt to flag buses;
+- show buses continuing past;
 - do not immediately explain the mistake;
-- repetition may increase the joke;
-- staff correction is the reveal.
+- let the Grab driver's sales pitch first read as an ordinary interruption;
+- only through conversation does the driver become the person who explains what the protagonist is doing wrong;
+- keep the introduction casual: the later recurrence of this driver should make the first meeting more meaningful in hindsight.
+
+Recurring-character rule:
+- the Grab driver is approved as a recurring character thread;
+- exact name, appearance, personality and later arc remain TBD_USER_APPROVAL.
 
 Possible small twist:
-The protagonist assumes buses can be hailed anywhere; the world reveals the rule by refusing to cooperate.
+The protagonist assumes buses can be hailed anywhere; the person who finally explains the system is not bus staff at all, but a ride-hailing driver who first approached for completely different reasons.
 
 No failure screen.
 
 Exit:
-player moves to the actual bus stop.
+player moves toward the actual bus stop.
+
+---
+
+## CH0-S02B — Red-light / roadside micro-interaction slot
+
+Source type:
+- user-supplied creative detail;
+- extensible local scene.
+
+During the movement toward the correct bus stop, or at another natural road-crossing point in the early sequence, the protagonist may stop at a red light.
+
+The scene can contain several tiny NPC interactions/observations.
+
+Required user-supplied overheard line:
+
+> "Tôi nổi tiếng, đẹp trai, nhà giàu, tôi có gì không tốt?"
+
+Two nearby NPCs may be talking; exact context is open for Script/Layout development.
+
+Rules:
+- this is ambient/micro-event scale;
+- worker may add short connected NPC interactions around the red-light wait;
+- use first-person attention, timing and interruption rather than narrator explanation;
+- do not turn these NPCs into important recurring characters without approval;
+- the exact supplied line must remain available in at least one candidate treatment.
 
 ---
 
@@ -300,25 +333,40 @@ Only use if timing feels natural; do not over-explain it.
 
 ---
 
-## CH0-S09 — Get off near home / Chapter 0 end
+## CH0-S09 — Get off near home / boy-phố flyby / Chapter 0 end
 
 Source type:
-- user-directed ending.
+- user-directed ending + user-supplied closing detail.
 
 Bus reaches the stop near the rented room.
 
-Simple ending beat:
+Core beat:
 - player recognizes/accepts that this is the stop;
 - gets off;
-- immediate destination is now "home"/the rented room;
-- Chapter 0 ends here or on the short transition after stepping off.
+- immediate destination is now "home"/the rented room.
 
 User's intended energy:
 "Đến rồi. Đến nhà rồi. Xuống thôi."
 
-Do not force a dramatic cliffhanger.
+Immediately / shortly after stepping off:
+- a vehicle suddenly passes fast;
+- user describes the beat as a **"boy phố lướt qua"** moment;
+- use it as a quick physical/audio city-life sting.
 
-The chapter can end on ordinary relief/familiarity rather than a plot shock.
+Desired rhythm:
+ordinary relief
+→ step down from bus
+→ sudden fast flyby / micro-startle
+→ immediate realization that this is just another ordinary street moment
+→ Chapter 0 end or a very short walk-off.
+
+Do not turn this into:
+- an accident;
+- a chase;
+- a danger plot;
+- a mystery hook.
+
+The ending should remain ordinary, funny/recognizable, and slightly chaotic rather than dramatic.
 
 ---
 
@@ -348,10 +396,13 @@ Do not silently fill these as canon:
 - exact starting street/location;
 - exact bus route/number;
 - exact bus fare/payment rules for story date;
-- exact conductor wording;
+- exact first Grab-driver dialogue;
 - whether fare/payment friction happened literally;
 - whether helper passenger exists in final version;
 - helper passenger identity/importance;
+- recurring Grab driver's name/appearance/personality/later arc;
+- exact red-light NPC context around the supplied overheard line;
+- exact vehicle/presentation for the boy-phố flyby;
 - exact UET room/administrative procedure;
 - exact content of the administrative interaction;
 - exact rented-room location;
