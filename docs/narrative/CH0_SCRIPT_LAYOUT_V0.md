@@ -131,23 +131,57 @@ Use:
 Source:
 - https://hanoi.gov.vn/tin-so-nganh/sau-1-nam-van-hanh-metro-nhon-ga-ha-noi-phuc-vu-tren-64-trieu-luot-khach-4250808215021297.htm
 
-### R-CH0-03 — Bus payment uncertainty in 2025
+### R-CH0-03 — Bus payment reality in the 2025 window
 
-Hanoi's 2025 transport planning explicitly included continued rollout of an interoperable electronic ticket system. By July 2025, iHanoi also supported online bus monthly-pass registration with QR-based payment for the registration flow.
+A June 2025 Hanoi decision on interoperable public-transport ticketing explicitly described both electronic and cash payment for bus single fares. This is more useful than the earlier generic "cashless rollout" note.
 
 Interpretation:
-- cashless infrastructure existed and was evolving;
-- this does not establish that every bus, route or staff member accepted an ad-hoc bank transfer for a single fare;
-- therefore the current "chuyển khoản được không?" scene can remain as user-proposed friction, but the staff answer must stay route/date-dependent until the exact service is known.
+- cash still existed as a legitimate single-fare method in the 2025 transition;
+- electronic public-transport payment also existed / was being rolled out;
+- an ad-hoc person-to-person bank transfer to bus staff is not the same as using the official electronic-ticket system;
+- therefore "Chuyển khoản được không ạ?" is a plausible new-user question, but "bus is universally cash-only" is not safe to state as fact.
+
+Use in S04:
+- staff rejects direct transfer to themselves;
+- asks whether Bắc has cash or the supported electronic-ticket method;
+- helper-passenger treatment remains fictionalized/proposed.
 
 Sources:
-- https://hanoi.gov.vn/tin-tuc-su-kien-noi-bat/so-giao-thong-van-tai-ha-noi-trien-khai-nhiem-vu-nam-2025-4250108143244958.htm
-- https://ttpvhcc.hanoi.gov.vn/video/dang-ky-ve-thang-xe-buyt-tren-ihanoi-2850250728095232286.htm
+- https://hanoi.gov.vn/tin-tuc-su-kien-noi-bat/thong-tin-chi-dao-dieu-hanh-cua-ubnd-thanh-pho-chu-tich-ubnd-thanh-pho-ha-noi-ngay-27-6-2025-42506271935017.htm
+- https://hadong.hanoi.gov.vn/xay-dung-do-thi/ve-lien-thong-da-phuong-thuc-bat-dau-ap-dung-o-ha-noi-2809250629133018049.htm
+
+### R-CH0-04 — Real UET 2025 admission workflow
+
+Official UET material dated 24–27 August 2025 documents:
+- direct admission at 144 Xuân Thủy;
+- program/time-specific locations on 24 August 2025;
+- students unable to attend that day being directed to room 104-E3 from 25 August until before 5 September 2025;
+- after direct admission, students receiving admission/confirmation material plus instructions for online profile completion.
+
+Use in S07:
+- supports a concrete research-based candidate instead of an empty placeholder;
+- does **not** prove that Bắc's remembered day, room or exact procedure matched this public 2025 workflow;
+- exact date/location/documents remain TBD_USER_APPROVAL.
+
+Sources:
+- https://uet.vnu.edu.vn/truong-dai-hoc-cong-nghe-dai-hoc-quoc-gia-ha-noi-san-sang-chao-don-tan-sinh-vien-k70-tai-ngay-hoi-nhap-hoc/
+- https://uet.vnu.edu.vn/huong-dan-thu-tuc-nhap-hoc/
+
+### R-CH0-05 — Internet-culture check: "67"
+
+Vietnamese coverage in late 2025 confirms "67 / six-seven" as a widely circulated 2025 brainrot-style meme with deliberately unstable/no fixed meaning. Reporting also notes strong growth during 2025.
+
+Use:
+- confirms the style guide's reference is date-plausible;
+- the mechanism is more useful than the token itself: meaningless repetition, social recognition, overuse becoming the joke.
+
+Source:
+- https://hoahoctro.tienphong.vn/giai-ma-67-trao-luu-kho-hieu-duoc-vinh-danh-tu-vung-cua-nam-2025-post1792065.tpo
 
 ### Research ruling
 
-No concrete 2025 meme reference is inserted in this draft.
-The existing scenes already support participatory comedy through timing, repetition, inaction and expectation reversal. A meme token would currently add less than it costs in date/context risk.
+No concrete "67", "36", or stale catchphrase is inserted into mandatory Chapter 0 dialogue.
+The current scenes are stronger when humor comes from action, delay, repetition, interrupted answers and wrong assumptions. Concrete meme tokens remain replaceable optional texture rather than causal story content.
 
 ## 5. Chapter-level playable arc
 
@@ -210,6 +244,13 @@ CH0_HEARD_RED_LIGHT_LINE
 - default: do not persist;
 - promote only if the user later approves a callback.
 
+CH0_NEEDS_RETURN_FARE
+- event-local boolean used only if the helper-passenger S04 treatment is selected;
+- write after the helper covers the first fare and Bắc still lacks a return-fare method;
+- consume in CH0-S08 to trigger the ATM/cash-preparation micro-beat;
+- clear after preparation;
+- do not persist beyond Chapter 0.
+
 ## 7. Scene graph overview
 
 CH0-S01 Mother call / handoff to player
@@ -220,610 +261,1211 @@ CH0-S01 Mother call / handoff to player
 → CH0-S04 Fare/payment friction module
 → CH0-S05 Bus ride / Hanoi texture
 → CH0-S06 UET arrival + three-way navigation micro-branch
-→ CH0-S07 Administrative objective placeholder
+→ CH0-S07 Research-based administrative treatment / approval-sensitive
 → CH0-S08 Leave UET + learned return behavior
 → CH0-S09 Get off near home + boy-phố flyby
 → Chapter 0 end
 
 The suffix beats are not new major story events. They are interaction/ambient subdivisions of the existing spine.
 
-# 8. Scene-by-scene script / interaction layout
+# 8. Actual playable Chapter 0 story / script / interaction layout
 
-## CH0-S01 — Mother phone call / opening
+This section is the **actual readable/playable Chapter 0 candidate**.
 
-Content class:
-- character-context beat + playable handoff.
+Reading rule:
+- scene architecture, actions, dialogue, pauses and reactions are written concretely enough to imagine the chapter happening;
+- all new wording remains **selected/proposed**, not canon, until user approval;
+- the one exact red-light line supplied by the user is preserved verbatim;
+- where lived material is missing, the scene is explicitly marked research-based or approval-sensitive rather than pretending the invention was remembered fact;
+- player control is preferred over cutscene unless a short authored gesture is needed for clarity.
 
-Source grounding:
-- CH0_STORY_PACKAGE_V0 S01;
-- LM-CH0-001B.
+Dialogue notation:
+- **MẸ / BẮC / DRIVER / NPC / STAFF** = spoken line;
+- **[PLAYER CONTROL]** = free or bounded first-person control;
+- **[TIMING]** = deliberate pause/reaction timing;
+- **[INACTION]** = authored behavior when the player does nothing;
+- **[PROPOSED]** = AI-developed candidate material;
+- **[TBD_USER_APPROVAL]** = user-only canon decision.
 
-Narrative function:
-- establish ordinary family connection without backstory dump;
-- separate "being checked on" from "handling Hanoi alone";
-- hand camera/movement control to player cleanly.
+The recommended default pass below is meant to read from start to finish as one Chapter 0, not as disconnected design notes.
 
-Entry:
-- phone call already in progress;
-- exact location remains unspecified.
+## CH0-S01 — Cuộc gọi với mẹ / đứng một mình giữa Hà Nội
 
-Presentation:
-1. Start on an ordinary fragment of the call, not a formal introduction.
-2. Player may have limited look control while still on the phone.
-3. Keep mother mostly offscreen/phone-only.
-4. Call ends without summarizing why Bắc is in Hanoi.
-5. Bắc lowers phone.
-6. Full look control returns.
-7. Player sees the roadside and approaching traffic.
+Source:
+- user-directed opening;
+- exact dialogue below is **PROPOSED**, because the user has not supplied the real call.
 
-Dialogue policy:
-- exact mother dialogue: TBD_USER_APPROVAL.
-- do not invent a warm/profound farewell.
-- Bắc lines should be functional and concise.
+Scene state:
+- Bắc has arrived in Hanoi;
+- he is on the phone with his mother;
+- he has not yet learned the bus-stop rule.
 
-Candidate Bắc line, if a placeholder is needed:
-- "Vâng, con đến rồi. Có gì con gọi."
+### Playable story pass
 
-Status of line:
-- proposed dialogue only, not canon.
+The chapter opens already **mid-call**. No title card explains Bắc's biography.
 
-Interaction:
-- look around;
-- optionally inspect phone after call;
-- primary objective emerges from environment: catch a bus / continue toward UET.
+Traffic is audible before the image fully settles: engines, one short horn, the hiss of tires on the road. The phone is held close enough that the mother's voice is clear.
 
-Inaction:
-- world continues normally;
-- no narrator prompt immediately explains what to do.
+**MẸ:** "Đến nơi chưa con?"
 
-Exit:
-- player approaches roadside waiting position or performs first hail attempt.
+**BẮC:** "Con đến rồi."
 
-Production note:
-- phone UI can remain generic/placeholder; no real contact identity details are required.
+**MẸ:** "Thế giờ sang trường luôn à?"
 
-## CH0-S02 — Wrong roadside bus attempts
+**BẮC:** "Vâng. Con đang ngoài đường đây. Lát con đi."
 
-Content class:
-- story event grounded in lived material.
+The camera is not locked completely. Bắc can turn his head a little while listening: sky, road, passing vehicles, people who clearly already know where they are going.
 
-Narrative function:
-- teach Hanoi behavior through a believable mistake;
-- establish Bắc as capable but unfamiliar, not incompetent;
-- turn repetition into participatory comedy.
+**MẸ:** "Có gì không biết thì hỏi người ta. Đừng tự mò xong lại đi vòng."
 
-Entry state:
-- CH0_KNOWS_MARKED_BUS_STOP_RULE = false.
+Bắc looks across the road for half a second.
 
-Core loop:
-1. A bus becomes visible.
-2. Player can use primary interaction to wave/hail.
-3. Bus continues past.
-4. Short reaction window.
-5. Another opportunity appears.
-6. Repetition escalates only enough for the player to notice a rule mismatch.
+**BẮC:** "Con biết rồi."
 
-Recommended escalation:
-- attempt 1: bus passes; ambiguous.
-- attempt 2: bus passes; player can look after it.
-- attempt 3 is optional; use only if player keeps trying before the driver interrupts.
+**MẸ:** "Biết thật không đấy?"
 
-Do not:
-- force many identical failures;
-- narrate "you are at the wrong place";
-- make Bắc look foolish for an extended period.
+A short beat.
 
-Bắc reaction candidates:
-- after first pass: no line.
-- after second pass: "Ơ?"
-- after repeated failure: "Gì vậy..."
+**BẮC:** "Chưa biết thì lát biết."
 
-These are candidate placeholders, not approved voice samples.
+The line is dry rather than emotional. It is the first small hint that Bắc is comfortable enough with his mother to answer more loosely than he will with strangers.
 
-Player alternatives:
-- keep hailing;
-- look around for signs/other people;
-- check phone;
-- wait.
+**MẸ:** "Ừ. Nhớ ăn uống."
 
-All alternatives preserve the same unknown until CH0-S02A.
+**BẮC:** "Vâng. Con đi đã nhé."
 
-Exit trigger:
-- Grab driver approaches after enough time/attempts for the misunderstanding to be legible.
+**MẸ:** "Ừ, đi đi."
 
-## CH0-S02A — Recurring Grab-driver first encounter
+The call ends.
 
-Content class:
-- character seed inside the bus story event.
+[TIMING — 1.0 s]
 
-Source grounding:
-- LM-CH0-004;
-- user-approved recurring function.
+The phone remains in Bắc's hand. For one second nothing tells the player what to feel.
 
-Narrative function:
-- resolve the bus misunderstanding;
-- establish a recurring person as an ordinary encounter, not destiny-coded;
-- convert correction into conversation rather than tutorial text.
+Then:
 
-Driver knowledge at scene start:
-- sees a potential passenger / person roadside;
-- does not yet know Bắc's background.
+[PLAYER CONTROL — FULL]
 
-Driver goal at scene start:
-- offer a ride.
+The player may:
+- look up at the sky;
+- look along the road;
+- look back at the phone;
+- walk a few steps along the roadside.
 
-Driver personality:
-- TBD_USER_APPROVAL.
-- delivery stays neutral/practical in V0 so the script does not smuggle in personality canon.
+If the player checks the phone immediately, it only confirms the practical situation already known to Bắc; it does not dump backstory.
 
-Beat layout:
-1. Driver approaches and offers a ride first.
-2. Bắc declines or says he is taking a bus.
-3. Driver notices the mismatch between that intent and the waiting position.
-4. Short question reveals Bắc is new / has just arrived.
-5. Driver points toward the actual stop / explains the rule.
-6. Bắc processes the correction.
-7. Driver leaves or returns to ordinary work; no dramatic "we will meet again" signal.
+If the player does nothing for several seconds, traffic keeps moving. Nobody comes to help. The city does not wait for the chapter to begin.
 
-Candidate dialogue skeleton:
+A bus approaches in the lane.
 
-Driver:
-- "Em đi đâu đấy? Lên anh chở."
+The primary interaction prompt appears only when the player looks toward it:
 
-Bắc option A — direct:
-- "Em bắt xe buýt."
+**[VẪY XE]**
 
-Bắc option B — practical question:
-- "Xe buýt đứng đây bắt không anh?"
+Transition:
+- player tries to hail it, or waits long enough for the first bus to pass;
+- CH0-S02 begins without a cut.
 
-Bắc option C — guarded decline:
-- "Không, em đi buýt thôi."
+## CH0-S02 — Vẫy xe buýt sai chỗ
 
-Driver response concept:
-- points out that buses stop at the proper stop rather than this roadside position.
+Source:
+- literal/recalled lived material;
+- presentation/timing below is proposed.
 
-Candidate Bắc beat after the reveal:
-- "À. Bảo sao."
+### First attempt
 
-Dialogue status:
-- all wording above is proposed and user-reviewable.
+A bus approaches.
 
-Choice integrity:
-- A/B/C express slightly different social intent;
-- none changes the core fact;
-- reactions may differ by one line, then reconverge.
+If the player presses **[VẪY XE]**, Bắc raises an arm.
 
-State:
-- recommend writing CH0_KNOWS_MARKED_BUS_STOP_RULE once the player understands and moves toward the stop.
+The bus continues past at normal road speed.
 
-Continuity obligation:
-- later reappearance exists as a project intention;
-- this scene must not define name, appearance, personality arc or special bond.
+No brake sound.
+No dramatic reaction.
+It simply does not stop.
 
-## CH0-S02B — Red-light / roadside micro-interaction slot
+Bắc's arm lowers.
 
-Content class:
-- ambient beat + optional observation.
+[TIMING — 0.7 s]
 
-Source grounding:
-- LM-CH0-005.
+**BẮC:** "Ơ?"
+
+The player can turn and watch the bus continue away.
+
+If the player did not press the interaction, the bus simply passes; the next opportunity still appears.
+
+### Second attempt
+
+Another bus becomes visible after a short playable gap.
+
+The prompt returns.
+
+If the player waves again, Bắc makes a clearer gesture this time.
+
+The second bus also continues.
+
+Bắc tracks it with his head for a moment longer than before.
+
+**BẮC:** "Không phải xe à..."
+
+He checks the road behind it, then the road ahead.
+
+[PLAYER CONTROL]
+
+The player can:
+- keep waiting in exactly the same place;
+- look for a sign;
+- check the phone;
+- walk a short distance;
+- attempt to hail one more bus.
+
+No UI says "wrong place".
+
+If the player finds and starts walking toward a proper stop on their own before the driver arrives, the driver still crosses their path, but the exchange is concrete and shorter:
+
+**DRIVER:** "Em đi đâu đấy? Lên anh chở."
+
+**BẮC:** "Em đi buýt. Điểm dừng kia đúng không anh?"
+
+The driver follows Bắc's glance.
+
+**DRIVER:** "Ừ, đúng rồi."
+
+A beat.
+
+**DRIVER:** "Mới lên Hà Nội à?"
+
+**BẮC:** "Vâng."
+
+**DRIVER:** "Thế ra đấy đứng. Xe vào điểm mới đón."
+
+**BẮC:** "Vâng, em cảm ơn."
+
+This version preserves the recurring-driver first meeting without pretending Bắc failed to notice the stop if the player already found it.
+
+### Optional third attempt / escalation
+
+Only if the player remains in the same roadside position and tries again:
+
+A third bus approaches.
+
+Bắc waves.
+
+It passes.
+
+[TIMING — 1.0 s]
+
+Bắc keeps his hand half-raised for one beat, then lowers it slowly.
+
+No line.
+
+Before another bus can arrive, the sound of a motorbike/ride-hailing vehicle slows nearby.
+
+This is the entrance of the recurring driver seed.
+
+The scene does **not** give him special music, a hero shot, or a name card.
+
+Transition:
+- CH0-S02A begins in the same continuous roadside space.
+
+## CH0-S02A — Grab driver đầu tiên
+
+Source:
+- recurring role and first-scene function are user-approved;
+- name, appearance, age, exact personality and relationship arc remain TBD_USER_APPROVAL;
+- dialogue below is proposed.
+
+### Entrance
+
+The driver stops at a normal conversational distance, angled as if he is simply looking for a passenger.
+
+**DRIVER:** "Em đi đâu đấy? Lên anh chở."
+
+Bắc looks toward him, then back toward the road.
+
+The dialogue choice appears.
+
+### Option A — direct
+
+**BẮC:** "Em đi xe buýt."
+
+The driver glances at the stretch of roadside where Bắc has been standing.
+
+**DRIVER:** "Xe buýt?"
+
+[TIMING — 0.5 s]
+
+**DRIVER:** "Thế em đứng đây làm gì?"
+
+**BẮC:** "Bắt xe."
+
+The driver looks at Bắc, then at the road again.
+
+**DRIVER:** "Mới lên Hà Nội à?"
+
+The player gets a second response choice.
+
+- **"Vâng. Em mới lên."**
+- **"Sao anh biết?"**
+- **"Em tưởng đứng đâu vẫy nó cũng dừng."**
+
+The three responses change tone but not the fact.
+
+#### A1 — "Vâng. Em mới lên."
+
+**DRIVER:** "Anh đoán thế. Xe buýt phải ra điểm dừng."
+
+He points down the road.
+
+**DRIVER:** "Thấy cái biển kia không? Ra đấy."
+
+**BẮC:** "À. Bảo sao."
+
+#### A2 — "Sao anh biết?"
+
+The driver gives Bắc a short look that says the answer is currently standing in front of him.
+
+**DRIVER:** "Vì người quen đường không đứng đây vẫy xe buýt."
+
+Bắc looks at the road, then back at him.
+
+**BẮC:** "Hợp lý."
+
+The driver points toward the proper stop.
+
+**DRIVER:** "Ra cái biển kia. Xe vào điểm dừng thì hẵng lên."
+
+#### A3 — "Em tưởng đứng đâu vẫy nó cũng dừng."
+
+**DRIVER:** "Không. Xe buýt phải vào điểm dừng."
+
+He points toward the sign.
+
+**DRIVER:** "Cái biển kia kìa."
+
+Bắc follows the gesture.
+
+**BẮC:** "À. Bảo sao."
+
+The driver keeps the exchange practical instead of turning it into a personality-defining joke.
+
+### Option B — practical question first
+
+If Bắc previously looked around for a stop before the driver arrived, the first response can instead be:
+
+**BẮC:** "Anh ơi, điểm xe buýt ở đâu nhỉ?"
+
+The driver points.
+
+**DRIVER:** "Kia kìa. Em đứng lệch hẳn rồi."
+
+**BẮC:** "Em đang tìm đây."
+
+**DRIVER:** "Ừ, ra kia là đúng."
+
+The alternate branch stays useful and neutral rather than giving the still-unapproved driver a fixed teasing style.
+
+### Closing beat
+
+Whichever route was used:
+
+**BẮC:** "Vâng, em cảm ơn anh."
+
+**DRIVER:** "Ừ."
+
+The driver moves on.
+
+No one says:
+- "hẹn gặp lại";
+- "chắc còn gặp nhau";
+- anything that signals future importance.
+
+State change:
+- CH0_KNOWS_MARKED_BUS_STOP_RULE = true.
+
+[PLAYER CONTROL — FULL]
+
+The player's objective is now physically understandable: move toward the proper stop the driver indicated.
+
+If the player stays standing where they were, another bus may pass once. Bắc no longer waves automatically. The world has already supplied the correction.
+
+## CH0-S02B — Đèn đỏ / câu chuyện lọt vào tai
+
+Source:
+- exact user-supplied line is preserved;
+- surrounding context is proposed.
 
 Placement:
-- during movement toward the proper bus stop, only if a natural crossing/wait point exists in the authored street context.
+- during the walk toward the proper stop, if the route contains a natural red-light/pedestrian wait.
 
-Purpose:
-- prevent the move to the stop from being a dead corridor;
-- show the city through overheard fragments;
-- give the player a reason to look sideways rather than follow a waypoint.
+This is optional ambient content, not a new plot node.
 
-Core presentation:
-1. Pedestrian flow pauses at a red light / waiting point.
-2. Two nearby background NPCs are mid-conversation.
-3. If the player looks near them at the right time, one line lands clearly:
-   > "Tôi nổi tiếng, đẹp trai, nhà giàu, tôi có gì không tốt?"
-4. Do not explain the setup.
-5. The other speaker's response may be cut off by traffic movement / green signal / crowd motion.
+### Playable story pass
 
-AI expansion recommendation:
-- use non-answer timing as the punchline rather than writing a long rebuttal;
-- a short silence, then movement resumes.
+Traffic stops the player's path.
 
-Status:
-- exact supplied line is user material;
-- timing/context around it is proposed embellishment.
+A few pedestrians accumulate nearby.
 
-Optional other texture:
-- delivery rider checking a phone;
-- people repositioning before crossing;
-- bus/traffic audio masking part of a sentence.
+Two young background NPCs are already in the middle of an argument that clearly started before Bắc arrived.
 
-Do not:
-- name these NPCs;
-- promote them to recurring roles;
-- create a lore hook from the overheard line.
+NPC 1 is speaking with absolute confidence.
 
-Exit:
-- player continues to the marked stop.
+The player can look at them, look at traffic, or ignore them.
 
-## CH0-S03 — Proper bus stop / boarding
+If the player looks close enough before the light changes:
 
-Content class:
-- routine system carrying a local story consequence.
+**NPC 1:** "Tôi nổi tiếng, đẹp trai, nhà giàu, tôi có gì không tốt?"
 
-Narrative function:
-- let the player immediately apply the newly learned rule;
-- distinguish knowledge success from timing/inaction failure.
+NPC 2 turns toward him.
 
-Entry:
-- player reaches the actual stop.
+[TIMING — 1.0 s]
 
-Interaction:
-- inspect route board / stop marker in a generic way;
-- wait;
-- look at arriving bus;
-- use primary interaction to board when available.
+The pedestrian signal changes.
 
-Boarding success:
-- transition directly to CH0-S04.
+NPC 2 looks at the green light instead.
 
-Inaction branch:
-1. Boarding interaction becomes available.
-2. If player does not act within a fair window, doors close.
-3. A staff/conductor figure can look directly at the player as the bus leaves.
-4. Hold a short deadpan beat.
-5. Another valid opportunity arrives after a compressed wait.
-6. No reload, failure screen or scolding UI.
+**NPC 2:** "Đi."
 
-Bắc reaction:
-- preferably visual/body timing first;
-- optional candidate: "Rồi."
+NPC 2 simply starts crossing.
 
-Why this is not repetition of CH0-S02:
-- S02 failure = wrong knowledge / wrong place.
-- S03 inaction branch = correct knowledge but missed timing.
-- a player who boards promptly never sees the second "bus leaves" gag.
+NPC 1 follows, still waiting for an answer that never arrives.
 
-Production rule:
-- do not make waiting long enough to punish curiosity.
+The joke is the refusal of the scene to explain itself.
 
-Exit:
-- player boards a valid bus.
+If the player was not looking at them:
+- the line may still be heard from the side;
+- the player does not need to turn around;
+- nothing important is lost.
 
-## CH0-S04 — Fare/payment friction module
+If the player lingers after the signal changes, the crowd flows around Bắc. A pedestrian behind him says only:
 
-Content class:
-- selected candidate module, approval-sensitive.
+**NPC:** "Bạn ơi."
 
-Source grounding:
-- LM-CH0-001D;
-- current story package S04.
+That is enough to make clear he is blocking the flow.
 
-Narrative function:
-- create one small social friction after successful boarding;
-- let Bắc be direct/awkward without oversharing;
-- potentially show practical new-city adaptation.
+Bắc steps aside or moves forward under player control.
+
+No persistent state is required unless the user later chooses to make the quote a callback.
+
+Transition:
+- the proper bus stop comes into view;
+- CH0-S03 begins.
+
+## CH0-S03 — Đến đúng điểm dừng / có lên hay không
+
+Source:
+- user-proposed interaction structure.
+
+### Arrival
+
+The proper stop is visually legible enough that the player now understands the driver's correction without a tutorial panel.
+
+Bắc approaches.
+
+[PLAYER CONTROL]
+
+The player can:
+- inspect the stop marker;
+- look at people already waiting;
+- stand near the curb;
+- wait slightly farther back.
+
+A bus approaches and signals its stop.
+
+The door opens.
+
+The boarding interaction appears:
+
+**[LÊN XE]**
+
+### Branch 1 — player boards promptly
+
+Bắc steps in with the flow of passengers.
+
+No extra congratulations.
+No "success" sound.
+
+Transition directly into CH0-S04.
+
+### Branch 2 — player hesitates
+
+If the player does not press the interaction immediately, staff gives a natural warning before the bus leaves.
+
+**STAFF:** "Có lên không em?"
+
+The prompt remains available for a short grace window.
+
+If the player boards now:
+
+**BẮC:** "Có ạ."
+
+Bắc gets on.
+
+If the player still does nothing:
+
+The door begins to close.
+
+The staff member looks directly at Bắc through the doorway.
+
+[TIMING — 0.8 s]
+
+The bus moves away.
+
+Bắc watches it go.
+
+[TIMING — 0.8 s]
+
+**BẮC:** "Rồi."
+
+Nothing else is said.
+
+No failure UI appears.
+
+The scene compresses the wait: ambient traffic continues, then another valid bus arrives after a short interval rather than a realistic long delay.
+
+On the second opportunity the boarding window is generous.
+
+If the player again refuses to board, the game does not loop the joke forever. After one authored miss, the next interaction remains available until the player boards or walks away far enough to trigger a soft objective reminder through the environment.
+
+Design reason:
+- first miss = authored comedy;
+- later misses = player experimentation, not new narrative content.
+
+Transition:
+- Bắc boards;
+- CH0-S04 begins inside the bus.
+
+## CH0-S04 — Tiền vé / "chuyển khoản được không?"
+
+Source:
+- user-proposed fare friction;
+- helper passenger is explicitly hypothetical;
+- exact route/date/payment system is not yet canon.
 
 Research constraint:
-- exact bus route/operator/date is unknown;
-- 2025 Hanoi cashless ticketing was in active rollout;
-- therefore "staff universally refuses transfer because buses are cash-only" must not be written as a historical fact.
+- by mid/late 2025 Hanoi was actively supporting both cash and electronic public-transport ticketing;
+- direct person-to-person bank transfer to bus staff is not the same thing as using the official ticket/payment system;
+- the scene below is therefore a **research-grounded candidate treatment**, not a historical assertion about every route.
 
-Core user-proposed opening line may remain as a candidate:
-- Bắc: "Chuyển khoản được không ạ?"
+### Recommended Treatment A — direct transfer fails, helper passenger bridges
 
-Required unresolved response:
-- TBD_USER_APPROVAL_BUS_PAYMENT_MECHANIC
+This treatment preserves the user's comic idea while avoiding a false "all buses are cash-only" claim.
 
-Preferred layout until route/date is known:
-1. Bắc asks about payment method.
-2. Staff indicates the method actually available on that service.
-3. Bắc realizes he is not prepared for that method.
-4. A short practical resolution occurs.
-5. Staff may give a concise reminder; avoid exaggerated hostility.
+Bắc has just boarded.
 
-Candidate resolution A — helper passenger:
-- one nearby passenger covers the small fare;
-- Bắc thanks them briefly;
-- passenger remains one-off/background unless later approved.
+Before he has fully settled, the staff member reaches him for the fare/check.
 
-Risk:
-- can feel too conveniently "meet-cute"/destiny-coded if over-written.
-- recommendation: keep on HOLD unless user likes the social beat.
+**STAFF:** "Vé em."
 
-Candidate resolution B — staff-guided method mismatch:
-- staff points to the accepted ticket/payment mechanism;
-- Bắc completes it after a brief awkward pause if technically plausible for the chosen route/date.
+Bắc takes out his phone.
 
-Risk:
-- depends on exact historical/service detail.
+**BẮC:** "Chuyển khoản được không ạ?"
 
-Candidate resolution C — user confirms cash-friction memory:
-- if the user confirms the cash/transfer problem as lived fact, write the stronger scene from that source.
+The staff member looks at the phone, then at Bắc.
+
+**STAFF:** "Không chuyển khoản trực tiếp cho cô/chú được. Em có tiền mặt hoặc thẻ vé điện tử không?"
+
+Bắc checks his wallet.
+
+A short beat.
+
+He checks one more pocket even though the first check was already fairly conclusive.
+
+**BẮC:** "Em không mang tiền mặt."
+
+**STAFF:** "Thẻ vé?"
+
+**BẮC:** "Em chưa có."
+
+The staff member exhales, not angrily enough to become a caricature.
+
+**STAFF:** "Lần sau chuẩn bị trước nhé. Lên xe rồi mới hỏi thế này là khó cho người ta."
+
+Bắc does not argue.
+
+**BẮC:** "Vâng. Em mới đi lần đầu."
+
+This reveals only the practical fact needed for the situation; it is not personal oversharing.
+
+A nearby student/passenger has heard enough.
+
+**PASSENGER:** "Bạn chuyển khoản được đúng không?"
+
+Bắc turns.
+
+**BẮC:** "Được."
+
+**PASSENGER:** "Thế để tôi trả giúp. Bạn chuyển tôi."
+
+[TIMING — 0.4 s]
+
+Bắc looks at the staff member, then back at the passenger.
+
+**BẮC:** "Ừ, thế được. Cảm ơn bạn."
+
+The passenger pays the fare in the supported way.
+
+The staff member hands over/confirms the ticket.
+
+**STAFF:** "Hai bạn xử lý nhanh nhé."
+
+The player gets a small phone interaction:
+- scan/pay the passenger;
+- confirm transfer.
+
+No bank name, account name or real personal data is authored.
+
+After payment:
+
+**BẮC:** "Xong rồi."
+
+The passenger checks their phone.
+
+**PASSENGER:** "Ừ."
+
+Bắc pockets his phone.
+
+No introduction follows.
+No "học trường nào?"
+No destiny-coded conversation.
+
+The passenger returns to whatever they were doing.
+
+This person stays a one-off background helper unless the user explicitly promotes them later.
+
+### Local continuity consequence
+
+The helper solution creates a practical problem Bắc is intelligent enough to notice:
+- he still needs a reliable way to pay on the return trip.
+
+The chapter will pay this off in CH0-S08 with a small practical preparation beat rather than repeating the same fare joke.
+
+### Treatment B — no helper passenger
+
+Use this only if the user rejects the helper beat.
+
+The opening remains:
+
+**BẮC:** "Chuyển khoản được không ạ?"
+
+**STAFF:** "Không chuyển khoản trực tiếp. Em dùng tiền mặt hoặc phương thức vé điện tử của hệ thống."
+
+From here, the exact resolution must depend on the approved story date/service:
+- if Bắc can validly use an electronic ticket/payment method on that service, staff guides the minimum required action;
+- if not, the scene needs another user-approved resolution.
+
+Do not invent a universal payment rule just to close the branch.
 
 Current recommendation:
-- keep S04 as a bounded module with candidate dialogue only;
-- do not lock the resolution before user review / route-date grounding.
+- Treatment A is stronger dramatically because the transfer question receives an immediate mundane reversal: Bắc cannot transfer to staff, then transfers to the stranger who pays for him;
+- this is still **TBD_USER_APPROVAL_HELPER_PASSENGER**.
 
-## CH0-S05 — Bus ride / Hanoi texture transition
+## CH0-S05 — Ngồi trên xe / Hà Nội bắt đầu thành một nơi thật
 
-Content class:
-- transition + ambient beats.
+Source:
+- structural user direction;
+- environmental detail is replaceable and research-grounded where noted.
 
-Narrative function:
-- give breathing room;
-- let Hanoi feel new through sight/sound;
-- move from transit comedy to UET arrival without exposition.
+Purpose:
+- breathing room after two compact comedy scenes;
+- move from "how do I use this bus?" to "I am actually moving through Hanoi."
 
-This is not a fifth major map.
-Treat it as a contained transit vignette / event presentation layered within the current Chapter 0 city context.
+### Settling into the ride
 
-Player verbs:
-- look out windows;
-- look at passengers;
-- optionally check phone;
-- prepare to get off when prompted by the scene.
+After the fare issue resolves, full control returns.
 
-Recommended texture budget:
-- one strong exterior detail;
-- one interior/passenger detail;
-- one sound/movement detail;
-- then transition.
+The bus moves before Bắc has completely finished putting his phone away.
 
-Research-grounded optional exterior:
-- elevated Metro Line 3.1 infrastructure / train can appear only if the chosen route/approach actually places it in view around Xuân Thủy/Cầu Giấy.
+A small acceleration shifts the camera/body.
 
-Other replaceable texture:
-- traffic compressing/releasing;
-- bus acceleration/braking;
-- students carrying bags;
-- stop announcements;
-- layered engine/horn/road audio.
+If the player is standing:
+- Bắc catches a rail/handle;
+- no line is needed.
 
-Do not:
-- run a landmark tour;
-- state an exact route not supplied by the user;
-- turn every texture beat into interactable content.
+If a seat is free and the player looks at it:
+- **[NGỒI]** becomes available.
 
-Exit:
-- arrival near UET / Xuân Thủy.
+This is expressive, not a branch with story consequence.
 
-## CH0-S06 — First UET arrival / find the correct target
+If the player sits by a window, the exterior becomes the dominant texture.
+If the player stays standing, nearby passengers and door movement become more prominent.
 
-Content class:
-- story event with three local micro-branches.
+The helper passenger, if Treatment A was used, does not initiate another conversation.
 
-Source grounding:
-- LM-CH0-002;
-- story package S06.
+That silence is intentional: ordinary help does not automatically create a relationship.
 
-Narrative function:
-- convert "first contact with UET" into observation/navigation/social choice;
-- change Bắc from zero spatial familiarity to minimal usable familiarity;
-- use the environment rather than exposition.
+### Exterior texture
 
-Entry presentation:
-1. player exits transit context;
-2. short first-look window;
-3. objective is practical: find the correct room/administrative target;
-4. do not label the whole campus with a canonical topology.
+The player can look outside.
 
-Place anchor:
-- 144 Xuân Thủy is research-grounded;
-- exact building/room/signage identity remains TBD_USER_APPROVAL.
+Use only a few strong details:
+- tightly layered motorbikes/cars/buses;
+- storefront/sign density;
+- bus-stop clusters;
+- the shift in scale as the route approaches the Xuân Thủy/Cầu Giấy area.
 
-Branch choice should emerge from behavior, not a floating menu where possible.
+Research-based optional:
+- if the final route geography supports it, elevated infrastructure / a train on Metro Line 3.1 can enter the player's view;
+- the Nhổn–Cầu Giấy elevated section had been in commercial operation since 8 August 2024, so it is valid 2025 texture;
+- if the route would not plausibly show it, omit it.
 
-### CH0-S06-A — Ask staff/guard
+The game never says:
+"Đây là tuyến metro Nhổn–Cầu Giấy..."
+unless a character has an actual reason to say that.
 
-Intent:
-- seek authoritative help.
+The player is allowed to notice without being lectured.
 
-Player verb:
-- approach + talk.
+### One small interior beat
 
-Response:
-- technically correct but incomplete direction.
+At a stop, several people get off and others squeeze past.
 
-Dialogue skeleton:
-Staff/guard:
-- "[DIRECTION_PLACEHOLDER]. Nếu không thấy thì hỏi tiếp nhé."
+A passenger says:
 
-Bắc:
-- "Vâng."
+**NPC:** "Cho mình xuống với."
 
-Comedy mechanism:
-- the information is not wrong; it is merely not enough to eliminate uncertainty.
+Bắc moves aside under player control.
+
+If the player blocks the aisle for more than a moment:
+
+**NPC:** "Bạn ơi, cho mình qua."
+
+Bắc steps aside.
+
+**BẮC:** "À, xin lỗi."
+
+This is not a joke line; it makes the bus feel occupied and gives the player a real bodily role in the space.
+
+### Arrival cue
+
+As the bus nears the Xuân Thủy/UET area, the scene shifts from passive travel to preparation.
+
+A stop/arrival cue is audible.
+
+The player can:
+- stand if seated;
+- move toward the exit;
+- look once more outside.
+
+No exact stop name is locked in this draft because the route is unknown.
+
+Transition:
+- bus stops;
+- Bắc gets off;
+- exterior sound opens up;
+- CH0-S06 begins.
+
+## CH0-S06 — Lần đầu vào UET / tìm chỗ cần đến
+
+Source:
+- user-accepted three-strategy navigation structure;
+- exact topology/room is not approved.
+
+### First-look beat
+
+Bắc steps away from the bus flow.
+
+[PLAYER CONTROL — FULL]
+
+For several seconds there is no dialogue.
+
+The player sees a busy university environment:
+- students moving with purpose;
+- people waiting or checking phones;
+- buildings/signs that are useful locally but not enough for a first-time visitor to instantly understand the whole place.
+
+The objective is deliberately practical:
+
+**TÌM CHỖ LÀM THỦ TỤC**
+
+No exact room number is shown unless later approved.
+
+The environment offers three readable strategies without presenting a giant modal menu:
+
+A. approach a staff/guard figure;
+B. follow a group of students moving confidently;
+C. inspect signs/phone and navigate independently.
+
+Once the player commits to one strategy, that local treatment plays out.
+
+### CH0-S06-A — Hỏi người có vẻ biết
+
+The player approaches the staff/guard figure.
+
+**BẮC:** "Chú ơi, cho em hỏi chỗ làm thủ tục nhập học đi hướng nào ạ?"
+
+The address term can be adjusted later to match the final NPC.
+
+The staff member points inward.
+
+**STAFF/GUARD:** "Em đi thẳng vào trong, qua sảnh rồi hỏi tiếp bàn phía trong nhé."
+
+Bắc looks in the indicated direction.
+
+There are enough possible paths that the answer is technically useful but not magically complete.
+
+**BẮC:** "Phía trong là bên nào ạ?"
+
+The staff member points more precisely.
+
+**STAFF/GUARD:** "Cứ đi thẳng đã. Vào đến sảnh sẽ có người chỉ."
+
+**BẮC:** "Vâng, em cảm ơn chú."
+
+[PLAYER CONTROL]
+
+Bắc walks the route himself.
+
+At the next junction, the player sees:
+- a temporary direction cue / notice;
+- a small cluster of students asking someone else;
+- the route toward the shared target area.
+
+If the player still chooses the wrong side, a staff voice from behind calls:
+
+**STAFF/GUARD:** "Em ơi, bên kia."
+
+Bắc turns.
+
+**BẮC:** "Vâng."
+
+No humiliation, no quest reset.
 
 Reconvergence:
-- player reaches a shared interior/junction area and can identify the next cue.
+- player reaches the common target zone.
 
-Do not encode exact floor/room unless approved.
+### CH0-S06-B — Đi theo nhóm trông rất tự tin
 
-### CH0-S06-B — Follow confident-looking students
+The player watches a small student group move quickly and decisively.
 
-Intent:
-- minimize social friction by using apparent local knowledge.
+They look exactly like people who know where they are going.
 
-Player verb:
-- observe + follow.
+If the player follows, no dialogue starts immediately.
 
-Beat:
-1. group moves decisively.
-2. player follows at a plausible distance.
-3. after a short route, it becomes clear they are not heading to Bắc's target or are also uncertain.
-4. one student notices Bắc.
+The group takes one turn.
+Then another.
 
-Candidate exchange:
-Student:
-- "Bạn đi cùng bọn mình à?"
+One student slows and checks a phone.
 
-Bắc:
-- "Tôi tưởng mấy bạn biết đường."
+Another looks at a sign.
 
-Possible student response:
-- "Bọn mình cũng đang tìm."
+Their confidence has quietly become less convincing.
 
-Status:
-- dialogue is proposed;
-- group remains background/one-off.
+After a few seconds, one student notices Bắc has been following them.
 
-Reconvergence:
-- the group/player notices the same neutral directional cue or receives a generic redirect toward the shared target area.
+**STUDENT 1:** "Bạn cũng đi làm thủ tục à?"
 
-### CH0-S06-C — Self-navigate by sign / phone
+**BẮC:** "Ừ."
 
-Intent:
-- solve it independently.
+**STUDENT 1:** "Bạn biết chỗ không?"
 
-Player verbs:
-- inspect sign;
-- check phone;
-- choose corridor/door;
-- open/approach.
+A beat.
 
-Beat:
-1. player gets close.
-2. opens/approaches the wrong room.
-3. room occupants look toward the player.
-4. hold a short silent beat.
-5. player backs out/closes door.
-6. a nearby cue reveals the correction.
+**BẮC:** "Tôi đang đi theo mấy bạn mà."
 
-Preferred comedy:
-- visual silence, not narrator text.
+The group stops.
 
-Optional Bắc line:
-- none;
-- if needed: "À, nhầm."
+[TIMING — 0.6 s]
 
-Reconvergence:
-- player reaches the same correct target area.
+**STUDENT 2:** "Bọn tôi cũng đang tìm."
 
-### Shared reconvergence rule
+Bắc looks from Student 2 to the corridor ahead.
 
-The three routes may differ in:
-- one NPC reaction;
-- one spatial detour;
-- one joke;
-- one local state value.
+**BẮC:** "À. Thế là cả đám cùng không biết."
 
-They must not differ in:
-- permanent route;
-- relationship canon;
-- chapter outcome.
+STUDENT 1 laughs once, mostly because the situation has become obvious.
 
-Exit:
-- arrival at the administrative/target area.
+**STUDENT 1:** "Chờ tí, để hỏi."
 
-## CH0-S07 — Administrative visit / bounded placeholder
+One of them asks a nearby staff/background person.
 
-Content class:
-- structural story placeholder.
+The redirect is short:
+
+**BACKGROUND STAFF:** "Bên kia em nhé."
+
+The group turns around.
+
+If the player stays with them, they all reach the common target area.
+
+If the player breaks away after receiving the correction, the route remains open independently.
+
+Reconvergence is caused by the world:
+- all of them finally receive the same missing information.
+
+No group member is named or made recurring.
+
+### CH0-S06-C — Tự tìm bằng biển/chỉ dẫn/điện thoại
+
+The player chooses not to ask anyone.
+
+Bắc checks the available sign/phone information and starts navigating.
+
+This route gives the player the most control and the most room to be locally wrong.
+
+The player reaches a door/room that appears plausible.
+
+Interaction:
+
+**[MỞ CỬA]**
+
+Bắc opens it.
+
+Inside, several people look toward the doorway at once.
+
+No music sting.
+
+[TIMING — 1.0 s]
+
+Bắc stays in the doorway.
+
+One person inside finally asks:
+
+**NPC TRONG PHÒNG:** "Em tìm phòng nào đấy?"
+
+**BẮC:** "Em tìm chỗ làm thủ tục nhập học ạ."
+
+The NPC points outside, in the opposite/adjacent direction.
+
+**NPC TRONG PHÒNG:** "Không phải phòng này. Em ra ngoài, đi bên kia."
+
+**BẮC:** "Vâng. Em xin lỗi."
+
+Bắc closes the door.
+
+[TIMING — 0.5 s]
+
+Back in the corridor, the correct cue is now visible from the new angle.
+
+No internal narrator says "nhầm phòng".
+
+If the player had only approached the wrong door but did not open it, a nearby sign/room label can let them self-correct before the punchline.
+
+### Shared S06 reconvergence
+
+All three strategies end at the same practical zone.
+
+What differs:
+- A: Bắc actively asks for authority/help;
+- B: Bắc relies on social inference and discovers the group is equally uncertain;
+- C: Bắc relies on self-navigation and risks a concrete wrong-room moment.
+
+What does not differ:
+- no permanent route;
+- no relationship arc;
+- no "correct answer" reward;
+- no canonical campus topology beyond what the final map later approves.
+
+After reconvergence, the player is allowed a short pause to look around.
+
+Then CH0-S07 begins.
+
+## CH0-S07 — Làm thủ tục / treatment research-based, chưa canon
 
 Source status:
-- insufficient lived material.
+- the user has not supplied the remembered administrative interaction;
+- official UET material from August 2025 documents a real admission workflow at 144 Xuân Thủy;
+- this scene is therefore a **RESEARCH-BASED PROPOSED TREATMENT**, not a claim about what the user personally experienced.
 
-Worker ruling:
-- do not write a full bureaucratic scene;
-- do not invent forms, staff behavior, room procedure or paperwork details as lived fact.
+Research anchor:
+- on 24 August 2025, incoming students were assigned admission locations/times by program;
+- students unable to attend that day were directed to room 104-E3 from 25 August until before 5 September;
+- after direct admission, students received admission/confirmation materials and instructions for online student-profile completion.
 
-Allowed layout:
-1. player reaches the target area.
-2. scene acknowledges successful navigation.
-3. handoff to TBD_USER_APPROVAL_ADMIN_PROCEDURE.
-4. after approved material is later inserted, this node must define the actual interaction.
-5. for the current draft only, exit state can be described abstractly as "first UET visit task resolved enough for the return sequence" without specifying how.
+Do not lock:
+- exact day;
+- exact room;
+- exact program-specific location;
+- exact staff identity;
+- exact documents Bắc actually handled;
+until the user confirms the remembered situation.
 
-No production-ready dialogue should be written here.
+### Recommended Treatment A — short, concrete, paperwork stays background
 
-Why the placeholder stays visible:
-- hiding the gap behind a polished invented scene would violate provenance;
-- this is currently the weakest/least complete Chapter 0 beat.
+Bắc reaches a desk/administrative point.
 
-## CH0-S08 — Leave UET / return bus
+A staff member looks up.
 
-Content class:
-- continuity/payoff beat + routine system.
+**STAFF:** "Em làm thủ tục nhập học đúng không?"
 
-Narrative function:
-- show learning through behavior;
-- make the return meaningfully different from the opening;
-- convert first-city confusion into a small competence gain.
+**BẮC:** "Vâng ạ."
 
-Recommended AI expansion:
-- brief false-reflex callback:
-  1. Bắc exits toward the street.
-  2. an approaching bus/noise draws attention.
-  3. player can begin moving toward the old roadside-style position.
-  4. a glance at the actual stop / learned cue redirects naturally.
-  5. no tutorial text.
-- If the player already walks straight to the stop, do not force the mistake animation.
+**STAFF:** "Em đưa giấy tờ nhập học để kiểm tra nhé."
 
-This is a callback, not a repeated full joke.
+**BẮC:** "Vâng."
 
-State read:
-- CH0_KNOWS_MARKED_BUS_STOP_RULE.
+The exact document name is intentionally kept generic because the user's remembered paperwork is not yet supplied.
 
-Boarding:
-- routine and quicker than S03;
-- no second mandatory inaction gag.
+Bắc hands the material over.
 
-Exit:
-- transit transition toward rented-room area.
+The staff member checks the information against the system/list.
 
-## CH0-S09 — Get off near home / boy-phố flyby / end
+[TIMING — 2–3 s]
 
-Content class:
-- chapter exit beat.
+This is one of the few quiet pauses in the chapter.
 
-Source grounding:
-- LM-CH0-003;
-- LM-CH0-006.
+The player can look at:
+- the desk;
+- stacks of papers;
+- other students waiting;
+- the corridor/room around them.
 
-Narrative function:
-- give ordinary relief a quick city-life punctuation;
-- let "home" begin to function as a familiar destination;
-- close on lived-in chaos rather than a speech about meaning.
+The staff member finds the entry.
 
-Beat:
-1. player recognizes the stop.
-2. bus slows.
-3. player gets off.
-4. brief relief / orientation.
-5. fast vehicle passes through the scene shortly after.
-6. sound/motion creates a micro-startle.
-7. event resolves immediately as an ordinary street moment.
+**STAFF:** "Bắc đúng không?"
 
-User wording anchor:
-- "Đến rồi, đến nhà rồi, xuống thôi."
+**BẮC:** "Vâng."
 
-Do not treat this as locked final dialogue.
+**STAFF:** "Được rồi."
 
-Bắc presentation:
-- minimal line or no line after the flyby;
-- physical look toward the passing vehicle may be enough.
+The staff member returns/places the relevant admission materials in front of him.
 
-Ending candidate A — hard comic cut:
-- flyby;
-- short look;
-- cut to Chapter 0 end.
+**STAFF:** "Được rồi. Em cầm mấy giấy này về, phần hồ sơ online thì làm theo hướng dẫn nhé."
 
-Ending candidate B — short walk-off:
-- flyby;
-- player regains full control;
-- a few seconds toward the rented-room direction;
-- fade/cut.
+Bắc looks at the papers, then at the staff member.
 
-TBD_USER_APPROVAL:
-- exact vehicle;
-- exact final line;
-- hard cut vs short walk-off.
+**BẮC:** "Phần online em về làm được ạ?"
 
-Do not:
-- escalate the flyby into a new story incident;
-- make the vehicle a recurring mystery;
-- add a pursuit beat;
-- add moralizing narration.
+**STAFF:** "Ừ. Nhớ làm trước hạn."
+
+**BẮC:** "Vâng, em cảm ơn."
+
+The player receives control again.
+
+Interaction:
+- **[XEM GIẤY HƯỚNG DẪN]** is optional;
+- inspection shows only approved/generic information unless the exact 2025 document content is later confirmed.
+
+No form-filling minigame is required.
+
+No staff monologue explains the university.
+
+The emotional payoff is modest:
+- Bắc found the right place;
+- the task that brought him here is now practically complete.
+
+### If user rejects this reconstruction
+
+Do not replace it with another invented bureaucracy scene.
+
+Keep the arrival and exit beats, then rebuild S07 from the user's remembered material.
+
+### Exit into the return trip
+
+Bắc steps away from the desk.
+
+For a moment the player can simply move back through the space they just struggled to navigate.
+
+The same environment is already slightly less opaque.
+
+That small change in familiarity is the scene's real carry-out.
+
+CH0-S08 begins when Bắc exits toward the street / return-transit route.
+
+## CH0-S08 — Rời UET / lần này không bắt xe kiểu cũ nữa
+
+Source:
+- user-directed return;
+- learning callback is proposed;
+- practical fare-preparation micro-beat is AI-expanded from S04 continuity.
+
+### Leaving the building/area
+
+Bắc exits with the admission materials put away.
+
+[PLAYER CONTROL — FULL]
+
+The route back toward public transport is shorter in presentation than the arrival route.
+
+The chapter does not make the player re-solve the same campus navigation puzzle.
+
+At the street edge, a bus passes in view.
+
+For a fraction of a second Bắc's hand begins to lift.
+
+He notices the actual stop.
+
+His hand stops halfway.
+
+No narrator comments on it.
+
+Bắc changes direction and walks toward the stop.
+
+If the player had already steered directly toward the stop, this authored half-gesture is skipped.
+
+The callback rewards learned behavior rather than forcing the protagonist to repeat a mistake.
+
+### Conditional payoff if S04 helper passenger was used
+
+State:
+- CH0_NEEDS_RETURN_FARE = true.
+
+Research-grounded environmental option:
+- UET's public campus information notes that ATMs exist within the ĐHQGHN Xuân Thủy campus area;
+- exact ATM location is not canonical in this draft.
+
+As Bắc exits, an ATM/sign becomes visible in the normal route.
+
+The player can interact.
+
+**BẮC:** "À, rút tiền đã."
+
+That is the entire line.
+
+The player performs a short abstracted cash-preparation interaction.
+No PIN, bank, amount or financial details are shown.
+
+This beat exists only to solve the return-fare continuity cleanly.
+
+If S04 did not use the helper/cash problem, omit this beat.
+
+### Return boarding
+
+At the stop, another bus arrives.
+
+This time:
+- no repeated "will it stop?" joke;
+- no long boarding tutorial;
+- no mandatory missed-bus gag.
+
+The door opens.
+
+**[LÊN XE]**
+
+Bắc boards.
+
+If cash was prepared, the fare interaction is quick:
+
+**STAFF:** "Vé em."
+
+Bắc hands over the fare.
+
+The staff member completes the transaction.
+
+No dialogue callback explains how much Bắc has learned.
+
+The change is visible because the scene simply works.
+
+If the final approved payment treatment uses electronic ticketing instead, mirror that approved method here.
+
+### Return ride
+
+The ride is compressed more aggressively than S05.
+
+The player gets a few seconds of city movement, then the approach to the rented-room stop.
+
+Transition:
+- CH0-S09.
+
+## CH0-S09 — "Đến nhà rồi" / boy-phố lướt qua / hết Chapter 0
+
+Source:
+- user-directed ending;
+- user-supplied "boy phố lướt qua" detail;
+- exact vehicle and final line remain approval-sensitive.
+
+### Approach
+
+The bus slows near the stop Bắc now recognizes as the one for the rented room.
+
+The outside environment is still new, but this one destination is no longer abstract.
+
+The user-supplied wording is used as the candidate internal/spoken-under-breath line:
+
+**BẮC:** "Đến rồi. Đến nhà rồi. Xuống thôi."
+
+This wording is preserved as an anchor, not silently polished.
+
+The player moves to the door and gets off.
+
+### Street-level relief
+
+The bus pulls away.
+
+For roughly one second:
+- traffic sound opens up again;
+- Bắc is back on the street;
+- the immediate task feels finished.
+
+[PLAYER CONTROL]
+
+The player may turn toward the direction of the rented room.
+
+Then a fast vehicle cuts through the nearby street space.
+
+Presentation rule:
+- loud enough and close enough to startle;
+- not close enough to depict a collision or turn the moment into a danger event;
+- exact vehicle remains TBD_USER_APPROVAL;
+- "boy phố" is the intended social/visual energy, not a new character introduction.
+
+The sound arrives first or nearly together with the visual pass.
+
+Bắc's view snaps toward it naturally.
+
+[TIMING — 0.8 s]
+
+No chase.
+No ominous camera.
+No mystery sting.
+
+The vehicle is already gone.
+
+### Recommended ending — hard comic cut
+
+Bắc watches the empty direction for one beat.
+
+He turns back toward "home".
+
+Cut to black.
+
+**END CHAPTER 0**
+
+This is the recommended V0 ending because:
+- it lands the city-chaos punctuation cleanly;
+- it does not require inventing the exact rented-room exterior;
+- it ends on action/timing instead of a moral.
+
+### Alternate ending — short walk-off
+
+Use only if the user prefers a softer close.
+
+After the flyby:
+- full control returns;
+- player walks a short distance toward the rented-room direction;
+- ordinary street ambience settles back in;
+- fade out before the actual room/address must be shown.
+
+No reflective monologue is added.
+
+### Chapter-end state
+
+Bắc now has:
+- one practical Hanoi transit rule learned;
+- one ordinary recurring-person seed established;
+- minimal familiarity with the Xuân Thủy/UET environment;
+- first UET task completed in the selected treatment;
+- a small sense that the rented-room stop is now "home enough" to recognize.
+
+He does **not** end the chapter transformed into a different person.
+
+The chapter closes on slightly increased familiarity, not a life lesson.
+
+# 8A. Full-story pacing check
+
+Approximate dramatic cadence, not runtime lock:
+1. phone call — intimate/quiet;
+2. wrong bus attempts — active confusion;
+3. Grab driver — social correction + comedy;
+4. red-light fragment — ambient city texture;
+5. proper stop / possible missed bus — interaction timing;
+6. fare friction — social/practical friction;
+7. bus ride — decompression;
+8. UET navigation — main gameplay branch;
+9. admin interaction — small practical resolution;
+10. return — callback/competence;
+11. flyby — final punctuation.
+
+No scene needs a major cutscene to function.
+
 
 # 9. Interaction vocabulary by scene
 
@@ -843,7 +1485,10 @@ S03:
 - inspect stop, wait, board/interact, inaction.
 
 S04:
-- talk/respond, payment interaction TBD.
+- talk/respond;
+- check wallet/phone;
+- helper-payment + transfer-back interaction if Treatment A is approved;
+- exact bus payment method remains route/date/service approval-sensitive.
 
 S05:
 - look, phone inspect, optional seat/passenger observation.
@@ -852,10 +1497,15 @@ S06:
 - observe, ask/talk, follow, inspect sign, check phone, open/close door, move.
 
 S07:
-- TBD after lived/admin material exists.
+- approach/talk;
+- hand over/check generic admission material;
+- inspect returned guidance;
+- exact procedure/date/location remains approval-sensitive despite the research-based treatment.
 
 S08:
-- navigate to stop, wait, board.
+- navigate back toward the stop;
+- conditional ATM/cash-preparation interaction if CH0_NEEDS_RETURN_FARE is active;
+- wait, board, complete the now-learned fare routine.
 
 S09:
 - disembark, look/react, move if walk-off ending is selected.
@@ -1035,197 +1685,319 @@ Avoid:
 - persistent state for one-off jokes;
 - a large bespoke admin minigame before the real material exists.
 
-# 14. Self-critique and revision log
+# 14. Self-critique and revision log — deep story pass
 
-This draft was reviewed against UET_NARRATIVE_SKILL_V2 autonomous self-review and narrative QA checks.
+This pass was reviewed against UET_NARRATIVE_SKILL_V2 Phase 10/12 after the full playable story was written.
 
-## Finding 1
+The review question was not "is the architecture sound?" but:
+**can the user now read Chapter 0 from beginning to end and actually see/hear the scenes happen?**
+
+## Finding 1 — previous draft was still mostly outline
+
+Severity:
+- blocking for the user's requested deliverable.
+
+Category:
+- scene completeness.
+
+Problem:
+- the old Section 8 mostly stated purpose, branch shape and interaction intent;
+- several scenes could not be read as actual story because actions, dialogue, pauses and option-specific reactions were missing.
+
+Revision made:
+- rewrote Section 8 as a continuous playable story pass;
+- every spine scene S01–S09 now contains concrete staging;
+- actual dialogue candidates are written for mother, Bắc, driver, staff, students, background NPCs and helper passenger;
+- player-control windows, inaction behavior, timing and scene transitions are explicit.
+
+Result:
+- the file now contains the story itself rather than merely pointing at a future script pass.
+
+## Finding 2 — one S02 branch still collapsed back into outline
+
+Severity:
+- moderate.
+
+Category:
+- branch completeness.
+
+Problem:
+- the first deep draft said that if the player independently noticed the bus stop, the driver's dialogue would "change", but did not write the changed exchange.
+
+Revision made:
+- added the full alternate exchange;
+- the driver confirms the stop and still naturally discovers that Bắc is new;
+- the branch preserves the recurring-driver meeting without pretending Bắc remained confused after the player had already solved the problem.
+
+## Finding 3 — recurring driver was becoming over-authored
 
 Severity:
 - major.
 
 Category:
-- historical/context accuracy.
+- character authority / personality leakage.
 
 Problem:
-- the original fare candidate can accidentally imply that 2025 Hanoi buses universally required cash and could not support cashless payment.
+- an early dialogue version gave the driver a tidy joke about "xe buýt không phải xe ôm / xe ôm thì anh đang ở đây";
+- another line teased Bắc for discovering the stop late;
+- this risked defining a witty/teasing personality before the user has approved the driver's personality.
 
 Revision made:
-- converted S04 into an approval-sensitive payment-method mismatch module;
-- retained the user's transfer-payment idea as candidate dialogue;
-- refused to lock the staff answer until route/date/service context is known.
+- removed the personality-defining joke;
+- kept the driver practical, conversational and useful;
+- humor now comes primarily from the situation: a ride-hailing driver is the person who explains the bus rule.
 
-## Finding 2
-
-Severity:
-- moderate.
-
-Category:
-- repetition.
-
-Problem:
-- S02 buses passing and S03 missed boarding can both look like the same joke: "bus leaves Bắc."
-
-Revision made:
-- S02 is explicitly a knowledge/location error;
-- S03 missed bus is optional and only occurs through player inaction after correct knowledge;
-- prompt boarding skips the second gag entirely.
-
-## Finding 3
+## Finding 4 — fare scene needed historical realism and a complete playable resolution
 
 Severity:
 - major.
 
 Category:
-- fabricated topology/canon.
+- research / plausibility / scene closure.
 
 Problem:
-- writing exact staff directions or exact room labels could silently canonize a campus layout and administrative procedure that the user has not supplied.
+- "không chuyển khoản, phải tiền mặt" could be misread as a universal 2025 Hanoi bus rule;
+- the older draft also left the actual resolution under-specified.
+
+Research correction:
+- June 2025 Hanoi material describes both cash and electronic payment for bus single fares;
+- direct personal bank transfer to staff is distinct from the official ticket-payment system.
 
 Revision made:
-- direction text uses placeholders;
-- S06 focuses on strategy and local reaction rather than exact topology;
-- S07 remains a visible bounded placeholder.
+- staff rejects direct transfer-to-staff rather than claiming the whole network is cash-only;
+- staff asks about cash / supported electronic ticketing;
+- wrote a complete helper-passenger treatment in which the helper pays, then Bắc transfers back to the helper;
+- retained a no-helper treatment boundary if the user rejects that embellishment.
 
-## Finding 4
+Approval status:
+- helper passenger remains proposed, not canon.
+
+## Finding 5 — helper-passenger resolution created a continuity hole
+
+Severity:
+- major.
+
+Category:
+- continuity / practical logic.
+
+Problem:
+- if Bắc has no cash or transit-ticket method on the first ride, simply reaching UET does not magically solve the return fare;
+- the old return scene would have repeated or ignored the problem.
+
+Revision made:
+- added event-local CH0_NEEDS_RETURN_FARE;
+- if the helper treatment is selected, S08 includes a tiny preparation beat using a generic campus ATM;
+- UET public information supports ATM presence in the Xuân Thủy campus area;
+- exact ATM placement remains non-canonical.
+
+## Finding 6 — S07 had no lived material but could not remain an empty hole
+
+Severity:
+- major.
+
+Category:
+- provenance / scene completeness.
+
+Problem:
+- the user explicitly requested an actual readable story;
+- leaving S07 as "TBD admin procedure" made the chapter still feel unfinished;
+- inventing a polished bureaucracy scene as remembered fact would violate provenance.
+
+Revision made:
+- researched the official UET 2025 admission workflow;
+- wrote a short research-based Treatment A: check in, staff verifies the entry, returns/gives admission materials, tells Bắc to complete the online portion by the deadline;
+- kept exact day, room, program-specific location, document names and personal remembered details approval-sensitive;
+- explicitly states that the treatment must be replaced if the user's memory differs.
+
+Result:
+- S07 is now readable story but remains the least canon-secure scene.
+
+## Finding 7 — some dialogue sounded written rather than spoken
 
 Severity:
 - moderate.
 
 Category:
-- forced recurring-character importance.
+- dialogue / Bắc authenticity.
 
-Problem:
-- the Grab driver could read as an obviously planted important NPC.
-
-Revision made:
-- removed future-facing dialogue and special framing;
-- encounter begins as a normal ride offer;
-- recurrence remains a continuity obligation outside the scene, not information characters know.
-
-## Finding 5
-
-Severity:
-- moderate.
-
-Category:
-- pacing / roadside density.
-
-Problem:
-- phone call → repeated buses → driver → red light → bus stop risks too many consecutive roadside beats.
+Examples found:
+- Bắc telling lost students "Thế là đông người lạc hơn thôi";
+- formal staff wording in S07;
+- an over-neat ATM reaction.
 
 Revision made:
-- red-light content is optional/observational and placed during movement rather than as another mandatory stop;
-- it can be shortened or omitted in runtime pacing without breaking causality.
+- simplified the student line to "À. Thế là cả đám cùng không biết.";
+- shortened the admin exchange into ordinary spoken Vietnamese;
+- changed the ATM line to the more practical "À, rút tiền đã.";
+- removed several lines that existed mainly to display cleverness.
 
-## Finding 6
-
-Severity:
-- moderate.
-
-Category:
-- contrivance.
-
-Problem:
-- helper passenger covering fare can feel overly convenient and can accidentally create an unapproved important meeting.
-
-Revision made:
-- helper passenger is HOLD;
-- if used, keep the person anonymous/one-off and the exchange short.
-
-## Finding 7
+## Finding 8 — risk of meme insertion for its own sake
 
 Severity:
-- optional.
+- optional but style-relevant.
 
 Category:
 - trend humor.
 
+Research:
+- "67 / six-seven" is date-plausible for 2025 and was widely treated as deliberately meaningless brainrot-style slang;
+- this validates the style guide's cultural window but does not make the token useful in this chapter.
+
+Revision/ruling:
+- no "67", "36", "bó tay chấm com" or similar concrete meme is forced into mandatory dialogue;
+- the draft uses 2025-compatible humor mechanics instead: repetition, overconfidence, interrupted answers, awkward silence and an ordinary mistake escalating by one beat.
+
+## Finding 9 — roadside opening risked becoming over-dense
+
+Severity:
+- moderate.
+
+Category:
+- pacing.
+
 Problem:
-- inserting a 2025 meme merely because the style guide permits it would make the writing feel pasted-on.
+- mother call → multiple failed buses → driver → red-light NPCs → proper bus stop can become a long chain before the player physically leaves the area.
 
-Revision made:
-- no concrete meme reference added;
-- humor remains structural: repetition, silence, wrong assumptions, inaction and visual reaction.
+Revision preserved:
+- third wrong-bus attempt is optional;
+- red-light scene is attention-based ambient content and may be passed through quickly;
+- the driver's dialogue stays compact;
+- S03 has only one authored missed-bus gag at most.
 
-# 15. User-approval matrix
+# 15. User-approval matrix after deep story pass
 
-Needs user approval before canon / final script:
-- exact mother dialogue;
-- exact starting street/location;
-- exact date and bus route/service if payment realism is kept;
-- whether S04 fare friction stays;
-- S04 resolution;
-- whether helper passenger exists;
+The draft is intentionally concrete enough to review. Concrete does not mean approved.
+
+## Dialogue / character approval
+
+Needs user approval or revision before canon:
+- the complete proposed mother-call dialogue in S01;
+- exact family address pattern / speech rhythm;
 - exact Grab-driver dialogue tone;
-- Grab-driver name/age/appearance/personality/later arc;
-- exact UET target room/procedure;
-- exact admin interaction content;
-- any official UET signage/branding detail;
-- exact context/reaction around the red-light quote beyond its current ambient treatment;
-- exact final flyby vehicle/presentation;
-- hard-cut vs short-walk ending;
-- exact Chapter 0 closing line.
+- whether the driver is literally branded "Grab" in final release or a fictionalized ride-hailing equivalent;
+- driver name, age, appearance, personality and future relationship arc;
+- detailed Bắc phrasing where the Character Bible still has TBD fields such as slang, swearing and staff-politeness habits.
 
-Does not need a new canon decision just to review as draft:
-- using local micro-branches;
-- using inaction as authored comedy;
-- making red-light content skippable/attention-based;
-- using visual silence for wrong-room comedy;
-- using bus-stop knowledge as a Chapter 0 callback;
-- keeping background NPCs unnamed.
+## Bus / payment approval
 
-# 16. Strongest and weakest remaining beats
+Needs user approval:
+- exact story date and bus route/service if historical mechanics are to be locked;
+- whether the fare/payment friction remains in final Chapter 0;
+- whether helper-passenger Treatment A is accepted;
+- whether the helper stays strictly one-off;
+- whether the S08 ATM/preparation payoff is accepted;
+- exact final payment method used on the return trip.
 
-Strongest:
+## UET approval
+
+Needs user approval:
+- exact target building/room/procedure;
+- which of the three S06 navigation branches remain available in final content;
+- final dialogue around those branches;
+- whether the research-based S07 Treatment A matches the user's lived memory closely enough to keep;
+- exact date/location/documents for S07;
+- any official logo/signage/branding or canonical campus topology.
+
+## Ambient / ending approval
+
+Needs user approval:
+- surrounding context for the red-light quote; the user-supplied quote itself is preserved unchanged;
+- exact "boy phố" vehicle and audiovisual presentation;
+- hard comic cut versus short walk-off;
+- whether "Đến rồi. Đến nhà rồi. Xuống thôi." remains the final spoken/internal wording.
+
+## Already safe as draft-level structure
+
+Does not require a new canon decision merely to remain in this review draft:
+- local micro-branch/reconvergence model;
+- one optional missed-bus inaction gag;
+- red-light beat being skippable/attention-based;
+- wrong-room visual silence;
+- no permanent route from Ch0 choices;
+- unnamed background students/staff;
+- learned bus-stop rule paying off on the return.
+
+# 16. Strongest / weakest remaining material
+
+Strongest current sequence:
 - CH0-S02 → CH0-S02A.
 
-Reason:
-- directly grounded in lived material;
-- playable;
-- specific to new-city behavior;
-- comedy is caused by the player's action;
-- the recurring driver gains future continuity without being forced.
+Why:
+- comes directly from lived material;
+- requires the player to physically participate;
+- the misunderstanding is specific and ordinary;
+- the recurring driver enters for a believable reason unrelated to future plot importance;
+- the player leaves the scene knowing one concrete thing they did not know before.
 
-Second strongest:
-- CH0-S06-C wrong-room self-navigation.
+Strong secondary sequence:
+- CH0-S06 three-way navigation branch, especially the wrong-room treatment.
 
-Reason:
-- first-person visual comedy;
-- low dialogue cost;
-- clear player verb;
-- easy natural reconvergence.
+Why:
+- three options express different intentions;
+- reactions are meaningfully different;
+- branches reconverge through in-world information;
+- the comedy works visually without a narrator.
 
-Weakest:
+Weakest remaining scene:
 - CH0-S07 administrative visit.
 
-Reason:
-- current source material does not support a real scene yet;
-- any polished detail here would be invention disguised as confidence.
+Why:
+- it now has a complete readable treatment, so it is no longer an outline hole;
+- however, it is based on verified public UET 2025 procedure rather than the user's own remembered administrative event;
+- exact date/room/documents remain unknown;
+- this makes it the scene most likely to change after user review.
+
+Second risk:
+- CH0-S04 helper-passenger treatment.
+
+Why:
+- it solves the user's fare-friction idea cleanly and gives the transfer question a mundane reversal;
+- but the helper is still a fictional embellishment and could feel too convenient if the user does not recognize/like the beat.
 
 Main production risk:
-- exact city/UET geometry is intentionally not locked, so implementation should not treat this layout as a level-layout authority.
+- this document is a narrative/script layout, not authority for exact Xuân Thủy map topology;
+- implementation must not turn provisional routes, signs, rooms or ATM placement into canonical campus reconstruction.
 
 # 17. Readiness ruling
 
-Ready for:
-- user narrative review;
-- selecting/adjusting local micro-events;
-- dialogue-direction review;
-- approval of S04 handling;
-- supplying the missing S07 lived/admin material;
-- deciding Chapter 0 ending presentation.
+## Ready now
 
-Not yet ready for:
-- final canon promotion;
+This V0 is ready for the user to read and judge as **actual Chapter 0 story content**.
+
+The user can now review:
+- what Bắc actually says;
+- what other people actually say;
+- where player control starts/stops;
+- how long silences land;
+- what happens when the player does nothing;
+- how each local branch reacts;
+- what the chapter feels like from opening call to final flyby.
+
+The chapter now reads as one continuous playable sequence rather than a future-work outline.
+
+## Not ready yet
+
+It is not yet:
+- user-approved detailed canon;
 - final dialogue lock;
-- final production spec for all scenes;
-- exact map/blockout topology derived from this file;
-- final implementation of S04/S07 without the missing approvals.
+- final important-NPC characterization;
+- final production spec;
+- authority for exact campus/map topology;
+- ready for implementation of S04/S07 as final historical/lived truth.
 
-Recommended next pass after user review:
-1. record approved/rejected details into the story package / ledger as appropriate;
-2. replace S07 placeholder with user-supplied material;
-3. lock or remove S04;
-4. run a bounded dialogue polish pass;
-5. only then derive implementation-facing event specs for approved beats.
+## Recommended user review order
+
+Review the draft as story, not as architecture:
+
+1. S01 — does Bắc + mother sound like the real relationship?
+2. S02/S02A — does the Grab-driver conversation feel right?
+3. S04 — keep helper passenger, replace them, or remove the fare complication?
+4. S06 — which navigation reactions feel most like the intended game?
+5. S07 — how does the real remembered administrative visit differ from the research-based treatment?
+6. S09 — hard cut after the flyby or a few seconds walking home?
+
+After those decisions:
+- record accepted details in the source-of-truth ledger/package;
+- revise only affected dialogue/events;
+- promote only explicitly approved material;
+- then derive implementation-facing event specs.
