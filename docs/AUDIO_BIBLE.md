@@ -1,80 +1,70 @@
 # Audio Bible
 
 ## Goal
-Audio should make the player feel physically present before it tries to scare them.
+
+Audio should make ordinary university life feel present, spatial and inhabited. Humor, social timing and later unusual events should work because the normal soundscape already feels believable.
 
 ## Priorities
+
 1. room tone and believable ambience
 2. spatial positioning
 3. interaction feedback
-4. narrative audio clues
-5. subtle state changes
-6. musical scoring
+4. NPC/classroom activity
+5. phone/device sounds
+6. event-specific state changes
+7. music where it earns its place
 
-## Sound identity
-Use familiar, restrained sounds:
-- fluorescent hum
-- distant rain
-- corridor air/noise
-- chair/floor creaks
-- paper
-- book covers/pages
-- old speakers/radios
-- electrical buzz
+## Baseline sound identity
+
+Useful ordinary sources include:
+- classroom room tone
+- fans and air conditioner
+- practical fixture hum
+- chairs and desks moving
+- paper and bags
+- keyboard/laptop sounds
+- phone vibration/notification
+- corridor voices
+- footsteps
 - distant traffic
-- school PA system
-- room-specific reverb/occlusion where practical
+- doors/windows
+- rain only when the scene actually uses rain
 
-## Horror rule
-Silence and absence are tools.
-
-Avoid:
-- constant drones
-- loud stingers every few minutes
-- repetitive jump-scare hits
-- sound that reveals every danger before the player notices it
+Sound should not constantly imply danger.
 
 ## Interaction standard
-Important interactions require synchronized sound.
 
-Book prototype:
-- contact/movement
-- cover opening
-- page turn
-- subtle paper friction
-- optional discovery cue that is restrained rather than “achievement-like”
+Important interactions should have synchronized feedback:
+- sit/stand
+- chair movement
+- desk contact
+- door movement
+- phone use
+- paper/book handling
+- laptop/charger interactions
+- switches/fans/windows where interactive
 
-## Reality-shift audio
-A reality shift may alter:
-- room tone
-- fluorescent frequency/intensity
-- distant ambience
-- reverb impression
-- an audio source that did not previously exist
+## Social and comedy timing
 
-Do not announce the shift with a generic horror sting.
+Short silence, overlapping chatter, delayed reactions and environmental sounds may support humor. Do not turn every joke into a musical sting or explicit comedy cue.
 
-## Narrative audio
-Recordings are evidence.
+## Event audio
 
-Each audio clue should define:
-- original source
-- recording date/context if relevant
-- audible facts
-- misleading interpretation
-- later reinterpretation
-- transcript/subtitle data
+If later scenes use unusual or uncanny states, audio may change through a missing ambience source, altered familiar loop, spatial/reverb change, contradictory device audio, or unstable practical fixture.
+
+These changes must be authored for a specific event. Do not use a permanent horror drone as the baseline.
 
 ## Accessibility
-- subtitles/transcripts for meaningful speech and evidence audio
-- separate master/music/ambience/SFX/voice controls when the project reaches settings production
-- important clues must not depend on hearing a tiny sound with no alternative representation
 
-## Prototype scope
-For the first playable prototype:
-- corridor ambience
-- classroom ambience
-- footsteps placeholder if feasible
-- interaction hover/activation kept subtle
-- book open/page/close
-- one world-state ambience variation
+Meaningful dialogue/audio information should have subtitles or another readable representation where appropriate.
+
+Future settings should separate master/music/ambience/SFX/voice when audio production reaches that stage.
+
+## Current target
+
+Build the P202 classroom sound bed first:
+- normal classroom ambience
+- chair/desk interaction feedback
+- door/window/fan/AC sounds where used
+- phone/device feedback when gameplay requires it
+- room-ready spatial audio without horror-by-default presentation
