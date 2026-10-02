@@ -16,6 +16,7 @@
     "valibot": "^1.5.0"
   },
   "devDependencies": {
+    "@babylonjs/serializers": "^9.29.0",
     "@types/node": "^26.6.3",
     "typescript": "^7.0.2",
     "vite": "^8.3.2",

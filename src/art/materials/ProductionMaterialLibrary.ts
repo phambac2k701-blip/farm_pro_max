@@ -13,6 +13,9 @@ export interface ProductionMaterialLibrary {
   glass: PBRMaterial;
   paperCardboard: PBRMaterial;
   wetExterior: PBRMaterial;
+  interiorWallLight: PBRMaterial;
+  interiorFloorLight: PBRMaterial;
+  interiorCeilingLight: PBRMaterial;
 }
 
 interface MaterialPreset {
@@ -93,6 +96,27 @@ export function createProductionMaterialLibrary(
   });
   wetExterior.environmentIntensity = 0.78;
 
+  const interiorWallLight = createPbr(scene, `${prefix}-interior-wall-light`, {
+    albedo: new Color3(0.76, 0.76, 0.68),
+    metallic: 0,
+    roughness: 0.88,
+  });
+  interiorWallLight.environmentIntensity = 0.72;
+
+  const interiorFloorLight = createPbr(scene, `${prefix}-interior-floor-light`, {
+    albedo: new Color3(0.46, 0.47, 0.43),
+    metallic: 0,
+    roughness: 0.56,
+  });
+  interiorFloorLight.environmentIntensity = 0.78;
+
+  const interiorCeilingLight = createPbr(scene, `${prefix}-interior-ceiling-light`, {
+    albedo: new Color3(0.83, 0.83, 0.77),
+    metallic: 0,
+    roughness: 0.9,
+  });
+  interiorCeilingLight.environmentIntensity = 0.7;
+
   return {
     plaster,
     paintedWall,
@@ -104,5 +128,8 @@ export function createProductionMaterialLibrary(
     glass,
     paperCardboard,
     wetExterior,
+    interiorWallLight,
+    interiorFloorLight,
+    interiorCeilingLight,
   };
 }

@@ -1,0 +1,17 @@
+{
+  "metrics": {
+    "exposure": 1.4,
+    "meshes": 342,
+    "activeMeshes": 168,
+    "totalVertices": 11783,
+    "classroomCenter": {
+      "_isDirty": true,
+      "_x": 5.5,
+      "_y": 0,
+      "_z": 0.5
+    }
+  },
+  "exceptions": [],
+  "logs": [],
+  "bad": []
+}

@@ -201,3 +201,29 @@ The latest user playtest corrections are now part of the implementation directio
 - the normal classroom presentation is bright/readable by default; darker/KCR lighting is treated as an event state
 
 These corrections are technical/presentation decisions only. They do not approve a canonical university, room map, chapter premise, important character or final uncanny event.
+
+
+## 14. Classroom production layout override — 2026-10-02
+
+This section is the current spatial source of truth for the production classroom pass.
+
+Latest user-directed layout:
+- **10 student rows**
+- **3 separated desks per row**
+- **30 desks total**
+- **2 seats per desk** (approximately 60 student seats)
+- each row reads left / center / right across the room
+- desks remain separated by believable walking lanes
+- students sit behind the desks and face the front board
+- the classroom footprint is intentionally larger and the ceiling noticeably higher than the earlier prototype room
+
+Current implementation orientation:
+- board/front = +X
+- rows progress from the rear toward +X
+- each desk's long edge runs across the room (Z axis)
+- chairs sit on the rear side of each desk relative to the board
+- from the back row looking toward the board, the main entrance is on the **left wall**, close to the front wall
+- the teacher desk is shifted to the **right side**, aligned with the inner/right desk column
+- the board is enlarged and kept flat/aligned to the front wall
+
+These are spatial/layout approvals only. Teacher identity, exact teaching behavior, institutional identity, and narrative meaning remain behind the existing USER APPROVAL gates.

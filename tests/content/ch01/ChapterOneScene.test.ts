@@ -2,6 +2,11 @@ import { NullEngine } from "@babylonjs/core/Engines/nullEngine";
 import { Scene } from "@babylonjs/core/scene";
 import { describe, expect, it } from "vitest";
 
+import {
+  CLASSROOM_CHAIRS,
+  CLASSROOM_DESKS,
+  CLASSROOM_ROOM,
+} from "../../../src/art/classroom/ClassroomProductionLayout";
 import { CH01_CHECKPOINTS } from "../../../src/content/chapters/ch01/state";
 import {
   buildChapterOneScene,
@@ -46,12 +51,12 @@ describe("Chapter 1 production scene shell", () => {
       6,
     );
     expect(scene.getLightByName("ch01-classroom-light")?.intensity).toBeCloseTo(
-      2.35,
+      1.65,
       6,
     );
     expect(scene.getTransformNodeByName("ch01-school-sign-root")?.rotation.y).toBe(0);
     expect(scene.getTransformNodeByName("ch01-old-wing-sign-root")?.rotation.y).toBe(0);
-    expect(scene.getTransformNodeByName("ch01-classroom-sign-root")?.rotation.y).toBeCloseTo(Math.PI / 2, 6);
+    expect(scene.getTransformNodeByName("ch01-classroom-sign-root")?.rotation.y).toBeCloseTo(0, 6);
     expect(scene.getTransformNodeByName("ch01-pa-room-sign-root")?.rotation.y).toBeCloseTo(Math.PI / 2, 6);
     expect(scene.getMeshByName("ch01-school-sign-backing")).not.toBeNull();
     expect(scene.getMeshByName("ch01-school-sign")?.material?.backFaceCulling).toBe(true);
@@ -64,16 +69,30 @@ describe("Chapter 1 production scene shell", () => {
         "ch01-v2-classroom-door-opening-header-infill",
       )?.checkCollisions,
     ).toBe(true);
-    expect(chapter.studentDesks).toHaveLength(8);
+    expect(chapter.studentDesks).toHaveLength(30);
+    expect(CLASSROOM_DESKS).toHaveLength(30);
+    expect(CLASSROOM_CHAIRS).toHaveLength(60);
+    expect(new Set(CLASSROOM_DESKS.map((desk) => desk.row)).size).toBe(10);
+    for (const row of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) {
+      const desks = CLASSROOM_DESKS.filter((desk) => desk.row === row);
+      expect(desks).toHaveLength(3);
+      expect(desks[1]!.z - desks[0]!.z).toBeGreaterThan(2);
+      expect(desks[2]!.z - desks[1]!.z).toBeGreaterThan(2);
+      expect(
+        desks.every((desk) => desk.rotationY === Math.PI / 2),
+      ).toBe(true);
+    }
+    expect(CLASSROOM_ROOM.maxX - CLASSROOM_ROOM.minX).toBeGreaterThan(16);
+    expect(CLASSROOM_ROOM.height).toBeCloseTo(4.2, 6);
     expect(
       scene.getMeshByName("ch01-student-desk-1-collider")?.isVisible,
     ).toBe(false);
     expect(
-      scene.getMeshByName("ch01-student-desk-1-collider")?.checkCollisions,
+      scene.getMeshByName("ch01-student-desk-30-collider")?.checkCollisions,
     ).toBe(true);
     expect(
-      scene.getMeshByName("ch01-v2-student-chair-1-back")?.position.z,
-    ).toBeLessThan(0);
+      scene.getMeshByName("ch01-student-chair-60-collider")?.checkCollisions,
+    ).toBe(true);
 
     scene.dispose();
     engine.dispose();
@@ -145,7 +164,11 @@ describe("Chapter 1 production scene shell", () => {
         "ch01-corridor-floor",
         "ch01-corridor-left-wall",
         "ch01-classroom-floor",
-        "ch01-classroom-right-wall",
+        "ch01-classroom-front-wall",
+        "ch01-classroom-left-wall-front",
+        "ch01-classroom-right-wall-front",
+        "ch01-student-desk-30-collider",
+        "ch01-student-chair-60-collider",
         "ch01-pa-room-floor",
         "ch01-pa-room-right-wall",
         "ch01-side-entrance-door-leaf",

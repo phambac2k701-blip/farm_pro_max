@@ -6,7 +6,7 @@ Last updated: 2026-10-02
 **GAME PIVOT V2 — BRIGHT ROOM-FOCUSED STUDENT-LIFE FOUNDATION**
 
 ## Current branch
-`phase-v2/foundation-hardening` (branched from `design/game-pivot-v2-draft`; the old Chapter 1 checkpoint remains preserved)
+`phase-v2/classroom-asset-production-v1` (branched from the V2 foundation checkpoint; the old `chapter-1-vertical-slice` tag remains preserved)
 
 ## Current status
 **The preserved `chapter-1-vertical-slice` remains a completed technical/tonal prototype. The active direction has pivoted to a bright, readable, ordinary Vietnamese student-life baseline centered on one dense classroom/main-room slice. Dark/uncanny presentation is reserved for specific authored twist/event states, not the default whole-game lighting model.**
@@ -24,7 +24,18 @@ Latest retained-room implementation corrections:
 - default classroom lighting/material response was moved away from the old dark-horror baseline and verified in Chrome
 - no final university identity, protagonist design, important NPC canon, final chapter canon or Chapter 2 gameplay has been approved
 
-Current implementation focus: **stop after this direction/correction checkpoint; next room-focused student-life interactions and narrative beats require a fresh implementation pass and applicable USER APPROVAL gates.**
+Current implementation focus: **BAC-44 — Classroom Asset Production Pass V1 (In Progress).**
+
+Latest user-directed classroom correction:
+- authoritative layout is **10 rows × 3 separated two-seat desks = 30 desks / 60 seats**
+- students sit behind each desk and face the front board
+- the room is intentionally larger with a higher ceiling for believable university-classroom circulation
+- main classroom entrance is on the **left wall when viewed from the back row**, close to the front/board wall
+- teacher desk is shifted to the **right side**, aligned with the inner/right student-desk column
+- front board is enlarged and kept flat/aligned to the front wall
+- seven project-authored classroom GLBs are loading successfully in Chrome
+- current correction evidence: `docs/playtest/classroom-layout-fix-review/`
+- no additional classroom-detail pass should proceed until these layout corrections remain stable
 
 **Do not start Chapter 2, full-campus production, final institutional identity, final protagonist/NPC cast, or canonical new chapter beats without explicit user approval.**
 

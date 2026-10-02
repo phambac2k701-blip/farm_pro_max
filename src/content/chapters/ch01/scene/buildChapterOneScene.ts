@@ -2,6 +2,7 @@ import { Color3, Color4 } from "@babylonjs/core/Maths/math.color";
 import { Vector3 } from "@babylonjs/core/Maths/math.vector";
 import { HemisphericLight } from "@babylonjs/core/Lights/hemisphericLight";
 import { PointLight } from "@babylonjs/core/Lights/pointLight";
+import type { Material } from "@babylonjs/core/Materials/material";
 import { StandardMaterial } from "@babylonjs/core/Materials/standardMaterial";
 import type { Mesh } from "@babylonjs/core/Meshes/mesh";
 import { MeshBuilder } from "@babylonjs/core/Meshes/meshBuilder";
@@ -11,8 +12,6 @@ import type { Scene } from "@babylonjs/core/scene";
 import { createSurfaceDecal } from "../../../../art/environment/DecalKit";
 import {
   createCabinetModule,
-  createClassroomChairModule,
-  createClassroomDeskModule,
   createConduitModule,
   createDoorFrameModule,
   createFittedDoorOpeningModule,
@@ -20,7 +19,16 @@ import {
   createNoticeBoardModule,
   createRailingModule,
   createSocketSwitchModule,
+  createWindowFrameModule,
 } from "../../../../art/environment/EnvironmentKit";
+import {
+  CLASSROOM_CHAIRS,
+  CLASSROOM_DESKS,
+  CLASSROOM_DOOR,
+  CLASSROOM_ROOM,
+  CLASSROOM_TEACHER_DESK,
+  CLASSROOM_WINDOWS,
+} from "../../../../art/classroom/ClassroomProductionLayout";
 import { createProductionMaterialLibrary } from "../../../../art/materials/ProductionMaterialLibrary";
 import { createSignageV2 } from "../../../../art/signage/SignageV2";
 import type { ChapterOneCheckpointId } from "../state";
@@ -92,7 +100,7 @@ interface BoxOptions {
   height: number;
   depth: number;
   position: Vector3;
-  material: StandardMaterial;
+  material: Material;
   collisions?: boolean;
   pickable?: boolean;
 }
@@ -657,12 +665,16 @@ export function buildChapterOneScene(
   );
   corridorExitDoor.hinge.rotation.y = corridorExitDoor.closedRotationY;
 
-  const classroomDoor = createDoorAlongZ(
+  const classroomDoor = createDoorAlongX(
     scene,
     "ch01-classroom-door",
-    new Vector3(1.48, 0, -0.2),
+    new Vector3(
+      CLASSROOM_DOOR.centerX - CLASSROOM_DOOR.width / 2,
+      0,
+      CLASSROOM_DOOR.z - 0.06,
+    ),
     fadedBlue,
-    Math.PI * 0.5,
+    -Math.PI * 0.5,
   );
   const paRoomDoor = createDoorAlongZ(
     scene,
@@ -676,8 +688,12 @@ export function buildChapterOneScene(
     scene,
     "ch01-classroom-sign",
     CH01_WORKING_ROOM_SIGN_LABELS.classroom,
-    new Vector3(1.43, 2.55, 0.5),
-    Math.PI / 2,
+    new Vector3(
+      CLASSROOM_DOOR.centerX,
+      3.12,
+      CLASSROOM_DOOR.z - 0.075,
+    ),
+    0,
     0.95,
   );
   createTextSign(
@@ -696,14 +712,27 @@ export function buildChapterOneScene(
     material: v2Materials.paintedMetal,
   });
   createFittedDoorOpeningModule(scene, "ch01-v2-classroom-door-opening", {
-    position: new Vector3(1.5, 0, 0.5),
-    rotationY: Math.PI / 2,
-    openingWidth: 1.4,
-    wallHeight: 3.2,
-    doorHeight: 2.35,
+    position: new Vector3(
+      CLASSROOM_DOOR.centerX,
+      0,
+      CLASSROOM_DOOR.z,
+    ),
+    rotationY: 0,
+    openingWidth: CLASSROOM_DOOR.width,
+    wallHeight: CLASSROOM_ROOM.height,
+    doorHeight: CLASSROOM_DOOR.height,
     wallDepth: 0.12,
     frameMaterial: v2Materials.paintedMetal,
-    wallMaterial: lowerWall,
+    wallMaterial: v2Materials.interiorWallLight,
+  });
+  // Close the obsolete corridor-side classroom opening from the old layout.
+  createBox(scene, "ch01-classroom-old-door-infill", {
+    width: 0.12,
+    height: 3.2,
+    depth: 1.46,
+    position: new Vector3(1.5, 1.6, 0.5),
+    material: lowerWall,
+    collisions: true,
   });
   createFittedDoorOpeningModule(scene, "ch01-v2-pa-door-opening", {
     position: new Vector3(1.5, 0, 9.2),
@@ -732,133 +761,397 @@ export function buildChapterOneScene(
     v2Materials.paintedMetal,
   );
 
-  // Classroom.
+  // Classroom — bright, room-focused student-life production shell.
+  const classroomWidth = CLASSROOM_ROOM.maxX - CLASSROOM_ROOM.minX;
+  const classroomDepth = CLASSROOM_ROOM.maxZ - CLASSROOM_ROOM.minZ;
+  const classroomWall = v2Materials.interiorWallLight;
+  const classroomFloor = v2Materials.interiorFloorLight;
+  const classroomCeiling = v2Materials.interiorCeilingLight;
+
   createBox(scene, "ch01-classroom-floor", {
-    width: 8,
+    width: classroomWidth,
     height: 0.1,
-    depth: 7,
-    position: new Vector3(5.5, -0.05, 0.5),
-    material: tile,
+    depth: classroomDepth,
+    position: new Vector3(
+      CLASSROOM_ROOM.centerX,
+      -0.05,
+      CLASSROOM_ROOM.centerZ,
+    ),
+    material: classroomFloor,
     collisions: true,
   });
   createBox(scene, "ch01-classroom-ceiling", {
-    width: 8,
-    height: 0.1,
-    depth: 7,
-    position: new Vector3(5.5, 3.2, 0.5),
-    material: plaster,
+    width: classroomWidth,
+    height: 0.12,
+    depth: classroomDepth,
+    position: new Vector3(
+      CLASSROOM_ROOM.centerX,
+      CLASSROOM_ROOM.height,
+      CLASSROOM_ROOM.centerZ,
+    ),
+    material: classroomCeiling,
   });
-  createBox(scene, "ch01-classroom-right-wall", {
-    width: 0.12,
-    height: 3.2,
-    depth: 7,
-    position: new Vector3(9.5, 1.6, 0.5),
-    material: plaster,
-    collisions: true,
-  });
+
   createBox(scene, "ch01-classroom-front-wall", {
-    width: 8,
-    height: 3.2,
-    depth: 0.12,
-    position: new Vector3(5.5, 1.6, -3),
-    material: plaster,
-    collisions: true,
-  });
-  createBox(scene, "ch01-classroom-back-wall", {
-    width: 8,
-    height: 3.2,
-    depth: 0.12,
-    position: new Vector3(5.5, 1.6, 4),
-    material: plaster,
+    width: 0.12,
+    height: CLASSROOM_ROOM.height,
+    depth: classroomDepth,
+    position: new Vector3(
+      CLASSROOM_ROOM.maxX,
+      CLASSROOM_ROOM.height / 2,
+      CLASSROOM_ROOM.centerZ,
+    ),
+    material: classroomWall,
     collisions: true,
   });
 
-  const studentDesks: TransformNode[] = [];
-  const classroomSeatPlan = [
-    { x: 4.12, z: -1.58, rotationY: -0.025 },
-    { x: 6.68, z: -1.62, rotationY: 0.018 },
-    { x: 4.18, z: -0.16, rotationY: 0.016 },
-    { x: 6.62, z: -0.2, rotationY: -0.022 },
-    { x: 4.1, z: 1.24, rotationY: -0.018 },
-    { x: 6.72, z: 1.18, rotationY: 0.024 },
-    { x: 4.2, z: 2.56, rotationY: 0.02 },
-    { x: 6.64, z: 2.52, rotationY: -0.016 },
-  ] as const;
-  const classroomDeskMaterials = {
-    top: v2Materials.woodLaminate,
-    frame: v2Materials.paintedMetal,
+  // The corridor wall remains the classroom rear wall below 3.2 m.
+  // Fill the higher classroom volume above the existing corridor shell.
+  createBox(scene, "ch01-classroom-rear-upper-wall", {
+    width: 0.12,
+    height: CLASSROOM_ROOM.height - 3.2,
+    depth: classroomDepth,
+    position: new Vector3(
+      CLASSROOM_ROOM.minX,
+      3.2 + (CLASSROOM_ROOM.height - 3.2) / 2,
+      CLASSROOM_ROOM.centerZ,
+    ),
+    material: classroomWall,
+    collisions: true,
+  });
+
+  const createClassroomSidePanel = (
+    name: string,
+    startX: number,
+    endX: number,
+    bottomY: number,
+    topY: number,
+    z: number,
+  ): void => {
+    if (endX <= startX || topY <= bottomY) {
+      return;
+    }
+    createBox(scene, name, {
+      width: endX - startX,
+      height: topY - bottomY,
+      depth: 0.12,
+      position: new Vector3(
+        (startX + endX) / 2,
+        (bottomY + topY) / 2,
+        z,
+      ),
+      material: classroomWall,
+      collisions: true,
+    });
   };
 
-  classroomSeatPlan.forEach((seat, index) => {
-    const desk = createClassroomDeskModule(
-      scene,
-      `ch01-student-desk-${index + 1}`,
-      new Vector3(seat.x, 0, seat.z),
-      classroomDeskMaterials,
-      0.96,
-      seat.rotationY,
-    );
-    studentDesks.push(desk);
+  const largeLeft = CLASSROOM_WINDOWS.largeLeft;
+  const teacherLeft = CLASSROOM_WINDOWS.teacherLeft;
+  const largeLeftMinX = largeLeft.centerX - largeLeft.width / 2;
+  const largeLeftMaxX = largeLeft.centerX + largeLeft.width / 2;
+  const largeLeftBottom = largeLeft.centerY - largeLeft.height / 2;
+  const largeLeftTop = largeLeft.centerY + largeLeft.height / 2;
+  const teacherLeftMinX = teacherLeft.centerX - teacherLeft.width / 2;
+  const teacherLeftMaxX = teacherLeft.centerX + teacherLeft.width / 2;
+  const teacherLeftBottom = teacherLeft.centerY - teacherLeft.height / 2;
+  const teacherLeftTop = teacherLeft.centerY + teacherLeft.height / 2;
 
-    createClassroomChairModule(
-      scene,
-      `ch01-v2-student-chair-${index + 1}`,
-      new Vector3(seat.x, 0, seat.z - 0.64),
-      classroomDeskMaterials,
-      seat.rotationY,
-    );
+  createClassroomSidePanel(
+    "ch01-classroom-left-wall-rear",
+    CLASSROOM_ROOM.minX,
+    largeLeftMinX,
+    0,
+    CLASSROOM_ROOM.height,
+    CLASSROOM_ROOM.minZ,
+  );
+  createClassroomSidePanel(
+    "ch01-classroom-left-wall-large-window-lower",
+    largeLeftMinX,
+    largeLeftMaxX,
+    0,
+    largeLeftBottom,
+    CLASSROOM_ROOM.minZ,
+  );
+  createClassroomSidePanel(
+    "ch01-classroom-left-wall-large-window-upper",
+    largeLeftMinX,
+    largeLeftMaxX,
+    largeLeftTop,
+    CLASSROOM_ROOM.height,
+    CLASSROOM_ROOM.minZ,
+  );
+  createClassroomSidePanel(
+    "ch01-classroom-left-wall-middle",
+    largeLeftMaxX,
+    teacherLeftMinX,
+    0,
+    CLASSROOM_ROOM.height,
+    CLASSROOM_ROOM.minZ,
+  );
+  createClassroomSidePanel(
+    "ch01-classroom-left-wall-teacher-window-lower",
+    teacherLeftMinX,
+    teacherLeftMaxX,
+    0,
+    teacherLeftBottom,
+    CLASSROOM_ROOM.minZ,
+  );
+  createClassroomSidePanel(
+    "ch01-classroom-left-wall-teacher-window-upper",
+    teacherLeftMinX,
+    teacherLeftMaxX,
+    teacherLeftTop,
+    CLASSROOM_ROOM.height,
+    CLASSROOM_ROOM.minZ,
+  );
+  createClassroomSidePanel(
+    "ch01-classroom-left-wall-front",
+    teacherLeftMaxX,
+    CLASSROOM_ROOM.maxX,
+    0,
+    CLASSROOM_ROOM.height,
+    CLASSROOM_ROOM.minZ,
+  );
+
+  const rearRight = CLASSROOM_WINDOWS.rearRight;
+  const rearRightMinX = rearRight.centerX - rearRight.width / 2;
+  const rearRightMaxX = rearRight.centerX + rearRight.width / 2;
+  const rearRightBottom = rearRight.centerY - rearRight.height / 2;
+  const rearRightTop = rearRight.centerY + rearRight.height / 2;
+  const classroomDoorMinX =
+    CLASSROOM_DOOR.centerX - CLASSROOM_DOOR.width / 2;
+  const classroomDoorMaxX =
+    CLASSROOM_DOOR.centerX + CLASSROOM_DOOR.width / 2;
+  createClassroomSidePanel(
+    "ch01-classroom-right-wall-rear",
+    CLASSROOM_ROOM.minX,
+    rearRightMinX,
+    0,
+    CLASSROOM_ROOM.height,
+    CLASSROOM_ROOM.maxZ,
+  );
+  createClassroomSidePanel(
+    "ch01-classroom-right-wall-window-lower",
+    rearRightMinX,
+    rearRightMaxX,
+    0,
+    rearRightBottom,
+    CLASSROOM_ROOM.maxZ,
+  );
+  createClassroomSidePanel(
+    "ch01-classroom-right-wall-window-upper",
+    rearRightMinX,
+    rearRightMaxX,
+    rearRightTop,
+    CLASSROOM_ROOM.height,
+    CLASSROOM_ROOM.maxZ,
+  );
+  createClassroomSidePanel(
+    "ch01-classroom-right-wall-mid",
+    rearRightMaxX,
+    classroomDoorMinX,
+    0,
+    CLASSROOM_ROOM.height,
+    CLASSROOM_ROOM.maxZ,
+  );
+  createClassroomSidePanel(
+    "ch01-classroom-right-wall-door-header",
+    classroomDoorMinX,
+    classroomDoorMaxX,
+    CLASSROOM_DOOR.height,
+    CLASSROOM_ROOM.height,
+    CLASSROOM_ROOM.maxZ,
+  );
+  createClassroomSidePanel(
+    "ch01-classroom-right-wall-front",
+    classroomDoorMaxX,
+    CLASSROOM_ROOM.maxX,
+    0,
+    CLASSROOM_ROOM.height,
+    CLASSROOM_ROOM.maxZ,
+  );
+
+  createWindowFrameModule(scene, "ch01-classroom-window-large-left", {
+    position: new Vector3(
+      largeLeft.centerX,
+      largeLeft.centerY,
+      largeLeft.z + 0.01,
+    ),
+    width: largeLeft.width,
+    height: largeLeft.height,
+    depth: 0.13,
+    material: v2Materials.paintedMetal,
+    glassMaterial: v2Materials.glass,
+  });
+  createWindowFrameModule(scene, "ch01-classroom-window-teacher-left", {
+    position: new Vector3(
+      teacherLeft.centerX,
+      teacherLeft.centerY,
+      teacherLeft.z + 0.01,
+    ),
+    width: teacherLeft.width,
+    height: teacherLeft.height,
+    depth: 0.13,
+    material: v2Materials.paintedMetal,
+    glassMaterial: v2Materials.glass,
+  });
+  createWindowFrameModule(scene, "ch01-classroom-window-rear-right", {
+    position: new Vector3(
+      rearRight.centerX,
+      rearRight.centerY,
+      rearRight.z - 0.01,
+    ),
+    rotationY: Math.PI,
+    width: rearRight.width,
+    height: rearRight.height,
+    depth: 0.13,
+    material: v2Materials.paintedMetal,
+    glassMaterial: v2Materials.glass,
   });
 
-  const teacherDesk = createClassroomDeskModule(
+  const daylightPanel = createMaterial(
+    scene,
+    "ch01-classroom-daylight-panel",
+    new Color3(0.68, 0.79, 0.86),
+    new Color3(0.44, 0.56, 0.62),
+  );
+  daylightPanel.disableLighting = true;
+  for (const [name, windowData, zOffset] of [
+    ["large-left", largeLeft, -0.09],
+    ["teacher-left", teacherLeft, -0.09],
+    ["rear-right", rearRight, 0.09],
+  ] as const) {
+    createBox(scene, `ch01-classroom-daylight-${name}`, {
+      width: windowData.width * 0.94,
+      height: windowData.height * 0.9,
+      depth: 0.025,
+      position: new Vector3(
+        windowData.centerX,
+        windowData.centerY,
+        windowData.z + zOffset,
+      ),
+      material: daylightPanel,
+    });
+  }
+
+  // Colliders and anchors follow the shared layout; GLB visuals hydrate in main.ts.
+  const studentDesks: TransformNode[] = [];
+  CLASSROOM_DESKS.forEach((placement, index) => {
+    const root = createAnchor(
+      scene,
+      `ch01-student-desk-${index + 1}`,
+      new Vector3(placement.x, placement.y, placement.z),
+    );
+    root.rotation.y = placement.rotationY;
+    const collider = createBox(
+      scene,
+      `ch01-student-desk-${index + 1}-collider`,
+      {
+        width: 1.44,
+        height: 0.7,
+        depth: 0.54,
+        position: new Vector3(0, 0.35, 0),
+        material: v2Materials.paintedMetal,
+        collisions: true,
+      },
+    );
+    collider.parent = root;
+    collider.isVisible = false;
+    studentDesks.push(root);
+  });
+
+  CLASSROOM_CHAIRS.forEach((placement, index) => {
+    const root = createAnchor(
+      scene,
+      `ch01-student-chair-${index + 1}`,
+      new Vector3(placement.x, placement.y, placement.z),
+    );
+    root.rotation.y = placement.rotationY;
+    const collider = createBox(
+      scene,
+      `ch01-student-chair-${index + 1}-collider`,
+      {
+        width: 0.42,
+        height: 0.46,
+        depth: 0.42,
+        position: new Vector3(0, 0.23, 0),
+        material: v2Materials.paintedMetal,
+        collisions: true,
+      },
+    );
+    collider.parent = root;
+    collider.isVisible = false;
+  });
+
+  const teacherDesk = createAnchor(
     scene,
     "ch01-teacher-desk",
-    new Vector3(7.6, 0, 3.2),
-    classroomDeskMaterials,
-    1.05,
+    new Vector3(
+      CLASSROOM_TEACHER_DESK.x,
+      CLASSROOM_TEACHER_DESK.y,
+      CLASSROOM_TEACHER_DESK.z,
+    ),
   );
+  teacherDesk.rotation.y = CLASSROOM_TEACHER_DESK.rotationY;
+  const teacherDeskCollider = createBox(scene, "ch01-teacher-desk-collider", {
+    width: 1.65,
+    height: 0.72,
+    depth: 0.72,
+    position: new Vector3(0, 0.36, 0),
+    material: v2Materials.paintedMetal,
+    collisions: true,
+  });
+  teacherDeskCollider.parent = teacherDesk;
+  teacherDeskCollider.isVisible = false;
 
   createCabinetModule(
     scene,
     "ch01-v2-classroom-cabinet",
-    new Vector3(8.82, 0, -2.72),
+    new Vector3(CLASSROOM_ROOM.maxX - 1.0, 0, CLASSROOM_ROOM.maxZ - 0.28),
     v2Materials.paintedMetal,
     v2Materials.woodLaminate,
+  );
+  createNoticeBoardModule(
+    scene,
+    "ch01-v2-classroom-notice-board",
+    new Vector3(CLASSROOM_ROOM.centerX, 1.7, CLASSROOM_ROOM.maxZ - 0.09),
+    Math.PI,
+    v2Materials.woodLaminate,
+    v2Materials.paperCardboard,
   );
   createSocketSwitchModule(
     scene,
     "ch01-v2-classroom-switch",
-    new Vector3(3.0, 1.22, -2.93),
+    new Vector3(2.25, 1.22, CLASSROOM_ROOM.minZ + 0.07),
     0,
     v2Materials.plastic,
   );
-  createFluorescentFixtureModule(
+  createConduitModule(
     scene,
-    "ch01-v2-classroom-fixture-a",
-    new Vector3(4.25, 3.08, 0.5),
+    "ch01-v2-classroom-conduit",
+    new Vector3(2.25, 2.15, CLASSROOM_ROOM.minZ + 0.07),
+    Math.PI / 2,
+    2.0,
     v2Materials.paintedMetal,
-    fluorescent,
-  );
-  createFluorescentFixtureModule(
-    scene,
-    "ch01-v2-classroom-fixture-b",
-    new Vector3(6.75, 3.08, 0.5),
-    v2Materials.paintedMetal,
-    fluorescent,
   );
 
   const classroomDrawer = createBox(scene, "ch01-classroom-drawer", {
-    width: 0.62,
-    height: 0.18,
-    depth: 0.48,
-    position: new Vector3(7.6, 0.58, 3.18),
+    width: 0.06,
+    height: 0.2,
+    depth: 0.42,
+    position: new Vector3(
+      CLASSROOM_TEACHER_DESK.x - 0.38,
+      0.48,
+      CLASSROOM_TEACHER_DESK.z + 0.24,
+    ),
     material: wood,
     pickable: true,
   });
   const drawerLabel09 = createBox(scene, "ch01-drawer-label-09", {
-    width: 0.18,
-    height: 0.012,
-    depth: 0.09,
-    position: new Vector3(0.18, 0.105, -0.05),
+    width: 0.014,
+    height: 0.09,
+    depth: 0.16,
+    position: new Vector3(-0.037, 0.02, 0.1),
     material: paper,
     pickable: true,
   });
@@ -866,10 +1159,14 @@ export function buildChapterOneScene(
   drawerLabel09.setEnabled(false);
 
   const rosterProp = createBox(scene, "ch01-roster-prop", {
-    width: 0.34,
+    width: 0.4,
     height: 0.018,
-    depth: 0.48,
-    position: new Vector3(7.35, 0.84, 3.15),
+    depth: 0.5,
+    position: new Vector3(
+      CLASSROOM_TEACHER_DESK.x - 0.1,
+      0.84,
+      CLASSROOM_TEACHER_DESK.z,
+    ),
     material: paper,
     pickable: true,
   });
@@ -877,23 +1174,27 @@ export function buildChapterOneScene(
     width: 0.62,
     height: 0.42,
     depth: 0.018,
-    position: new Vector3(8.95, 1.55, 1.1),
+    position: new Vector3(CLASSROOM_ROOM.maxX - 0.07, 1.68, 3.05),
     material: paper,
     pickable: true,
   });
-  classPhotoProp.rotation.y = -Math.PI / 2;
+  classPhotoProp.rotation.y = Math.PI / 2;
 
   const rosterInspectionAnchor = createAnchor(
     scene,
     "ch01-roster-inspection-anchor",
-    new Vector3(7.35, 1.62, 2.45),
+    new Vector3(
+      CLASSROOM_TEACHER_DESK.x - 0.95,
+      1.58,
+      CLASSROOM_TEACHER_DESK.z,
+    ),
   );
-  rosterInspectionAnchor.rotation.set(0.62, 0, 0);
+  rosterInspectionAnchor.rotation.set(0.56, -Math.PI / 2, 0);
 
   const photoInspectionAnchor = createAnchor(
     scene,
     "ch01-photo-inspection-anchor",
-    new Vector3(8.15, 1.55, 1.1),
+    new Vector3(CLASSROOM_ROOM.maxX - 0.95, 1.68, 3.05),
   );
   photoInspectionAnchor.rotation.set(0, Math.PI / 2, 0);
 
@@ -1168,10 +1469,14 @@ export function buildChapterOneScene(
   insideOldWingZone.isPickable = false;
 
   const classroomEntryZone = createBox(scene, "ch01-classroom-entry-zone", {
-    width: 1.8,
-    height: 2.4,
-    depth: 1.8,
-    position: new Vector3(2.3, 1.2, 0.45),
+    width: 2.4,
+    height: 2.6,
+    depth: 2.2,
+    position: new Vector3(
+      CLASSROOM_DOOR.centerX - 0.8,
+      1.3,
+      CLASSROOM_DOOR.z - 0.95,
+    ),
     material: plastic,
   });
   classroomEntryZone.isVisible = false;
@@ -1214,20 +1519,20 @@ export function buildChapterOneScene(
     alpha: 0.15,
   });
   createSurfaceDecal(scene, "ch01-v2-classroom-tape-mark", {
-    position: new Vector3(5.0, 1.72, -2.935),
-    rotation: new Vector3(0, 0, 0),
+    position: new Vector3(CLASSROOM_ROOM.maxX - 0.065, 1.72, -1.8),
+    rotation: new Vector3(0, Math.PI / 2, 0),
     width: 0.46,
     height: 0.12,
     kind: "tape-mark",
-    alpha: 0.2,
+    alpha: 0.16,
   });
   createSurfaceDecal(scene, "ch01-v2-classroom-edge-wear", {
-    position: new Vector3(9.435, 0.85, 1.75),
-    rotation: new Vector3(0, Math.PI / 2, 0),
+    position: new Vector3(11.5, 0.62, CLASSROOM_ROOM.maxZ - 0.065),
+    rotation: new Vector3(0, Math.PI, 0),
     width: 0.72,
     height: 0.18,
     kind: "edge-wear",
-    alpha: 0.13,
+    alpha: 0.1,
   });
   createSurfaceDecal(scene, "ch01-v2-pa-small-crack", {
     position: new Vector3(7.2, 2.15, 12.435),
@@ -1306,30 +1611,43 @@ export function buildChapterOneScene(
 
   const classroomLight = new PointLight(
     "ch01-classroom-light",
-    new Vector3(5.5, 2.75, 0.5),
+    new Vector3(CLASSROOM_ROOM.centerX, 3.35, CLASSROOM_ROOM.centerZ),
     scene,
   );
-  classroomLight.intensity = 2.35;
-  classroomLight.range = 14;
-  classroomLight.diffuse = new Color3(0.9, 0.88, 0.78);
+  classroomLight.intensity = 1.65;
+  classroomLight.range = 18;
+  classroomLight.diffuse = new Color3(0.94, 0.93, 0.84);
 
-  const classroomPracticalA = new PointLight(
-    "ch01-v2-classroom-practical-a",
-    new Vector3(3.8, 2.35, -1.4),
-    scene,
-  );
-  classroomPracticalA.intensity = 1.05;
-  classroomPracticalA.range = 7.4;
-  classroomPracticalA.diffuse = new Color3(0.82, 0.86, 0.79);
+  for (const [index, position] of [
+    new Vector3(4.45, 2.95, -1.55),
+    new Vector3(4.45, 2.95, 2.55),
+    new Vector3(8.55, 2.95, -1.55),
+    new Vector3(8.55, 2.95, 2.55),
+  ].entries()) {
+    const practical = new PointLight(
+      `ch01-v2-classroom-practical-${index + 1}`,
+      position,
+      scene,
+    );
+    practical.intensity = 0.72;
+    practical.range = 8.8;
+    practical.diffuse = new Color3(0.9, 0.92, 0.84);
+  }
 
-  const classroomPracticalB = new PointLight(
-    "ch01-v2-classroom-practical-b",
-    new Vector3(7.15, 2.25, 2.0),
-    scene,
-  );
-  classroomPracticalB.intensity = 0.98;
-  classroomPracticalB.range = 7.6;
-  classroomPracticalB.diffuse = new Color3(0.84, 0.83, 0.75);
+  for (const [index, position] of [
+    new Vector3(largeLeft.centerX, 2.4, CLASSROOM_ROOM.minZ + 0.42),
+    new Vector3(teacherLeft.centerX, 2.5, CLASSROOM_ROOM.minZ + 0.42),
+    new Vector3(rearRight.centerX, 2.5, CLASSROOM_ROOM.maxZ - 0.42),
+  ].entries()) {
+    const daylight = new PointLight(
+      `ch01-v2-classroom-daylight-fill-${index + 1}`,
+      position,
+      scene,
+    );
+    daylight.intensity = index === 0 ? 1.05 : 0.72;
+    daylight.range = index === 0 ? 11.5 : 8.5;
+    daylight.diffuse = new Color3(0.7, 0.82, 0.9);
+  }
 
   const paRoomLight = new PointLight(
     "ch01-pa-room-light",
@@ -1370,8 +1688,16 @@ export function buildChapterOneScene(
   const checkpointPositions: Record<ChapterOneCheckpointId, Vector3> = {
     ch01_gate: new Vector3(0, 0.01, -22.2),
     ch01_inside_old_wing: new Vector3(0, 0.01, -6.7),
-    ch01_classroom_pre_roster: new Vector3(2.3, 0.01, 0.45),
-    ch01_classroom_post_c03: new Vector3(2.3, 0.01, 0.45),
+    ch01_classroom_pre_roster: new Vector3(
+      CLASSROOM_DOOR.centerX - 0.8,
+      0.01,
+      CLASSROOM_DOOR.z - 0.95,
+    ),
+    ch01_classroom_post_c03: new Vector3(
+      CLASSROOM_DOOR.centerX - 0.8,
+      0.01,
+      CLASSROOM_DOOR.z - 0.95,
+    ),
     ch01_pa_pre_c07: new Vector3(0.35, 0.01, 8.8),
     ch01_kcr_ready: new Vector3(0.35, 0.01, 8.8),
     ch01_kcr_applied: new Vector3(2.35, 0.01, 9.15),
@@ -1392,7 +1718,7 @@ export function buildChapterOneScene(
     gateCenter: new Vector3(0, 0, -20),
     guardShelterCenter: new Vector3(-4.4, 0, -15.7),
     corridorCenter: new Vector3(0, 0, 3),
-    classroomCenter: new Vector3(5.5, 0, 0.5),
+    classroomCenter: new Vector3(CLASSROOM_ROOM.centerX, 0, CLASSROOM_ROOM.centerZ),
     paRoomCenter: new Vector3(5.5, 0, 9.5),
     sideEntranceDoor,
     classroomDoor,

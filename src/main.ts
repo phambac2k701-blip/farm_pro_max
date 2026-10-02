@@ -1,6 +1,7 @@
 import { Scene } from "@babylonjs/core/scene";
 
 import { AudioDirector } from "./audio/AudioDirector";
+import { hydrateClassroomProductionAssets } from "./art/classroom/ClassroomProductionAssets";
 import { CameraDirector } from "./camera/CameraDirector";
 import {
   CH01_HEADSET_PROXIMITY_CUE_PLAYED_FACT,
@@ -157,6 +158,11 @@ async function bootstrap(): Promise<void> {
     const engineAdapter = await EngineAdapter.create(canvas);
     const scene = new Scene(engineAdapter.engine);
     const chapter = buildChapterOneScene(scene);
+    const classroomAssets = await hydrateClassroomProductionAssets(
+      scene,
+      new URL(import.meta.env.BASE_URL, window.location.origin).toString(),
+    );
+    canvas.dataset.classroomAssets = `ready:${classroomAssets.roots.length}`;
 
     let subtitleTimer: number | null = null;
     const audio = await AudioDirector.create(CH01_AUDIO, {
@@ -215,7 +221,7 @@ async function bootstrap(): Promise<void> {
       player,
       bounds: {
         minX: -9.5,
-        maxX: 10,
+        maxX: 13.5,
         minY: -2.5,
         maxY: 6,
         minZ: -33,

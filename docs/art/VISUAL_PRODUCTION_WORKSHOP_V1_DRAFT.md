@@ -1,6 +1,6 @@
 # VISUAL PRODUCTION WORKSHOP V1 — DRAFT
 
-Status: **DRAFT — WAITING FOR USER REVIEW**  
+Status: **USER APPROVED FOR CLASSROOM ASSET PRODUCTION — 2026-10-02**
 Purpose: establish a reusable art-production pipeline capable of supporting the larger campus-life game.
 
 > **2026-10-02 direction update:** use `CH01_BRIGHT_BASELINE_VISUAL_GUIDE.md` for the current slice. Baseline student-life scenes are bright, ordinary and readable; dark/uncanny lighting is reserved for specific narrative events. Prior night/horror presentation is historical prototype evidence, not the default visual target.
@@ -310,6 +310,22 @@ Generic technical kits and placeholders may proceed before approval.
 
 ## 15. Current status
 
-This workshop is a draft specification only.
+The user explicitly approved Visual Production Workshop V1 for **real classroom asset production** on 2026-10-02.
 
-Do not begin a large art-production implementation until the user reviews/accepts the workshop scope and the GAME PIVOT V2 direction.
+Active implementation scope:
+- generic reusable classroom assets may move beyond procedural placeholders
+- project-authored or license-safe GLB/glTF assets may be produced/imported
+- browser-first performance and provenance requirements remain mandatory
+- final institutional identity, protagonist/NPC design, campus canon and major narrative canon remain behind USER APPROVAL gates
+
+Latest classroom layout correction:
+- **10 rows × 3 separated desks**
+- **2 seats per desk** (approximately 60 student seats)
+- students face the front board
+- classroom footprint and ceiling remain intentionally larger/higher to support circulation
+- main entrance is on the left wall near the front/board wall
+- teacher desk sits on the right side, aligned with the inner/right desk column
+- board is enlarged and kept flat/aligned to the front wall
+- no additional detail pass should override these spatial corrections without user review
+
+Do not expand this approval into full-campus or Chapter 2 production.
