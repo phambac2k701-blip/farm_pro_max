@@ -135,3 +135,55 @@ If scene development later needs realistic background detail, research may cover
 - environmental details visible on a Hanoi bus route.
 
 Research may enrich presentation but must not overwrite the user's memory.
+
+
+---
+
+## LM-CH0-002 — First UET navigation / finding the correct room
+
+### Provenance
+
+**User-accepted development direction based on coordinator proposal.**
+
+This is not claimed as literal remembered fact unless later confirmed. The user explicitly accepted developing the post-bus UET arrival into a navigation/finding-the-room sequence.
+
+### Current accepted shape
+
+- Protagonist arrives at UET/Xuân Thủy after the bus sequence.
+- A short first-look beat may establish the school/environment.
+- Immediate practical problem: finding the correct room/administrative place.
+- The player should get multiple locally different approaches.
+- Suggested approaches currently accepted for development:
+  - ask a guard/staff member and receive technically correct but incomplete directions;
+  - follow confident-looking students who may themselves be lost or going elsewhere;
+  - trust signage/phone, get close, but approach/open the wrong room and receive a deadpan visual reaction.
+- These routes should provide different comedy/interactions and reconverge at the intended destination.
+- No branch should create a bad ending.
+
+### Open facts
+
+- Exact room/procedure is not supplied.
+- Exact real-life navigation incident is not confirmed.
+- Exact NPC identities are not approved.
+- Exact administrative event after arrival remains open.
+
+---
+
+## LM-CH0-003 — Return bus / rented-room chapter ending
+
+### Provenance
+
+**User-directed chapter structure.**
+
+- After completing the first UET visit / finding-room sequence, protagonist leaves.
+- Protagonist catches a bus back toward the rented room.
+- At the appropriate stop, protagonist gets off.
+- User's rough intended closing energy/wording: "Đến rồi, đến nhà rồi, xuống thôi."
+- This can close Chapter 0.
+- The return bus should not simply repeat the first bus mistake; it may instead show that the protagonist has already learned something.
+
+### Open development
+
+- A Hanoi-specific environmental/detail beat may be added during the chapter if it fits naturally.
+- Such detail can be researched and proposed later.
+- It should enrich place/atmosphere rather than become tourism exposition or override user material.
