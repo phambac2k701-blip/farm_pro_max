@@ -3,7 +3,7 @@
 Status: **APPROVED FOR P202 CLASSROOM ASSET PRODUCTION — broader campus expansion still approval/scope controlled**  
 Purpose: establish a reusable art-production pipeline capable of supporting the larger campus-life game.
 
-> **2026-10-02 direction update:** use `P202_GOLDEN_CLASSROOM_VISUAL_GUIDE.md` for the current slice. Baseline student-life scenes are bright, ordinary and readable; dark/uncanny lighting is reserved for specific narrative events. Prior night/horror presentation is historical prototype evidence, not the default visual target.
+> **2026-10-02 direction update:** use `P202_GOLDEN_CLASSROOM_VISUAL_GUIDE.md` for the current slice. Baseline student-life scenes are bright, ordinary and readable; dark/uncanny lighting is reserved for specific narrative events. Prior night/dark/tension presentation is historical prototype evidence, not the default visual target.
 
 ## 1. Goal
 
@@ -145,7 +145,7 @@ Reusable restrained decals:
 - edge grime
 - small cracks where appropriate
 
-Do not turn every surface into abandoned-horror grime.
+Do not turn every surface into abandoned-dark/tension grime.
 
 The world is an active university first and an uncanny space second.
 
@@ -243,7 +243,7 @@ Possible reusable systems:
 - screen-space or particle dust only where justified
 - fluorescent/light instability
 - screen/monitor glow
-- restrained uncanny KCR effects
+- restrained uncanny special-event effects
 
 Effects must support gameplay readability.
 
