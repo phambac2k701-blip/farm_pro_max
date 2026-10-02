@@ -2,95 +2,133 @@
 
 ## Product definition
 
-The project is now a **browser-first true-3D first-person student-life narrative game** set at a fictional technology university in Hanoi.
+**UET không tệ** is a browser-first true-3D first-person student-life narrative game following the timeline of a UET student in Hanoi.
 
-The primary material comes from grounded university-life experiences: entering university, learning the campus, classrooms, classmates, awkward social moments, study routines, deadlines, commuting, food, breaks, projects, exams, and the gradual change from a new student into a more experienced one.
+The game is grounded in lived/observed student experience. It should feel like one continuing life rather than a collection of disconnected episodes.
 
-The current narrative scope should be built from experiences covering **the beginning of university through the protagonist's current second-year period**. Later years are not to be invented merely to fill a roadmap. If the project continues in the future, later student-life material may be added when there is enough lived, observed, researched, or intentionally fictionalized material to support it.
+The current story scope reaches from entering university through the creator/protagonist's current second-year-era material. It is intentionally open-ended.
 
-The previous narrative framework is retired and is not project canon.
+Future chapters may be added later. Do not fabricate later university years merely to complete a fixed chapter count or create a premature ending.
+
+## Current approved macro
+
+The current macro is documented in `docs/design/CURRENT_STORY_MACRO.md`.
+
+Approved only at high level:
+- Chapter 0 — entering university / first Hanoi-UET impressions / admission-confirmation period
+- Chapter 1 — military-training period
+- Chapter 2 — normal university life begins; Giảng đường 4 becomes a major location
+- Chapter 3 — broader everyday student life; vibe coding begins to reflect the creator's present self
+- Chapter 4+ — locked / future life / not designed
+
+Detailed scenes/events remain TBD until the user supplies and approves them.
 
 ## Product pillars
 
 ### 1. Lived student presence
 - true 3D first-person space
 - grounded movement and camera
-- believable room scale
+- believable environment scale
 - ordinary Vietnamese student-life detail
-- environments should feel inhabited before they feel dramatic
+- places should grow more meaningful through repeated use
 
-### 2. Student-life interaction
+### 2. One continuous life
+Chapters must link to each other through:
+- recurring people
+- recurring places
+- evolving habits
+- callbacks
+- jokes
+- relationships
+- foreground details that later pay off
+
+Avoid anthology-like chapters that could be shuffled without changing anything.
+
+### 3. Student-life interaction
 Gameplay should make ordinary actions enjoyable:
-- entering class
-- finding or changing seats
-- sitting and standing
+- arriving somewhere
+- finding/changing a seat
+- sitting/standing
 - checking a phone
 - interacting with bags, books, laptops, papers, chargers and classroom equipment
-- talking or reacting to classmates
-- navigating routine university spaces
+- talking/reacting to people
+- commuting/navigating student-life spaces
+- using ordinary routines as gameplay context
 
-### 3. Humor from believable situations
-Humor should come from awkwardness, classmates, internal reactions, timing, procrastination, misunderstandings and everyday student behavior rather than detached comedy scenes.
+### 4. Humor from believable situations
+Humor should come from awkwardness, timing, expectation-vs-reality, friends, commuting friction, misunderstandings and recognizable student behavior.
 
-### 4. Player agency with controlled production scope
-Small choices may create short alternate reactions or micro-events and then converge back into the main scene when appropriate.
+### 5. Study as background structure
+Academic life matters, but it should not dominate the whole game.
 
-Major branching is reserved for decisions that genuinely justify long-term consequences.
+Use classes, schedules, assignments and exams as context for:
+- where people meet
+- why they move
+- why they are tired/busy/free
+- why a place matters
+- why a joke or conflict happens
 
-The game should feel responsive without requiring every small choice to create a permanently separate timeline.
+### 6. Foreground details should matter
+Background can simply make the world feel alive.
 
-### 5. Modular world production
-Build the world as reusable modules and scene zones:
-- classroom prefab / golden classroom
-- corridor modules
-- stairs / transition zones
-- parking or campus-life zones
-- reusable props and furniture
-- later room variants created from shared assets rather than rebuilding from zero
+Anything deliberately foregrounded by camera, dialogue, interaction or repeated emphasis should have a reason to matter later through character, comedy, emotion, gameplay or continuity.
 
-### 6. Secondary uncanny layer
-Uncanny, altered-reality or psychologically strange material may still exist, but its final role, rules and explanation are **not yet canon**.
+### 7. Player agency with controlled production scope
+Small choices may create short alternate reactions/micro-events and then reconverge.
 
-Normal gameplay remains bright, readable and ordinary. Any strange presentation should be event-specific.
+Major branching is reserved for decisions that genuinely justify long-term production cost.
 
-## Current structural target
-
-The project may still use approximately **nine chapters**, but the old nine-chapter outline has been removed.
-
-The new nine-chapter structure must be designed from the real student-life timeline before chapter-level implementation begins.
-
-Do not invent Chapter 4–9 merely to satisfy the number nine.
+### 8. Modular world production
+Build the world as reusable modules/zones:
+- Giảng đường 4 map and room modules
+- classroom prefabs
+- corridors/stairs/transitions
+- campus/commuting/food/student-life locations
+- reusable props/furniture
+- later variants built from shared assets
 
 ## Current production focus
 
-1. finish the P202 classroom as the first reusable "golden room"
-2. establish the classroom asset/prefab pipeline
-3. build the first polished student-life gameplay sequence inside P202
-4. establish reusable NPC, dialogue, phone and micro-event foundations only as needed
-5. prove a modular zone transition outside the classroom
-6. only then expand to additional rooms/areas
-7. design the full chapter structure before chapter-by-chapter narrative production
+Narrative and art are running in parallel.
 
-## Preserved technical foundations
+Art/environment:
+- active visible branch: `phase-v2/classroom-asset-production-v1`
+- user reports a larger Giảng đường 4 map update is currently in progress
+- do not interfere with that branch from narrative cleanup
 
-The following systems from earlier development remain reusable where they fit:
-- Babylon.js / TypeScript / Vite runtime
+Narrative:
+- maintain current macro for Chapters 0–3
+- do not design Chapter 4+
+- next task is detailed Chapter 0 material after user provides it
+
+Technical foundations remain reusable where they fit:
+- Babylon.js / TypeScript / Vite
 - WebGPU with WebGL fallback
 - first-person controller
-- collision and safety recovery
+- collision/safety recovery
 - interaction targeting/state ownership
 - camera choreography
-- openable/pickup/inspection behaviors
-- save/load and world-state infrastructure
+- generic save/state/event architecture
 - audio director
-- generic event/state architecture
-- modular environment/material/signage work
+- modular environment/material/signage foundations
 - testing/build/deployment infrastructure
 
-Legacy story-specific content is not preserved merely because the systems that hosted it are reusable.
+## Identity boundaries
+
+Approved:
+- project title: **UET không tệ**
+- UET student-life setting/context
+
+Not automatically approved:
+- official UET logo
+- official visual identity/colors
+- insignia
+- copied official signage system
+- full canonical campus map
+- any implication of official UET affiliation
 
 ## Approval rule
 
 The user is the primary writer and final narrative authority.
 
-Final chapter structure, major story beats, important characters, institutional identity, major twists, endings and any final explanation of the uncanny layer require explicit user approval.
+Detailed chapter content, important characters, major relationship arcs, future chapters, major routes, endings, protagonist final identity/appearance, and official-brand visual use require explicit approval.
