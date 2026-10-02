@@ -1,7 +1,8 @@
 # Architecture
 
 ## Design goal
-Keep game code modular enough that content production can grow without turning each chapter into custom one-off scripts.
+
+Keep game code modular enough that student-life content, locations, NPCs and future chapters can grow without turning every scene into custom one-off code.
 
 ## High-level modules
 
@@ -9,35 +10,36 @@ Keep game code modular enough that content production can grow without turning e
 Responsibilities:
 - create canvas
 - select rendering backend
-- initialize engine
-- initialize services
-- load initial scene/chapter
-- own fatal error/loading states
+- initialize engine/services
+- load initial scene/zone
+- own fatal/loading states
 
 ### EngineAdapter
 Responsibilities:
 - Babylon engine initialization
 - WebGPU attempt
-- fallback rendering path
+- WebGL fallback
 - resize lifecycle
 - render loop lifecycle
 
 ### GameState
 Responsibilities:
 - authoritative runtime facts
-- evidence ownership
-- chapter state
-- serialized save snapshot
+- scene/chapter progression
+- persistent local choices where required
+- serializable save snapshot
 
-Must expose explicit read/write APIs rather than direct arbitrary mutation.
+State changes must flow through explicit APIs rather than arbitrary direct mutation.
 
-### SceneDirector
+### Scene / Zone Director
 Responsibilities:
-- scene load/unload
+- scene/zone load/unload
 - spawn points
 - transition coordination
 - scene-scoped resources
-- controlled reality-shift application
+- authored presentation variants
+
+The world does not need to be one giant seamless scene.
 
 ### PlayerController
 Responsibilities:
@@ -47,65 +49,78 @@ Responsibilities:
 - gameplay camera transform
 - interaction availability handoff
 
-PlayerController must not contain narrative logic.
+PlayerController must not contain story logic.
+
+### PlayerSafetyController
+Responsibilities:
+- detect player escape/out-of-bounds state
+- recover to a valid authored point
+- prevent permanent falls/soft-locks
 
 ### CameraDirector
 Responsibilities:
 - gameplay camera
-- inspection camera choreography
-- blend state
-- focus targets
-- temporary FOV overrides
-- safe cancellation/restore
+- authored interaction choreography
+- seated/inspection camera states
+- blending
+- FOV overrides
+- safe cancel/restore
 
 ### InteractionSystem
 Responsibilities:
 - target detection
 - interaction selection
 - prompt state
-- entering/exiting interactions
-- interaction lock ownership
+- enter/exit
+- interaction ownership
 
-### Interactable
-Data contract should describe:
+### Interactable data
+May describe:
 - id
 - range
 - prompt
 - interaction type
-- required facts
-- blocked facts
-- resulting events
+- required/blocked facts
+- resulting event
 - authored anchor(s)
 
-### InspectionController
-Responsibilities:
-- inspect-mode input
-- prop animation state
-- page/photo/object manipulation
-- exit/cancel
-- evidence discovery callbacks
+### Shared behavior controllers
+Reusable behaviors should cover:
+- open/close
+- pickup/place
+- sit/stand
+- inspect/read
+- phone/device presentation
+- generic camera-owned interactions
 
-### EvidenceSystem
-Responsibilities:
-- register evidence definitions
-- mark discoveries
-- expose evidence metadata
-- emit discovery event
+Do not create separate frameworks for every object.
 
-### RealitySystem
+### Event / Sequence layer
 Responsibilities:
-- evaluate knowledge conditions
-- apply world variants
-- coordinate visual/audio/state changes
-- persist resolved changes
+- scene-local event state
+- triggers
+- short choice branches
+- reconvergence
+- authored dialogue/reactions
+- persistent fact writes only when needed
+
+### Optional discovery/context registry
+The earlier EvidenceSystem can be reused or generalized if future gameplay needs durable discovered information.
+
+It is not a required narrative pillar of the new project.
+
+### Conditional variant system
+The earlier RealitySystem may be reused as a generic conditional-variant mechanism for object, lighting, audio, device or interaction changes.
+
+Its old story rules are retired.
 
 ### AudioDirector
 Responsibilities:
-- ambience layers
+- ambience
 - one-shots
 - spatial emitters
-- world-state mix changes
-- evidence playback
+- dialogue/device playback
+- authored mix changes
 
 ### SaveService
 Responsibilities:
@@ -114,76 +129,87 @@ Responsibilities:
 - version
 - persist
 - load
-- recover from invalid data safely
+- recover safely from invalid data
 
-### UI Layer
+### UI layer
 Responsibilities:
 - reticle
 - interaction prompt
+- dialogue/subtitles
+- phone/device UI when required
+- contextual guidance
 - pause/settings
-- journal/evidence UI
 - loading/errors
 
-The UI must not become the primary way to experience hero clues.
+## Event model
 
----
-
-# Event model
-Prefer explicit typed events for cross-system communication.
+Prefer typed events for cross-system communication.
 
 Examples:
-- `evidence.discovered`
 - `interaction.entered`
 - `interaction.exited`
 - `world.fact.changed`
-- `reality.shift.ready`
-- `reality.shift.applied`
+- `event.started`
+- `event.completed`
 - `scene.loaded`
+- `player.seated`
+- `player.stood`
 
 Avoid a global untyped event soup.
 
-# Data-driven content
-Chapter-specific data should define:
-- evidence
-- world facts
+## Data-driven content
+
+Scene/chapter data should define only what the concrete gameplay needs:
+- world/event facts
 - interactable conditions
-- reality shift rules
-- chapter objectives/checkpoints
+- NPC/event slots
+- scene transitions
+- optional persistent choices
+- presentation variants
 
-Core systems interpret data.
-Chapter scripts should be reserved for genuinely unique sequences.
+Unique scripts are acceptable for genuinely unique sequences, but repeated classroom behavior should be reusable.
 
-# Proposed source layout
+## Modular environment architecture
+
+P202 should become a reusable golden classroom rather than a hardcoded one-off level.
+
+Preferred layers:
+- authored GLB/GLTF visual assets
+- reusable room/furniture modules
+- data-driven room numbering/signage
+- scene-level placement/configuration
+- simple collision proxies
+- repeated furniture instancing where appropriate
+
+Later classroom variants should reuse the same asset foundation.
+
+## Proposed source direction
+
 ```text
 src/
   app/
-    bootstrap/
-    config/
   engine/
-    EngineAdapter.ts
   game/
     state/
     events/
     save/
+    sequence/
   player/
-    PlayerController.ts
-    InputRouter.ts
   camera/
-    CameraDirector.ts
   interaction/
-    InteractionSystem.ts
-    types.ts
+    behaviors/
     inspection/
-  evidence/
-    EvidenceSystem.ts
-  reality/
-    RealitySystem.ts
   scene/
-    SceneDirector.ts
+    zones/
+    transitions/
   audio/
-    AudioDirector.ts
+  art/
+    environment/
+    materials/
+    signage/
   ui/
   content/
+    scenes/
     chapters/
 assets/
   runtime/
@@ -191,18 +217,25 @@ tests/
 docs/
 ```
 
-# Architectural constraints
-- no narrative rules inside low-level rendering code
-- no direct localStorage access outside SaveService
-- no chapter-specific conditions hardcoded in PlayerController
-- no interactable should independently seize camera without CameraDirector
-- no system should mutate world facts silently
-- every persistent state change must flow through GameState
+Existing legacy-derived directories may remain temporarily while extraction/generalization is in progress. New code should follow the current product direction rather than copy old story naming.
 
-# Failure recovery
+## Architectural constraints
+
+- no story rules in low-level rendering/controller code
+- no direct localStorage access outside SaveService
+- no scene-specific conditions in PlayerController
+- no interactable independently seizes the camera without CameraDirector
+- persistent state changes flow through GameState
+- player input ownership must always restore cleanly
+- scene transitions must leave the player at valid collision-safe positions
+- final institutional/narrative identity must not leak into generic engine modules
+
+## Failure recovery
+
 At minimum:
 - invalid save does not crash bootstrap
 - missing optional asset produces a diagnosable warning
-- failed critical scene load produces an error screen with retry
-- exiting inspect mode always has a route back to gameplay
-- losing browser focus releases or safely handles pointer lock
+- failed critical scene load produces a visible error state
+- exiting an interaction has a route back to gameplay
+- losing browser focus clears unsafe input
+- out-of-bounds movement recovers safely
