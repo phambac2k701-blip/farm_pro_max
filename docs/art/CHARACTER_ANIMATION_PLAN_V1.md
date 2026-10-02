@@ -1,6 +1,6 @@
 # CHARACTER ANIMATION PLAN V1 — UET KHÔNG TỆ
 
-Status: **APPROVED ROADMAP / PROTOTYPE-FIRST**
+Status: **PROTOTYPE V0 VERIFIED / ROADMAP ACTIVE**
 Date: 2026-10-02
 
 ## 1. Purpose
@@ -147,3 +147,29 @@ The six-animation stick-figure prototype is complete only when:
 - tests/typecheck/build pass
 
 After V0 passes, STOP and review before making final male/female character bodies or expanding the backlog.
+
+
+## 8. Prototype V0 implementation record
+
+Prototype V0 is implemented and verified on:
+- branch: `phase-v2/character-animation-prototype-v0`
+- implementation record: `docs/art/CHARACTER_ANIMATION_PROTOTYPE_V0.md`
+
+Verified V0 facts:
+- procedural Babylon rig with **18 bones**
+- **15** character meshes
+- **873 vertices / 1152 triangles**
+- **1 material**
+- exactly **6 animation clips**
+- in-place walk; no root-motion translation
+- one +90° turn-in-place proof
+- sit/seated/stand share one seated foundation
+- required nine-state proof sequence passes in fresh Chrome/WebGPU
+- root X/Z drift measured at **0**
+- workshop FPS stays about **60 FPS** with effectively no mannequin-active regression
+- GD4 remains **2549 meshes / 470676 vertices** and about **60 FPS**
+- runtime/console/network clean
+
+No external rig/model/mocap/animation asset was used.
+
+The wider animation backlog remains locked until a new explicit task. Prototype V0 completion does not authorize final character bodies, protagonist/NPC production or extra clips.

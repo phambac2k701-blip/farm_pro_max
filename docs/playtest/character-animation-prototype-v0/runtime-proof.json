@@ -1,0 +1,40 @@
+{
+  "timestamp": "2026-10-02T11:26:07.268Z",
+  "sequence": {
+    "status": "passed",
+    "history": "anim_char_idle_loop>anim_char_walk_loop>anim_char_idle_loop>anim_char_turn_in_place>anim_char_idle_loop>anim_char_sit_down>anim_char_seated_idle_loop>anim_char_stand_up>anim_char_idle_loop",
+    "rootDrift": 0,
+    "finalYaw": 1.570796,
+    "finalPelvisY": 0.954603,
+    "activeClip": "anim_char_idle_loop",
+    "metrics": {
+      "boneCount": 18,
+      "meshCount": 15,
+      "vertexCount": 873,
+      "triangleCount": 1152,
+      "materialCount": 1,
+      "clipCount": 6
+    },
+    "sceneMeshes": 19,
+    "sceneVertices": 927,
+    "backend": "webgpu",
+    "title": "UET không tệ"
+  },
+  "performance": {
+    "baselineWorkshop": {
+      "rafFps": 60.020759059362895,
+      "engineFps": 59.97600959669772,
+      "activeMeshes": 4
+    },
+    "mannequinIdleActive": {
+      "rafFps": 60.00721891359386,
+      "engineFps": 59.96402158651218,
+      "activeMeshes": 19
+    },
+    "rafDelta": -0.01354014576903495
+  },
+  "runtimeErrors": [],
+  "consoleErrors": [],
+  "httpBad": [],
+  "pass": true
+}

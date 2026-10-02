@@ -4,17 +4,17 @@ Last updated: 2026-10-02
 
 ## Current phase
 
-**UET KHÔNG TỆ — GD4 + NARRATIVE/PRODUCTION RECONCILIATION**
+**UET KHÔNG TỆ — CHARACTER ANIMATION PROTOTYPE V0**
 
 ## Current branch
 
-`integration/uet-source-of-truth-reconciliation`
+`phase-v2/character-animation-prototype-v0`
 
-Integration inputs:
-- approved Giảng đường 4 checkpoint: `phase-v2/gd4-geometry-corrections` @ `7ed178251ae47074e7276f379492953448296149`
-- narrative/production cleanup checkpoint: `cleanup/remove-legacy-story-v1` @ `82394dab70a4a48988a65286230251f3a7a79b9c`
+Prototype base:
+- integrated UET source-of-truth checkpoint: `integration/uet-source-of-truth-reconciliation` @ `409536b5eb8b34e2dc91647711a6509b111c4ed7`
+- approved Giảng đường 4 implementation remains inherited unchanged from `7ed178251ae47074e7276f379492953448296149`
 
-This branch starts from the approved GD4 checkpoint. The reconciliation pass updates docs/source-of-truth without redesigning or polishing GD4.
+This branch adds only the lightweight character-animation workshop/prototype requested by `docs/art/CHARACTER_ANIMATION_PLAN_V1.md`. It does not start final character, NPC/event or second-map production.
 
 ## Current product identity
 
@@ -173,26 +173,64 @@ Supporting:
 - `docs/TESTING_AND_PLAYTEST.md`
 - `docs/WORKING_RULES.md`
 
-## Character animation planning checkpoint
+## Character Animation Prototype V0 checkpoint
 
-Approved roadmap:
-- `docs/art/CHARACTER_ANIMATION_PLAN_V1.md`
+Sources:
+- roadmap: `docs/art/CHARACTER_ANIMATION_PLAN_V1.md`
+- implementation record: `docs/art/CHARACTER_ANIMATION_PROTOTYPE_V0.md`
 
-The next planned prototype is a lightweight stick-figure/mannequin animation test. It is not a protagonist or canon NPC.
+Implemented exactly six clips:
+1. `anim_char_idle_loop` — loop
+2. `anim_char_walk_loop` — loop / in-place
+3. `anim_char_turn_in_place` — one-shot
+4. `anim_char_sit_down` — one-shot
+5. `anim_char_seated_idle_loop` — loop
+6. `anim_char_stand_up` — one-shot
 
-Prototype V0 is intentionally limited to six clips:
-1. Idle
-2. Walk
-3. Turn In Place
-4. Sit Down
-5. Seated Idle
-6. Stand Up
+Procedural debug rig:
+- Babylon Skeleton: **18 bones**
+- mannequin meshes: **15**
+- vertices: **873**
+- triangles: **1152**
+- materials: **1**
+- approximate standing scale: **~1.75 m**
+- forward: **+Z**, up: **+Y**
+- world translation/root motion: **none**
 
-Required proof sequence:
+Required browser sequence:
 `Idle -> Walk -> Idle -> Turn -> Idle -> Sit Down -> Seated Idle -> Stand Up -> Idle`
 
-The wider animation list is backlog only and must not be mass-produced before V0 is proven. Approved external animation/motion resources should be stored locally in the project when licensing permits, with provenance recorded; runtime must not depend on third-party animation URLs/CDNs.
+Latest fresh Chrome/WebGPU proof:
+- sequence: **pass**
+- root X/Z drift: **0**
+- final turn yaw: **90°**
+- workshop baseline: **60.02 RAF FPS**
+- mannequin Idle active: **60.01 RAF FPS**
+- runtime exceptions: **0**
+- console errors: **0**
+- HTTP >=400: **0**
+
+GD4 regression smoke:
+- **2549 meshes / 470676 vertices**
+- **60.31 RAF FPS / 60.02 engine FPS**
+- geometry delta vs integration baseline: **0**
+- runtime/console/network: clean
+
+Evidence:
+- `docs/playtest/character-animation-prototype-v0/`
+
+Final repository gate:
+- full tests: **16/16 files, 57/57 tests pass**
+- typecheck: **pass**
+- production build: **pass**
+- `git diff --check`: **pass**
+- production main bundle: **~1,719.25 kB / 417.28 kB gzip**
+- Vite >500 kB chunk warning remains non-blocking existing build debt
+- fresh Chrome/WebGPU workshop + GD4 smoke: **pass**
+- runtime / console / network: **clean**
+
+No external model/rig/mocap/animation asset is used; the V0 mannequin and clips are project-authored procedurally.
 
 ## STOP POINT
 
-The animation roadmap is documented, but implementation has not started. Wait for the user's explicit instruction before creating the stick-figure rig or six Prototype V0 clips.
+Prototype V0 is complete and verified. Commit and push this branch, then STOP. Do not continue into final male/female bodies, protagonist/NPC production, additional animations, gameplay events, map production or GD4 polish without a new explicit user instruction.

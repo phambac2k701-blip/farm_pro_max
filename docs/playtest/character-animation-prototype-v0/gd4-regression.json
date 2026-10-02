@@ -1,0 +1,31 @@
+{
+  "timestamp": "2026-10-02T11:28:25.953Z",
+  "baseline": {
+    "fpsApprox": 60.27,
+    "meshes": 2549,
+    "vertices": 470676
+  },
+  "metrics": {
+    "sceneReady": "lecture-hall-4-slice",
+    "currentMap": "giang-duong-4",
+    "backend": "webgpu",
+    "meshes": 2549,
+    "vertices": 470676,
+    "activeMeshes": 159,
+    "title": "UET không tệ"
+  },
+  "perf": {
+    "rafFps": 60.31472495574356,
+    "engineFps": 60.024009604199435,
+    "activeMeshes": 159
+  },
+  "delta": {
+    "meshes": 0,
+    "vertices": 0,
+    "fpsVsIntegration": 0.04472495574355406
+  },
+  "runtimeErrors": [],
+  "consoleErrors": [],
+  "httpBad": [],
+  "pass": true
+}

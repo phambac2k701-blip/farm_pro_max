@@ -103,11 +103,16 @@ For an interactable asset:
 
 ## Character/NPC pipeline
 
-When NPC production begins:
+Technical animation foundation:
+- Character Animation Prototype V0 is verified in `docs/art/CHARACTER_ANIMATION_PROTOTYPE_V0.md`
+- the V0 mannequin is procedural, non-canon and exists only to prove rig/clip/playback/transition/browser behavior
+- it does **not** count as starting NPC production or approving a final body
+
+When actual NPC production begins under a new explicit task:
 1. role approved or explicitly placeholder
 2. reusable rig/body base
 3. visual variant
-4. animation set
+4. animation set selected from concrete gameplay needs
 5. scene placement/schedule needs
 6. dialogue/reaction state
 7. performance strategy

@@ -1,6 +1,10 @@
 import { Scene } from "@babylonjs/core/scene";
 
 import { hydrateClassroomProductionAssets } from "./art/classroom/ClassroomProductionAssets";
+import {
+  bootstrapCharacterAnimationWorkshop,
+  CHARACTER_ANIMATION_WORKSHOP_QUERY,
+} from "./art/character/prototype/CharacterAnimationWorkshop";
 import { buildLectureHall4Scene } from "./content/slice/buildLectureHall4Scene";
 import { EngineAdapter } from "./engine/EngineAdapter";
 import { InteractionBehaviorHost } from "./interaction/behaviors/InteractionBehaviorHost";
@@ -39,6 +43,19 @@ async function bootstrap(): Promise<void> {
   }
 
   try {
+    const workshop = new URLSearchParams(window.location.search).get(
+      "workshop",
+    );
+    if (workshop === CHARACTER_ANIMATION_WORKSHOP_QUERY) {
+      await bootstrapCharacterAnimationWorkshop(
+        canvas,
+        fatalError,
+        interactionPrompt,
+        reticle,
+      );
+      return;
+    }
+
     const engineAdapter = await EngineAdapter.create(canvas);
     const scene = new Scene(engineAdapter.engine);
     const slice = buildLectureHall4Scene(scene);

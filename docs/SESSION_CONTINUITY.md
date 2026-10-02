@@ -107,17 +107,30 @@ Integration gate:
 - no meaningful regression from BAC-45
 - evidence: `docs/playtest/integration-uet-reconciliation/`
 
-## Character animation roadmap
+## Character Animation Prototype V0
 
-Approved planning source:
+Planning + implementation sources:
 - `docs/art/CHARACTER_ANIMATION_PLAN_V1.md`
+- `docs/art/CHARACTER_ANIMATION_PROTOTYPE_V0.md`
 
-Next intended proof, once explicitly started:
-- lightweight stick-figure/mannequin rig
-- six Prototype V0 clips only: Idle, Walk, Turn In Place, Sit Down, Seated Idle, Stand Up
-- prove the sequence `Idle -> Walk -> Idle -> Turn -> Idle -> Sit Down -> Seated Idle -> Stand Up -> Idle`
-- wider animation library remains backlog until this prototype passes
-- approved external motion assets should be stored locally when licensing permits and provenance must be recorded
+Current prototype branch:
+- `phase-v2/character-animation-prototype-v0`
+- base: `integration/uet-source-of-truth-reconciliation` @ `409536b5eb8b34e2dc91647711a6509b111c4ed7`
+
+Verified prototype:
+- procedural 18-bone Babylon mannequin
+- 15 meshes / 873 vertices / 1152 triangles / 1 material
+- exactly six clips: Idle, Walk, Turn In Place, Sit Down, Seated Idle, Stand Up
+- full sequence `Idle -> Walk -> Idle -> Turn -> Idle -> Sit Down -> Seated Idle -> Stand Up -> Idle`: **pass**
+- root X/Z drift: **0**
+- workshop baseline: **60.02 FPS**
+- mannequin Idle active: **60.01 FPS**
+- GD4 regression: **2549 meshes / 470676 vertices / 60.31 FPS**
+- browser runtime/console/network: clean
+- repository gate: **16/16 test files, 57/57 tests pass**; typecheck/build/`git diff --check` pass
+- external character/animation assets: none
+
+The mannequin is a technical animation proof only. It is not protagonist/NPC canon or final character art. The wider animation backlog remains locked until a new explicit user instruction.
 
 ## Explicit non-goals until new user instruction
 
