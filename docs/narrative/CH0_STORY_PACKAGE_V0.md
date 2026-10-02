@@ -1,4 +1,4 @@
-# CHAPTER 0 STORY PACKAGE V0
+# UETốt — CHAPTER 0 STORY PACKAGE V0
 
 Status: **AUTHOR-DIRECTED DRAFT / NON-CANON UNTIL USER REVIEW**
 Date: 2026-10-02
@@ -9,7 +9,9 @@ Coordinator: narrative lead / producer
 
 This file packages the user's current Chapter 0 direction into a structured source for a later Script/Layout worker.
 
-It is **not** a final screenplay and **not** permission to overwrite the user's wording or invent missing lived experience.
+The current sequence is a **story spine, not a whitelist**. The worker is expected to develop it: add small interruptions, local options, side interactions, visual jokes, callbacks, or short connected micro-events when they make the chapter stronger.
+
+It is **not** a final screenplay and **not** permission to overwrite the user's wording, invent missing lived experience as fact, or create an unrelated major plot.
 
 The worker must also read:
 - `docs/narrative/CH0_LIVED_MATERIAL_LEDGER.md`
@@ -43,7 +45,8 @@ Required:
 - first-person playable presentation;
 - concise dialogue;
 - deadpan / absurd / "vô tri" humor;
-- contemporary/trend-aware rhythm when appropriate;
+- contemporary/trend-aware rhythm appropriate to roughly **mid-to-late 2025**;
+- internet-culture humor may include deliberate anti-humor, brainrot, stale-joke callbacks, repetition/spam, or netizen remix logic when context makes it work;
 - small reversals/twists;
 - option-specific reactions;
 - no arbitrary bad endings for ordinary mistakes;
@@ -51,6 +54,10 @@ Required:
 - no long narrator monologues explaining jokes.
 
 A joke should ideally still work if most narration is removed.
+
+Do not over-police meme density mechanically. One meme may be too much if pasted in randomly; repeating the same thing six times may be correct if repetition/escalation is the actual joke.
+
+User-mentioned reference patterns include "36", "67", and intentionally stale expressions such as "bó tay chấm com" / "ảo tung chảo". These are examples of **humor mechanics**, not required lines. Research the actual 2025 context before using any concrete reference.
 
 ---
 
