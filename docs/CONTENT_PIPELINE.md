@@ -1,86 +1,101 @@
 # Content Pipeline
 
 ## Principle
-A chapter is a package of scenes, assets, state definitions, evidence definitions, interaction data, audio, and narrative text. Content should be replaceable without rewriting core engine systems.
+
+A chapter or scene package should combine environment, assets, state, interactions, dialogue/audio, and approved narrative data without forcing rewrites of core engine systems.
 
 ## Environment pipeline
-1. concept/mood reference
-2. scene blockout
-3. collision pass
-4. gameplay path test
-5. lighting blockout
-6. modular environment art
-7. materials/textures
-8. decals/detail
-9. prop dressing
-10. optimization
-11. final lighting
-12. playtest
+
+1. user-approved spatial description or reference
+2. blockout
+3. scale/proportion review
+4. collision pass
+5. gameplay-path test
+6. lighting blockout
+7. authored modular environment art
+8. materials/textures
+9. restrained decals/detail
+10. prop dressing
+11. optimization
+12. real-browser playtest
 
 ## Interactable prop pipeline
-1. narrative purpose
-2. gameplay behavior
-3. interaction storyboard
+
+1. gameplay purpose
+2. expected player action
+3. interaction/camera behavior
 4. model/asset
 5. interaction anchor(s)
-6. animation
-7. sound
-8. evidence/world-state wiring
-9. inspect readability test
+6. animation where needed
+7. synchronized sound
+8. world/event-state wiring
+9. readability/usability test
 10. performance check
 
-## Generated imagery pipeline
-When generated art is useful:
-1. define art-bible constraints
-2. generate reference/asset candidate
-3. inspect for obvious artifacts
-4. crop/clean/retouch as needed
-5. convert/compress for runtime
-6. name and version consistently
-7. verify in actual game lighting
-8. replace later if final-quality requirements demand it
+## Character/NPC pipeline
+
+When NPC production begins:
+1. role approved or explicitly placeholder
+2. reusable rig/body base
+3. visual variant
+4. animation set
+5. scene placement/schedule needs
+6. dialogue/reaction state
+7. performance/instancing strategy where appropriate
+8. browser playtest
 
 ## Scene data
-Each scene should eventually declare:
+
+Each scene/zone should eventually declare:
 - id
 - asset bundle
 - spawn points
 - interactables
 - audio ambience
 - lighting preset
-- reality variants
-- chapter conditions
+- NPC slots/states where needed
+- local event conditions
+- transition/exit targets
 
-## Evidence content
-Evidence definition should eventually declare:
+## Choice/event data
+
+A gameplay event may declare:
 - stable id
-- title
-- description
-- media type
-- source scene
-- discovery condition
-- journal representation
-- tags/links
-- world facts granted
+- trigger
+- available actions
+- local reaction/state changes
+- whether the branch reconverges
+- persistent facts only when genuinely needed
+- follow-up event/scene
+
+Small choices should not automatically become permanent route branches.
 
 ## Naming convention draft
-- scenes: `scene_<chapter>_<location>`
+
+- scenes/zones: `scene_<location>_<variant>`
 - interactables: `int_<location>_<object>`
-- evidence: `ev_<chapter>_<slug>`
+- events: `evt_<location>_<slug>`
 - world facts: `fact_<domain>_<slug>`
+- NPC placeholders: `npc_<role>_<index>`
 - audio: `sfx_<category>_<slug>`, `amb_<location>_<slug>`
 - textures: `tex_<asset>_<channel>`
+- models: `mdl_<asset>_<variant>`
+
+Final institutional and important-character names remain approval-gated.
 
 ## Runtime asset rule
-Only optimized runtime files belong in runtime asset folders.
-High-resolution source/reference files should not silently bloat production bundles.
+
+Only optimized runtime files belong in runtime asset folders. High-resolution source/reference files should not silently bloat production bundles.
 
 ## Validation
+
 Before marking content complete:
 - loads without error
 - collision is correct
-- no inaccessible mandatory clue
-- interaction can always exit
-- evidence fires once as intended
-- reality variant is reproducible from a clean save
-- no unreadable hero text at target resolution
+- interactions can exit safely
+- required local event progression cannot soft-lock
+- choice/state behavior is reproducible from a clean save
+- text is readable
+- room scale and prop placement are visually reviewed
+- performance remains acceptable
+- external asset provenance is recorded
