@@ -1,4 +1,4 @@
-# NARRATIVE EVENT STYLE V2 — UET KHÔNG TỆ
+# NARRATIVE EVENT STYLE V2 — UETốt
 
 Status: **USER-APPROVED NARRATIVE / EVENT DIRECTION**
 Date: 2026-10-02
@@ -13,6 +13,8 @@ Baseline event tone:
 - mundane situations are allowed to carry gameplay
 - humor may be absurd / "vô tri" but must emerge from the situation
 - humor should feel current and trend-aware rather than like generic scripted jokes
+- the target internet-culture window for Chapter 0 presentation is roughly **June–December 2025**
+- humor may include deliberate anti-humor, stale-joke callbacks, brainrot/repetition, or remix culture when the context makes the repetition itself funny
 - a scene may contain a small twist, reversal, surprise, or brief tension spike
 - "twist" does not imply horror, mystery, supernatural content, or a major plot reveal
 
@@ -108,7 +110,63 @@ Avoid:
 
 Because trends age quickly, concrete trend references should be researched at the time of writing and treated as replaceable presentation details, not core canon.
 
-## 6. Twist / surprise rule
+## 6. Creative expansion rule
+
+User-supplied events/interactions are a **creative spine, not a whitelist**.
+
+A narrative worker may propose:
+- small interruptions;
+- side interactions;
+- environmental gags;
+- extra local options;
+- a short detour;
+- a callback;
+- an NPC reaction;
+- a visual punchline;
+- a micro-event that crosses through an existing event.
+
+The added material must:
+- remain causally connected to the current scene;
+- respect the approved chapter direction;
+- not create important recurring canon without approval;
+- not manufacture a major new plot simply to add content;
+- preserve provenance as AI proposal / research-based proposal until approved.
+
+The worker should improve and expand the user's idea when it finds a genuinely stronger playable expression. It should not mechanically transcribe the user's first-pass interaction list.
+
+## 7. Internet-culture / trend humor rule
+
+For Chapter 0 and other scenes set around the same period, research internet culture from roughly **mid-2025 through late-2025**.
+
+Research should include more than "funny memes". Look for:
+- phrases or numbers that became funny through repetition;
+- brainrot / absurd formats;
+- anti-jokes;
+- intentionally outdated or "corny" expressions whose staleness becomes the joke;
+- serious or neutral public events that netizens transformed into remix/meme formats;
+- comment-section phrasing;
+- reaction formats;
+- repeated catchphrases;
+- formats whose humor depends on overuse.
+
+Examples mentioned by the user as **reference patterns, not mandatory inclusions**:
+- "36";
+- "67";
+- deliberately stale internet language such as "bó tay chấm com" / "ảo tung chảo";
+- repetition spam where repeating the same token is itself the gag.
+
+Do not judge a meme only by whether the original subject is comedic. Analyze how the online community repurposed it.
+
+However:
+- verify the time period before using a concrete reference;
+- prefer format/rhythm over copying a real person's controversy verbatim;
+- do not turn unverified allegations about real people into game facts;
+- do not target private people or victims;
+- a reference must still fit the scene and character voice.
+
+"Meme spam" is not automatically a defect. Repetition is valid when escalation, timing, character behavior, or context makes the repetition the punchline. If repetition adds nothing, cut it.
+
+## 8. Twist / surprise rule
 
 A small event may include:
 - expectation reversal
@@ -123,7 +181,7 @@ A twist should:
 - not require fake information from the game;
 - not automatically become permanent story lore.
 
-## 7. Event categories
+## 9. Event categories
 
 Do not call every routine action a story event.
 
@@ -152,7 +210,7 @@ Specific occurrence with a before/after narrative state.
 ### Major event
 Chapter-level turning point or choice with durable consequences.
 
-## 8. Two-worker narrative production model
+## 10. Two-worker narrative production model
 
 Maximum narrative workers active at once: **2**, plus coordinator.
 
@@ -209,7 +267,7 @@ Output:
 - interaction/reaction beats
 - implementation-ready presentation notes
 
-## 9. Coordinator responsibilities
+## 11. Coordinator responsibilities
 
 The coordinator:
 - receives raw material from the user
@@ -230,7 +288,7 @@ The user remains final authority for:
 - endings
 - final canon
 
-## 10. Chapter 0 current rule
+## 12. Chapter 0 current rule
 
 Chapter 0 does not need final ending/route design.
 
