@@ -43,7 +43,7 @@ The baseline should not communicate “danger” just because the player is stan
 
 ## 3. Special-event lighting target
 
-Uncanny/darker lighting may appear only when a narrative or KCR event justifies it.
+Unusual/darker lighting may appear only when an approved event justifies it.
 
 Allowed event changes:
 - subtle ambient-fill reduction
@@ -201,22 +201,18 @@ Prefer fixing proportion, orientation, collision footprint and composition throu
 
 The current room-number examples `P 202` and `P 204` are approved working labels only. Final A/B building topology, complete room-number map and institutional styling remain `TBD_USER_APPROVAL_*`.
 
-## 10. Relationship to the old Chapter 1 checkpoint
+## 10. Current browser evidence
 
-The preserved `chapter-1-vertical-slice` remains a technical/tonal prototype and must not be rewritten or retagged.
-
-Its dark night/rain presentation is **not** the default target for the new game.
-
-Current bright-room foundation evidence:
+Current room-foundation evidence:
 - before: `docs/playtest/v2-room-corrections-before/`
 - after: `docs/playtest/v2-room-corrections-after/`
 
 The after captures verify the current prototype direction:
 - classroom geometry and furniture are readable at normal viewing distance
-- desk/chair orientation is no longer visually reversed
+- desk/chair orientation is corrected
 - room-number signage reads `P 202` / `P 204`
-- classroom door/frame/header visually fits the wall opening from corridor and room viewpoints
-- dark/uncanny lighting remains available as an event-state tool rather than the normal baseline
+- classroom door/frame/header fits the wall opening more cleanly
+- normal lighting is bright/readable rather than dark by default
 
 Current numerical lighting values are implementation tuning values, not canonical visual-brand constants.
 
