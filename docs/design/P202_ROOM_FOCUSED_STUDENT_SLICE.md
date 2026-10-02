@@ -93,7 +93,7 @@ No special-event beat is canon in this document.
 ### Normal classroom state
 - bright enough for comfortable navigation without eye strain
 - desk tops, chair silhouettes, floor edges, doorways and wall details readable at a glance
-- daylight/classroom-practical balance rather than horror contrast
+- daylight/classroom-practical balance rather than dramatic contrast
 - neutral-to-warm ordinary room feel with soft cool fluorescent influence where appropriate
 - enough local contrast for depth, but no intentional black crush
 - signage and small interactable silhouettes readable without a flashlight-like presentation
