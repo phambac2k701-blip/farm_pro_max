@@ -38,6 +38,8 @@ Build a context snapshot from the files above:
 ## 3. Perform the requested pass
 
 For a Chapter 0 script/layout pass:
+- write the actual playable story inside the layout, including concrete dialogue, actions, reactions, timing and scene progression;
+- do not stop at event architecture or placeholders;
 - creatively develop the existing spine;
 - use user material as seeds, not a whitelist;
 - preserve provenance;
