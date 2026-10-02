@@ -11,7 +11,7 @@ AI may help organize, compare, stress-test, or propose alternatives, but must no
 
 # 1. Identity status
 
-- Final name: **Mark** — USER-APPROVED
+- Final name: **Bắc** — USER-APPROVED
 - Final appearance: `TBD_USER_APPROVAL`
 - Age / study stage: `TBD_USER_APPROVAL`
 - Background facts relevant to Ch0–Ch3: `TBD_USER_APPROVAL`
@@ -24,7 +24,7 @@ Do not infer missing identity details from generic "UET student" stereotypes.
 
 ## User-approved core
 
-Mark is:
+Bắc is:
 - **intelligent**;
 - **sharp / perceptive**;
 - **somewhat introverted, depending on who he is with**;
@@ -38,7 +38,7 @@ Mark is:
 
 ## Social-mode rule
 
-Mark does not have one fixed social energy level.
+Bắc does not have one fixed social energy level.
 
 ### With close friends
 - more expressive;
@@ -59,7 +59,7 @@ Default should lean restrained/observant rather than instantly warm or overshari
 
 ## Speech rule
 
-Mark's speech should feel:
+Bắc's speech should feel:
 - direct;
 - natural;
 - sometimes slightly rough;
@@ -68,7 +68,7 @@ Mark's speech should feel:
 
 Do **not** rewrite him into an eloquent, smooth, socially perfect protagonist.
 
-If Mark intentionally tries to sound very polished, romanticized, charming, or "mượt", the slight awkwardness / unnaturalness of that attempt may itself become part of the humor.
+If Bắc intentionally tries to sound very polished, romanticized, charming, or "mượt", the slight awkwardness / unnaturalness of that attempt may itself become part of the humor.
 
 ## Still open
 
@@ -94,7 +94,7 @@ Do not infer these from generic stereotypes.
 
 ## User-approved direction
 
-Mark is naturally humorous, but his comedy should come from personality and situation rather than from making him a constant joke machine.
+Bắc is naturally humorous, but his comedy should come from personality and situation rather than from making him a constant joke machine.
 
 Strong fits:
 - dry/direct remarks;
@@ -115,7 +115,7 @@ Possible but not yet canon:
 
 Important:
 The protagonist should not become funny merely because the writer inserts jokes.
-Comedy must be compatible with Mark's actual personality.
+Comedy must be compatible with Bắc's actual personality.
 
 ---
 
@@ -123,7 +123,7 @@ Comedy must be compatible with Mark's actual personality.
 
 ## Current voice anchor
 
-Mark should generally sound:
+Bắc should generally sound:
 - concise rather than speechifying;
 - straightforward;
 - slightly blunt;
@@ -132,7 +132,7 @@ Mark should generally sound:
 - looser and funnier with close friends;
 - private about his own life unless trust is established.
 
-When a writer makes Mark deliberately sound "smooth", that delivery should feel a little forced unless the user later changes this trait.
+When a writer makes Bắc deliberately sound "smooth", that delivery should feel a little forced unless the user later changes this trait.
 
 Avoid:
 - overly elegant AI dialogue;
@@ -211,18 +211,18 @@ For each context, define likely default behavior and stress behavior.
 
 # 7. Decision / option style
 
-Player options must feel like choices Mark could plausibly consider.
+Player options must feel like choices Bắc could plausibly consider.
 
 Current rules:
 - options may vary between restrained, direct, blunt, awkward, or humorous;
-- options with strangers should not suddenly make Mark highly open, chatty, or oversharing without a reason;
+- options with strangers should not suddenly make Bắc highly open, chatty, or oversharing without a reason;
 - options with close friends may be much more expressive and playful;
-- a "smooth/charming" option is allowed, but may intentionally come out slightly unnatural because that is consistent with Mark;
-- joke options should sound like Mark, not like a generic meme generator;
-- silence / brief answers can be valid options because Mark is more guarded with non-close people.
+- a "smooth/charming" option is allowed, but may intentionally come out slightly unnatural because that is consistent with Bắc;
+- joke options should sound like Bắc, not like a generic meme generator;
+- silence / brief answers can be valid options because Bắc is more guarded with non-close people.
 
 Important:
-Player agency may stretch personality, but should not turn Mark into a completely different person from one option to the next.
+Player agency may stretch personality, but should not turn Bắc into a completely different person from one option to the next.
 
 ---
 
@@ -349,7 +349,7 @@ Other exclusions remain `TBD_USER_APPROVAL`.
 # 15. User-authored sample lines / voice anchors
 
 Current characterization anchor from user:
-- Mark is "thông minh, sắc sảo nhưng có phần hướng nội, tùy người".
+- Bắc is "thông minh, sắc sảo nhưng có phần hướng nội, tùy người".
 - With close friends he is not strongly introverted.
 - With people he is not close to he appears serious and shares little about his life.
 - He is quite funny.
