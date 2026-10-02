@@ -52,7 +52,7 @@ Short silence, overlapping chatter, delayed reactions and environmental sounds m
 
 If later scenes use unusual or uncanny states, audio may change through a missing ambience source, altered familiar loop, spatial/reverb change, contradictory device audio, or unstable practical fixture.
 
-These changes must be authored for a specific event. Do not use a permanent horror drone as the baseline.
+These changes must be authored for a specific event. Do not use a permanent tension drone as the baseline.
 
 ## Accessibility
 
