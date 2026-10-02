@@ -8,7 +8,7 @@ Applies to the P202 golden-classroom slice defined in `docs/design/P202_ROOM_FOC
 
 The baseline game should look like an **ordinary, readable Vietnamese student environment first**.
 
-The player should be able to understand the room comfortably and notice everyday details without “horror vision.” Darkness and uncanny lighting are reserved for specific events so they have contrast and meaning.
+The player should be able to understand the room comfortably and notice everyday details without “dark dramatic grading.” Darkness and uncanny lighting are reserved for specific events so they have contrast and meaning.
 
 Reference spirit only:
 - local
@@ -66,7 +66,7 @@ Avoid:
 - rapid flicker
 - repeated flash effects
 - using darkness as the only way to signal “uncanny”
-- permanent horror grading after an event ends
+- permanent dark grading after an event ends
 
 ## 4. Color and mood language
 
@@ -104,7 +104,7 @@ Use words such as:
 - one reflective or informational surface drawing unusual attention
 - ordinary geometry feeling subtly inconsistent
 
-The event state should feel like a deviation from normal, not a separate horror game.
+The event state should feel like a deviation from normal, not a separate dark-mode game.
 
 ## 5. What “too dark” means
 
@@ -116,7 +116,7 @@ A scene is too dark if any of these are true during ordinary gameplay:
 - wall color and material differences vanish
 - large parts of the screen sit near black with no meaningful information
 - the player must increase display brightness to understand navigation
-- the lighting communicates horror/tension before the story asks for it
+- the lighting communicates danger/tension before the story asks for it
 - screenshots require explanation to identify ordinary room structure
 
 “Moody” is not an excuse for missing information.
