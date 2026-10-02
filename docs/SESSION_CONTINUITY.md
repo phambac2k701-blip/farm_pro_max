@@ -19,6 +19,8 @@ New sessions must resume from the current **UET không tệ** student-life direc
    - `docs/WORKING_RULES.md`
    - `docs/PROJECT_MASTER_PLAN.md`
    - `docs/design/CURRENT_STORY_MACRO.md`
+   - `docs/design/CURRENT_WORLD_MAP_SCOPE.md`
+   - `docs/art/ASSET_PRODUCTION_PIPELINE_V2.md`
    - `docs/design/GAME_PIVOT_V2_DRAFT_NOTES.md`
    - `docs/design/USER_APPROVAL_GATES.md`
    - current P202/Giảng đường 4 production/art docs
@@ -40,6 +42,8 @@ New sessions must resume from the current **UET không tệ** student-life direc
 - open-ended story
 - current approved macro only covers Chapters 0–3
 - Chapter 4+ is future-life material and remains locked
+- current large-map scope is exactly four high-level maps: Giảng đường 4, Giảng đường Xuân Thủy, khu phố/trà đá, Hòa Lạc
+- large-map shells and reusable small assets use separate production flows
 - humor is core
 - study is context/background, not the whole subject
 - chapters must connect through people, places, habits, callbacks and payoffs
