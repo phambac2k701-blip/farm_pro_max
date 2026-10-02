@@ -159,7 +159,7 @@ Develop reusable lighting language for:
 - night corridor
 - dorm/room
 - computer/deadline sequence
-- uncanny/KCR shifts
+- approved special-event visual shifts
 
 Lighting goals:
 
