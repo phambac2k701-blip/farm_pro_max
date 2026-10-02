@@ -3,13 +3,13 @@
 Last updated: 2026-10-02
 
 ## Current phase
-**CHAPTER 1 PRODUCTION VERTICAL SLICE — IMPLEMENTATION ACTIVE**
+**CHAPTER 1 VERTICAL SLICE COMPLETE — INTENTIONAL STOP POINT**
 
 ## Current branch
 `integration/narrative-v1.2` (continues from the clean Technical Prototype V1 checkpoint plus the frozen narrative handoff)
 
 ## Current status
-**Technical Prototype V1 is frozen and complete. Narrative integration planning is complete. BAC-22 through BAC-29 are complete and verified. Production audio, deterministic KCR-A, the ninth-headset climax, and the final reflection/Chapter 2 boundary all passed automated and real-browser runtime gates. BAC-30 presentation/recovery/regression is now active.**
+**Technical Prototype V1 remains frozen. BAC-22 through BAC-31 are complete and verified. Chapter 1 presentation/readability, recovery/regression, deterministic KCR-A, the ninth-headset climax, final reflection, Chapter 2 boundary, clean-save browser traversal, automated gates and deployment all passed the Chapter 1 vertical-slice checkpoint.**
 
 Completed production planning:
 - Narrative–Technical Gap Analysis: `docs/production/CH01_NARRATIVE_TECHNICAL_GAP_ANALYSIS.md`
@@ -18,12 +18,13 @@ Completed production planning:
 - Linear milestone: **CHAPTER 1 VERTICAL SLICE**
 - Linear execution issues: BAC-22 through BAC-31
 
-Current implementation focus: **BAC-30 vertical-slice presentation, recovery and regression pass**.
+Current implementation focus: **none — intentional stop after BAC-31**.
 
-The authorized execution path is BAC-22 → BAC-31. After BAC-31, record **CHAPTER 1 VERTICAL SLICE COMPLETE** and STOP. Do not start Chapter 2 gameplay.
+**CHAPTER 1 VERTICAL SLICE COMPLETE.** Do not start Chapter 2 gameplay without a new explicit user instruction and a new next-phase implementation plan.
 
 Technical Prototype V1 branch: `prototype/bootstrap-3d`
 Technical Prototype V1 checkpoint: tag `technical-prototype-v1`
+Chapter 1 vertical-slice checkpoint: tag `chapter-1-vertical-slice`
 Existing preview: https://phambac2k701-blip.github.io/farm_pro_max/
 
 ## Connected execution environment
@@ -335,7 +336,7 @@ Preview: https://phambac2k701-blip.github.io/farm_pro_max/
 - Old `docs/NARRATIVE_BIBLE.md` is retained only as superseded foundation context.
 
 ## NEXT CHECKPOINT
-Execute BAC-30: bounded presentation polish plus the full save/recovery/regression matrix. After BAC-30, execute BAC-31 full Chapter 1 verification, deployment and clean checkpoint. Do not start Chapter 2 gameplay.
+Intentional STOP POINT: **CHAPTER 1 VERTICAL SLICE COMPLETE**. BAC-30 and BAC-31 are complete. Do not start Chapter 2 gameplay. Resume only after a new explicit instruction and next-phase plan.
 
 
 ## BAC-22 production record
@@ -500,3 +501,37 @@ Verification:
 - 21 test files / 72 tests pass; TypeScript typecheck and production build pass
 - GitHub Actions run `36945489518` passed on commit `f5d3144`
 - Linear BAC-29 is Done
+
+## BAC-30 production record
+Completed:
+- bounded lighting/material/signage/readability polish, including raised exposure and practical light readability while retaining the night/rain horror palette
+- full save/recovery matrix across clean, mid-Ch1, pre-KCR, ready-before-reentry, post-KCR, inspection, climax, chapter-end and corrupt-save states
+- repeated interaction, Escape/cancel, focus-loss, collision, console/network and performance regression checks
+- representative actual-build screenshots and `docs/production/CH01_BAC30_REGRESSION.md`
+
+Verification:
+- 21 test files / 72 tests pass; TypeScript typecheck and production build pass
+- real Chromium regression matrix passed with no Critical/Important Chapter 1 regression
+- GitHub Actions runs `36947214132` and `36947218814` passed on commit `9e4918697663330e02bcfab226c2e823960dbab1`
+- Linear BAC-30 is Done
+
+## BAC-31 final checkpoint record
+Completed:
+- full automated gate rerun on the polished Chapter 1 build
+- clean-save real-browser traversal from opening through classroom evidence, PA investigation, KCR-A, ninth-headset climax, final reflection and Chapter 2 boundary
+- optional C14 intentionally skipped without blocking progression
+- final save persisted chapter `ch02` at checkpoint `ch01_complete`; gameplay remains locked at the boundary
+- machine-readable playthrough evidence saved at `docs/playtest/ch01-bac31-full-playthrough.json`
+- final gate record saved at `docs/production/CH01_BAC31_FINAL_GATE.md`
+- GitHub Pages deployment succeeded as run `36949570331`; public smoke returned HTTP 200 with `ch01-production-shell` ready, WebGL active, audio ready and fatal UI hidden
+
+Verification:
+- 21/21 test files and 72/72 tests pass
+- TypeScript typecheck passes
+- production Vite build passes
+- `git diff --check` passes
+- browser runtime exceptions: 0; console errors: 0; HTTP responses >=400: 0
+- AudioDirector unlocked after trusted input with 0 failed cues; one benign Chromium pre-gesture autoplay warning is recorded as non-blocking
+- foreground browser render sample remained approximately 60 FPS
+- **CHAPTER 1 VERTICAL SLICE COMPLETE**
+- STOP: do not start Chapter 2 gameplay without a new explicit instruction and next-phase plan
