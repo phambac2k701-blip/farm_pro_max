@@ -11,7 +11,7 @@ AI may help organize, compare, stress-test, or propose alternatives, but must no
 
 # 1. Identity status
 
-- Final name: `TBD_USER_APPROVAL`
+- Final name: **Mark** — USER-APPROVED
 - Final appearance: `TBD_USER_APPROVAL`
 - Age / study stage: `TBD_USER_APPROVAL`
 - Background facts relevant to Ch0–Ch3: `TBD_USER_APPROVAL`
@@ -22,86 +22,133 @@ Do not infer missing identity details from generic "UET student" stereotypes.
 
 # 2. Core personality
 
-Describe the protagonist in the user's own terms.
+## User-approved core
 
-Fields:
-- default temperament:
-- social energy:
-- confidence level:
-- curiosity:
-- awkwardness:
-- patience:
-- impulsiveness:
-- stubbornness:
-- self-awareness:
-- competitiveness:
-- empathy:
-- tendency to overthink:
-- tendency to act first / think later:
-- attitude toward embarrassment:
-- attitude toward rules:
-- attitude toward strangers:
-- attitude toward friends:
-- attitude toward authority:
-- attitude toward family:
-- attitude toward study:
-- attitude toward technology / coding:
-- attitude toward Hanoi / new environments:
+Mark is:
+- **intelligent**;
+- **sharp / perceptive**;
+- **somewhat introverted, depending on who he is with**;
+- much more open and socially relaxed around close friends;
+- serious and restrained around people he is not close to;
+- private about his personal life with non-close people;
+- genuinely humorous;
+- direct and blunt in the way he speaks;
+- not naturally polished or smooth in conversation;
+- noticeably less natural when he deliberately tries to sound overly smooth/charming.
 
-For each important trait, record:
-- strength;
-- weakness;
-- how it appears in behavior;
-- how it changes under pressure;
-- whether it is stable or chapter-dependent.
+## Social-mode rule
+
+Mark does not have one fixed social energy level.
+
+### With close friends
+- more expressive;
+- more relaxed;
+- more willing to joke;
+- less guarded;
+- can feel much less introverted.
+
+### With acquaintances / people he is not close to
+- more serious;
+- speaks less;
+- shares little about his personal life;
+- keeps a stronger boundary;
+- may appear more reserved than he actually is internally.
+
+### With strangers
+Default should lean restrained/observant rather than instantly warm or oversharing.
+
+## Speech rule
+
+Mark's speech should feel:
+- direct;
+- natural;
+- sometimes slightly rough;
+- more blunt than polished;
+- funny without sounding like he is constantly performing.
+
+Do **not** rewrite him into an eloquent, smooth, socially perfect protagonist.
+
+If Mark intentionally tries to sound very polished, romanticized, charming, or "mượt", the slight awkwardness / unnaturalness of that attempt may itself become part of the humor.
+
+## Still open
+
+The following remain TBD unless the user defines them later:
+- confidence level by context;
+- patience;
+- impulsiveness;
+- stubbornness;
+- competitiveness;
+- empathy;
+- tendency to overthink;
+- attitude toward rules;
+- attitude toward authority;
+- attitude toward study;
+- attitude toward technology/coding;
+- attitude toward Hanoi/new environments.
+
+Do not infer these from generic stereotypes.
 
 ---
 
 # 3. Comedy profile
 
-Define what makes this protagonist funny.
+## User-approved direction
 
-Possible dimensions to fill from user input:
-- deadpan vs expressive;
-- intentional joke vs accidental joke;
-- confidently wrong;
-- quiet reaction;
+Mark is naturally humorous, but his comedy should come from personality and situation rather than from making him a constant joke machine.
+
+Strong fits:
+- dry/direct remarks;
+- blunt observations;
+- understated reactions;
+- being sharper than the situation but still caught in it;
+- saying something more honestly than socially expected;
+- awkwardness that appears when he tries too hard to sound polished;
+- a visible contrast between his guarded stranger-mode and relaxed close-friend mode.
+
+Possible but not yet canon:
+- deadpan;
 - delayed realization;
-- awkward silence;
+- intentional meme use;
+- stale-joke use;
 - overthinking;
-- underreacting;
-- overreacting;
-- internet-brain / trend awareness;
-- tendency to quote memes;
-- tendency to use deliberately stale jokes;
-- willingness to commit to a bad bit;
-- reaction when a joke fails;
-- reaction when embarrassed.
+- confidently wrong behavior.
 
 Important:
 The protagonist should not become funny merely because the writer inserts jokes.
-Comedy must be compatible with the protagonist's actual personality.
+Comedy must be compatible with Mark's actual personality.
 
 ---
 
 # 4. Voice / dialogue
 
-Define how the protagonist speaks.
+## Current voice anchor
 
-Track:
-- sentence length;
-- level of formality;
-- pronouns / address patterns;
+Mark should generally sound:
+- concise rather than speechifying;
+- straightforward;
+- slightly blunt;
+- natural rather than polished;
+- more serious with people he does not know well;
+- looser and funnier with close friends;
+- private about his own life unless trust is established.
+
+When a writer makes Mark deliberately sound "smooth", that delivery should feel a little forced unless the user later changes this trait.
+
+Avoid:
+- overly elegant AI dialogue;
+- constant emotional disclosure to strangers;
+- immediate oversharing;
+- generic warm/profound protagonist lines;
+- making every sentence a punchline;
+- making him socially effortless in every context.
+
+Still TBD:
+- exact pronouns/address patterns;
 - slang density;
 - swearing level;
 - filler words;
 - hesitation style;
-- tendency to answer directly vs dodge;
-- tendency to joke when nervous;
-- tendency to say what they think vs keep it internal;
-- phrases the protagonist naturally uses;
-- phrases the protagonist would never use;
-- difference between speaking to mother / stranger / older person / friend / staff / recurring NPC.
+- exact speech differences with mother / staff / older adults / close friends.
 
 Dialogue workers must preserve this voice.
 
@@ -164,20 +211,18 @@ For each context, define likely default behavior and stress behavior.
 
 # 7. Decision / option style
 
-Player options must feel like choices this protagonist could plausibly consider.
+Player options must feel like choices Mark could plausibly consider.
 
-Define:
-- bold option style:
-- cautious option style:
-- awkward option style:
-- troll / joke option style:
-- silent / inaction style:
-- "confidently wrong" style:
-- morally off-limits options:
-- options that would break character even if mechanically funny.
+Current rules:
+- options may vary between restrained, direct, blunt, awkward, or humorous;
+- options with strangers should not suddenly make Mark highly open, chatty, or oversharing without a reason;
+- options with close friends may be much more expressive and playful;
+- a "smooth/charming" option is allowed, but may intentionally come out slightly unnatural because that is consistent with Mark;
+- joke options should sound like Mark, not like a generic meme generator;
+- silence / brief answers can be valid options because Mark is more guarded with non-close people.
 
 Important:
-Player agency may stretch personality, but should not turn the protagonist into a completely different person from one option to the next.
+Player agency may stretch personality, but should not turn Mark into a completely different person from one option to the next.
 
 ---
 
@@ -289,29 +334,31 @@ If a scene requires the protagonist to behave out of character to work, revise t
 
 # 14. Hard "not this character" list
 
-User-defined behaviors/tones that must be rejected.
+Current user-grounded rejects:
+- instantly open with everyone;
+- freely sharing personal life with people he is not close to;
+- socially smooth/polished all the time;
+- speaking in overly elegant or artificial dialogue;
+- behaving like an extrovert with every person;
+- being turned into a nonstop meme machine instead of a genuinely funny person.
 
-- `TBD_USER_APPROVAL`
-
-Examples of category only:
-- too heroic;
-- too cynical;
-- too talkative;
-- too passive;
-- overly sentimental;
-- constantly sarcastic;
-- meme machine;
-- unrealistically confident.
-
-These examples are not character facts.
+Other exclusions remain `TBD_USER_APPROVAL`.
 
 ---
 
-# 15. User-authored sample lines
+# 15. User-authored sample lines / voice anchors
 
-Store exact user-supplied protagonist wording here as voice anchors.
+Current characterization anchor from user:
+- Mark is "thông minh, sắc sảo nhưng có phần hướng nội, tùy người".
+- With close friends he is not strongly introverted.
+- With people he is not close to he appears serious and shares little about his life.
+- He is quite funny.
+- His speech is not "thô" in the sense of being crude by default; it is more **direct / blunt / not overly polished**.
+- When he deliberately tries to speak very smoothly, it tends to sound unnatural.
 
-For every sample:
+These characterization statements are USER-APPROVED voice anchors.
+
+Future exact dialogue samples should be stored here with:
 - raw line;
 - context;
 - certainty/status;
