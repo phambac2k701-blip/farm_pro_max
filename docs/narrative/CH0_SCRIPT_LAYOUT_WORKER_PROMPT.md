@@ -75,7 +75,7 @@ Before writing any protagonist dialogue, internal thought, reaction, or option t
 
 Treat it as the authoritative character-voice constraint.
 
-The protagonist is **Mark**.
+The protagonist is **Bắc**.
 
 Current user-approved voice anchors:
 - intelligent and sharp;
@@ -86,7 +86,7 @@ Current user-approved voice anchors:
 - direct/blunt rather than polished;
 - when he deliberately tries to sound very smooth/charming, it should feel slightly unnatural.
 
-Do not make Mark socially fluent, emotionally open, or highly talkative with every NPC just because a scene needs dialogue.
+Do not make Bắc socially fluent, emotionally open, or highly talkative with every NPC just because a scene needs dialogue.
 
 If the bible still contains `TBD_USER_APPROVAL` for a trait that materially affects a scene:
 - do not silently invent a canonical trait;
