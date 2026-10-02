@@ -23,6 +23,7 @@ All new sessions must resume from the current **UET không tệ** direction. Ret
    - `docs/design/RUNTIME_WORLD_EVENT_ARCHITECTURE.md`
    - `docs/design/GIANG_DUONG_4_LAYOUT_V1.md`
    - `docs/art/ASSET_PRODUCTION_PIPELINE_V2.md`
+   - `docs/art/CHARACTER_ANIMATION_PLAN_V1.md`
    - `docs/GAMEPLAY.md`
    - `docs/ARCHITECTURE.md`
    - `docs/TECHNICAL_REQUIREMENTS.md`
@@ -106,10 +107,22 @@ Integration gate:
 - no meaningful regression from BAC-45
 - evidence: `docs/playtest/integration-uet-reconciliation/`
 
+## Character animation roadmap
+
+Approved planning source:
+- `docs/art/CHARACTER_ANIMATION_PLAN_V1.md`
+
+Next intended proof, once explicitly started:
+- lightweight stick-figure/mannequin rig
+- six Prototype V0 clips only: Idle, Walk, Turn In Place, Sit Down, Seated Idle, Stand Up
+- prove the sequence `Idle -> Walk -> Idle -> Turn -> Idle -> Sit Down -> Seated Idle -> Stand Up -> Idle`
+- wider animation library remains backlog until this prototype passes
+- approved external motion assets should be stored locally when licensing permits and provenance must be recorded
+
 ## Explicit non-goals until new user instruction
 
 Do not:
-- start character production
+- start final character-body production
 - start NPC/event production
 - start Giảng đường Xuân Thủy or any other second map
 - polish GD4 further

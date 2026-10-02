@@ -173,6 +173,26 @@ Supporting:
 - `docs/TESTING_AND_PLAYTEST.md`
 - `docs/WORKING_RULES.md`
 
+## Character animation planning checkpoint
+
+Approved roadmap:
+- `docs/art/CHARACTER_ANIMATION_PLAN_V1.md`
+
+The next planned prototype is a lightweight stick-figure/mannequin animation test. It is not a protagonist or canon NPC.
+
+Prototype V0 is intentionally limited to six clips:
+1. Idle
+2. Walk
+3. Turn In Place
+4. Sit Down
+5. Seated Idle
+6. Stand Up
+
+Required proof sequence:
+`Idle -> Walk -> Idle -> Turn -> Idle -> Sit Down -> Seated Idle -> Stand Up -> Idle`
+
+The wider animation list is backlog only and must not be mass-produced before V0 is proven. Approved external animation/motion resources should be stored locally in the project when licensing permits, with provenance recorded; runtime must not depend on third-party animation URLs/CDNs.
+
 ## STOP POINT
 
-After the integration branch passes all gates, commit and push this branch only, then stop. Do not begin the next production phase automatically.
+The animation roadmap is documented, but implementation has not started. Wait for the user's explicit instruction before creating the stick-figure rig or six Prototype V0 clips.
