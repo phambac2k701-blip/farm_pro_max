@@ -130,13 +130,14 @@ export class OpenableController implements InteractionBehavior {
       return;
     }
 
-    this.options.adapter.apply(this.targetOpen ? 1 : 0);
-    this.options.adapter.setStableCollisionState?.(this.targetOpen);
-    this.options.onStableState?.(this.targetOpen);
+    const stableOpen = this.targetOpen;
+    this.options.adapter.apply(stableOpen ? 1 : 0);
+    this.options.adapter.setStableCollisionState?.(stableOpen);
 
     const actions = this.actions;
     this.actions = null;
     actions.complete();
+    this.options.onStableState?.(stableOpen);
   }
 
   requestCancel(): boolean {

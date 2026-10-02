@@ -7,6 +7,7 @@ import {
   CH01_NINTH_HEADSET_INSPECTED_FACT,
   ChapterOneClimaxController,
 } from "./content/chapters/ch01/ChapterOneClimaxController";
+import { ChapterOneFinaleController } from "./content/chapters/ch01/ChapterOneFinaleController";
 import {
   CH01_OPENING_COMPLETE_FACT,
   ChapterOneOpeningController,
@@ -17,6 +18,7 @@ import {
 } from "./content/chapters/ch01/ClassroomEvidenceController";
 import { DomChapterOneClimaxPhoneView } from "./content/chapters/ch01/DomChapterOneClimaxPhoneView";
 import { DomChapterOnePhoneView } from "./content/chapters/ch01/DomChapterOnePhoneView";
+import { DomChapterOneTransitionView } from "./content/chapters/ch01/DomChapterOneTransitionView";
 import {
   CH01_AMBIENCE_IDS,
   CH01_AUDIO,
@@ -71,6 +73,8 @@ async function bootstrap(): Promise<void> {
   const evidenceNotification =
     document.querySelector<HTMLDivElement>("#evidence-notification");
   const subtitle = document.querySelector<HTMLDivElement>("#subtitle");
+  const chapterTransition =
+    document.querySelector<HTMLDivElement>("#chapter-transition");
   const reticle = document.querySelector<HTMLDivElement>("#reticle");
 
   if (
@@ -81,6 +85,7 @@ async function bootstrap(): Promise<void> {
     !phoneOverlay ||
     !evidenceNotification ||
     !subtitle ||
+    !chapterTransition ||
     !reticle
   ) {
     throw new Error("Required application DOM nodes are missing.");
@@ -482,6 +487,61 @@ async function bootstrap(): Promise<void> {
       },
     });
 
+    const finale = new ChapterOneFinaleController({
+      state: gameState,
+      chapterRuntime,
+      reflection: chapter.finalReflectionShoulder,
+      view: new DomChapterOneTransitionView(chapterTransition),
+      inputLock: player,
+      getCameraPosition: () => player.camera.position,
+      getCameraForward: () => player.camera.getForwardRay().direction,
+      onReflectionVanish: () => {
+        audio.play(CH01_AUDIO_IDS.relayClick, chapter.paSpeakerProp);
+        canvas.dataset.finalReflectionVanish = "true";
+        persistSave();
+      },
+      onComplete: () => {
+        canvas.dataset.chapterComplete = "true";
+        persistSave();
+      },
+    });
+
+    const corridorExitDoor = new OpenableController({
+      adapter: createHingedOpenableAdapter(
+        chapter.corridorExitDoor.hinge,
+        chapter.corridorExitDoor.closedRotationY,
+        chapter.corridorExitDoor.openRotationY,
+      ),
+      duration: 0.52,
+      initiallyOpen: finale.isComplete,
+      onStableState(open) {
+        audio.play(CH01_AUDIO_IDS.door, chapter.corridorExitDoor.leaf);
+        if (open) {
+          finale.completeChapter();
+          persistSave();
+        }
+      },
+    });
+    let corridorExitRegistered = false;
+    const ensureCorridorExitRegistered = (): void => {
+      if (corridorExitRegistered || !finale.canExit) {
+        return;
+      }
+
+      interaction.register(chapter.corridorExitDoor.leaf, {
+        id: CH01_INTERACTION_IDS.corridorExit,
+        prompt: "E · Mở cửa cuối hành lang",
+        maxDistance: 2.1,
+        priority: 13,
+      });
+      behaviorHost.register(
+        CH01_INTERACTION_IDS.corridorExit,
+        corridorExitDoor,
+      );
+      corridorExitRegistered = true;
+      canvas.dataset.exitDoorRegistered = "true";
+    };
+
     const ninthHeadsetView = new InspectionOverlayView(
       inspectionOverlay,
       {
@@ -596,6 +656,8 @@ async function bootstrap(): Promise<void> {
     interaction.attachInput(canvas);
     opening.start();
     climax.resume();
+    finale.restore();
+    ensureCorridorExitRegistered();
 
     chapter.drawerLabel09.setEnabled(evidence.has("C03"));
     if (evidence.has("C03")) {
@@ -623,6 +685,16 @@ async function bootstrap(): Promise<void> {
       chapterReality.hasLeftAfterReady,
     );
     canvas.dataset.kcrApplied = String(chapterReality.isApplied);
+    canvas.dataset.finalReflectionArmed = String(
+      finale.isReflectionArmed,
+    );
+    canvas.dataset.finalReflectionVanished = String(
+      finale.isReflectionVanished,
+    );
+    canvas.dataset.chapterComplete = String(finale.isComplete);
+    canvas.dataset.exitDoorRegistered = String(
+      corridorExitRegistered,
+    );
 
     if (import.meta.env.DEV) {
       const debugWindow = window as typeof window & {
@@ -640,10 +712,12 @@ async function bootstrap(): Promise<void> {
           chapterRuntime: ChapterRuntime<(typeof CH01_CHECKPOINTS)[number]>;
           opening: ChapterOneOpeningController;
           climax: ChapterOneClimaxController;
+          finale: ChapterOneFinaleController;
           classroomEvidence: ClassroomEvidenceController;
           sideDoor: OpenableController;
           classroomDoor: OpenableController;
           paDoor: OpenableController;
+          corridorExitDoor: OpenableController;
           drawer: OpenableController;
           rosterInspection: DocumentInspectionController;
           photoInspection: PhotoInspectionController;
@@ -667,10 +741,12 @@ async function bootstrap(): Promise<void> {
         chapterRuntime,
         opening,
         climax,
+        finale,
         classroomEvidence,
         sideDoor,
         classroomDoor,
         paDoor,
+        corridorExitDoor,
         drawer,
         rosterInspection,
         photoInspection,
@@ -691,6 +767,8 @@ async function bootstrap(): Promise<void> {
       behaviorHost.update(deltaSeconds);
       opening.update(deltaSeconds);
       climax.update(deltaSeconds);
+      finale.update(deltaSeconds);
+      ensureCorridorExitRegistered();
       interaction.update();
 
       const movement = player.input.getMovementAxes();
@@ -837,6 +915,7 @@ async function bootstrap(): Promise<void> {
       reticle.hidden =
         opening.isActive ||
         (climax.isActive && climax.currentStep === 1) ||
+        finale.isComplete ||
         interaction.activeInteraction !== null ||
         cameraDirector.state !== "gameplay";
 
@@ -860,6 +939,20 @@ async function bootstrap(): Promise<void> {
       canvas.dataset.kcrApplied = String(chapterReality.isApplied);
       canvas.dataset.climaxStep = String(climax.currentStep);
       canvas.dataset.climaxComplete = String(climax.isComplete);
+      canvas.dataset.finalReflectionArmed = String(
+        finale.isReflectionArmed,
+      );
+      canvas.dataset.finalReflectionVanished = String(
+        finale.isReflectionVanished,
+      );
+      canvas.dataset.finalReflectionEnabled = String(
+        chapter.finalReflectionShoulder.isEnabled(),
+      );
+      canvas.dataset.chapterComplete = String(finale.isComplete);
+      canvas.dataset.exitDoorRegistered = String(
+        corridorExitRegistered,
+      );
+      canvas.dataset.exitDoorState = corridorExitDoor.state;
       canvas.dataset.headsetCuePlayed = String(
         gameState.getFact<boolean>(
           CH01_HEADSET_PROXIMITY_CUE_PLAYED_FACT,

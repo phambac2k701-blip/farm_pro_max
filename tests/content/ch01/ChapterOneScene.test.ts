@@ -73,6 +73,9 @@ describe("Chapter 1 production scene shell", () => {
     expect(chapter.paIndexCardProp.isPickable).toBe(true);
     expect(chapter.ninthHeadsetProp.isPickable).toBe(true);
     expect(chapter.paSpeakerProp.isPickable).toBe(false);
+    expect(chapter.corridorExitDoor.leaf.checkCollisions).toBe(true);
+    expect(chapter.corridorExitDoor.leaf.isPickable).toBe(false);
+    expect(chapter.finalReflectionShoulder.isEnabled()).toBe(false);
     expect(chapter.paStationLabelsInspectionAnchor).toBeDefined();
     expect(chapter.paIndexCardInspectionAnchor).toBeDefined();
     expect(chapter.ninthHeadsetInspectionAnchor).toBeDefined();
@@ -103,6 +106,7 @@ describe("Chapter 1 production scene shell", () => {
         "ch01-side-entrance-door-leaf",
         "ch01-classroom-door-leaf",
         "ch01-pa-room-door-leaf",
+        "ch01-corridor-exit-door-leaf",
       ]),
     );
     expect(colliders.length).toBeGreaterThan(25);

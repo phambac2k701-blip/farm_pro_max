@@ -272,3 +272,49 @@ body {
   color: rgb(229 229 217 / 80%);
   font-size: 12px;
 }
+
+#chapter-transition {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at 50% 45%, rgb(18 23 24 / 44%), transparent 42%),
+    rgb(4 6 7 / 94%);
+  opacity: 0;
+  transition: opacity 700ms ease;
+  pointer-events: none;
+}
+
+#chapter-transition.visible {
+  opacity: 1;
+}
+
+.chapter-transition-card {
+  width: min(520px, calc(100vw - 48px));
+  padding: 42px 32px;
+  border-top: 1px solid rgb(208 215 204 / 30%);
+  border-bottom: 1px solid rgb(208 215 204 / 18%);
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+.chapter-transition-eyebrow {
+  margin-bottom: 14px;
+  color: rgb(188 197 188 / 72%);
+  font-size: 12px;
+  letter-spacing: 0.28em;
+}
+
+.chapter-transition-card h1 {
+  margin: 0;
+  font-size: clamp(28px, 5vw, 42px);
+  font-weight: 500;
+}
+
+.chapter-transition-card p {
+  margin: 18px 0 0;
+  color: rgb(194 202 196 / 64%);
+  font-size: 13px;
+}

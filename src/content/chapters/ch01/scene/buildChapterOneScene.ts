@@ -29,6 +29,7 @@ export interface ChapterOneProductionScene {
   sideEntranceDoor: ChapterOneDoorAssembly;
   classroomDoor: ChapterOneDoorAssembly;
   paRoomDoor: ChapterOneDoorAssembly;
+  corridorExitDoor: ChapterOneDoorAssembly;
   studentDesks: TransformNode[];
   teacherDesk: TransformNode;
   paStations: TransformNode[];
@@ -52,6 +53,7 @@ export interface ChapterOneProductionScene {
   paStationLabelsProp: Mesh;
   paIndexCardProp: Mesh;
   corridorPhotoBoard: Mesh;
+  finalReflectionShoulder: Mesh;
   rosterInspectionAnchor: TransformNode;
   photoInspectionAnchor: TransformNode;
   timetableInspectionAnchor: TransformNode;
@@ -654,14 +656,39 @@ export function buildChapterOneScene(
     });
   }
 
-  createBox(scene, "ch01-corridor-end-wall", {
-    width: 3,
+  createBox(scene, "ch01-corridor-end-wall-left", {
+    width: 0.85,
     height: 3.2,
     depth: 0.12,
-    position: new Vector3(0, 1.6, 14),
+    position: new Vector3(-1.075, 1.6, 14),
     material: plaster,
     collisions: true,
   });
+  createBox(scene, "ch01-corridor-end-wall-right", {
+    width: 0.85,
+    height: 3.2,
+    depth: 0.12,
+    position: new Vector3(1.075, 1.6, 14),
+    material: plaster,
+    collisions: true,
+  });
+  createBox(scene, "ch01-corridor-end-wall-header", {
+    width: 1.3,
+    height: 0.85,
+    depth: 0.12,
+    position: new Vector3(0, 2.775, 14),
+    material: plaster,
+    collisions: true,
+  });
+
+  const corridorExitDoor = createDoorAlongX(
+    scene,
+    "ch01-corridor-exit-door",
+    new Vector3(-0.65, 0, 13.94),
+    fadedBlue,
+    -Math.PI * 0.5,
+  );
+  corridorExitDoor.hinge.rotation.y = corridorExitDoor.closedRotationY;
 
   const classroomDoor = createDoorAlongZ(
     scene,
@@ -1016,6 +1043,27 @@ export function buildChapterOneScene(
     pickable: true,
   });
 
+  const reflectionMaterial = createMaterial(
+    scene,
+    "ch01-mat-final-reflection",
+    new Color3(0.11, 0.13, 0.14),
+    new Color3(0.025, 0.03, 0.032),
+  );
+  reflectionMaterial.alpha = 0.34;
+  reflectionMaterial.backFaceCulling = false;
+  reflectionMaterial.disableLighting = true;
+
+  const finalReflectionShoulder = MeshBuilder.CreatePlane(
+    "ch01-final-reflection-shoulder",
+    { width: 0.28, height: 0.52 },
+    scene,
+  );
+  finalReflectionShoulder.position.set(-1.36, 1.58, 10.02);
+  finalReflectionShoulder.rotation.y = Math.PI / 2;
+  finalReflectionShoulder.material = reflectionMaterial;
+  finalReflectionShoulder.isPickable = false;
+  finalReflectionShoulder.setEnabled(false);
+
   const corridorReturnZone = createBox(scene, "ch01-corridor-return-zone", {
     width: 2.4,
     height: 2.4,
@@ -1165,6 +1213,7 @@ export function buildChapterOneScene(
     sideEntranceDoor,
     classroomDoor,
     paRoomDoor,
+    corridorExitDoor,
     studentDesks,
     teacherDesk,
     paStations,
@@ -1188,6 +1237,7 @@ export function buildChapterOneScene(
     paStationLabelsProp,
     paIndexCardProp,
     corridorPhotoBoard,
+    finalReflectionShoulder,
     rosterInspectionAnchor,
     photoInspectionAnchor,
     timetableInspectionAnchor,

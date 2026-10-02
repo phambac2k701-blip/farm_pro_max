@@ -119,6 +119,9 @@ describe("OpenableController", () => {
     expect(controller.state).toBe("open");
     expect(complete).toHaveBeenCalledTimes(1);
     expect(stable).toHaveBeenLastCalledWith(true);
+    expect(complete.mock.invocationCallOrder[0]).toBeLessThan(
+      stable.mock.invocationCallOrder[0],
+    );
 
     controller.enter({ complete, cancel });
     controller.update(0.4);

@@ -9,6 +9,7 @@ export const CH01_INTERACTION_IDS = {
   paStationLabels: "ch01-pa-station-labels",
   paIndexCard: "ch01-pa-index-card",
   ninthHeadset: "ch01-ninth-headset",
+  corridorExit: "ch01-corridor-exit",
   drawerLabel09: "ch01-drawer-label-09",
   flashlight: "ch01-flashlight",
 } as const;
