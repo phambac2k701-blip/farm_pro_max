@@ -8,13 +8,11 @@ Working production focus: P202 golden classroom
 
 Its working role is a **small, dense, room-focused Vietnamese student-life slice** built around one classroom/main room. The player's ordinary student experience is the primary source of charm: arriving, finding a place, handling small objects, reading the room, dealing with awkward social moments, checking information, and reacting to mundane problems.
 
-Any unusual event layer is secondary to the readable, familiar, lightly humorous student-life baseline and remains approval-gated.
-
-This document defines production direction, not final chapter canon. Exact dialogue, named characters, institutional identity, major beats, twist meaning, and final chapter order remain behind `USER_APPROVAL_GATES.md`.
+This document defines room-level production direction, not detailed chapter canon. Exact dialogue, important characters, chapter events, official branding assets, and final room-to-building topology remain behind `USER_APPROVAL_GATES.md`.
 
 ## 2. Role of P202
 
-P202 is a **production/gameplay proving room**, not automatic approval of the final canonical Chapter 1.
+P202 is a **production/gameplay proving room**. It must not be mistaken for the whole current Giảng đường 4 map or assigned to a final story beat until the active environment update is reviewed.
 
 It should prove that a single classroom can support believable student-life roleplay, polished interactions, short social/comedic moments, and reusable production systems before the project expands its world.
 
@@ -82,11 +80,11 @@ Working non-canon beat slots:
 
 Exact jokes, dialogue, named participants and canonical outcomes are **not approved here**. Use placeholders such as `TBD_USER_APPROVAL_DIALOGUE_A` and `TBD_USER_APPROVAL_SOCIAL_BEAT_A` during implementation.
 
-## 7. Optional special-event hooks
+## 7. Event-state hooks
 
-The room may later support information/object/lighting changes when an approved narrative event requires them.
+Generic room state changes may be supported technically when a later approved scene needs them.
 
-No special-event beat is canon in this document.
+No special narrative event is canon in this document.
 
 ## 8. Lighting state model
 
@@ -99,7 +97,7 @@ No special-event beat is canon in this document.
 - signage and small interactable silhouettes readable without a flashlight-like presentation
 - lighting should support humor and social observation, not signal danger
 
-### Special-event / uncanny state
+### Optional authored event state
 - triggered only by authored narrative state
 - may shift color temperature, practical-light balance, ambient fill, local contrast or one fixture's stability
 - may become darker than normal, but the room must remain navigable
@@ -107,7 +105,7 @@ No special-event beat is canon in this document.
 - no rapid strobe; any flicker is subtle, sparse and event-linked
 - returning to normal should visibly restore the ordinary baseline
 
-The intended contrast is: **ordinary room first → something is slightly wrong**, not **dark room → darker room**.
+Normal classroom presentation remains the reference state. Any alternate state must be scene-specific and user-approved.
 
 ## 9. Spatial scope
 
@@ -139,7 +137,7 @@ The slice is ready for user review when:
 - reused desks/chairs/classroom props feel intentionally arranged rather than like a test grid
 - at least several ordinary interactions make the room worth exploring
 - social/humor hooks exist as placeholders without inventing important NPC canon
-- no institutional identity or major narrative canon has been silently introduced
+- no unapproved official branding or detailed narrative canon has been silently introduced
 - runtime remains browser-friendly and responsive
 
 ## 12. Next implementation tasks
@@ -157,13 +155,12 @@ Dependency order:
 ## 13. User approval required next
 
 Before this technical slice becomes canonical narrative content, user approval is required for:
-- whether this is actually canonical Chapter 1
+- which approved chapter/event ultimately uses this room
 - exact first-day/classroom story premise
 - exact social/humor beats and dialogue
 - important NPC identities/roles
 - protagonist final name/look/personality details
-- any exact unusual/special-event beat
-- any school/university name, logo, colors, slogan or recognizable institutional identity
+- official UET logo/colors/insignia/slogan or other branded visual identity
 - final room/campus relationship and canonical map topology
 
 ## 14. Latest retained-room correction checkpoint
@@ -174,4 +171,15 @@ The latest user playtest corrections are now part of the implementation directio
 - the corridor-to-classroom doorway uses a reusable fitted-opening convention so frame, header infill and leaf dimensions agree with the wall opening
 - the normal classroom presentation is bright/readable by default; any altered lighting is treated as a specific event state
 
-These corrections are technical/presentation decisions only. They do not approve a canonical university, room map, chapter premise, important character, or final special-event concept.
+These corrections are technical/presentation decisions only. They do not approve the final room-to-building topology, detailed chapter premise, important character, or official branded visual identity.
+
+
+## 15. Relationship to current Giảng đường 4 production
+
+The user has approved UET as the story setting/context and reports that a larger Giảng đường 4 map update is currently being produced on the parallel art branch.
+
+Until that update lands and is reviewed:
+- treat this P202 document as a room-level technical reference
+- do not assume P202 defines the whole building
+- do not force the Giảng đường 4 map to preserve obsolete room topology
+- reuse interaction/asset lessons where compatible
