@@ -200,7 +200,23 @@ Preferred humor:
 
 Avoid detached comedy scenes that could be removed without changing the characters or world.
 
-## 10. Current production relationship
+## 10. Current map relationship
+
+Current world-map source of truth:
+- `docs/design/CURRENT_WORLD_MAP_SCOPE.md`
+
+The current story intentionally reuses only four major map families:
+
+- **Chapter 0** → Giảng đường Xuân Thủy as the main university-entry environment; khu phố/city context may support the feeling of arriving in a new city
+- **Chapter 1** → Hòa Lạc / khu quân sự
+- **Chapter 2** → Giảng đường 4 becomes the main recurring university-life environment
+- **Chapter 3** → Giảng đường 4 + khu phố / phố trà đá become recurring everyday-life spaces
+
+This mapping is high level only.
+
+Do not add new large maps merely because a scene could theoretically use one. Reuse the four-map set unless the user explicitly expands the scope.
+
+## 11. Current production relationship
 
 Narrative planning and environment production are running in parallel.
 
@@ -214,7 +230,7 @@ Narrative work must not overwrite or redesign that art branch while the update i
 
 The current P202 documents remain useful as room-level technical references, but final P202/Giảng đường 4 topology should be reconciled only after the active art update lands and is reviewed.
 
-## 11. Next narrative task
+## 12. Next narrative task
 
 Do **not** expand the macro further yet.
 
