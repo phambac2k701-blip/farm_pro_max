@@ -1,77 +1,56 @@
-# Pre-Build Checklist
+# Current Foundation Checklist
 
 ## Status
-**PRE-BUILD PREPARATION ONLY. Do not interpret this file as authorization to start implementation.**
 
-Build begins only after the user explicitly gives the start command in the fresh chat.
+The project is already in active implementation. This file now tracks the foundation required for the new student-life direction.
 
 ## Product
-- [x] True 3D first-person direction confirmed
-- [x] Browser-first target confirmed
-- [x] Investigation/non-combat focus confirmed
-- [x] Knowledge Changes Reality mechanic defined
-- [x] Approximate 9-chapter structure documented
+
+- [x] true 3D first-person direction
+- [x] desktop browser-first target
+- [x] student-life narrative direction
+- [x] fictional university setting
+- [x] bright/readable ordinary baseline
+- [x] modular environment strategy
+- [ ] new nine-chapter macro structure approved
+- [ ] important NPC cast approved
+- [ ] final institutional identity approved
+- [ ] final role of the unusual/reality-changing layer approved
 
 ## Technical
-- [x] Babylon.js + TypeScript + Vite selected for prototype
-- [x] WebGPU preferred / WebGL fallback documented
-- [x] Core architecture documented
-- [x] movement/camera requirements documented
-- [x] interaction requirements documented
-- [x] state/save direction documented
-- [x] testing/playtest rules documented
-- [x] current docs verified against current Babylon.js documentation via Context7
 
-## Creative
-- [x] Art bible
-- [x] Narrative bible
-- [x] Audio bible
-- [x] UI/UX bible
-- [x] Asset plan
-- [x] initial visual concept generated
+- [x] Babylon.js + TypeScript + Vite
+- [x] WebGPU preferred / WebGL fallback
+- [x] first-person controller
+- [x] collision/input foundation
+- [x] interaction foundation
+- [x] camera choreography foundation
+- [x] typed state/save foundation
+- [x] testing/build/deployment foundation
+- [x] modular environment/material/signage foundation
+- [ ] generic student-life gameplay runtime extracted from legacy story wiring
+- [ ] classroom sit/stand interaction production-ready
+- [ ] NPC/dialogue foundation when concrete gameplay requires it
+- [ ] phone/message foundation when concrete gameplay requires it
 
-## Operations
-- [x] GitHub connected with Full Access
-- [x] Linear connected with Full Access
-- [x] Figma connected with Full Access
-- [x] Vercel connected with Full Access
-- [x] Remote Desktop Commander connected with Full Access
-- [x] remote development device verified online
-- [x] session continuity/resume protocol documented
-- [x] continuous-execution rules documented
-- [x] progress/checkpoint file exists
-- [x] Linear roadmap/project exists
+## Art / environment
 
-## Branch state
-- `main` — stable baseline
-- `phase-0-foundation` — pre-production documentation
-- `prototype/bootstrap-3d` — prepared implementation branch; gameplay implementation has not started
+- [x] visual workshop scope drafted
+- [x] bright classroom direction established
+- [ ] P202 golden classroom accepted
+- [ ] real reusable classroom asset set accepted
+- [ ] asset provenance complete for external production assets
+- [ ] NPC/character pipeline accepted
 
-## Build start command
-In a fresh chat, a suitable explicit command is:
+## Narrative
 
-> Start building the Người Thứ Chín project now. Read the repository checkpoint first, then execute the current implementation plan continuously. Do not redo completed preparation work and do not stop for routine confirmation between planned tasks.
+- [x] old narrative retired from active tree
+- [ ] university-entry-to-current-year-two timeline brainstormed
+- [ ] major phases selected
+- [ ] nine chapters grouped and reviewed
+- [ ] Chapter 1 macro content approved
+- [ ] Chapter 1 events approved before final implementation
 
-## First build task after authorization
-**BAC-11 — Bootstrap browser 3D application**
+## Rule
 
-First steps:
-1. create minimal TypeScript/Vite project scaffolding
-2. create test harness
-3. write the first failing engine-selection/bootstrap test
-4. verify RED
-5. implement minimum EngineAdapter
-6. verify GREEN
-7. production build
-8. update progress
-9. continue to the next planned task
-
-## New-information rule
-Whenever implementation reveals a new constraint, bug, story requirement, asset requirement, or architectural decision:
-1. implement/fix it if it belongs to the current approved task;
-2. update the relevant spec or ADR;
-3. update `docs/PROGRESS.md`;
-4. create/update Linear work if follow-up remains;
-5. continue from the next actionable item.
-
-The repository must always be sufficient to reconstruct project state without relying on chat history.
+Do not treat an unchecked creative item as permission to invent final canon. Generic technical and reversible production work may continue within approved direction.
