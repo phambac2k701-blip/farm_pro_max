@@ -25,14 +25,13 @@ Base: `phase-v2/foundation-hardening`.
 
 ## Legacy narrative status
 
-The previous **Người Thứ Chín** story package has been retired.
+The previous story package has been retired.
 
 Removed from the active tree:
 - the complete old `docs/narrative/` production package
 - the old `docs/NARRATIVE_BIBLE.md`
-- obsolete old Chapter 1 production/final-gate documents
+- obsolete earlier prototype production/final-gate documents
 - obsolete old prototype/vertical-slice screenshot evidence
-- story-specific Khang/climax audio assets
 
 The old story must not be treated as canon or used as the basis for new chapter planning.
 
