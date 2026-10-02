@@ -53,6 +53,7 @@ Do not merge.
 From coordinator source:
 - `docs/narrative/CH0_LIVED_MATERIAL_LEDGER.md`
 - `docs/narrative/CH0_STORY_PACKAGE_V0.md`
+- `docs/narrative/PROTAGONIST_CHARACTER_BIBLE_V0.md`
 - `docs/design/NARRATIVE_EVENT_STYLE_V2.md`
 - `docs/design/CURRENT_STORY_MACRO.md`
 - `docs/design/CURRENT_WORLD_MAP_SCOPE.md`
@@ -65,6 +66,23 @@ From narrative research source:
 - `docs/narrative/NARRATIVE_RESEARCH_AND_SKILL_V2.md`
 
 Read relevant gameplay/content architecture docs if needed to avoid proposing impossible interactions.
+
+## Protagonist voice rule
+
+Before writing any protagonist dialogue, internal thought, reaction, or option text, read:
+
+`docs/narrative/PROTAGONIST_CHARACTER_BIBLE_V0.md`
+
+Treat it as the authoritative character-voice constraint once user-authored traits are present.
+
+If the bible still contains `TBD_USER_APPROVAL` for a trait that materially affects a scene:
+- do not silently invent a canonical trait;
+- keep the treatment conservative;
+- mark character-sensitive alternatives for user review.
+
+A scene should be revised before forcing the protagonist to behave out of character.
+
+Player options may express different intentions, including awkward/wrong/joke options, but they must still feel like plausible choices for the same protagonist.
 
 ## Canon / authority rule
 
