@@ -1,543 +1,109 @@
-﻿# Progress
+# Progress
 
 Last updated: 2026-10-02
 
 ## Current phase
-**GAME PIVOT V2 — BRIGHT ROOM-FOCUSED STUDENT-LIFE FOUNDATION**
 
-## Current branch
-`phase-v2/foundation-hardening` (branched from `design/game-pivot-v2-draft`; the old Chapter 1 checkpoint remains preserved)
+**STUDENT-LIFE REFOUNDATION — LEGACY STORY PURGE + P202 GOLDEN CLASSROOM**
+
+## Current cleanup branch
 
-## Current status
-**The preserved `chapter-1-vertical-slice` remains a completed technical/tonal prototype. The active direction has pivoted to a bright, readable, ordinary Vietnamese student-life baseline centered on one dense classroom/main-room slice. Dark/uncanny presentation is reserved for specific authored twist/event states, not the default whole-game lighting model.**
+`cleanup/remove-legacy-story-v1`
 
-Active direction documents:
-- `docs/design/CH01_ROOM_FOCUSED_STUDENT_SLICE.md`
-- `docs/art/CH01_BRIGHT_BASELINE_VISUAL_GUIDE.md`
-- `docs/production/CH01_POST_VS_USER_PLAYTEST_ISSUES.md` Section 9
-- `docs/production/V2_FOUNDATION_VISUAL_RUNTIME_AUDIT.md`
+Base: `phase-v2/foundation-hardening`.
 
-Latest retained-room implementation corrections:
-- room signage uses working labels `P 202` / `P 204`; final building topology remains `TBD_USER_APPROVAL`
-- reusable classroom desk/chair modules are used for the retained room; obvious orientation/alignment/collision/repetition defects were corrected
-- corridor-to-classroom door opening/frame/header/leaf fit was corrected through reusable opening conventions
-- default classroom lighting/material response was moved away from the old dark-horror baseline and verified in Chrome
-- no final university identity, protagonist design, important NPC canon, final chapter canon or Chapter 2 gameplay has been approved
+## Current product direction
 
-Current implementation focus: **stop after this direction/correction checkpoint; next room-focused student-life interactions and narrative beats require a fresh implementation pass and applicable USER APPROVAL gates.**
+- browser-first true-3D first-person student-life narrative game
+- fictional technology university in Hanoi
+- ordinary, bright, readable university life is the baseline
+- humor and believable student behavior are core
+- narrative material is being rebuilt from the beginning of university through the protagonist's current second-year period
+- approximately nine chapters remains a structural target only; the new chapter contents have not been approved
+- later-year material should not be invented merely to fill the outline
+- strange/uncanny material may exist as a secondary layer, but its final rules and meaning are not yet canon
 
-**Do not start Chapter 2, full-campus production, final institutional identity, final protagonist/NPC cast, or canonical new chapter beats without explicit user approval.**
+## Legacy narrative status
 
-Technical Prototype V1 branch: `prototype/bootstrap-3d`
-Technical Prototype V1 checkpoint: tag `technical-prototype-v1`
-Chapter 1 vertical-slice checkpoint: tag `chapter-1-vertical-slice`
-Existing preview: https://phambac2k701-blip.github.io/farm_pro_max/
+The previous **Người Thứ Chín** story package has been retired.
 
-## Connected execution environment
-- GitHub: Full Access
-- Linear: Full Access
-- Figma: Full Access
-- Vercel: connected, but preview deploy was unavailable during BAC-21 because the local CLI token was invalid; GitHub Pages is the verified preview target
-- Context7: available for current documentation
-- Remote Desktop Commander: Full Access
-- Remote device: `VOSTRO-COREI7G13`
+Removed from the active tree:
+- the complete old `docs/narrative/` production package
+- the old `docs/NARRATIVE_BIBLE.md`
+- obsolete old Chapter 1 production/final-gate documents
+- obsolete old prototype/vertical-slice screenshot evidence
+- story-specific Khang/climax audio assets
 
-## Confirmed project direction
-- true 3D first-person psychological investigation game
-- desktop web browser first
-- Babylon.js + TypeScript + Vite
-- WebGPU preferred; WebGL fallback required
-- investigation/exploration, not combat
-- core mechanic: **Knowledge Changes Reality**
-- approximately 9 chapters
-- smooth movement/camera and tactile micro-cinematic interactions are P0
-- GitHub is source of truth; Linear tracks work
+The old story must not be treated as canon or used as the basis for new chapter planning.
 
-## Completed preparation
-- [x] Phase 0 documentation set
-- [x] ADR-0001: browser-first Babylon.js
-- [x] detailed first-prototype implementation plan
-- [x] Linear project `P-BAC-1`
-- [x] implementation issues created
-- [x] foundation PR #1 opened
-- [x] prototype implementation branch prepared
+Git history may still contain historical versions, but they are not active project source-of-truth content.
 
-## Prototype implementation progress
-- [x] BAC-11 — Bootstrap browser 3D application
-- [x] BAC-12 — Typed game state and event model
-- [x] BAC-13 — First-person controller and camera feel
-- [x] BAC-14 — Graybox hallway and classroom
-- [x] BAC-15 — Interaction targeting and state machine
-- [x] BAC-16 — CameraDirector inspection choreography
-- [x] BAC-17 — Hero book inspection interaction
-- [x] BAC-18 — Investigation discovery system
-- [x] BAC-19 — Knowledge-driven world shift prototype
-- [x] BAC-20 — Save and load prototype state
-- [x] BAC-21 — Preview deployment and full playtest gate
+## What is intentionally reused
 
-## BAC-11 implementation record
-Implemented:
-- Vite + TypeScript application scaffold
-- Babylon.js `EngineAdapter.create(canvas)`
-- WebGPU initialization via `WebGPUEngine.initAsync()`
-- automatic WebGL `Engine` fallback
-- resize listener lifecycle
-- render-loop run/stop/dispose lifecycle
-- minimal visible 3D smoke scene
-- fatal startup error surface
-- Vitest harness and engine-selection tests
+Reusable technical/art infrastructure remains valuable:
+- TypeScript + Vite + Babylon.js
+- WebGPU preferred / WebGL fallback
+- first-person movement and input
+- collision and safety recovery
+- interaction targeting/state ownership
+- camera choreography
+- save/load and typed state/events
+- openable/pickup/inspection behavior infrastructure
+- AudioDirector
+- modular environment kit
+- PBR material foundation
+- signage system
+- testing/build/deployment infrastructure
 
-Verification:
-- RED verified before implementation: EngineAdapter module missing
-- GREEN: 2/2 engine fallback tests pass
-- TypeScript typecheck passes
-- production Vite build passes
-- Chrome runtime smoke passes
-- runtime selected `webgpu` on the checked device
-- canvas rendered at a non-zero backing size
-- no fatal startup state and no Vite error overlay
+Legacy story-specific runtime wiring is to be removed or generalized only when doing so does not destroy the active P202 production work.
 
-Current dependency baseline:
-- `@babylonjs/core ^9.29.0`
-- `@babylonjs/loaders ^9.29.0`
-- `vite ^8.3.2`
-- `typescript ^7.0.2`
-- `vitest ^5.0.3`
+## Current environment target
 
-Known non-blocking finding:
-- current bootstrap main chunk is approximately 1.28 MB minified / 312 KB gzip and triggers Vite's 500 KB chunk warning.
-- Do not optimize prematurely during BAC-12; revisit code splitting/loading strategy before the vertical-slice performance gate unless growth makes it urgent earlier.
+P202 is the first **golden classroom**:
+- larger room and higher ceiling
+- approximately 10 rows × 3 desks
+- 2 chairs per desk
+- teacher desk facing students
+- front board
+- specified window layout
+- AC
+- ceiling fans
+- brighter ordinary classroom baseline
+- real/reusable production assets rather than only primitive boxes
 
-## BAC-12 implementation record
-Implemented:
-- typed boolean/number/string world facts
-- idempotent evidence discovery
-- chapter state changes
-- typed event bus with unsubscribe support
-- serializable state snapshot
+## Current narrative status
 
-Verification:
-- RED verified before implementation: GameEvents/GameState modules missing
-- GREEN: 5/5 total tests pass
-- TypeScript typecheck passes
-- production Vite build passes
+No new nine-chapter canon is locked yet.
 
-## BAC-13 implementation record
-Implemented:
-- normalized WASD/arrow movement input without diagonal speed boost
-- pointer-lock mouse input with accumulated look deltas
-- focus/pointer-lock loss input clearing
-- grounded frame-rate-independent collision movement
-- configurable/clamped mouse sensitivity
-- locomotion and look enable/disable APIs for future interactions
-- gameplay FreeCamera wired into the live bootstrap scene
+The next narrative task is:
+1. map the student's real/grounded timeline from university entry through the current second-year period
+2. identify meaningful phases/events
+3. group those into a nine-chapter macro structure
+4. only then design chapter-level events
 
-Verification:
-- 8/8 total automated tests pass
-- TypeScript typecheck passes
-- production Vite build passes
-- browser runtime smoke passes on WebGPU
-- forward movement reached the obstacle and collision stopped the player before penetration
-- locomotion lock held position while movement input was active
+Do not implement final chapter beats before that macro structure is approved.
 
-## BAC-14 implementation record
-Implemented:
-- dedicated Chapter 1 hallway/classroom graybox scene
-- collision-enabled floors, corridor/classroom walls, and furniture blockers
-- eight student desk/chair sets, teacher desk, hero book, and stable book anchor
-- authored corridor spawn plus classroom/corridor reference points
-- practical placeholder ambient, corridor, and classroom lighting
-- dev runtime metadata for scene readiness and inspection
+## Immediate production order
 
-Verification:
-- 10/10 total automated tests pass
-- TypeScript typecheck passes
-- production Vite build passes
-- browser runtime loads the Chapter 1 prototype on WebGPU with no fatal state
-- live movement passes through the classroom doorway and traverses the room
-- real-time collision stops at the classroom outer wall near x=9.09
-- furniture collider refinement prevents the player ellipsoid from climbing onto desk tops
+1. complete P202 asset/layout correction
+2. freeze P202 golden-room baseline
+3. finish legacy runtime-content extraction/generalization as needed
+4. design the approved nine-chapter macro structure
+5. implement the first polished P202 student-life gameplay sequence
+6. expand systems/assets only when concrete gameplay requires them
 
-## BAC-15 implementation record
-Implemented:
-- typed interactable definitions and prompt state
-- deterministic candidate selection by priority, distance, then stable id
-- per-interactable max-range rejection
-- center-screen Babylon multi-pick with visible geometry occlusion
-- interaction state machine with locomotion ownership
-- safe cancel on Escape or pointer-lock loss
-- minimal reticle/prompt UI and hero-book registration
+## Approval gates
 
-Verification:
-- RED verified before implementation: interaction modules missing
-- 13/13 total automated tests pass
-- TypeScript typecheck passes
-- production Vite build passes
-- browser runtime finds the hero book and shows the expected prompt
-- enter locks locomotion and cancel restores it
-- simulated pointer-lock loss cancels safely and restores locomotion
-- runtime picking required the Babylon `@babylonjs/core/Culling/ray` side-effect import; added after browser smoke exposed the modular-runtime requirement
+User approval remains required for:
+- chapter canon/order
+- major story beats
+- important NPC identities/roles
+- protagonist final identity/look
+- institutional identity
+- major route decisions
+- uncanny/mystery explanation
+- endings
 
-## BAC-16 implementation record
-Implemented:
-- reusable `CameraDirector` with gameplay, blending, inspection, and restoring states
-- authored camera transform/FOV focus targets
-- eased position interpolation and shortest-angle rotation interpolation
-- exact gameplay camera snapshot preservation and restoration
-- safe cancel during both focus and restore phases
-- Chapter 1 book inspection camera anchor wired into the live interaction flow
-- look lock during cinematic camera ownership and locomotion lock during restore
+## Existing preview
 
-Verification:
-- RED verified before implementation: CameraDirector module missing
-- 16/16 total automated tests pass
-- TypeScript typecheck passes
-- production Vite build passes
-- runtime focus reaches the authored book camera anchor exactly
-- inspection FOV reaches 0.86 and look/locomotion remain locked
-- cancel blends back to the pre-inspection position, rotation, and FOV
-- gameplay look and locomotion are restored after the camera returns
-
-## BAC-17 implementation record
-Implemented:
-- tested `BookInspectionController` state machine for open/read/page-turn/close/cancel
-- temporary two-page 3D book rig with animated cover and page-turn hinge
-- authored Chapter 1 book spreads with a relevant ninth-line discovery candidate
-- dynamic page textures with readable Vietnamese text in browser runtime
-- minimal page navigation controls and inspection reticle suppression
-- non-blocking procedural paper/book SFX placeholder hooks
-- camera framing tuned for readable close inspection
-- headless-safe texture capability fallback so NullEngine tests remain valid
-
-Verification:
-- RED verified before implementation: `BookInspectionController` module missing
-- 20/20 total automated tests pass
-- TypeScript typecheck passes
-- production Vite build passes
-- page 2 resolves to `erased-ninth-line` and exposes only `ev_ch01_erased_ninth_line` as the discovery candidate
-- Escape closes the book, restores gameplay camera, hides controls, restores reticle, look, and locomotion
-- hero book target acquisition passes from front, left, and right approach positions
-- browser visual smoke confirmed readable upright page text after UV and camera-framing refinement
-
-## BAC-18 reuse-first review
-- Existing codebase: `GameState.discoverEvidence()` already owns idempotent evidence state and emits `evidence-discovered`; `GameEvents` already supplies subscription/unsubscribe behavior.
-- Babylon.js review: Tags and scene Observables are useful for scene-object metadata and engine/input/render events, but they do not replace domain-level persistent investigation state.
-- External library review: XState is maintained and MIT-licensed, but adding a state/orchestration dependency for a small evidence metadata registry would duplicate the existing `GameState` abstraction and increase surface area without a clear benefit.
-- Decision: no new dependency. BAC-18 will compose a thin typed metadata registry over `GameState` and reuse its event bus; UI feedback will use the existing DOM/CSS layer.
-
-## BAC-18 implementation record
-Implemented:
-- typed evidence metadata registry layered over the existing `GameState`
-- rejection of unknown/absent evidence IDs without state mutation
-- idempotent discovery delegated to `GameState.discoverEvidence()`
-- Chapter 1 evidence definition for the erased ninth line
-- book spread discovery wired through the existing `onSpreadViewed` callback
-- restrained DOM/CSS clue notification using the existing UI layer
-- discovered-evidence lookup via `EvidenceSystem.listDiscovered()`
-
-Verification:
-- RED verified before implementation: evidence modules missing
-- 25/25 total automated tests pass
-- TypeScript typecheck passes
-- production Vite build passes
-- first book spread produces no evidence
-- relevant second spread discovers exactly `ev_ch01_erased_ninth_line`
-- repeated visits remain idempotent with evidence count fixed at 1
-- runtime metadata and notification text resolve the discovered clue correctly
-
-## BAC-19 reuse-first review
-- Existing codebase: `GameState` already owns evidence/facts and serialization-ready state; RealitySystem should evaluate those facts rather than introduce another store or FSM.
-- Babylon.js: reuse `ActionManager.OnIntersectionEnterTrigger` + `ExecuteCodeAction` for the controlled doorway/corridor transition instead of creating a custom trigger framework. Babylon Animation/Easing are available if a timed property transition becomes necessary.
-- External library review: `@tweenjs/tween.js` is MIT-licensed and suitable for generic tweening, but adding it here would duplicate Babylon capabilities for a shift that can be applied while the player is outside the room.
-- Decision: no new dependency. Apply the world variant during the controlled corridor transition after knowledge is acquired, so the changed room is already stable when revisited.
-
-## BAC-19 implementation record
-Implemented:
-- data-driven `RealitySystem` with evidence/fact condition evaluation
-- idempotent world-variant application with persisted applied facts
-- `syncApplied()` path for restoring persisted world variants after load
-- hidden ninth desk variant composed from the existing shared desk builder
-- subtle classroom light intensity/color shift
-- Babylon `ActionManager.OnIntersectionEnterTrigger` transition zone reused for the controlled exit/revisit moment
-- no reality-change popup or dedicated scare framework
-
-Verification:
-- RED verified before implementation: `RealitySystem` module missing
-- 29/29 total automated tests pass
-- TypeScript typecheck passes
-- production Vite build passes
-- transition zone has no effect before required evidence
-- after evidence, crossing the controlled corridor transition sets the revisit fact and applies the shift exactly once
-- ninth desk becomes enabled and classroom light changes from 1.0 to 0.72 with a cooler diffuse tone
-- no explicit “reality changed” UI text is rendered
-
-## BAC-20 reuse-first review
-- Existing codebase: `GameState.snapshot()` already produces the chapter/facts/evidence payload, and browser `localStorage` is sufficient for prototype persistence.
-- Babylon.js: no engine-level save primitive is a better fit for this domain state.
-- External library review: Zod and Valibot are both MIT-licensed runtime schema libraries. Valibot is dependency-free and highly tree-shakeable, so it gives robust validation without a hand-written type-guard layer or a large bundle cost.
-- Decision: add Valibot only beneath `SaveService` for untrusted storage validation. `SaveService` remains the game-owned abstraction; storage remains injected/testable.
-
-## BAC-20 implementation record
-Implemented:
-- versioned `SaveService` with injected storage interface
-- Valibot runtime schema validation for untrusted persisted JSON
-- chapter/facts/evidence/settings persistence
-- safe invalid JSON / invalid schema / unsupported-version recovery
-- save hydration before gameplay systems are constructed
-- autosave on fact, evidence, and chapter changes
-- reality variant restoration through `RealitySystem.syncApplied()`
-
-Verification:
-- RED verified before implementation: `SaveService` module missing
-- 33/33 total automated tests pass
-- TypeScript typecheck passes
-- production Vite build passes
-- browser autosave writes schemaVersion 1 with Chapter 1 facts/evidence/settings
-- full browser reload restores evidence and the ninth-desk applied facts
-- ninth desk and cooler 0.72 classroom light are reapplied immediately after reload
-- corrupted localStorage is cleared safely and the game boots clean with default state
-
-## BAC-21 implementation record
-Completed:
-- full automated test/typecheck/production-build gate
-- clean-save browser smoke
-- movement, pointer-lock camera, collision, interaction, camera inspection, page navigation, evidence and reality-shift playtest
-- save/load and corrupted-save recovery in both local runtime and deployed production preview
-- console/page-error inspection
-- local and deployed HAR checks
-- representative screenshots and `docs/PLAYTEST_LOG.md`
-- GitHub Pages preview deployment with branch-scoped environment policy
-- final handoff/checkpoint documentation
-
-Verification:
-- 33/33 automated tests pass across 11 test files
-- TypeScript typecheck passes
-- production Vite build passes
-- final GitHub Pages workflow run `36881182705` passed install/test/typecheck/build/configure/upload/deploy
-- local runtime: no page errors; HAR 89 requests / 0 HTTP >=400
-- deployed preview: no page errors; HAR 21 requests / 0 HTTP >=400
-- deployed preview boots WebGPU with no fatal state
-- production preview save hydration restores `shift_ch01_ninth_desk`
-- production preview corrupt-save recovery clears invalid data and boots clean
-- local RAF smoke sample measured ~60.3 FPS over ~2 seconds
-- no Critical or Important gameplay regressions remained at checkpoint
-
-Known non-blocking limitations:
-- main production JS chunk remains ~1.36 MB minified / ~332 KB gzip and triggers Vite's chunk-size warning
-- environment/book/material/audio remain prototype quality
-- manual runtime verification was Chromium/WebGPU; WebGL fallback is automated-test covered but not fully cross-browser playtested
-- save schema v1 has validation/versioning but no migration path
-- desktop keyboard/mouse only
-- low-end hardware/network performance not yet profiled
-- Vercel preview was unavailable because the local token was invalid; verified preview uses GitHub Pages
-
-Verification evidence: `docs/PLAYTEST_LOG.md`
-Handoff: `docs/TECHNICAL_PROTOTYPE_V1_HANDOFF.md`
-Preview: https://phambac2k701-blip.github.io/farm_pro_max/
-
-## NARRATIVE HANDOFF IMPORT
-- Imported production narrative: `NAR-PRODUCTION-v1.2`.
-- Source baseline: `bcbruh/cottruyen@808cbb7` plus coherence repairs documented in `docs/narrative/NARRATIVE_HANDOFF_METADATA.md`.
-- Production source of truth: `docs/narrative/`.
-- Old `docs/NARRATIVE_BIBLE.md` is retained only as superseded foundation context.
-
-## NEXT CHECKPOINT
-Intentional STOP POINT: **CHAPTER 1 VERTICAL SLICE COMPLETE**. BAC-30 and BAC-31 are complete. Do not start Chapter 2 gameplay. Resume only after a new explicit instruction and next-phase plan.
-
-
-## BAC-22 production record
-Implemented:
-- stable Chapter 1 production checkpoint IDs from `ch01_gate` through `ch01_complete`
-- reusable monotonic `ChapterRuntime` with safe restore and idempotent completion
-- production SaveService schema v2 with explicit checkpoint payload
-- new production save key `nguoi-thu-chin:production:v2`
-- explicit reset of incompatible Technical Prototype V1 saves instead of migrating prototype-only evidence/reality state
-- bootstrap wiring so autosaves include the durable Chapter 1 checkpoint
-- dedicated Chapter 1 production CI workflow for test/typecheck/build verification
-
-Verification:
-- GitHub Actions run `36905157371` completed successfully
-- 12/12 test files pass
-- 38/38 tests pass
-- TypeScript typecheck passes
-- production Vite build passes
-- main bundle remains approximately 1.36 MB minified / 333 KB gzip; existing non-blocking chunk-size warning remains
-- remote browser runtime verification was unavailable during BAC-22 because the authorized desktop device was offline; BAC-22 changed state/persistence only and the automated gate covered the new behavior. Browser traversal verification is required during BAC-23 and later full gates.
-
-Decision:
-- schema v1 is intentionally reset, not migrated, because it can contain the non-production Hero Book evidence ID and prototype ninth-classroom-desk KCR state. Carrying those into production would violate the frozen narrative handoff.
-
-
-## BAC-23 production record
-Implemented:
-- typed production scene shell for gate, guard shelter, side entrance, corridor, classroom and PA room
-- durable checkpoint anchors plus trigger-zone references
-- eight PA stations in the before-state and disabled ninth station variant
-- Vietnamese-school signage, worn primitive materials, low fluorescent/night lighting
-- production bootstrap no longer depends on the Technical Prototype Hero Book or prototype ninth-desk KCR content
-- browser-smoke metadata for production scene readiness and station counts
-
-Verification:
-- Chapter 1 production scene tests cover required refs, checkpoint anchors, before-state station count, hidden ninth variant, production props and collision mesh presence
-- Linear BAC-23 is Done
-- later Chapter 1 CI runs include this scene shell in test/typecheck/build/browser boot smoke
-
-## BAC-24 production record
-Implemented:
-- InteractionBehaviorHost under existing InteractionSystem ownership
-- shared OpenableController for hinged doors and linear drawers
-- InspectionSession composed with CameraDirector
-- DocumentInspectionController and PhotoInspectionController
-- lightweight PickupController
-- runtime wiring for side entrance, classroom door, PA door, classroom drawer, roster, class photo and flashlight
-
-Verification:
-- production behavior and inspection tests pass
-- Linear BAC-24 is Done
-- existing InteractionSystem and CameraDirector regression tests remain in the green Chapter 1 CI gate
-
-## BAC-25 implementation record
-Implemented:
-- production Chapter 1 evidence catalog C01/C02/C03/C04/C05/C07/C14
-- resume-safe 00:17 opening phone sequence and phone UI
-- C01 awarded only after the player dismisses the completed message sequence
-- classroom roster tactile inspection awards C03
-- class-photo inspection plus explicit compare action awards C02
-- 09 drawer label reveal and C05 discovery after the roster contradiction
-- optional C14 timetable inspection without progression dependency
-- one-shot corridor-return bell state fact
-- checkpoint progression through old wing, classroom and PA threshold
-- restrained evidence notification using the existing DOM UI layer
-
-Automated verification:
-- CI run `36910173879` succeeded after the BAC-25 integration commits
-- 16 test files / 52 tests pass in that gate
-- TypeScript typecheck passes
-- production build passes
-- headless browser boot smoke passes
-- ChapterOneOpeningController and ClassroomEvidenceController have dedicated tests for resume, idempotence, compare gating and optional-clue independence
-
-Runtime verification:
-- real Chrome keyboard interaction completed on Windows at 125% display scale
-- opening phone awards C01 and restores look/locomotion
-- checkpoint progression reaches old wing, classroom pre-roster, post-C03 and PA pre-C07
-- roster inspection awards C03; photo + explicit C comparison awards C02
-- reopening the drawer after C03 reveals 09 and awards C05
-- C14 was deliberately skipped and did not block PA-threshold progression
-- repeated drawer interaction remained evidence-idempotent
-- Escape restored gameplay camera/locomotion; blur cleared held movement input
-- save/reload preserved C01/C02/C03/C05, opening completion, 09 reveal and `ch01_pa_pre_c07`
-- runtime discovered a 125%-DPI interaction targeting bug; `InteractionSystem` now uses `camera.getForwardRay()` + `multiPickWithRay()` instead of render-pixel screen coordinates
-- roster/photo inspection footers now expose the C comparison input
-- Chapter 1 production lighting received a readability pass while retaining the night/rain tone
-- local gate: 16 test files / 52 tests pass; TypeScript typecheck and production build pass
-- final remote Chapter 1 CI run `36915394107` passed on commit `6f2c0fc1a1e0d7ecfc90820b5ae4bbfd2538ae96`
-- Linear BAC-25 is Done
-
-
-## BAC-26 production record
-Implemented:
-- game-owned `AudioDirector` over Babylon AudioV2 with non-blocking async initialization and browser unlock
-- typed Chapter 1 audio manifest with ambience, object one-shots, spatial PA/headset cues and critical-clue captions
-- committed runtime WAV assets for rain, traffic, fluorescent hum, room tone, footsteps, phone vibration, doors/drawer/paper, corridor bell, PA hum, KCR click, headset breathing/chair scrape, relay click and Khang climax line
-- source/tooling record in `docs/production/CH01_AUDIO_ASSET_SOURCES.md`
-- audio failure path remains non-blocking for interaction and progression
-- no additional runtime audio dependency beyond Babylon
-
-Verification:
-- AudioDirector unit tests cover load, unlock, spatial attachment, captions, failed assets and disposal
-- browser runtime confirmed audio unlock, zero failed cues and HRTF spatial attachment for narrative-critical PA audio
-- TypeScript typecheck, test suite and production build pass
-- GitHub Actions run `36919060215` passed on the BAC-26 checkpoint
-- Linear BAC-26 is Done
-
-## BAC-27 production record
-Implemented:
-- tactile PA-room C04/C07 inspections
-- production KCR-A rule driven only by C03 + C07 knowledge
-- explicit post-ready inside → leave → re-enter PA sequence
-- ninth PA chair/headset variant replaces the prototype ninth-classroom-desk content
-- RealitySystem applier restores ninth station, collision and subtle warmer desk lamp deterministically
-- checkpoint progression through `ch01_kcr_ready` and `ch01_kcr_applied`
-- no popup announces the world change
-
-Verification:
-- dedicated KCR tests cover clue-alone insufficiency, readiness, re-entry gating, one-shot apply, ready-before-reentry reload and post-apply reload
-- real browser runtime confirmed the ninth station remains hidden while ready, appears only on re-entry, gains collision, warms the desk lamp and restores after reload
-- 19 test files / 63 tests passed at the BAC-27 local gate
-- GitHub Actions run `36924056149` passed on commit `b997d10`
-- Linear BAC-27 is Done
-
-## BAC-28 production record
-Implemented:
-- KCR-gated ninth-headset interaction with a dedicated invisible pick proxy over the authored headset geometry
-- one-shot spatial 2.5s breathing/chair-scrape proximity cue
-- deterministic `ChapterOneClimaxController`
-- climax sequence: headset inspection → phone “Đừng để nó thành người.” → pause → PA relay click → Khang line
-- captions for narrative-critical headset/PA/Khang audio
-- persisted climax steps and `ch01_climax_complete` checkpoint
-- `InspectionSession.onClosed` and interaction callback ordering fixes so camera restoration cannot overwrite the following phone input lock
-- large frame/focus-gap deltas are clamped to prevent skipping climax beats
-
-Verification:
-- runtime acquired the ninth headset through the normal InteractionSystem ray target path
-- Escape restores the inspection camera cleanly and hands control to the climax phone without a locomotion/look deadlock
-- focus loss leaves the sequence recoverable
-- reload after completion does not replay the climax
-- 20 test files / 68 tests pass; typecheck and production build pass
-- GitHub Actions run `36944163218` passed on commit `92f7b9d`
-- Linear BAC-28 is Done
-
-## BAC-29 production record
-Implemented:
-- subtle authored extra-shoulder representation on the corridor photo glass, with no monster model
-- post-climax distance gate and deterministic sustained direct-look disappearance
-- final relay-click hook when the reflection disappears
-- a real collision-enabled corridor exit door registered only after the climax
-- Chapter 1 completion occurs only when that exit is opened
-- completion sets `ch01_complete`, advances to `ch01_complete`, changes chapter state to `ch02`, locks gameplay and shows a Chapter 2 boundary card only
-- complete-save restore returns directly to the boundary and never starts Chapter 2 gameplay
-- shared OpenableController completion ordering hardened so follow-on input locks are not overwritten
-
-Verification:
-- runtime confirmed the reflection arms near the photo, remains subtle, vanishes on sustained direct look and stays gone
-- runtime acquired the final exit through InteractionSystem and completed the chapter only after the door opened
-- resulting state: chapter `ch02`, checkpoint `ch01_complete`, transition visible, locomotion/look locked
-- reload of the complete save shows only the boundary; opening, KCR, reflection and climax do not replay
-- 21 test files / 72 tests pass; TypeScript typecheck and production build pass
-- GitHub Actions run `36945489518` passed on commit `f5d3144`
-- Linear BAC-29 is Done
-
-## BAC-30 production record
-Completed:
-- bounded lighting/material/signage/readability polish, including raised exposure and practical light readability while retaining the night/rain horror palette
-- full save/recovery matrix across clean, mid-Ch1, pre-KCR, ready-before-reentry, post-KCR, inspection, climax, chapter-end and corrupt-save states
-- repeated interaction, Escape/cancel, focus-loss, collision, console/network and performance regression checks
-- representative actual-build screenshots and `docs/production/CH01_BAC30_REGRESSION.md`
-
-Verification:
-- 21 test files / 72 tests pass; TypeScript typecheck and production build pass
-- real Chromium regression matrix passed with no Critical/Important Chapter 1 regression
-- GitHub Actions runs `36947214132` and `36947218814` passed on commit `9e4918697663330e02bcfab226c2e823960dbab1`
-- Linear BAC-30 is Done
-
-## BAC-31 final checkpoint record
-Completed:
-- full automated gate rerun on the polished Chapter 1 build
-- clean-save real-browser traversal from opening through classroom evidence, PA investigation, KCR-A, ninth-headset climax, final reflection and Chapter 2 boundary
-- optional C14 intentionally skipped without blocking progression
-- final save persisted chapter `ch02` at checkpoint `ch01_complete`; gameplay remains locked at the boundary
-- machine-readable playthrough evidence saved at `docs/playtest/ch01-bac31-full-playthrough.json`
-- final gate record saved at `docs/production/CH01_BAC31_FINAL_GATE.md`
-- GitHub Pages deployment succeeded as run `36949570331`; public smoke returned HTTP 200 with `ch01-production-shell` ready, WebGL active, audio ready and fatal UI hidden
-
-Verification:
-- 21/21 test files and 72/72 tests pass
-- TypeScript typecheck passes
-- production Vite build passes
-- `git diff --check` passes
-- browser runtime exceptions: 0; console errors: 0; HTTP responses >=400: 0
-- AudioDirector unlocked after trusted input with 0 failed cues; one benign Chromium pre-gesture autoplay warning is recorded as non-blocking
-- foreground browser render sample remained approximately 60 FPS
-- **CHAPTER 1 VERTICAL SLICE COMPLETE**
-- STOP: do not start Chapter 2 gameplay without a new explicit instruction and next-phase plan
+Current preview infrastructure remains GitHub Pages. Preview content may lag the new direction until the active implementation branch is updated and deployed.
