@@ -81,12 +81,13 @@ Current user-approved voice anchors:
 - intelligent and sharp;
 - somewhat introverted depending on the person/context;
 - relaxed, expressive and more humorous with close friends;
-- serious, reserved and private with people he is not close to;
+- serious and more private with people he is not close to, but still fully capable of normal conversation;
+- introverted does **not** mean quiet or minimally verbal;
 - naturally funny;
 - direct/blunt rather than polished;
 - when he deliberately tries to sound very smooth/charming, it should feel slightly unnatural.
 
-Do not make Bắc socially fluent, emotionally open, or highly talkative with every NPC just because a scene needs dialogue.
+Do not equate introversion with silence. Bắc may talk normally or even at length when the interaction naturally calls for it. What changes with strangers is mainly how guarded/personal he is, not whether he speaks.
 
 If the bible still contains `TBD_USER_APPROVAL` for a trait that materially affects a scene:
 - do not silently invent a canonical trait;
