@@ -61,7 +61,7 @@ Historical preserved checkpoint:
 - Do not alter/delete that tag.
 
 Current active branch:
-- `phase-v2/giang-duong-4-map-shell`
+- `phase-v2/gd4-lightweight-background-canteen`
 
 Current runtime source of truth:
 - `docs/design/GIANG_DUONG_4_LAYOUT_V1.md`
@@ -72,7 +72,7 @@ Current user-directed spatial rules:
 - runtime boots **Giảng đường 4**, not the retired old Chapter 1 campus
 - yellow sketch outline = **gameplay boundary**, not visual world boundary
 - west gate is **walk-through**; a short bounded apron exists outside it before the true movement limit
-- Căn tin stays at campus ground level
+- the canteen is currently a **gate-wall shelter/stall** at campus ground level: four posts, overhanging roof, open side facing Tòa B, no final sign/branding
 - Tòa A/B ground-floor slabs + corridors are elevated about **0.6 m**
 - A/B are visually **3-storey academic buildings**, but only tầng 1 is playable
 - each floor visually implies around **10 classroom bays**
@@ -81,13 +81,14 @@ Current user-directed spatial rules:
 - Tòa A playable labels: `P 101`, `P 102`
 - Tòa B playable labels remain `TBD_USER_APPROVAL`
 - no dedicated parking-shelter structure
-- outside gameplay bounds, keep lightweight visual city/campus background so the world does not terminate at the boundary
+- outside gameplay bounds, do **not** use 3D city blocks; keep lightweight 2D background-card slots for future user/AI-authored perspective images, disabled until approved art is assigned
 - city/background and building-continuation geometry are visual-only and may later be replaced by optimized cards/impostors/distant meshes
 - the production classroom prefab remains reusable across future chapters/routes
 - do not invent final university identity, campus canon, final protagonist/NPC cast, chapter canon, twist, ending or KCR explanation without explicit user approval
 
 Current runtime evidence:
-- `docs/playtest/gd4-current-layout-runtime/`
+- base layout: `docs/playtest/gd4-current-layout-runtime/`
+- latest background-card + canteen-shelter review: `docs/playtest/gd4-shelter-review/`
 - gate traversal verified
 - elevated corridor stair traversal verified
 - runtime visual continuation/background present without gameplay collision

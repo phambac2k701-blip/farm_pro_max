@@ -31,7 +31,7 @@ The player may not leave the approved gameplay footprint, but the player should 
 From west to east:
 - **Cổng** on the west side
 - open approach/courtyard
-- **Căn tin** in the lower-left area
+- a **canteen shelter / lán bán hàng** near the gate-side wall corner
 - **Tòa A** in the upper/right area
 - **Tòa B** below Tòa A
 - vehicle lanes around and between the buildings
@@ -137,7 +137,7 @@ User-supplied plan/elevation sketches are the current spatial reference for this
 
 Required geometry relationship:
 - the route from **cổng → Tòa A/B is short and compact**; the buildings must be readable soon after entering the gate
-- **căn tin remains lower-left and close to the building cluster**, but it must not overlap the Tòa B footprint
+- the **canteen shelter sits tight to the wall corner beside the gate**, not isolated in the courtyard
 - Tòa A and Tòa B are **multi-storey academic buildings visually**, not one-storey classroom sheds
 - current massing target is **3 visible storeys**
 - **only tầng 1 is playable** in the current slice
@@ -145,7 +145,7 @@ Required geometry relationship:
 - do not create routes/NPCs/classroom gameplay on upper floors without later user approval
 - the ground-floor slab/corridor of **Tòa A and Tòa B sits above campus ground level**; current working elevation is about 0.6 m
 - shallow playable steps connect campus ground to the elevated ground-floor corridors
-- **Căn tin remains at campus ground level**
+- the **canteen shelter remains at campus ground level**, uses four support posts with an overhanging roof, and its open/service side faces toward Tòa B
 - the review view for external massing should include the **canteen-side / canteen-corner view toward the buildings**, matching the user's sketch perspective
 - do not stretch this into a large campus: Giảng đường 4 remains a compact bounded scene
 
@@ -157,13 +157,14 @@ The yellow user boundary limits movement, not visibility.
 
 Required presentation rules:
 - outside the playable boundary, the player should still see **surrounding city/campus context**
-- city/background geometry is visual-only and carries no gameplay collision
-- the current blockout uses lightweight skyline massing rather than full explorable buildings
+- city/background presentation is visual-only and carries no gameplay collision
+- **do not use 3D city/building blocks for the surrounding background**
+- current foundation uses lightweight **2D background cards/planes** with replaceable texture slots; placeholder cards stay **disabled/invisible until user-approved AI/authored art is assigned**
 - Tòa A/B continue visually beyond the two playable rooms using lightweight facade/corridor bays
 - those continuation bays imply the rest of a roughly 10-room floor without building full interiors
 - continuation geometry has no interactions and no gameplay collision
 - room numbers/content for those distant bays are not canon and should not be invented
-- this visual background may later be replaced by authored skyline cards, impostors, distant meshes or other optimized techniques without changing gameplay bounds
+- the intended production path is to replace those placeholder cards with **user/AI-authored 2D images that fake depth/perspective**, without changing gameplay bounds or adding 3D city massing
 
 ## 12. Still TBD_USER_APPROVAL
 

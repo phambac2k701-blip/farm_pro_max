@@ -31,7 +31,11 @@ describe("LectureHall4Scene", () => {
     expect(scene.getMeshByName("gd4-playable-ground")).not.toBeNull();
     expect(scene.getMeshByName("gd4-lane-north")).not.toBeNull();
     expect(scene.getMeshByName("gd4-lane-middle")).not.toBeNull();
-    expect(scene.getMeshByName("gd4-canteen-floor")).not.toBeNull();
+    expect(scene.getTransformNodeByName("gd4-canteen-shelter-root")).not.toBeNull();
+    expect(scene.getMeshByName("gd4-canteen-shelter-roof")).not.toBeNull();
+    expect(scene.getMeshByName("gd4-canteen-shelter-post-left-back")).not.toBeNull();
+    expect(scene.getMeshByName("gd4-canteen-shelter-post-right-front")).not.toBeNull();
+    expect(scene.getTransformNodeByName("gd4-canteen-sign-root")).toBeNull();
     expect(scene.getMeshByName("gd4-gate-post-south")).not.toBeNull();
     expect(scene.getMeshByName("gd4-gate-post-north")).not.toBeNull();
     expect(scene.getTransformNodeByName("gd4-gate-approach-outer-limit")).not.toBeNull();
@@ -52,15 +56,22 @@ describe("LectureHall4Scene", () => {
     expect(
       scene.getMeshByName("gd4-A-continuation-floor-1")?.checkCollisions,
     ).toBe(false);
-    expect(scene.getMeshByName("gd4-city-block-1")).not.toBeNull();
+    expect(scene.getMeshByName("gd4-city-block-1")).toBeNull();
+    expect(scene.getMeshByName("gd4-background-card-west-south")).not.toBeNull();
+    expect(scene.getMeshByName("gd4-background-card-north")).not.toBeNull();
+    expect(scene.getMeshByName("gd4-background-card-north")?.isEnabled()).toBe(
+      false,
+    );
+    expect(
+      scene.getMeshByName("gd4-background-card-east")?.checkCollisions,
+    ).toBe(false);
     expect(scene.getMeshByName("gd4-city-road-outside-gate")).not.toBeNull();
 
     for (const room of slice.classrooms) {
       expect(room.prefab.root.position.y).toBeCloseTo(0.6, 6);
     }
-    expect(scene.getMeshByName("gd4-canteen-floor")?.position.y).toBeCloseTo(
-      -0.05,
-      6,
+    expect(scene.getMeshByName("gd4-canteen-shelter-roof")?.getAbsolutePosition().y).toBeGreaterThan(
+      2.8,
     );
 
     // The latest user correction keeps upper storeys visual-only.

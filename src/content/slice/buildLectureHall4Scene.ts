@@ -4,6 +4,7 @@ import { HemisphericLight } from "@babylonjs/core/Lights/hemisphericLight";
 import { DirectionalLight } from "@babylonjs/core/Lights/directionalLight";
 import { MeshBuilder } from "@babylonjs/core/Meshes/meshBuilder";
 import type { Mesh } from "@babylonjs/core/Meshes/mesh";
+import { TransformNode } from "@babylonjs/core/Meshes/transformNode";
 import type { Material } from "@babylonjs/core/Materials/material";
 import { StandardMaterial } from "@babylonjs/core/Materials/standardMaterial";
 import type { Scene } from "@babylonjs/core/scene";
@@ -55,10 +56,10 @@ export const LECTURE_HALL_4_LAYOUT = {
     width: 6,
   },
   canteen: {
-    x: -12,
-    z: -14,
-    width: 8.2,
-    depth: 7,
+    x: -13.05,
+    z: -4.55,
+    width: 5.2,
+    depth: 3.2,
   },
   courtyardTree: {
     x: -8.8,
@@ -272,42 +273,102 @@ function createPerimeter(scene: Scene): void {
 }
 
 function createCanteen(scene: Scene): void {
-  const materials = createCampusMaterials(scene, "gd4-canteen");
+  const materials = createCampusMaterials(scene, "gd4-canteen-shelter");
   const c = LECTURE_HALL_4_LAYOUT.canteen;
+  const root = new TransformNode("gd4-canteen-shelter-root", scene);
+  root.position.set(c.x, 0, c.z);
 
-  createGroundBox(
-    scene,
-    "gd4-canteen-floor",
-    c.width,
-    c.depth,
-    c.x,
-    c.z,
-    materials.floor,
+  const targetX =
+    BUILDING_WEST_X + ROOM_WORLD_WIDTH;
+  const targetZ =
+    LECTURE_HALL_4_LAYOUT.buildingB.rootZ - CLASSROOM_ROOM.maxZ;
+  root.rotation.y = Math.atan2(
+    targetX - c.x,
+    targetZ - c.z,
   );
-  for (const [name, width, depth, x, z] of [
-    ["back", c.width, 0.16, c.x, c.z - c.depth / 2],
-    ["left", 0.16, c.depth, c.x - c.width / 2, c.z],
-    ["right", 0.16, c.depth, c.x + c.width / 2, c.z],
+
+  const createShelterBox = (
+    name: string,
+    width: number,
+    height: number,
+    depth: number,
+    x: number,
+    y: number,
+    z: number,
+    material: Material,
+    collisions = false,
+  ): Mesh => {
+    const mesh = MeshBuilder.CreateBox(
+      name,
+      { width, height, depth },
+      scene,
+    );
+    mesh.parent = root;
+    mesh.position.set(x, y, z);
+    mesh.material = material;
+    mesh.checkCollisions = collisions;
+    mesh.isPickable = false;
+    return mesh;
+  };
+
+  const postHeight = 2.85;
+  const postSize = 0.16;
+  const postInset = 0.28;
+
+  for (const [xLabel, x] of [
+    ["left", -c.width / 2 + postInset],
+    ["right", c.width / 2 - postInset],
   ] as const) {
-    createWallModule(scene, `gd4-canteen-${name}`, {
-      width,
-      height: 2.9,
-      depth,
-      position: new Vector3(x, 1.45, z),
-      material: materials.wall,
-      collisions: true,
-    });
+    for (const [zLabel, z] of [
+      ["back", -c.depth / 2 + postInset],
+      ["front", c.depth / 2 - postInset],
+    ] as const) {
+      createShelterBox(
+        `gd4-canteen-shelter-post-${xLabel}-${zLabel}`,
+        postSize,
+        postHeight,
+        postSize,
+        x,
+        postHeight / 2,
+        z,
+        materials.metal,
+        true,
+      );
+    }
   }
 
-  const sign = createSignageV2(scene, "gd4-canteen-sign", {
-    text: "CĂN TIN",
-    position: new Vector3(c.x, 2.15, c.z + c.depth / 2 - 0.08),
-    rotationY: Math.PI,
-    width: 2.3,
-    height: 0.55,
-    variant: "building",
-  });
-  sign.root.rotation.y = Math.PI;
+  const roofOverhang = 0.48;
+  createShelterBox(
+    "gd4-canteen-shelter-roof",
+    c.width + roofOverhang * 2,
+    0.16,
+    c.depth + roofOverhang * 2,
+    0,
+    postHeight + 0.08,
+    0,
+    materials.metal,
+    false,
+  );
+
+  // Simple serving counter under the canopy. The open/service side is local +Z.
+  createShelterBox(
+    "gd4-canteen-shelter-counter",
+    c.width - 0.7,
+    0.9,
+    0.55,
+    0,
+    0.45,
+    c.depth / 2 - 0.62,
+    materials.wall,
+    true,
+  );
+
+  root.metadata = {
+    role: "canteen-shelter",
+    servingDirection: "toward-building-b",
+    canonicalName: false,
+    placement: "against-gate-wall-corner",
+  };
 }
 
 function createVehicleLanes(scene: Scene): void {
@@ -830,53 +891,98 @@ function createBuildingContinuation(
 }
 
 function createCityBackdrop(scene: Scene): void {
-  const cityA = readableMaterial(
-    scene,
-    "gd4-city-a",
-    new Color3(0.47, 0.5, 0.52),
-    new Color3(0.07, 0.075, 0.08),
-  );
-  const cityB = readableMaterial(
-    scene,
-    "gd4-city-b",
-    new Color3(0.57, 0.56, 0.53),
-    new Color3(0.08, 0.075, 0.07),
-  );
-  const cityC = readableMaterial(
-    scene,
-    "gd4-city-c",
-    new Color3(0.38, 0.44, 0.46),
-    new Color3(0.05, 0.06, 0.065),
-  );
+  const cardMaterial = (
+    name: string,
+    color: Color3,
+  ): StandardMaterial => {
+    const material = readableMaterial(
+      scene,
+      name,
+      color,
+      color.scale(0.28),
+    );
+    material.disableLighting = true;
+    material.backFaceCulling = false;
+    return material;
+  };
 
-  const silhouettes = [
-    [-31, -17, 7, 6, 8, cityA],
-    [-32, -3, 9, 8, 12, cityB],
-    [-30, 13, 8, 7, 10, cityC],
-    [-12, 36, 10, 7, 9, cityB],
-    [3, 37, 8, 8, 13, cityA],
-    [18, 36, 11, 7, 10, cityC],
-    [38, 17, 8, 8, 12, cityB],
-    [39, 1, 9, 9, 15, cityA],
-    [37, -16, 8, 7, 10, cityC],
-    [19, -32, 10, 7, 9, cityB],
-    [2, -33, 9, 8, 12, cityA],
-    [-14, -32, 8, 7, 9, cityC],
+  const cards = [
+    {
+      name: "west-south",
+      position: new Vector3(-30.5, 5.6, -11),
+      width: 17,
+      height: 11,
+      rotationY: Math.PI / 2,
+      color: new Color3(0.49, 0.53, 0.55),
+      textureSlot: "TBD_USER_AI_BG_WEST_SOUTH",
+    },
+    {
+      name: "west-north",
+      position: new Vector3(-30.5, 5.9, 16),
+      width: 18,
+      height: 11.8,
+      rotationY: Math.PI / 2,
+      color: new Color3(0.56, 0.56, 0.53),
+      textureSlot: "TBD_USER_AI_BG_WEST_NORTH",
+    },
+    {
+      name: "north",
+      position: new Vector3(3, 6.4, 36),
+      width: 34,
+      height: 12.8,
+      rotationY: Math.PI,
+      color: new Color3(0.45, 0.5, 0.52),
+      textureSlot: "TBD_USER_AI_BG_NORTH",
+    },
+    {
+      name: "east",
+      position: new Vector3(43, 6.6, 3),
+      width: 35,
+      height: 13.2,
+      rotationY: -Math.PI / 2,
+      color: new Color3(0.52, 0.53, 0.5),
+      textureSlot: "TBD_USER_AI_BG_EAST",
+    },
+    {
+      name: "south",
+      position: new Vector3(4, 5.8, -32),
+      width: 36,
+      height: 11.6,
+      rotationY: 0,
+      color: new Color3(0.46, 0.5, 0.51),
+      textureSlot: "TBD_USER_AI_BG_SOUTH",
+    },
   ] as const;
 
-  silhouettes.forEach(
-    ([x, z, width, depth, height, material], index) => {
-      const block = MeshBuilder.CreateBox(
-        `gd4-city-block-${index + 1}`,
-        { width, depth, height },
-        scene,
-      );
-      block.position.set(x, height / 2 - 0.02, z);
-      block.material = material;
-      block.checkCollisions = false;
-      block.isPickable = false;
-    },
-  );
+  cards.forEach((card) => {
+    const plane = MeshBuilder.CreatePlane(
+      `gd4-background-card-${card.name}`,
+      {
+        width: card.width,
+        height: card.height,
+        sideOrientation: 2,
+      },
+      scene,
+    );
+    plane.position.copyFrom(card.position);
+    plane.rotation.y = card.rotationY;
+    plane.material = cardMaterial(
+      `gd4-background-card-material-${card.name}`,
+      card.color,
+    );
+    plane.checkCollisions = false;
+    plane.isPickable = false;
+    plane.metadata = {
+      role: "future-ai-background-card",
+      textureSlot: card.textureSlot,
+      replaceableByUserArt: true,
+      placeholderEnabled: false,
+    };
+    // Keep the lightweight card slots in the scene graph, but do not show
+    // temporary solid-color placeholders. They become visible only after
+    // user-approved AI/authored background art is assigned.
+    plane.setEnabled(false);
+  });
 
   const outsideRoad = createGroundBox(
     scene,

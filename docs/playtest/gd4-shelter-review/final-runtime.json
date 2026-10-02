@@ -1,0 +1,27 @@
+{
+  "root": {
+    "x": -13.05,
+    "z": -4.55,
+    "yaw": 2.0521935508522002
+  },
+  "posts": 4,
+  "roof": {
+    "minX": -16.319701409339906,
+    "maxX": -9.780298972129822,
+    "minZ": -8.243032193183899,
+    "maxZ": -0.8569681882858275,
+    "maxY": 3.010000066757202
+  },
+  "wallX": -16.35,
+  "wallClearance": 0.030298590660095215,
+  "gateSouthEdge": -0.8,
+  "gateClearance": 0.056968188285827503,
+  "background3DBlocks": 0,
+  "backgroundCards": [
+    false,
+    false,
+    false,
+    false,
+    false
+  ]
+}

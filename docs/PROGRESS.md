@@ -6,10 +6,10 @@ Last updated: 2026-10-02
 **GAME PIVOT V2 — GIẢNG ĐƯỜNG 4 PLAYABLE MAP FOUNDATION**
 
 ## Current branch
-`phase-v2/giang-duong-4-map-shell` (branched from the classroom-production checkpoint; the old `chapter-1-vertical-slice` tag remains preserved)
+`phase-v2/gd4-lightweight-background-canteen` (branched from `phase-v2/giang-duong-4-map-shell`; the old `chapter-1-vertical-slice` tag remains preserved)
 
 ## Current status
-**The preserved `chapter-1-vertical-slice` remains a completed technical/tonal prototype. The current playable runtime has moved to the user-directed `Giảng đường 4` map. The gameplay boundary follows the user's yellow outline, but the visible world continues beyond it. The west gate is walk-through and leads to a short bounded exterior apron; căn tin remains at ground level; Tòa A/B are elevated, visually multi-storey academic buildings; only the first two classrooms per building are fully playable, while the rest of each roughly 10-room floor is represented by lightweight visual-only continuation facade/corridor bays. The old gate/guard/old-wing/PA campus prototype is retired from the active runtime. Baseline presentation remains bright/readable/ordinary; uncanny/darker presentation is reserved for later authored events.**
+**The preserved `chapter-1-vertical-slice` remains a completed technical/tonal prototype. The current playable runtime has moved to the user-directed `Giảng đường 4` map. The gameplay boundary follows the user's yellow outline, but the visible world continues beyond it. The west gate is walk-through and leads to a short bounded exterior apron; the canteen is currently a gate-wall shelter/stall at ground level; Tòa A/B are elevated, visually multi-storey academic buildings; only the first two classrooms per building are fully playable, while the rest of each roughly 10-room floor is represented by lightweight visual-only continuation facade/corridor bays. The old gate/guard/old-wing/PA campus prototype is retired from the active runtime. Baseline presentation remains bright/readable/ordinary; uncanny/darker presentation is reserved for later authored events.**
 
 Active direction documents:
 - `docs/design/GIANG_DUONG_4_LAYOUT_V1.md`
@@ -21,7 +21,7 @@ Active direction documents:
 Current Giảng đường 4 implementation:
 - gameplay perimeter follows the user-supplied sketch boundary, while visual world/background continues beyond it
 - west gate is walk-through; a short bounded exterior apron exists outside the gate before the true movement limit
-- lower-left canteen remains at campus ground level
+- canteen is a gate-wall shelter/stall at campus ground level: four support posts, overhanging roof, open/service side facing Tòa B, no final sign/branding
 - Tòa A/B ground-floor slabs and corridors are elevated about **0.6 m** with playable steps/ramp collision
 - Tòa A and Tòa B each have **2 full playable classroom-prefab rooms**, but visually continue to imply roughly **10 classroom bays per floor**
 - the extra classroom bays are lightweight facade/corridor continuation only: no interior, no interaction, no gameplay collision
@@ -33,9 +33,10 @@ Current Giảng đường 4 implementation:
 - classroom entrance/teacher-desk/board corrections remain preserved inside every prefab instance
 - Tòa A/B read as **3-storey buildings visually**, but only tầng 1 is playable
 - current runtime loads 4 classroom instances / 408 production classroom asset roots
-- visual city/background blockout exists outside the gameplay bounds and has no collision
+- surrounding city/background no longer uses 3D block massing; the runtime now keeps lightweight **disabled 2D background-card slots** outside gameplay bounds, ready for later user/AI-authored perspective images, with no collision
 - old gate/guard/old-wing/PA runtime path is no longer booted by `src/main.ts`
-- current runtime evidence: `docs/playtest/gd4-current-layout-runtime/`
+- base layout runtime evidence: `docs/playtest/gd4-current-layout-runtime/`
+- latest lightweight-background + canteen-shelter review: `docs/playtest/gd4-shelter-review/`
 
 Current verification:
 - full repository tests: **16/16 test files, 53/53 tests pass**
