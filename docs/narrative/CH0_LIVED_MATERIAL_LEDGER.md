@@ -46,8 +46,10 @@ Provenance: **literal_fact / recalled experience**, except where uncertainty is 
 - The user waved at approaching buses expecting them to stop.
 - The buses did not stop.
 - This happened more than once / enough times to become noticeable.
-- A bus staff member / conductor eventually called out and told the user that to catch the bus they needed to stand at the actual bus stop.
-- The user then moved toward the proper bus stop and understood the mistake.
+- Earlier draft interpretation had a bus staff member / conductor explain the bus-stop rule.
+- **Correction from user:** replace that reveal with a recurring Grab-driver encounter. After the mother call, while the protagonist keeps waving for buses from the wrong place, a Grab driver approaches / offers a ride, realizes the protagonist is newly arrived, and explains how to catch the bus properly / where the actual stop is.
+- The protagonist then moves toward the proper bus stop and understands the mistake.
+- The Grab driver is intended to reappear later in the game and should be developed further in future chapters.
 
 ### B. User-directed opening/presentation idea
 
@@ -187,3 +189,96 @@ This is not claimed as literal remembered fact unless later confirmed. The user 
 - A Hanoi-specific environmental/detail beat may be added during the chapter if it fits naturally.
 - Such detail can be researched and proposed later.
 - It should enrich place/atmosphere rather than become tourism exposition or override user material.
+
+
+---
+
+## LM-CH0-004 — Recurring Grab driver at the opening
+
+### Provenance
+
+**USER-SUPPLIED / USER-DIRECTED recurring character seed.**
+
+User wording/intent:
+- immediately after the mother phone call, protagonist stands roadside and repeatedly tries to wave down buses;
+- a "grap" / Grab driver approaches and invites the protagonist to get on;
+- through the conversation the driver realizes the protagonist has just arrived / is new here;
+- the driver explains how to catch the bus correctly / indicates the proper bus stop;
+- this **replaces** the earlier idea where a bus conductor leans out and explains the rule;
+- this Grab driver will appear again later and should become a recurring character thread.
+
+### Important approval status
+
+Approved:
+- recurring function: **YES**
+- reappearance later: **YES**
+- first-scene role as the person who explains bus-stop behavior: **YES**
+
+Still open / TBD_USER_APPROVAL:
+- name;
+- age;
+- exact appearance;
+- exact personality;
+- exact relationship arc;
+- exact later appearances;
+- whether "Grab" remains literal brand naming in final release or becomes a fictionalized ride-hailing equivalent.
+
+### Development note
+
+The first meeting should not feel like a forced "important NPC introduction." It should initially play like an ordinary street interaction whose later recurrence gains meaning.
+
+Preserve the user's intent that the driver first **mời chào lên xe**, then realizes the protagonist is newly arrived and helps.
+
+---
+
+## LM-CH0-005 — Red-light NPC micro-interactions / overheard line
+
+### Provenance
+
+**USER-SUPPLIED creative scene detail.**
+
+While the protagonist is standing/waiting at a red light, the scene may include small NPC encounters or interactions.
+
+One exact overheard line supplied by the user must be preserved as source material:
+
+> "Tôi nổi tiếng, đẹp trai, nhà giàu, tôi có gì không tốt?"
+
+This line is not automatically assigned to an important NPC.
+
+Development permissions:
+- Script/Layout worker may invent local context around why two nearby NPCs are having this conversation;
+- may add other brief red-light NPC interactions;
+- may use timing, facial reaction, silence, traffic, or player look-direction as comedy;
+- may let the player miss/partially hear the line depending on attention, if that improves first-person presentation.
+
+Constraints:
+- keep it as ambient/micro-event scale unless user later promotes it;
+- do not turn the two speakers into recurring canon without approval;
+- preserve the exact user-supplied line somewhere in candidate dialogue/options.
+
+---
+
+## LM-CH0-006 — Boy-phố flyby after getting off the return bus
+
+### Provenance
+
+**USER-SUPPLIED chapter-ending detail.**
+
+On the return trip:
+- protagonist reaches the bus stop near the rented room;
+- gets off the bus;
+- immediately / shortly after stepping down, a vehicle suddenly passes fast;
+- user describes it as a **"boy phố lướt qua"** moment.
+
+Desired effect:
+- quick, physical, city-life punctuation after the calm "đến nhà rồi / xuống thôi" feeling;
+- surprise / micro-tension that resolves immediately as an ordinary street moment;
+- may function as a final visual/audio sting before Chapter 0 ends.
+
+Open:
+- exact vehicle type;
+- exact speed/presentation;
+- whether protagonist/NPC reacts verbally;
+- whether this is the final frame or followed by a few seconds of walking.
+
+Do not turn the flyby into an accident, chase, danger plot, or mystery hook unless the user later explicitly changes direction.
