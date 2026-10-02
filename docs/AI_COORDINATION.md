@@ -59,12 +59,12 @@ Current scope:
 - tests/performance/evidence before commit
 
 ### Lane 2 — Performance / Optimization Foundation V1
-Status: DONE EXCEPT ONE DOCUMENTATION CORRECTION
+Status: DONE / COMMITTED / PUSHED
 
-Current known commit:
-`5bebb9f2a35b7bdffc50cf8e8210fe30829c2008`
+Final verified commit:
+`f9d6b63b7aff683b63ed9c00113653fac3e10ace`
 
-Remaining task: correct `PERFORMANCE_BUDGET_V1.md` so the `activeMeshes` description matches the implementation based on `scene.getActiveMeshes().length`, then commit/push and STOP.
+Verified correction: `PERFORMANCE_BUDGET_V1.md` now states that `activeMeshes` is `scene.getActiveMeshes().length` and does not separately add object-renderer active meshes. The final correction is documentation-only; the worktree is clean and local HEAD matches the pushed branch HEAD.
 
 Worktree:
 `C:\Users\Dell\projects\farm_pro_max_perf`
