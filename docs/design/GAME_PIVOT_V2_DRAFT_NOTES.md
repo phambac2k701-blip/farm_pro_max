@@ -1,95 +1,118 @@
 # GAME PIVOT V2 — CURRENT DRAFT NOTES
 
-Status: **DRAFT — NOT CANON UNTIL USER APPROVAL**
+Status: **CURRENT DIRECTION — DETAILS STILL USER-APPROVAL-GATED**
 Owner: **User / primary writer**
 
-## Current direction
+## Current identity
 
-The project is now a first-person 3D student-life narrative game set at a fictional technology university in Hanoi.
+Project title:
 
-The previous narrative has been retired from the active project tree.
+> **UET không tệ**
 
-Primary material should come from grounded university-life experiences such as:
-- entering university
-- first classes
-- classmates and awkward social situations
-- assignments and coding
-- deadlines
-- commuting
-- food and breaks
+The project follows a UET student timeline in Hanoi.
+
+This is no longer planned as a fixed nine-chapter story.
+
+The current authored macro stops at Chapter 3 and remains open for future expansion.
+
+Authoritative macro document:
+- `docs/design/CURRENT_STORY_MACRO.md`
+
+## Current chapter scope
+
+- Chapter 0: entering university / admission-confirmation period / first new-city-and-school impressions
+- Chapter 1: military-training period
+- Chapter 2: ordinary university life begins; Giảng đường 4 becomes important
+- Chapter 3: everyday student life broadens; vibe coding appears as a subtle reflection of the creator's current self
+- Chapter 4+: locked / `TBD_FUTURE_LIFE_CHAPTERS`
+
+Do not write a finale at Chapter 3.
+
+Do not invent Chapter 4 simply because a next number exists.
+
+## Narrative philosophy
+
+The story should feel like one connected life.
+
+Important continuity tools:
+- recurring people
+- recurring locations
+- evolving relationships
+- small callbacks
+- repeated routines that change meaning
+- foreground details that later pay off
+
+Anything deliberately highlighted should have a reason to be highlighted.
+
+Background population/objects may simply make the world feel alive; not every prop needs symbolism.
+
+## Study-vs-life balance
+
+Study is background structure, not the whole subject.
+
+The game can use:
+- classes
+- schedules
+- assignments
 - exams
-- changes in habits, confidence, and relationships
+- academic pressure
 
-Humor is a core part of the experience.
+But these should create situations for student life rather than turn the game into a study simulator.
 
-## Narrative scope
+The wider subject is:
+- friends
+- city movement
+- food
+- commuting
+- awkwardness
+- routine
+- jokes
+- habits
+- personal interests
+- gradual change
 
-The first complete story plan should cover the period from entering university through the current second-year period.
+## Humor
 
-Later university years are not required for the current game. They can be added later if the project continues and the user wants to expand the story.
+Humor is core and should emerge naturally from:
+- expectation vs reality
+- awkward timing
+- friend-group behavior
+- traffic/commuting
+- ordinary student frustrations
+- deadpan internal reactions
+- repeated jokes that gain context
 
-## Nine-chapter target
+## Meta / vibe-coding direction
 
-Approximately nine chapters remains a structural target only.
+Chapter 3 includes a subtle vibe-coding thread.
 
-No replacement nine-chapter canon is approved yet.
+It should suggest that the protagonist is beginning to resemble the creator's present self.
 
-Required design order:
-1. map the grounded timeline
-2. identify meaningful phases and experiences
-3. group them into chapter-scale arcs
-4. review the full nine-chapter structure
-5. only then design individual events
+Do not state the meta connection explicitly.
 
-Earlier provisional Chapter 1/2/3 notes are no longer authoritative.
+Observant players may notice it.
 
-## Gameplay philosophy
+## Environment production relationship
 
-The player should feel they are inhabiting a student's life.
+The active art branch is currently working on a large Giảng đường 4 update.
 
-Small choices may produce short local branches such as different reactions, jokes, inconveniences, or temporary alternate interactions. Low-stakes branches may then converge back into the main scene.
+Narrative work must not redesign or overwrite that map while production is in progress.
 
-Only decisions with enough narrative weight should create long-term route divergence.
+P202/room-level documents remain technical references until the new Giảng đường 4 update lands and its topology is reviewed.
 
-## Current environment direction
+## Special-event/mystery status
 
-P202 is the first reusable golden classroom.
+No mystery/uncanny layer is currently part of the approved Chapter 0–3 macro.
 
-Current production goals:
-- finish room scale and layout
-- establish the desk/chair arrangement
-- finish board, teacher area, windows, AC, fans, and lighting
-- move beyond prototype-looking geometry
-- establish reusable GLB/glTF-friendly assets
-- use the finished classroom as the basis for later room variants
+Generic state/variant technology may remain in the engine, but narrative agents must not inject strange events into these chapters unless the user later approves them.
 
-## World structure
+## Next narrative task
 
-Prefer modular rooms and zones rather than committing immediately to one huge seamless campus.
+Wait for the user to provide detailed Chapter 0 material.
 
-Possible reusable pieces include:
-- classroom modules
-- corridors
-- stairs / transition areas
-- parking or campus-life zones
-- other authored scene areas
-
-Canonical campus topology remains approval-gated.
-
-## Tone
-
-Baseline gameplay is bright, readable, ordinary, funny, and recognizable as student life.
-
-Any unusual or reality-changing layer is secondary and still requires narrative design approval.
-
-## Characters
-
-Future technical targets include reusable 3D NPC rigs and animations for sitting, phone use, talking, typing, and classroom behavior.
-
-Important NPC identities and protagonist final identity/appearance require user approval.
-
-## Approval boundary
-
-Do not silently canonize chapter contents, chapter order, important NPCs, relationship arcs, institutional identity, major twists, endings, or the final explanation of unusual events.
-
-Technical infrastructure, generic assets, room production, performance work, collision fixes, and generic interaction foundations may continue within the approved direction.
+Then:
+1. organize the material into scenes/events
+2. identify recurring characters/places/details
+3. identify what carries into Chapter 1
+4. identify potential later payoffs
+5. keep Chapter 4+ locked
