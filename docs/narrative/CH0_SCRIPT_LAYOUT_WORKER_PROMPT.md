@@ -73,7 +73,20 @@ Before writing any protagonist dialogue, internal thought, reaction, or option t
 
 `docs/narrative/PROTAGONIST_CHARACTER_BIBLE_V0.md`
 
-Treat it as the authoritative character-voice constraint once user-authored traits are present.
+Treat it as the authoritative character-voice constraint.
+
+The protagonist is **Mark**.
+
+Current user-approved voice anchors:
+- intelligent and sharp;
+- somewhat introverted depending on the person/context;
+- relaxed, expressive and more humorous with close friends;
+- serious, reserved and private with people he is not close to;
+- naturally funny;
+- direct/blunt rather than polished;
+- when he deliberately tries to sound very smooth/charming, it should feel slightly unnatural.
+
+Do not make Mark socially fluent, emotionally open, or highly talkative with every NPC just because a scene needs dialogue.
 
 If the bible still contains `TBD_USER_APPROVAL` for a trait that materially affects a scene:
 - do not silently invent a canonical trait;
