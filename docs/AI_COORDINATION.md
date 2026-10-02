@@ -1,5 +1,16 @@
 # AI COORDINATION — UETỐT
 
+## Narrative worker entrypoint
+
+For current UETốt narrative work, workers must start from:
+
+- `docs/narrative/NARRATIVE_WORKER_ENTRYPOINT.md`
+- `docs/narrative/UET_NARRATIVE_SKILL_V2.md`
+- `docs/narrative/PROTAGONIST_CHARACTER_BIBLE_V0.md`
+
+The repo-local skill and source files carry the narrative rules. External chat prompts should stay thin and should not duplicate the full workflow/context.
+
+
 Last updated: 2026-10-02
 
 ## Purpose
