@@ -90,6 +90,13 @@ Large environments are authored shell-first. Smaller repeated props are produced
 See:
 - `docs/design/CURRENT_WORLD_MAP_SCOPE.md`
 - `docs/art/ASSET_PRODUCTION_PIPELINE_V2.md`
+- `docs/design/RUNTIME_WORLD_EVENT_ARCHITECTURE.md`
+
+Runtime rule:
+- only the currently visited major map is resident at full gameplay fidelity
+- local zones may run at FULL / NORMAL / LIGHT / BACKGROUND fidelity
+- chapter/event differences should normally be state layers over reusable maps rather than duplicated map copies
+- ordinary choices should usually create local micro-branches and reconverge; only high-value decisions justify persistent route cost
 
 Do not add new major maps without user approval.
 

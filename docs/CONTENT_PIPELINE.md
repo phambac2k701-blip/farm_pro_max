@@ -14,6 +14,18 @@ Current world-map source of truth:
 Current asset-production source of truth:
 - `docs/art/ASSET_PRODUCTION_PIPELINE_V2.md`
 
+Current runtime/event architecture source of truth:
+- `docs/design/RUNTIME_WORLD_EVENT_ARCHITECTURE.md`
+
+## Runtime residency and event layering
+
+- only the currently visited major map should be resident at full gameplay fidelity
+- use zone-level fidelity instead of keeping every area fully simulated
+- express chapter/event differences through state, NPCs, props, dialogue, triggers and local presentation before considering map duplication
+- repeated non-interactive assets should be batched/instanced where appropriate
+- background-only world should prefer cards/impostors/simplified geometry over unreachable full 3D
+- ordinary choices should usually create a local reaction and reconverge; persistent route state is reserved for decisions with real long-term value
+
 ## Major-map pipeline
 
 For Giảng đường 4, Giảng đường Xuân Thủy, khu phố/trà đá and Hòa Lạc:

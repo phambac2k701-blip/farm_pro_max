@@ -19,6 +19,11 @@ The four current maps are:
 
 This is a high-level world-production scope, not approval of exact topology.
 
+Runtime residency is defined separately in `docs/design/RUNTIME_WORLD_EVENT_ARCHITECTURE.md`:
+- only the currently visited major map should be resident at full gameplay fidelity
+- local zones may degrade to lighter simulation/rendering tiers
+- chapter/event variants should reuse the same major map package whenever practical
+
 ## Map 01 — Giảng đường 4
 
 Role:

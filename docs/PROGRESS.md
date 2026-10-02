@@ -14,13 +14,14 @@ This branch is intentionally separated from the active environment/art branch so
 
 ## Parallel art branch
 
-Visible branch:
-- `phase-v2/classroom-asset-production-v1`
-- last visible committed checkpoint at time of this note: `b709607e014b85f0bc4dd578ccc040ab46bd45fa`
+Current local WIP branch verified on 2026-10-02:
+- `phase-v2/gd4-geometry-corrections`
+- committed base HEAD: `a7c6737085e77a72e390d30446d9d2c7c3505cdb`
+- working tree contains uncommitted Giảng đường 4 geometry/review work
 
-The user reports a larger Giảng đường 4 map update is currently in progress.
+Do not checkout, reset, clean, overwrite, rebase or otherwise disturb that WIP from this narrative branch.
 
-Do not overwrite or rebase that active production work from this narrative branch.
+Reconcile narrative/production docs with the Giảng đường 4 implementation only after the active map work is explicitly reported complete.
 
 ## Current product identity
 
@@ -93,6 +94,22 @@ Every chapter should identify:
 Background may simply create life.
 
 Foreground emphasis should have a reason.
+
+## Approved runtime/world-event architecture
+
+Authoritative source:
+- `docs/design/RUNTIME_WORLD_EVENT_ARCHITECTURE.md`
+
+Approved direction:
+- bounded-open-world feel rather than one giant permanently loaded simulation
+- exactly one currently visited major map at full gameplay residency
+- zone fidelity tiers inside the active map: FULL / NORMAL / LIGHT / BACKGROUND
+- chapter/event state layered over reusable maps instead of duplicating maps per route
+- ordinary choices create meaningful local reactions/micro-branches and usually reconverge
+- only a small number of high-value decisions justify persistent long-term route state
+- static/repeated/background content should be merged, instanced, simplified or card-based according to gameplay role
+- distant NPC/collision/animation/interaction work should sleep or degrade outside the active simulation bubble
+- future terminal outcomes/endings may be technically supported, but no concrete ending or Chapter 4+ content is approved by this architecture decision
 
 ## Legacy narrative status
 

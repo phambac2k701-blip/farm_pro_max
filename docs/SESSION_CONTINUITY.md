@@ -21,6 +21,7 @@ New sessions must resume from the current **UET không tệ** student-life direc
    - `docs/design/CURRENT_STORY_MACRO.md`
    - `docs/design/CURRENT_WORLD_MAP_SCOPE.md`
    - `docs/art/ASSET_PRODUCTION_PIPELINE_V2.md`
+   - `docs/design/RUNTIME_WORLD_EVENT_ARCHITECTURE.md`
    - `docs/design/GAME_PIVOT_V2_DRAFT_NOTES.md`
    - `docs/design/USER_APPROVAL_GATES.md`
    - current P202/Giảng đường 4 production/art docs
@@ -29,7 +30,7 @@ New sessions must resume from the current **UET không tệ** student-life direc
    - `docs/AUDIO_BIBLE.md`
    - `docs/TECHNICAL_REQUIREMENTS.md`
    - `docs/ARCHITECTURE.md`
-3. Inspect `phase-v2/classroom-asset-production-v1` before touching environment/map code.
+3. Inspect the latest Giảng đường 4 production branch before touching environment/map code; as of 2026-10-02 the verified local WIP branch is `phase-v2/gd4-geometry-corrections`.
 4. Respect all USER APPROVAL gates.
 5. Do not invent Chapter 4+.
 6. Do not turn Chapter 3 into a finale.
@@ -44,6 +45,9 @@ New sessions must resume from the current **UET không tệ** student-life direc
 - Chapter 4+ is future-life material and remains locked
 - current large-map scope is exactly four high-level maps: Giảng đường 4, Giảng đường Xuân Thủy, khu phố/trà đá, Hòa Lạc
 - large-map shells and reusable small assets use separate production flows
+- runtime uses a bounded-open-world model: one major map resident at full gameplay fidelity, with local zone fidelity tiers
+- chapter/event variants should be state layers over reusable maps rather than duplicated maps
+- ordinary choices should usually produce meaningful micro-branches and reconverge; persistent branching is reserved for major decisions
 - humor is core
 - study is context/background, not the whole subject
 - chapters must connect through people, places, habits, callbacks and payoffs
@@ -64,12 +68,12 @@ Detailed events are still pending user input.
 
 Narrative work and environment art are running in parallel.
 
-Visible environment branch:
-- `phase-v2/classroom-asset-production-v1`
+Verified environment WIP branch as of 2026-10-02:
+- `phase-v2/gd4-geometry-corrections`
+- committed base HEAD `a7c6737085e77a72e390d30446d9d2c7c3505cdb`
+- uncommitted geometry/review work is present
 
-The user reports a large Giảng đường 4 update in progress.
-
-Do not modify that branch from narrative cleanup unless explicitly coordinating a merge/integration pass.
+Do not checkout/reset/clean/rebase or modify that WIP from narrative cleanup unless explicitly coordinating a merge/integration pass.
 
 ## Technical continuity
 

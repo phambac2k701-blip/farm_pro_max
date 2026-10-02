@@ -25,6 +25,13 @@ Instead, split production into two layers:
 The large scene provides the spatial identity.
 The reusable asset library provides the detail density.
 
+Runtime performance classes are defined in `docs/design/RUNTIME_WORLD_EVENT_ARCHITECTURE.md`.
+In particular:
+- static world content may be merged/batched and frozen where safe
+- repeated non-interactive assets should prefer instancing/batching where appropriate
+- event/interactable objects stay modular only when gameplay needs independent state
+- background-only content should use lightweight representation instead of unreachable expensive 3D
+
 ## 2. Current major environment set
 
 The current planned environment scope is intentionally small.
