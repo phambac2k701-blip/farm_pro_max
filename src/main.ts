@@ -11,7 +11,6 @@ import {
 import { InteractionStateMachine } from "./interaction/InteractionStateMachine";
 import { InteractionSystem } from "./interaction/InteractionSystem";
 import { PlayerController } from "./player/PlayerController";
-import { PlayerSafetyController } from "./player/PlayerSafetyController";
 import "./style.css";
 
 async function bootstrap(): Promise<void> {
@@ -144,25 +143,6 @@ async function bootstrap(): Promise<void> {
       doorControllers.set(room.roomKey, controller);
     }
 
-    const playerSafety = new PlayerSafetyController({
-      player,
-      bounds: {
-        minX: slice.bounds.minX,
-        maxX: slice.bounds.maxX,
-        minY: slice.bounds.minY,
-        maxY: slice.bounds.maxY,
-        minZ: slice.bounds.minZ,
-        maxZ: slice.bounds.maxZ,
-      },
-      getRecoveryPosition: () => slice.spawn.clone(),
-      recoveryCooldownSeconds: 0.25,
-      onRecover(from, to) {
-        canvas.dataset.safetyRecovery =
-          `${from.x.toFixed(2)},${from.y.toFixed(2)},${from.z.toFixed(2)}` +
-          `->${to.x.toFixed(2)},${to.y.toFixed(2)},${to.z.toFixed(2)}`;
-      },
-    });
-
     canvas.dataset.renderBackend = engineAdapter.backend;
     canvas.dataset.sceneReady = "lecture-hall-4-slice";
     canvas.dataset.classroomAssets =
@@ -195,7 +175,6 @@ async function bootstrap(): Promise<void> {
       const deltaSeconds = engineAdapter.engine.getDeltaTime() / 1000;
       updateRoomActivity();
       player.update(deltaSeconds);
-      playerSafety.update(deltaSeconds);
       behaviorHost.update(deltaSeconds);
       interaction.update();
 

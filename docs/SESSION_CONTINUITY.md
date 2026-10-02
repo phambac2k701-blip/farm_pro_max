@@ -61,7 +61,7 @@ Historical preserved checkpoint:
 - Do not alter/delete that tag.
 
 Current active branch:
-- `phase-v2/gd4-lightweight-background-canteen`
+- `phase-v2/gd4-geometry-corrections`
 
 Current runtime source of truth:
 - `docs/design/GIANG_DUONG_4_LAYOUT_V1.md`
@@ -71,10 +71,19 @@ Current runtime source of truth:
 Current user-directed spatial rules:
 - runtime boots **Giảng đường 4**, not the retired old Chapter 1 campus
 - yellow sketch outline = **gameplay boundary**, not visual world boundary
-- west gate is **walk-through**; a short bounded apron exists outside it before the true movement limit
-- the canteen is currently a **gate-wall shelter/stall** at campus ground level: four posts, overhanging roof, open side facing Tòa B, no final sign/branding
-- Tòa A/B ground-floor slabs + corridors are elevated about **0.6 m**
-- A/B are visually **3-storey academic buildings**, but only tầng 1 is playable
+- west gate is **walk-through**; its short exterior apron uses light ground markings plus invisible movement colliders, with no visible approach railing/barrier
+- the canteen is a **ground-level shelter/stall in the inner-right campus corner**, now pushed essentially flush against the west perimeter wall while remaining clear of the gate mouth; it keeps four posts, a sloped overhanging roof, partial back/side walls, open side facing Tòa B, and no sign/branding
+- Tòa A/B ground-floor slabs + corridors are elevated **0.8 m**, and the former void under each corridor is filled with a solid plinth
+- each building entrance uses **5 visible west-end steps**, backed by an invisible smooth ramp collider for movement
+- A/B are visually **5-storey academic buildings**, but only tầng 1 is playable; do not reduce visible storeys for performance
+- corridor orientation/flip is **A-only**: A entrance/corridor side is left/+Z when walking in from the gate; **B keeps its current orientation and must not be flipped**
+- exterior metal railings are retired on **both A and B**, including ground floor, upper floors and continuation; use wall-colored solid parapets + larger masonry columns/piers
+- front + exposed side parapets use the same **1.15 m** height; exposed side faces are solid, and structural columns run continuously from base to roof with no surplus top-floor posts
+- Tòa B has no broad south/front yard: the south perimeter runs about **0.13 m** from the parapet, with only local clearance needed for the approved west-end stair access
+- A/B ground-floor parapets extend to and slightly overlap the invisible east gameplay boundary so there is no see-through gap
+- east playable limit remains invisible collision only; it is aligned to the end wall of the second playable classroom at **x = 27.12** and uses a tall blocker spanning **y = -3..8**, so the player cannot climb over or fall under it
+- playable→continuation seam overlaps slightly and continuation bay spacing remains about **8.4 m**, preserving the open near view and natural perspective compression farther away
+- upper-floor and continuation visual-only geometry is merged/batched by material for performance while preserving all 5 visible storeys
 - each floor visually implies around **10 classroom bays**
 - only the **first 2 classrooms per building** are full playable interiors in this slice
 - remaining bays are lightweight visual-only continuation facade/corridor geometry with no interior/interactions/gameplay collision
@@ -82,18 +91,21 @@ Current user-directed spatial rules:
 - Tòa B playable labels remain `TBD_USER_APPROVAL`
 - no dedicated parking-shelter structure
 - outside gameplay bounds, do **not** use 3D city blocks; keep lightweight 2D background-card slots for future user/AI-authored perspective images, disabled until approved art is assigned
-- city/background and building-continuation geometry are visual-only and may later be replaced by optimized cards/impostors/distant meshes
-- the production classroom prefab remains reusable across future chapters/routes
+- the production classroom prefab remains reusable across future work
+- old Người Thứ Chín/KCR/Chapter 1 narrative material in this branch is **stale legacy for the current pivot**; do not use it to invent new story, and do not delete it project-wide during GD4 cleanup
 - do not invent final university identity, campus canon, final protagonist/NPC cast, chapter canon, twist, ending or KCR explanation without explicit user approval
 
-Current runtime evidence:
-- base layout: `docs/playtest/gd4-current-layout-runtime/`
-- latest background-card + canteen-shelter review: `docs/playtest/gd4-shelter-review/`
-- gate traversal verified
-- elevated corridor stair traversal verified
-- runtime visual continuation/background present without gameplay collision
+BAC-45 completion / runtime evidence:
+- user manual review/acceptance: **approved 2026-10-02**
+- final review: `docs/playtest/gd4-geometry-corrections-review/`
+- fresh Chrome/WebGPU: **0 runtime exceptions, 0 console errors, 0 HTTP >=400**
+- east movement blocker: aligned at x=27.12, invisible, collision-enabled, vertical span y=-3..8; direct runtime collision pass with no climb/fall-through
+- the old automatic safety/respawn recovery subsystem was removed from active runtime and source/tests after it caused unwanted teleport-to-spawn behavior
+- final approved runtime: **2549 meshes / 470676 vertices**, **59.84 RAF FPS / 60.05 engine FPS**
+- full repository gate: **15/15 test files, 51/51 tests pass**; typecheck/build/`git diff --check` pass
+- final runtime evidence: `runtime-final-approved.json`; stale/intermediate runtime evidence is not authoritative
 
-**Do not resume the old Chapter 2 implementation path automatically.** Continue only from the current user-directed Giảng đường 4 / room-prefab pivot unless the user explicitly changes direction.
+**STOP POINT — BAC-45 / Giảng đường 4 is user-approved and finalized in this checkpoint. Keep this commit local unless push is explicitly requested, then stop.** Do not resume old Chapter 2/KCR work. The anticipated next phase is a male + female character base, but do **not** start it until the user explicitly instructs it.
 
 ## End-of-session checkpoint
 Before ending a long work session, update `docs/PROGRESS.md` with:
