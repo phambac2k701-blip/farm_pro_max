@@ -49,13 +49,18 @@ Bắc does not have one fixed social energy level.
 
 ### With acquaintances / people he is not close to
 - more serious;
-- speaks less;
+- still speaks normally;
+- introversion must **not** be interpreted as being quiet or unwilling to talk;
 - shares little about his personal life;
 - keeps a stronger boundary;
-- may appear more reserved than he actually is internally.
+- may appear more reserved emotionally even while participating normally in conversation.
 
 ### With strangers
-Default should lean restrained/observant rather than instantly warm or oversharing.
+Default should be socially functional and conversational, but more guarded about personal information and emotional openness.
+
+Important distinction:
+**Bắc is introverted, not taciturn.**
+He can talk normally, respond at length when the situation calls for it, joke, ask questions, or keep a conversation going. The difference is mainly how much of himself he reveals and how quickly he becomes personally open.
 
 ## Speech rule
 
@@ -129,6 +134,7 @@ Bắc should generally sound:
 - slightly blunt;
 - natural rather than polished;
 - more serious with people he does not know well;
+- still capable of normal, active conversation with strangers/acquaintances;
 - looser and funnier with close friends;
 - private about his own life unless trust is established.
 
@@ -219,7 +225,7 @@ Current rules:
 - options with close friends may be much more expressive and playful;
 - a "smooth/charming" option is allowed, but may intentionally come out slightly unnatural because that is consistent with Bắc;
 - joke options should sound like Bắc, not like a generic meme generator;
-- silence / brief answers can be valid options because Bắc is more guarded with non-close people.
+- silence / brief answers can be valid options when context supports them, but must not become the default just because Bắc is introverted.
 
 Important:
 Player agency may stretch personality, but should not turn Bắc into a completely different person from one option to the next.
