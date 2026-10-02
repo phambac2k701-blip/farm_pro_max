@@ -45,9 +45,9 @@ The following require explicit user review/approval:
 - chapter canon
 - chapter ordering
 - major story beats
-- mystery explanation
-- major KCR lore changes
+- final explanation/rules for any unusual or reality-changing layer
 - major twists
+- major long-term route structure
 - character deaths/removals
 - endings
 - retroactive changes to approved canon
