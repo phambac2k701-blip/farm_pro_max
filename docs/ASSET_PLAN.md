@@ -1,117 +1,138 @@
 # Asset Plan
 
 ## Purpose
-Keep visual quality high without producing uncontrolled asset volume.
+
+Reach believable visual quality without producing uncontrolled asset volume.
+
+The project should build a reusable modular asset library, beginning with P202.
 
 ## Asset categories
 
 ### A. Environment
 - walls/floors/ceilings
-- doors/windows
+- doors/frames
+- windows/frames
 - corridor/classroom architecture
 - stairs/railings
 - large furniture
 
-### B. Props
-- desks/chairs
-- books/notebooks
-- cabinets
-- electronics
-- lamps
-- archive boxes
+### B. Classroom props
+- student desks
+- student chairs
+- teacher desk
+- board
+- fans
+- air conditioner
+- lighting fixtures
+- sockets/switches/conduits
+- cabinets/shelves
+- notice boards
 
-### C. Narrative images
-- class photographs
-- documents
-- notices
-- diary pages
-- maps
-- screenshots/files
-- posters
+### C. Student-life props
+- backpacks
+- books/notebooks
+- pens/paper
+- bottles
+- laptops
+- chargers/cables
+- phones or generic device props where needed
+- ordinary classroom clutter
 
 ### D. Materials/decals
-- grime
-- stains
-- cracks
-- tape
-- paper residue
-- chalk
-- handwriting
-- labels/numbers
+- painted plaster
+- tile
+- concrete
+- metal
+- laminate/wood
+- plastic
+- glass
+- paper/fabric
+- restrained scuffs/tape/wear/dirt
 
-### E. FX
-- rain
-- dust
-- fog
-- light flicker
-- subtle screen/noise effects
+### E. Characters
+Future reusable pipeline:
+- base body/rig
+- clothing variants
+- hair/face variation
+- sitting
+- phone use
+- talking/listening
+- typing
+- classroom idle/locomotion
 
 ### F. Audio
 Tracked separately but versioned as production assets.
 
-## Generation strategy
-Use AI image generation for:
-- concept art
-- scene references
-- prop references
-- narrative photographs/documents
-- texture/decal candidates
+## Production strategy
 
-Use 3D modeling or procedural geometry for:
-- navigable architecture
-- collision-critical objects
-- hero props that must rotate/open/animate
+Use Blender/authored 3D or properly licensed external assets for visible production objects.
 
-AI-generated images must be reviewed for:
-- perspective
-- repeated artifacts
-- incorrect anatomy/faces
-- unreadable text
-- cultural/location mismatch
-- contradiction with the narrative bible
+Procedural geometry remains useful for:
+- blockout
+- collision proxies
+- simple invisible helpers
+- fast technical prototypes
 
-## First prototype asset budget
-Do not build final chapter art yet.
+Do not stop at primitive boxes for player-facing production assets when better authored geometry is required.
 
-Required:
-- graybox hallway
-- graybox classroom
+## External assets
+
+Free assets may be used when their license is clear and compatible.
+
+For every external production asset, record:
+- source
+- license
+- modifications
+- attribution requirements
+- runtime path
+- shipping suitability
+
+Do not use assets with unclear permission.
+
+## Golden classroom target
+
+P202 should establish the first reusable classroom kit:
+- classroom shell
+- approximately 10 rows × 3 desks
+- two chairs per desk
+- teacher zone
+- board
+- windows
 - door
-- teacher desk
-- eight desk/chair sets plus ninth variant
-- one hero book
-- one inspection anchor setup
-- placeholder wall/notice detail
-- basic lighting
-- one subtle reality-shift visual change
-
-Optional only if time/performance allows:
-- rain exterior view
-- class photo placeholder
-- simple school signage
+- AC
+- ceiling fans
+- lighting
+- believable material response
+- a small set of ordinary props
 
 ## Fidelity rule
-Spend detail where the camera gets close.
+
+Spend detail where the player gets close.
 
 Priority:
-1. book / hero evidence
-2. nearby desk surfaces
-3. classroom focal wall/board
-4. corridor focal areas
-5. distant background
+1. desk/chair and immediate seat area
+2. teacher/board area
+3. door/window/fan/AC assets
+4. ordinary interactive props
+5. room shell/materials
+6. distant/background detail
 
-## Runtime format direction
-- GLB/glTF for 3D runtime assets
-- optimized modern image formats where supported
-- source/master assets kept separate from runtime-optimized output
+## Runtime format
 
-## Asset manifest requirement
-When production assets begin, maintain a manifest with:
+- GLB/glTF preferred for 3D runtime
+- source/master assets kept separately from runtime-optimized output
+- collision meshes may be simpler than render meshes
+- repeated furniture should use instancing/thin instances where appropriate
+- texture reuse/compression should be evaluated against browser performance
+
+## Asset manifest
+
+Maintain:
 - asset ID
 - type
 - source
-- chapter/scene
+- scene/usage
 - status
 - runtime path
 - variants
-- rights/provenance notes if relevant
+- rights/provenance notes
