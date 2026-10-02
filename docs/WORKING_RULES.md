@@ -75,7 +75,7 @@ Constraints:
 - do not refactor stable BAC-11 through BAC-17 code unless a real regression, architectural blocker, or clearly material benefit is demonstrated;
 - `InteractionSystem`, `CameraDirector`, `GameState`, and other game-core abstractions remain project-owned; third-party libraries may sit below these abstractions when useful;
 - object-specific behaviors such as Book, Photo, Drawer, Door, Pickup, Cassette, and Laptop must compose shared systems rather than create separate per-object frameworks;
-- scripted horror events must compose Trigger + Camera/Screen FX + Audio + Lighting + World/Reality changes rather than introduce a dedicated scare framework.
+- authored special events must compose Trigger + Camera/Screen FX + Audio + Lighting + World/Reality changes rather than introduce a dedicated scare framework.
 
 When an external solution is adopted, record a short reason, license/maintenance check, and trade-off in the relevant technical document or progress checkpoint.
 
