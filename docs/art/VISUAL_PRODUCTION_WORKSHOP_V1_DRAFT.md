@@ -1,115 +1,117 @@
-# VISUAL PRODUCTION WORKSHOP V1 — DRAFT
+# VISUAL PRODUCTION WORKSHOP — CURRENT DIRECTION
 
-Status: **APPROVED FOR P202 CLASSROOM ASSET PRODUCTION — broader campus expansion still approval/scope controlled**  
-Purpose: establish a reusable art-production pipeline capable of supporting the larger campus-life game.
+Status: **ACTIVE — ALIGNED WITH ASSET PRODUCTION PIPELINE V2**
+Date: 2026-10-02
 
-> **2026-10-02 direction update:** baseline student-life scenes are bright, ordinary and readable. The active art branch is expanding toward a larger Giảng đường 4 map; P202 documents remain room-level references until that update lands.
+Authoritative production references:
+- `docs/design/CURRENT_WORLD_MAP_SCOPE.md`
+- `docs/art/ASSET_PRODUCTION_PIPELINE_V2.md`
+- `docs/ASSET_PLAN.md`
 
 ## 1. Goal
 
-Move away from primary-player-facing scenes being dominated by procedural boxes + flat StandardMaterial placeholders.
+Produce a believable browser-first 3D student-life game without wasting time turning the entire world into one giant reusable modular kit.
 
-Target:
+The current production model is:
 
-> High-quality indie first-person student-life game with believable Vietnamese environments, strong lighting, reusable assets, consistent materials, and production-safe browser performance.
+> **four large authored maps + one reusable small-asset library**
 
-This is not a one-scene beautification task.
+## 2. Current major maps
 
-It is a reusable asset workshop for the whole game.
+Only these four large environment families are currently planned:
 
-## 2. Workshop outputs
+1. **Giảng đường 4**
+2. **Giảng đường Xuân Thủy**
+3. **Khu phố / phố trà đá**
+4. **Hòa Lạc / khu quân sự**
 
-The workshop should ultimately produce:
-
-- Art Direction Bible
-- asset taxonomy
-- modular environment kits
-- prop library
-- material/PBR library
-- decal library
-- lighting presets
-- signage system
-- character/NPC pipeline
-- rigging/animation library
-- VFX/weather library
-- optimization standards
-- asset review/checklist
-- before/after screenshot workflow
-
-## 3. Environment modular kit
-
-Provisional asset families:
-
-### Architecture
-
-- walls
-- corners
-- pillars
-- floor modules
-- ceilings
-- stairs
-- railings
-- doors
-- door frames
-- windows
-- window frames
-- corridor modules
-- classroom shells
-- office shells
-- rest/common-area modules
-- campus exterior modules
-
-### Classroom / academic props
-
-- student desks
-- chairs
-- teacher desk
-- boards
-- projectors/screens
-- speakers
-- fans
-- fluorescent fixtures
-- wall clocks
-- sockets/switches
-- cable/conduit sets
-- shelves/cabinets
-- notice boards
-- signage mounts
-
-### Campus-life props
-
-- benches
-- bins
-- vending/food props
-- café/canteen furniture
-- outdoor seating
-- bicycles / parked-vehicle proxies where appropriate
-- backpacks/books/laptops
-- generic student belongings
-- plants/trees
-- street/campus utility props
-
-### Home/dorm/rented-room props
-
-- bed
-- desk
-- chair
-- wardrobe
-- shelves
-- laptop/PC setup
-- charging cables
-- fan
+Large maps are produced shell-first:
+- blockout
+- scale
+- traversal
+- major architecture
+- collision
 - lighting
-- ordinary clutter
+- gameplay/social zones
+- then detail dressing
 
-Exact hero props and recognizable brand-like objects require license/identity review.
+Do not wait for a complete prop library before a large map becomes playable.
 
-## 4. Material library
+## 3. Reusable workshop scope
 
-Create reusable physically believable materials where the runtime budget allows:
+The workshop primarily produces smaller objects that can be placed into one or more of the four maps.
 
+Examples:
+- tarps / bạt
+- plastic chairs
+- tables/stools
+- student desks/chairs
+- teacher furniture
+- doors/frames
+- windows/frames
+- fans
+- AC units
+- lights
+- switches/sockets
+- boards
+- signs
+- benches/bins
+- bottles/cups
+- backpacks
+- books/notebooks
+- laptops/chargers/cables
+- street-side furniture
+- food/drink props
+- camp/military-living props
+- plants/utility props
+
+## 4. How an asset may be produced
+
+A small asset may come from:
+
+### A. Custom modeling
+Use Blender or another approved 3D workflow when:
+- exact proportions matter
+- the asset is interacted with closely
+- a suitable licensed asset does not exist
+- the item strongly affects visual identity
+
+### B. Existing online asset
+Allowed when:
+- source is known
+- license is clear and compatible
+- attribution is recorded if required
+- modification is allowed when needed
+- asset quality and style fit the project
+
+### C. Generated / assisted production
+Allowed for:
+- references
+- texture/material starting points
+- model starting points
+- production output when quality, cleanup and provenance are acceptable
+
+Generated output is never accepted automatically; it must be reviewed and cleaned.
+
+## 5. Reusable asset packaging
+
+A production asset should have:
+- stable asset ID
+- master/source file where useful
+- runtime GLB/glTF where appropriate
+- meter-scale consistency
+- correct origin/pivot
+- reusable materials
+- simple collision proxy when needed
+- variants only when useful
+- provenance/license notes
+- target-map usage notes
+- actual in-engine screenshot/review when visually important
+
+## 6. Materials
+
+Maintain a practical shared material library:
 - painted plaster
-- aged wall paint
 - tile
 - concrete
 - painted metal
@@ -119,211 +121,107 @@ Create reusable physically believable materials where the runtime budget allows:
 - glass
 - fabric
 - paper/cardboard
-- wet exterior surfaces
+- asphalt/paving
+- outdoor/street surfaces
 
-Where practical use:
-
-- base color/albedo
-- roughness
-- normal
-- ambient occlusion
-- controlled surface variation
+Use base color, roughness, normal/AO where they add visible value.
 
 Avoid unique heavyweight textures for every object.
 
-## 5. Decal / wear system
+## 7. Lighting
 
-Reusable restrained decals:
+Lighting is authored primarily per major map, not packaged as one universal look.
 
-- water stains
-- dirt accumulation
-- scuffs
-- shoe marks
-- tape residue
-- faded notices
-- mild paint wear
-- edge grime
-- small cracks where appropriate
-
-Do not turn every surface into abandoned-dark/tension grime.
-
-The world should read as an active university environment, not as an abandoned or permanently tension-coded space.
-
-## 6. Lighting workshop
-
-Develop reusable lighting language for:
-
+Useful reusable lighting language:
 - daytime classroom
-- cloudy/rainy daytime
-- evening campus
-- night corridor
-- dorm/room
-- computer/deadline sequence
-- approved special-event visual shifts
+- overcast/rainy daytime
+- street daytime/evening
+- fluorescent classroom/corridor
+- Hòa Lạc outdoor/living areas
+- night scenes only when a specific narrative event needs them
 
-Lighting goals:
+Normal gameplay remains readable.
 
-- readable navigation
-- strong local contrast
-- believable practical fixtures
-- controlled darkness
-- minimal black crush
-- restrained bloom
-- authored rather than random flicker
+## 8. Signage
 
-Fluorescent instability may be used subtly when narratively appropriate.
-
-## 7. Signage system
-
-Build a reusable system for:
-
-- room signs
-- classroom labels
-- floor markers
-- building labels
-- notice boards
-- temporary notices
-- event posters
+Keep signage data-driven and reusable where possible:
+- room numbers
+- direction signs
+- notices
+- temporary posters
 - schedules
+- street/shop-like generic signs where approved
 
 Requirements:
-
-- correct text orientation from player-facing angles
 - Vietnamese text support
+- correct orientation
 - no mirrored back faces
-- style variants
-- data-driven text where useful
+- readable at intended distance
 
-Final institutional logo/name/identity assets remain behind USER APPROVAL GATES.
+Official UET branding remains approval-gated.
 
-## 8. Character / NPC pipeline
+## 9. Character/NPC production
 
-Future workshop scope:
-
-- stylized-realistic or realistic character target to be approved
-- base body system
-- clothing system
-- hair
-- face variation
-- rig
+Character work remains a separate reusable pipeline:
+- base body/rig
+- clothing variants
+- hair/face variants
 - locomotion
-- idle animation
+- idle
 - sitting
 - phone use
+- typing
 - talking/listening
-- typing
-- classroom behavior
-- object interaction
+- object interactions
 
-Avoid building many unique characters before a reusable base pipeline exists.
+Do not build many unique characters before a reusable base exists.
 
-## 9. Protagonist body / animation
+## 10. Review loop
 
-Future target:
+For a major map:
+1. run actual build
+2. walk important routes
+3. capture representative viewpoints
+4. inspect scale/composition
+5. inspect collision
+6. inspect prop placement
+7. inspect text/signage
+8. check performance
+9. list missing small assets
+10. iterate
 
-- first-person body awareness
-- hands/arms when appropriate
-- sitting
-- typing
-- phone use
-- opening doors
-- carrying/using props
-- authored interaction animations
-- optional full-body visibility in approved cinematic/reflection contexts
+For a reusable small asset:
+1. preview source/model
+2. place it in a real target map
+3. inspect up close and at gameplay distance
+4. test collision/interactions if relevant
+5. verify materials
+6. verify provenance/license
+7. approve or revise
 
-Final protagonist appearance requires user approval.
+## 11. Performance
 
-## 10. VFX / atmosphere
+Browser-first requirements:
+- GLB/glTF-friendly
+- material reuse
+- repeated-object instancing where appropriate
+- simple collision
+- texture compression/reuse where useful
+- load by map/zone
+- no requirement to keep all four maps loaded simultaneously
 
-Possible reusable systems:
+## 12. Scope discipline
 
-- rain
-- wetness cues
-- subtle mist where appropriate
-- screen-space or particle dust only where justified
-- fluorescent/light instability
-- screen/monitor glow
-- restrained authored event effects when an approved scene needs them
+Do not:
+- build a fifth major map without user approval
+- build a massive speculative asset catalog
+- decompose unique building shells purely for modularity
+- duplicate small assets independently per map
+- import uncertain-license assets
+- polish invisible background detail before player-facing areas
 
-Effects must support gameplay readability.
+## 13. Current production note
 
-## 11. Performance standards
+Giảng đường 4 is currently being updated on a separate environment/art branch.
 
-The workshop must remain browser-first.
-
-Required production principles:
-
-- glTF/GLB-friendly pipeline
-- instancing/thin instances for repetition where appropriate
-- texture reuse/atlasing where useful
-- compressed textures if supported by deployment path
-- LOD only where it earns its complexity
-- sensible draw-call budgets
-- lazy/area loading as the world grows
-- collision meshes separated from visual complexity where useful
-
-Visual quality must not be accepted if it destroys target performance.
-
-## 12. Visual review loop
-
-Do not approve art from code inspection alone.
-
-For every meaningful environment pass:
-
-1. launch actual build
-2. capture agreed representative viewpoints
-3. compare before/after
-4. inspect geometry/material/lighting/readability
-5. inspect clipping/collision
-6. inspect text orientation
-7. verify performance
-8. iterate
-
-Store representative evidence under `docs/playtest/` or a later dedicated visual-review path.
-
-## 13. Asset licensing / provenance
-
-Every external production asset must have:
-
-- source
-- license
-- modification notes where relevant
-- attribution requirements if any
-- clear suitability for shipping
-
-Do not import uncertain-license assets into production.
-
-## 14. Approval gates
-
-Final versions of the following require user approval:
-
-- changes to the approved UET setting/context
-- official UET logo use
-- canonical signage style
-- campus master layout
-- protagonist design
-- important NPC designs
-- uniforms
-- major environment art-direction changes
-
-Generic technical kits and placeholders may proceed before approval.
-
-## 15. Current status
-
-This workshop is approved for the current classroom/Giảng đường 4 production work. Do not interpret that approval as authorization to reproduce a full official UET campus map or use official branding assets without review.
-
-
-## 16. Current identity update
-
-Approved narrative identity:
-- title: **UET không tệ**
-- UET student-life setting/context
-
-This does not automatically approve:
-- official UET logo
-- official colors/insignia
-- copied official signage identity
-- an exact official-campus reproduction
-- any implication of official affiliation
-
-The current environment goal is a believable Giảng đường 4 game map based on the user's approved reference/production direction, with quality and gameplay taking priority over blindly reproducing every real-world detail.
+This narrative/cleanup branch must not modify that active map implementation until the user says the big update is finished and ready for integration.
