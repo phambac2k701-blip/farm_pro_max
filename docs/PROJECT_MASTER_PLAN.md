@@ -1,260 +1,150 @@
 # Project Master Plan
 
 ## Product definition
-**Người Thứ Chín** is a browser-first 3D first-person psychological investigation game told in short chapters. The player explores realistic Vietnamese locations, inspects objects through tactile micro-cinematic interactions, collects evidence, forms hypotheses, and discovers that new knowledge can physically alter previously explored spaces.
+
+**UET không tệ** is a browser-first true-3D first-person student-life narrative game following the timeline of a UET student in Hanoi.
+
+The game is grounded in lived/observed student experience. It should feel like one continuing life rather than a collection of disconnected episodes.
+
+The current story scope reaches from entering university through the creator/protagonist's current second-year-era material. It is intentionally open-ended.
+
+Future chapters may be added later. Do not fabricate later university years merely to complete a fixed chapter count or create a premature ending.
+
+## Current approved macro
+
+The current macro is documented in `docs/design/CURRENT_STORY_MACRO.md`.
+
+Approved only at high level:
+- Chapter 0 — entering university / first Hanoi-UET impressions / admission-confirmation period
+- Chapter 1 — military-training period
+- Chapter 2 — normal university life begins; Giảng đường 4 becomes a major location
+- Chapter 3 — broader everyday student life; vibe coding begins to reflect the creator's present self
+- Chapter 4+ — locked / future life / not designed
+
+Detailed scenes/events remain TBD until the user supplies and approves them.
 
 ## Product pillars
 
-### 1. Presence
-The player must feel physically present in the location.
-- true 3D space
-- free first-person look
-- grounded walking
-- believable camera acceleration/deceleration
-- spatial audio
-- convincing lighting and scale
+### 1. Lived student presence
+- true 3D first-person space
+- grounded movement and camera
+- believable environment scale
+- ordinary Vietnamese student-life detail
+- places should grow more meaningful through repeated use
 
-### 2. Tactile investigation
-Important clues are not merely UI cards.
-The player approaches, focuses, reaches, opens, turns, reads, listens, rotates, or otherwise inspects them.
+### 2. One continuous life
+Chapters must link to each other through:
+- recurring people
+- recurring places
+- evolving habits
+- callbacks
+- jokes
+- relationships
+- foreground details that later pay off
 
-### 3. Knowledge Changes Reality
-Discoveries modify world state.
-The player may revisit a room and notice a changed object, new door, missing photograph, extra desk, altered note, or different sound.
+Avoid anthology-like chapters that could be shuffled without changing anything.
 
-### 4. Familiar unease
-Horror comes from ordinary places becoming subtly wrong.
-The design avoids relying on constant jumpscares.
+### 3. Student-life interaction
+Gameplay should make ordinary actions enjoyable:
+- arriving somewhere
+- finding/changing a seat
+- sitting/standing
+- checking a phone
+- interacting with bags, books, laptops, papers, chargers and classroom equipment
+- talking/reacting to people
+- commuting/navigating student-life spaces
+- using ordinary routines as gameplay context
 
-### 5. Short, dense chapters
-Each chapter should be compact enough to polish heavily.
-Exploration density is valued over map size.
+### 4. Humor from believable situations
+Humor should come from awkwardness, timing, expectation-vs-reality, friends, commuting friction, misunderstandings and recognizable student behavior.
 
----
+### 5. Study as background structure
+Academic life matters, but it should not dominate the whole game.
 
-# Production phases
+Use classes, schedules, assignments and exams as context for:
+- where people meet
+- why they move
+- why they are tired/busy/free
+- why a place matters
+- why a joke or conflict happens
 
-## Phase 0 — Pre-production and foundations
-### Goal
-Remove ambiguity before code volume grows.
+### 6. Foreground details should matter
+Background can simply make the world feel alive.
 
-### Deliverables
-- game vision
-- story premise and mystery rules
-- gameplay spec
-- technical requirements
-- architecture
-- art bible
-- audio direction
-- interaction language
-- content pipeline
-- save/state strategy
-- testing/playtest strategy
-- roadmap/issues
+Anything deliberately foregrounded by camera, dialogue, interaction or repeated emphasis should have a reason to matter later through character, comedy, emotion, gameplay or continuity.
 
-### Exit criteria
-- one coherent technical stack
-- one coherent gameplay loop
-- prototype scope no larger than one small location cluster
-- no unresolved decision that would invalidate the controller, interaction architecture, or content format
+### 7. Player agency with controlled production scope
+Small choices may create short alternate reactions/micro-events and then reconverge.
 
----
+Major branching is reserved for decisions that genuinely justify long-term production cost.
 
-## Phase 1 — Movement prototype
-### Goal
-Prove the game feels good before building story content.
+### 8. Four-map world production
+Current large-environment scope is deliberately limited to:
+1. Giảng đường 4
+2. Giảng đường Xuân Thủy
+3. Khu phố / phố trà đá
+4. Hòa Lạc / khu quân sự
 
-### Prototype environment
-- one hallway
-- one classroom
-- one door
-- one desk
-- one interactable book
+Large environments are authored shell-first. Smaller repeated props are produced through a separate reusable asset pipeline.
 
-### Systems
-- pointer lock
-- mouse look
-- keyboard movement
-- sprint decision documented; disabled initially unless it improves feel
-- crouch decision documented; not required for first prototype
-- collision
-- stairs/ramp tolerance if used
-- head motion restrained and optional
-- camera smoothing
-- FOV settings
-- pause/escape behavior
+See:
+- `docs/design/CURRENT_WORLD_MAP_SCOPE.md`
+- `docs/art/ASSET_PRODUCTION_PIPELINE_V2.md`
+- `docs/design/RUNTIME_WORLD_EVENT_ARCHITECTURE.md`
 
-### Exit criteria
-- stable movement
-- no obvious camera jitter
-- no clipping through walls
-- acceptable feel at 60 FPS target
-- mouse sensitivity adjustable
-- interaction prompt is readable but unobtrusive
+Runtime rule:
+- only the currently visited major map is resident at full gameplay fidelity
+- local zones may run at FULL / NORMAL / LIGHT / BACKGROUND fidelity
+- chapter/event differences should normally be state layers over reusable maps rather than duplicated map copies
+- ordinary choices should usually create local micro-branches and reconverge; only high-value decisions justify persistent route cost
 
----
+Do not add new major maps without user approval.
 
-## Phase 2 — Interaction prototype
-### Goal
-Prove an object can feel physically inspectable.
+## Current production focus
 
-### Hero interaction: book
-Flow:
-1. player approaches desk
-2. reticle/prompt subtly indicates interactability
-3. player activates interaction
-4. locomotion is suspended
-5. camera eases to an authored inspection anchor
-6. book enters inspect state
-7. opening animation plays
-8. page content becomes legible
-9. player can advance pages
-10. evidence can be discovered
-11. exit reverses or blends out
-12. control returns without camera snap
+The Giảng đường 4 foundation is complete and approved.
 
-### Required interaction primitives
-- focus target
-- camera blend
-- object animation
-- interaction lock
-- audio cue
-- readable overlay/support UI
-- conditional content by world state
-- cancel/exit
+Art/environment:
+- preserve the approved GD4 checkpoint at `7ed178251ae47074e7276f379492953448296149`
+- do not polish or redesign GD4 during source-of-truth reconciliation
+- do not start Giảng đường Xuân Thủy, the street map or Hòa Lạc until explicitly instructed
+- current high-level world scope remains exactly four maps
+- small props/items are produced or sourced separately and reused across maps where appropriate
 
-### Exit criteria
-The book interaction is polished enough to represent the interaction standard for the rest of the game.
+Narrative:
+- maintain the approved macro for Chapters 0–3
+- keep Chapter 4+ locked
+- detailed story work begins only from user-supplied/approved material
 
----
+Technical foundations remain reusable where they fit:
+- Babylon.js / TypeScript / Vite
+- WebGPU with WebGL fallback
+- first-person controller + authored physical collision
+- interaction targeting/state ownership
+- camera choreography
+- generic save/state/event architecture
+- audio director
+- modular environment/material/signage foundations
+- testing/build/deployment infrastructure
 
-## Phase 3 — Investigation loop
-### Goal
-Make the game more than walking.
+The former automatic PlayerSafety/respawn controller is not part of the current active runtime and should not be restored without a concrete approved need.
 
-### Systems
-- evidence registry
-- evidence acquisition
-- case journal
-- evidence detail view
-- hypothesis graph/data model
-- discovery conditions
-- chapter objective state
-- persistent world facts
+## Identity boundaries
 
-### Exit criteria
-The player can discover a clue, see it recorded, and have that knowledge unlock or alter another investigation opportunity.
+Approved:
+- project title: **UET không tệ**
+- UET student-life setting/context
 
----
+Not automatically approved:
+- official UET logo
+- official visual identity/colors
+- insignia
+- copied official signage system
+- full canonical campus map
+- any implication of official UET affiliation
 
-## Phase 4 — Reality shift
-### Goal
-Prove the signature mechanic.
+## Approval rule
 
-### Prototype example
-Initial state:
-- classroom contains 8 student desks
-- old class photo shows 8 recognized students
+The user is the primary writer and final narrative authority.
 
-Knowledge event:
-- player discovers archived attendance evidence indicating a ninth seat/student record
-
-Shift:
-- after a controlled transition/revisit, classroom contains a ninth desk
-- a new notebook exists at that desk
-- sound/lighting changes subtly
-- no explicit “world changed” popup
-
-### Exit criteria
-The player can notice the change without the game explaining it directly.
-
----
-
-## Phase 5 — Vertical slice: Chapter 1
-### Location scope
-- exterior arrival
-- school corridor
-- classroom
-- stair landing
-- broadcast/archive room or equivalent final room
-
-### Content
-- opening hook
-- 3–5 meaningful interactables
-- 2–3 evidence items
-- one audio clue
-- one reality shift
-- one chapter-ending reveal
-
-### Exit criteria
-A new player can play from start to chapter end without developer intervention.
-
----
-
-## Phase 6 — Production systems
-- save/load
-- chapter state
-- settings
-- localization-ready text pipeline
-- content authoring format
-- asset streaming/preloading
-- analytics only if intentionally chosen
-- accessibility settings
-- robust error handling
-
----
-
-## Phase 7 — Chapters 2–9
-Each chapter gets its own spec and implementation plan.
-Do not build all chapters in one giant content branch.
-
----
-
-## Phase 8 — Polish
-- performance profiling
-- loading transitions
-- lighting pass
-- sound pass
-- animation pass
-- interaction consistency pass
-- narrative continuity pass
-- accessibility pass
-- browser compatibility pass
-
----
-
-# Backlog priority order
-
-## P0
-- movement/camera feel
-- collision
-- interaction framework
-- saveable world state
-- evidence system
-- reality-shift mechanic
-- performance
-
-## P1
-- advanced lighting
-- authored camera choreography
-- UI polish
-- audio occlusion/positioning
-- chapter tooling
-- automated asset validation
-
-## P2
-- controller/gamepad support
-- optional advanced graphics settings
-- mobile experimentation
-- cloud saves
-- accounts
-- social features
-
-## Explicitly out of MVP
-- multiplayer
-- open city
-- combat
-- procedural world generation
-- full NPC simulation
-- mobile-first controls
-- live service backend
+Detailed chapter content, important characters, major relationship arcs, future chapters, major routes, endings, protagonist final identity/appearance, and official-brand visual use require explicit approval.

@@ -1,14 +1,14 @@
-# CH01 Bright Baseline Visual Guide
+# P202 Golden Classroom Visual Guide
 
 Status: **DRAFT — VISUAL DIRECTION UPDATE — NOT INSTITUTIONAL CANON**  
 Date: 2026-10-02  
-Applies to the room-focused student-life slice defined in `docs/design/CH01_ROOM_FOCUSED_STUDENT_SLICE.md`.
+Applies to the P202 golden-classroom slice defined in `docs/design/P202_ROOM_FOCUSED_STUDENT_SLICE.md`.
 
 ## 1. Core visual rule
 
 The baseline game should look like an **ordinary, readable Vietnamese student environment first**.
 
-The player should be able to understand the room comfortably and notice everyday details without “horror vision.” Darkness and uncanny lighting are reserved for specific events so they have contrast and meaning.
+The player should be able to understand the room comfortably and notice everyday details without “dark dramatic grading.” Darkness and uncanny lighting are reserved for specific events so they have contrast and meaning.
 
 Reference spirit only:
 - local
@@ -43,7 +43,7 @@ The baseline should not communicate “danger” just because the player is stan
 
 ## 3. Special-event lighting target
 
-Uncanny/darker lighting may appear only when a narrative or KCR event justifies it.
+Unusual/darker lighting may appear only when an approved event justifies it.
 
 Allowed event changes:
 - subtle ambient-fill reduction
@@ -66,7 +66,7 @@ Avoid:
 - rapid flicker
 - repeated flash effects
 - using darkness as the only way to signal “uncanny”
-- permanent horror grading after an event ends
+- permanent dark grading after an event ends
 
 ## 4. Color and mood language
 
@@ -104,7 +104,7 @@ Use words such as:
 - one reflective or informational surface drawing unusual attention
 - ordinary geometry feeling subtly inconsistent
 
-The event state should feel like a deviation from normal, not a separate horror game.
+The event state should feel like a deviation from normal, not a separate dark-mode game.
 
 ## 5. What “too dark” means
 
@@ -116,7 +116,7 @@ A scene is too dark if any of these are true during ordinary gameplay:
 - wall color and material differences vanish
 - large parts of the screen sit near black with no meaningful information
 - the player must increase display brightness to understand navigation
-- the lighting communicates horror/tension before the story asks for it
+- the lighting communicates danger/tension before the story asks for it
 - screenshots require explanation to identify ordinary room structure
 
 “Moody” is not an excuse for missing information.
@@ -201,22 +201,18 @@ Prefer fixing proportion, orientation, collision footprint and composition throu
 
 The current room-number examples `P 202` and `P 204` are approved working labels only. Final A/B building topology, complete room-number map and institutional styling remain `TBD_USER_APPROVAL_*`.
 
-## 10. Relationship to the old Chapter 1 checkpoint
+## 10. Current browser evidence
 
-The preserved `chapter-1-vertical-slice` remains a technical/tonal prototype and must not be rewritten or retagged.
-
-Its dark night/rain presentation is **not** the default target for the new game.
-
-Current bright-room foundation evidence:
+Current room-foundation evidence:
 - before: `docs/playtest/v2-room-corrections-before/`
 - after: `docs/playtest/v2-room-corrections-after/`
 
 The after captures verify the current prototype direction:
 - classroom geometry and furniture are readable at normal viewing distance
-- desk/chair orientation is no longer visually reversed
+- desk/chair orientation is corrected
 - room-number signage reads `P 202` / `P 204`
-- classroom door/frame/header visually fits the wall opening from corridor and room viewpoints
-- dark/uncanny lighting remains available as an event-state tool rather than the normal baseline
+- classroom door/frame/header fits the wall opening more cleanly
+- normal lighting is bright/readable rather than dark by default
 
 Current numerical lighting values are implementation tuning values, not canonical visual-brand constants.
 

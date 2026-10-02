@@ -1,301 +1,118 @@
-# GAME PIVOT V2 — DRAFT NOTES
+# GAME PIVOT V2 — CURRENT DRAFT NOTES
 
-Status: **DRAFT — NOT CANON — WAITING FOR USER REVIEW**  
-Owner of final narrative/canon decisions: **User / primary writer**  
-Base technical checkpoint: `chapter-1-vertical-slice`  
-Implementation status: **DESIGN ONLY — DO NOT START CHAPTER 2**
+Status: **CURRENT DIRECTION — DETAILS STILL USER-APPROVAL-GATED**
+Owner: **User / primary writer**
 
-> **2026-10-02 direction update:** the immediate playable target is now the room-focused, bright/readable student-life slice in `CH01_ROOM_FOCUSED_STUDENT_SLICE.md`. Normal gameplay is ordinary and well lit; dark/uncanny presentation is event-specific. This supersedes any interpretation of the old Chapter 1 night/horror presentation as the baseline for the new game.
+## Current identity
 
-## 1. Purpose of the pivot
+Project title:
 
-The project is pivoting from a mostly linear first-person psychological investigation/horror structure into a broader first-person narrative campus-life RPG / life-sim structure.
+> **UET không tệ**
 
-The new target experience is:
+The project follows a UET student timeline in Hanoi.
 
-> A grounded, funny, ordinary student-life experience set at a fictional technology university in Hanoi, with an uncanny/scary layer that slowly grows inside familiar routines.
+This is no longer planned as a fixed nine-chapter story.
 
-The game should feel lived-in before it feels frightening.
+The current authored macro stops at Chapter 3 and remains open for future expansion.
 
-The previous Chapter 1 remains valuable as a technical and tonal prototype, but is not automatically the canon Chapter 1 of the new game.
+Authoritative macro document:
+- `docs/design/CURRENT_STORY_MACRO.md`
 
-## 2. What remains useful from the current Chapter 1
+## Current chapter scope
 
-Keep and reuse the existing technical foundations where they remain appropriate:
+- Chapter 0: entering university / admission-confirmation period / first new-city-and-school impressions
+- Chapter 1: military-training period
+- Chapter 2: ordinary university life begins; Giảng đường 4 becomes important
+- Chapter 3: everyday student life broadens; vibe coding appears as a subtle reflection of the creator's current self
+- Chapter 4+: locked / `TBD_FUTURE_LIFE_CHAPTERS`
 
-- first-person movement and camera
-- interaction targeting and interaction ownership
-- inspection/camera choreography
-- save/load and checkpoint state
-- event sequencing
-- evidence/state infrastructure where reusable
-- deterministic KCR foundations
-- audio direction infrastructure
-- browser/WebGPU/WebGL deployment foundation
+Do not write a finale at Chapter 3.
 
-The old Chapter 1 should now be treated as:
+Do not invent Chapter 4 simply because a next number exists.
 
-- a technical proof-of-concept
-- a first-person feel prototype
-- a reusable systems source
-- a reference for “familiar place, slightly wrong”
+## Narrative philosophy
 
-Do **not** assume its current narrative beats remain canon.
+The story should feel like one connected life.
 
-## 3. New high-level fantasy
+Important continuity tools:
+- recurring people
+- recurring locations
+- evolving relationships
+- small callbacks
+- repeated routines that change meaning
+- foreground details that later pay off
 
-The player experiences the POV of a student at a **fictional technology university in Hanoi**.
+Anything deliberately highlighted should have a reason to be highlighted.
 
-Placeholder working protagonist name: `Bắc`  
-Placeholder university name: **TBD_USER_APPROVAL**
+Background population/objects may simply make the world feel alive; not every prop needs symbolism.
 
-The player should experience recognizable student life:
+## Study-vs-life balance
 
-- first day / first enrollment period
-- getting lost on campus
-- meeting classmates
-- awkward social situations
-- lectures and practical classes
-- casual classroom conversations
-- deadlines and coding assignments
-- quizzes and attendance pressure
-- commuting / traffic
-- food, cafés, campus breaks
-- late-night study sessions
-- exams
-- semester breaks / going home
-- internship/job-search phases later in the game
-- unexpected campus disruptions such as outages or schedule changes
+Study is background structure, not the whole subject.
 
-These are examples and **not final chapter canon**.
-
-## 4. Tone
-
-Every major chapter/arc should contain humor.
-
-Humor should come from believable student behavior rather than detached comedy scenes:
-
-- awkward internal monologue
-- failed attempts to look confident
-- strange classmates
-- social embarrassment
-- class/group-chat banter
-- procrastination
-- exaggerated self-confidence immediately contradicted by reality
-- contemporary student meme/trend energy where it can age gracefully
-
-The game should feel raw, ordinary, funny, and recognizable.
-
-Humor must not erase emotional sincerity.
-
-## 5. Early chapter ideas — provisional only
-
-### Chapter 1 — First day / enrollment
-
-Possible themes:
-
-- excitement entering a new university
-- unfamiliar buildings and crowds
-- new classmates
-- social awkwardness
-- curiosity and first impressions
-- tutorial mechanics integrated naturally into finding rooms, checking the phone, talking to people, and navigating campus
-
-The uncanny layer should be extremely light at first.
-
-### Chapter 2 — First classes
-
-Possible themes:
-
-- settling into routine
-- talking with classmates
-- awkward attempts at socializing
-- distinctive or strange classmates
-- minor classroom comedy
-- early assignments and class culture
-
-### Chapter 3 — Deadline spiral
-
-Possible themes:
-
-- coding late at night
-- growing workload
-- sleep loss / fatigue
-- complaining about assignments
-- discovering shortcuts or questionable student habits
-- attendance/quiz pressure as narrative texture
-- procrastination and attempts to recover
-
-The game may portray ethically questionable student behavior as part of the story, but should not turn it into a real-world cheating tutorial.
-
-### Arc 4+ — Reality starts slipping
-
-Daily-life simulation must continue even after the uncanny layer becomes stronger.
-
-Possible ongoing life content:
-
+The game can use:
 - classes
-- friends
-- nighttime outings
-- internships
-- deadlines
-- semester events
-- weekends
-- going home
-- commuting
-- ordinary campus frustrations
-
-The mystery/scary layer should invade ordinary life instead of replacing it.
-
-## 6. Uncanny / scary direction
-
-Do not turn the project into a generic haunted-house exploration game.
-
-Target feeling:
-
-> Familiar routines become subtly wrong.
-
-Potential channels for KCR / uncanny changes:
-
-- room numbers
 - schedules
-- phone messages
-- class lists
-- signage
-- NPC memory/awareness
-- classroom/campus routes
-- documents
-- audio
-- reflections
-- physical layout
-- saved memories / contradictory recollections
+- assignments
+- exams
+- academic pressure
 
-Possible larger twist direction:
+But these should create situations for student life rather than turn the game into a study simulator.
 
-The protagonist may eventually access a hidden/third layer of reality connected to the university.
+The wider subject is:
+- friends
+- city movement
+- food
+- commuting
+- awkwardness
+- routine
+- jokes
+- habits
+- personal interests
+- gradual change
 
-The cause should remain ambiguous until the user approves the final narrative explanation. Fatigue, stress, perception, institutional history, and actual supernatural/metaphysical causes may all be possible interpretations during development.
+## Humor
 
-## 7. Sensory stress sequences
+Humor is core and should emerge naturally from:
+- expectation vs reality
+- awkward timing
+- friend-group behavior
+- traffic/commuting
+- ordinary student frustrations
+- deadpan internal reactions
+- repeated jokes that gain context
 
-The game can use sensory design during intense academic-pressure scenes:
+## Meta / vibe-coding direction
 
-- narrowed attention
-- environmental sound compression
-- keyboard/fan/laptop noise becoming dominant
-- controlled heartbeat-like audio
-- brief visual fatigue / blinking motifs
-- music intensity rising
-- UI pressure
-- time pressure
+Chapter 3 includes a subtle vibe-coding thread.
 
-Use these sparingly and with gameplay readability preserved.
+It should suggest that the protagonist is beginning to resemble the creator's present self.
 
-Do not rely on constant flashing or aggressive horror effects.
+Do not state the meta connection explicitly.
 
-## 8. Sensitive themes
+Observant players may notice it.
 
-If later chapters deal with severe stress, burnout, despair, or other mental-health themes, they should be handled as character/narrative material rather than spectacle.
+## Environment production relationship
 
-Do not use self-harm as a joke, reward, mechanic, or graphic scene.
+The large Giảng đường 4 foundation is now complete and user-approved at `7ed178251ae47074e7276f379492953448296149`.
 
-Private/adult-coded humor, if kept at all, must remain non-explicit and imply rather than depict sexual activity.
+Narrative work must treat that approved topology as the current foundation.
 
-## 9. Characters
+P202/room-level documents remain technical references and do not override the Giảng đường 4 layout source-of-truth.
 
-Future target:
+## Special-event/mystery status
 
-- actual 3D NPCs rather than static props
-- reusable rig/animation system
-- schedules and locations
-- dialogue/reaction states
-- interaction states
-- social relationship state where needed
+No mystery/uncanny layer is currently part of the approved Chapter 0–3 macro.
 
-The protagonist should eventually have a 3D body suitable for:
+Generic state/variant technology may remain in the engine, but narrative agents must not inject strange events into these chapters unless the user later approves them.
 
-- visible first-person hands/body where appropriate
-- sitting
-- phone use
-- typing/coding
-- opening doors
-- carrying objects
-- other authored interactions
-- optional third-person/cinematic/reflection shots where appropriate
+## Next narrative task
 
-Exact protagonist appearance requires user approval.
+Wait for the user to provide detailed Chapter 0 material.
 
-## 10. World structure
-
-Move away from a purely chapter-corridor structure toward a linked campus-life world.
-
-The first new vertical slice should stay small and dense rather than attempting an entire university.
-
-Possible first-slice locations:
-
-- campus entrance / approach
-- one main academic building
-- one classroom
-- corridor / stair / common area
-- food/café or student rest area
-- room/dorm/rented-room home base
-- one exterior route
-
-Final map topology requires user approval before becoming canon.
-
-## 11. New core systems likely required
-
-Provisional architecture targets:
-
-- WorldTime / Calendar
-- Day/semester progression
-- Timetable / class schedule
-- EventScheduler
-- NPC schedule/lifecycle
-- dialogue system
-- social/relationship state where needed
-- activities / quest system
-- phone system
-- messaging / announcements
-- campus location/world-state system
-- persistent day-state save structure
-- expanded KCR capable of changing both physical and informational reality
-
-This list is provisional and should be validated by a dedicated technical design phase before implementation.
-
-## 12. Naming / real-world references
-
-Do not use real university names, logos, official slogans, campus maps, uniforms, or other identifiable institutional branding as canon without explicit approval.
-
-The intended setting is a **fictional technology university in Hanoi**, inspired by the broad texture of Vietnamese student life rather than an exact reproduction of a specific real institution.
-
-## 13. Narrative authority
-
-The user is the primary writer / final narrative authority.
-
-AI may:
-
-- organize notes
-- propose options
-- check continuity
-- identify technical requirements
-- draft non-canon alternatives
-- help implement approved material
-
-AI must not silently promote draft story ideas into canon.
-
-Major chapter content, twists, endings, major character decisions, and institutional identity require explicit user approval.
-
-## 14. Current stop condition
-
-Do not begin Chapter 2 from the old narrative.
-
-Do not implement the new story yet.
-
-Next intended design deliverables, only after user approval:
-
-1. GAME PIVOT V2 specification
-2. TECHNICAL REQUIREMENTS V2
-3. VISUAL PRODUCTION WORKSHOP V1
-4. new chapter/semester structure
-5. new vertical-slice scope
+Then:
+1. organize the material into scenes/events
+2. identify recurring characters/places/details
+3. identify what carries into Chapter 1
+4. identify potential later payoffs
+5. keep Chapter 4+ locked

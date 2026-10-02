@@ -1,210 +1,219 @@
 # Technical Requirements
 
 ## Platform
+
 Primary target: desktop browsers.
 
-### Supported baseline
-- Chromium-family modern browser
+Supported baseline:
+- modern Chromium-family browser
 - Firefox modern browser
-- Safari compatibility evaluated after prototype stability
+- Safari compatibility evaluated after implementation stability
 - WebGPU preferred where available
-- WebGL fallback required for broader support
+- WebGL fallback required
 
 ## Stack
+
 - TypeScript
 - Vite
 - Babylon.js
 - Babylon.js glTF loader
-- browser storage for early prototype saves
-- test runner selected during bootstrap
-- lightweight state management; do not add a heavy framework without demonstrated need
+- browser storage for current saves
+- automated test runner
+- lightweight state management; avoid heavy frameworks without demonstrated need
 
 ## Rendering
+
 - physically plausible lighting where performance allows
-- real-time shadows used selectively
-- baked/texture-based detail preferred for static environment richness
 - PBR materials
-- glTF/GLB asset format
-- texture compression strategy evaluated before vertical slice
-- post-processing must be tunable and must never destroy readability
+- GLB/glTF runtime assets
+- selective real-time shadows
+- texture/detail reuse
+- post-processing must remain readable and tunable
+- ordinary student-life scenes should not rely on dark presentation
 
 ## First-person controller
+
 Required:
-- true mouse-look with pointer lock
+- pointer-lock mouse look
 - configurable sensitivity
 - frame-rate independent movement
-- acceleration/deceleration tuned for grounded feel
-- stable collision response
+- grounded start/stop feel
+- stable collisions
 - no camera jitter at rest
-- no large bobbing that causes discomfort
-- optional subtle breathing/sway only
+- restrained optional head motion
 - smooth FOV behavior
 - clean pause/unlock behavior
+- focus/pointer-lock loss recovery
+- no sticky movement input
 
-Target feel:
-- deliberate, human walking
-- not competitive-FPS snappy
-- not floaty
-- not over-smoothed
-- responsive start/stop
-- camera rotation should preserve user input precision
+## Collision / safety
 
-## Collision/physics
-Use the minimum physics complexity needed.
+Use minimum complexity needed:
 - static world collision
 - character collision
 - trigger volumes
-- interaction ray/shape queries
-- dynamic rigid-body physics only where gameplay needs it
+- interaction ray queries
+- separate simple collision meshes when visual assets become complex
+- player recovery if they escape the authored playable space
 
-Do not make every prop physically simulated.
+Do not physically simulate every classroom prop.
 
 ## Interaction detection
+
 - center-screen raycast or small cone query
-- max distance per interaction category
+- per-interaction max distance
 - visibility/occlusion respected
-- clear priority when multiple targets overlap
-- target can expose interaction verbs/capabilities
-- interaction state can disable locomotion and redirect camera
+- deterministic target priority
+- explicit interaction ownership
+- locomotion/look may be disabled during authored interactions and must restore reliably
 
 ## Camera choreography
-The camera service must support:
-- gameplay camera mode
+
+Camera service must support:
+- gameplay mode
 - authored focus/inspection mode
-- smooth blend to target transform
+- smooth blend
 - configurable easing/duration
-- return to previous gameplay transform
+- exact restoration
 - cancel-safe transitions
-- FOV override
-- look-at targeting
-- limited head/eye-style offset when useful
+- FOV overrides
+- sitting/standing camera states when implemented
 
-No hard teleport between gameplay and inspect camera except emergency recovery.
+## Student-life interaction requirements
 
-## Interaction example: book
-Technical requirements:
-- authored inspection anchor
-- focus lock
-- player input mode switch
-- book open animation
-- page state
-- readable content plane/UI
-- page-turn transition
-- sound events
-- evidence trigger
-- cancel/close transition
-- world-state-dependent page variants supported
+The architecture should be able to support:
+- seat selection
+- sit / stand
+- doors and windows
+- phone use
+- desk and classroom-object inspection
+- paper/book/laptop/charger interactions
+- short dialogue/reaction sequences
+- local choice branches and reconvergence
+- zone/scene transitions
 
-## World state
+Implement concrete features only when an approved sequence needs them.
+
+## World / event state
+
 Must support:
-- boolean facts
-- enumerated facts
-- evidence discovery
-- chapter progression
-- object variant selection
-- scene variant selection
-- conditional interactables
+- boolean/number/string facts
+- chapter/scene progression
+- local event progression
+- object/scene variants
+- conditional interactions
 - one-time events
-- persistent changes
+- optional persistent player choices
+- future relationship/NPC state if required
 
-World state must be data-driven, not scattered magic booleans across scene code.
+State must be data-driven rather than scattered scene booleans.
 
-## Knowledge Changes Reality
-A reality shift is a state transition driven by knowledge/evidence, not arbitrary timer scripting.
+## Conditional presentation
 
-Requirements:
-- condition evaluation
-- controlled reveal timing
-- object spawn/hide/swap
-- material/texture swap
-- audio layer change
-- lighting variation
-- interaction availability change
-- persistence after save/load
+The engine may support authored changes to:
+- objects
+- materials
+- lighting
+- audio
+- UI/device state
+- interaction availability
+
+Such changes are generic technical capability. They do not define story canon by themselves.
 
 ## Asset requirements
-### Geometry
-- environment authored in modular pieces
-- scale uses consistent units
-- collision meshes simpler than render meshes
-- avoid unnecessary hidden geometry
 
-### Textures
-- consistent texel density by category
-- high detail reserved for hero inspection props
-- decals for grime, notices, stains, handwriting, cracks
-- texture resolution budget defined before vertical slice
+### Geometry
+- consistent meter-based scale
+- reusable modular assets
+- simpler collision geometry where useful
+- avoid unnecessary hidden geometry
+- repeated furniture should use instancing/thin instances where appropriate
 
 ### Models
-- GLB preferred for runtime
-- authored source assets kept outside runtime path where appropriate
-- asset naming convention required
-- LOD only where profiling shows benefit
+- GLB preferred at runtime
+- authored source assets stored separately where appropriate
+- clear naming conventions
+- LOD only where profiling justifies it
+
+### Textures/materials
+- consistent texel density by category
+- detail concentrated near player-facing assets
+- material reuse encouraged
+- texture compression/atlasing evaluated for browser performance
 
 ## Audio
+
+Support:
 - spatial ambience
 - room tone
-- interact SFX
-- footsteps based on surface type eventually
-- evidence audio playback
-- dynamic ambience layers tied to world state
-
-Audio must not depend on constant loud stingers.
+- interaction SFX
+- phone/device audio
+- dialogue/voice playback when required
+- dynamic ambience for authored event states
 
 ## Performance targets
-Prototype target:
-- 60 FPS on a normal contemporary laptop at 1080p-equivalent viewport
-- stable frame pacing prioritized over maximum visual effects
-- no major stutter when entering interaction mode
 
-Budgets will be measured and tightened after the graybox prototype.
+Current target:
+- approximately 60 FPS on a normal contemporary laptop at a 1080p-equivalent viewport
+- stable frame pacing prioritized over maximum effects
+- no major hitch entering interactions
+- classroom repetition optimized sensibly
 
-## Loading
-- initial bootstrap kept small
-- chapter/scene assets loaded in groups
-- hero interaction assets preloaded before interaction becomes available
-- avoid loading all nine chapters at startup
+Measure and tighten budgets as real assets enter production.
+
+## Loading / zones
+
+- keep bootstrap small
+- load assets in scene/zone groups
+- preload interaction-critical assets
+- do not load the entire future campus/chapter set at startup
+- support modular scene transitions so the world can feel connected without being one giant runtime scene
 
 ## Save strategy
-Prototype:
-- local browser persistence
 
-Save data must contain:
-- save schema version
-- chapter
-- player/world checkpoint
-- evidence state
-- world facts
+Current save data should support:
+- schema version
+- current scene/chapter/checkpoint
+- relevant world/event facts
+- persistent choices where approved
 - settings
 
 Migration strategy required before public release.
 
 ## Accessibility
+
 Plan for:
-- sensitivity setting
-- FOV setting within safe design range
-- motion/head-bob reduction
-- subtitle/caption support
-- text size/readability
-- volume categories
-- reduced flashes/flicker mode
+- sensitivity
+- FOV
+- reduced head motion
+- subtitles/captions
+- readable text sizing
+- audio categories
+- reduced flashing/flicker
+- good contrast in both ordinary and special-event lighting
 
 ## Security/privacy
-Early build should require no account and collect no personal data.
-Any future analytics/backend addition requires an explicit decision record.
+
+Current build requires no account and should collect no personal data.
+
+Any future analytics/backend addition requires an explicit decision.
 
 ## Browser deployment
-- production build deployable as static web app if possible
-- Vercel preview per meaningful branch/PR when pipeline is ready
-- cache-busting/versioning for assets
-- useful loading/error screen rather than blank canvas
+
+- static deployment where possible
+- versioned/cache-safe assets
+- useful loading/error state
+- preview deployment for meaningful playable milestones
 
 ## Verification
-Every playable milestone must be checked for:
-- runtime console errors
+
+Every playable milestone must check:
+- console/runtime errors
 - broken asset requests
-- controller regressions
+- controller/input regressions
+- collision and out-of-bounds behavior
 - interaction soft-locks
-- save corruption
-- unacceptable frame drops
+- save-state corruption
+- performance hitches
 - browser resize/focus behavior
+- actual visual quality in the running build

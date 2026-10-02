@@ -1,155 +1,128 @@
 # Gameplay Specification
 
-## Core loop
-1. enter a location
-2. observe
-3. move freely in first person
-4. notice points of interest
-5. inspect meaningful objects
-6. collect evidence or context
-7. form/advance a hypothesis
-8. unlock a new investigative path
-9. revisit or continue
-10. observe reality change as knowledge changes
+## Current gameplay thesis
 
-## Movement feel
-The player should feel like a person exploring cautiously, not an action hero.
+The player should feel like they are **living through university life in first person**, not walking through a level built only to deliver exposition.
 
-Movement qualities:
+Ordinary actions are allowed to carry gameplay value.
+
+## Baseline loop
+
+A typical student-life sequence may involve:
+
+1. arrive in a place
+2. understand the immediate situation
+3. move and look around naturally
+4. interact with people or ordinary objects
+5. make one or more small choices
+6. receive believable reactions/consequences
+7. continue the routine or objective
+8. reach a larger social, personal, or narrative event when the scene calls for it
+
+Exact scene/event details remain user-approval-gated.
+
+## Movement and camera
+
+Movement should be:
 - grounded
 - smooth
 - responsive
-- low visual noise
-- consistent speed
-- believable stopping
-- precise looking
+- precise in classrooms/corridors
+- comfortable for long first-person sessions
+- resistant to stuck input, clipping and out-of-bounds falls
 
-Avoid:
-- exaggerated head bob
-- inertia that fights the player
-- FPS-style weapon movement conventions
-- constant sprinting
-- motion blur that obscures clues
-
-## Looking
-Mouse look is unrestricted within ordinary first-person rules.
-
-The player can:
-- turn around
-- look up/down
-- inspect ceilings/floors
-- look under or behind objects when level geometry permits
+Avoid exaggerated head bob, excessive inertia and tiring camera effects.
 
 ## Interaction language
-The player should learn one consistent rule:
-**look at something meaningful and use one primary interact action.**
 
-The object and context determine what happens.
+Primary rule:
 
-### Interaction categories
+**look at a meaningful object/person and use one clear primary interaction.**
+
+Reusable interaction categories:
 - inspect
-- open/close
-- pick up
-- operate
+- sit / stand
+- open / close
+- pick up / place
+- use / operate
 - read
-- listen
-- place/use
-- transition through door/entry
+- check phone
+- talk / respond
+- transition between authored zones
 
-Avoid large radial menus unless a genuinely multi-action object needs them.
+Important interactions may use short camera/animation choreography, but the game must return control cleanly.
 
-## Hero interactions
-Important clues use authored micro-cinematics.
+## Small-choice structure
 
-### Standard sequence
-1. acquire target
-2. enter interaction lock
-3. camera moves naturally toward the object
-4. hands/object animation may play if needed
-5. object becomes manipulable/readable
-6. evidence/event may trigger
-7. player exits
-8. camera returns naturally
-9. locomotion unlocks
+Not every choice needs a permanent route.
 
-### Book example
-- camera bends/leans toward table
-- book shifts into readable position
-- cover opens
-- pages turn
-- player can focus on a note
-- discovery becomes evidence only when the relevant content is actually inspected
-- closing restores control without snapping
+For low-stakes choices:
+- allow the player to try alternatives
+- give alternatives distinct reactions, jokes, inconveniences or small consequences
+- when needed, guide the player naturally back toward the state required for the main narrative to continue
 
-## Investigation
-The game should reward observation rather than pixel hunting.
+Prefer believable in-world consequences over obvious invisible choice walls.
 
-Clues can be:
-- physical object
-- document
-- photograph
-- audio recording
-- environmental inconsistency
-- timeline contradiction
-- changed architecture
-- NPC-recorded testimony later if characters are added
+## Long-term choices
 
-## Evidence
-Evidence is not automatically “the truth.”
-Evidence is a recorded fact/artifact the player has found.
+Only decisions with sufficient narrative weight should create expensive long-term route divergence.
 
-Evidence can:
-- unlock journal entries
-- satisfy reality-shift conditions
-- connect to another clue
-- contradict another item
-- open a chapter route
+The exact long-term route system remains TBD.
 
-## Hypotheses
-The long-term system may allow players to connect evidence or select interpretations.
+## Student-life systems to validate gradually
 
-Important rule:
-The game should not instantly grade every hypothesis as correct/incorrect.
-Consequences and later evidence should reveal quality.
+Potential reusable systems:
+- seat interaction
+- classroom routine state
+- phone/messages
+- dialogue/reaction state
+- NPC presence/schedules where useful
+- timetable/calendar when justified
+- classroom/student props
+- modular scene/zone transitions
+- persistent choice/world-state flags
 
-## Knowledge Changes Reality
-The world may change after the player learns something.
+Do not implement a giant life-sim framework before concrete scenes need it.
 
-Good shifts:
-- subtle enough to create doubt
-- materially meaningful to investigation
-- persistent
-- foreshadowed or retrospectively understandable
+## Academic-life rule
 
-Bad shifts:
-- random visual glitch with no narrative meaning
-- frequent cheap scares
-- changes so hidden that progression becomes guessing
+Study is a background structure, not the sole gameplay subject.
 
-## Fail states
-The MVP should avoid traditional death/combat fail states.
-Primary friction is deduction and exploration.
+Classes, schedules, assignments and exams may create:
+- timing pressure
+- reasons to travel
+- social situations
+- group interactions
+- routine
+- jokes
+- changes of plan
 
-Soft-lock prevention is mandatory.
-If the player misses a clue required for progress, there must be a discoverable path back to it.
+Do not turn the game into a study simulator unless a specific academic activity is genuinely interesting to play.
 
-## Chapter rhythm
-Typical short chapter:
-1. arrival / calm
-2. first anomaly
-3. investigation
-4. contradiction
-5. deeper access
-6. reality shift
-7. reveal
-8. unresolved hook into next chapter
+## Current narrative-gameplay boundary
 
-## Replay value
-Replay comes from:
-- understanding earlier foreshadowing
-- alternate investigation order
-- optional evidence
-- changed interpretation
-- possible later branching decisions
+The approved Chapter 0–3 macro is grounded student life.
 
-Do not rely on collectible spam.
+Do not add unrelated mystery/special-event content into those chapters unless the user later approves it.
+
+Generic conditional-state technology may remain in the engine, but content should be driven by approved student-life scenes, character continuity, humor and personal development.
+
+## Current environment/gameplay proof target
+
+The approved Giảng đường 4 shell is the current environment foundation.
+
+Current gameplay rule:
+- preserve its reviewed topology and collision behavior
+- build interactions/events as stateful layers over the reusable map rather than forcing the map into an old scene script
+- keep ordinary player choices local and usually reconverging
+- reserve persistent route state for major decisions only
+- do not begin NPC/event production until explicitly instructed
+
+Future classroom/student-life gameplay should prove:
+- believable first-person movement at classroom/building scale
+- natural roleplay interactions
+- smooth camera/control ownership
+- reusable state/event foundations
+- browser-friendly performance inside the active FULL/NORMAL gameplay zones
+
+Exact dialogue, important NPCs and detailed chapter events require user approval.

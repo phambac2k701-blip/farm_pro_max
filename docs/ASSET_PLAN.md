@@ -1,117 +1,165 @@
 # Asset Plan
 
 ## Purpose
-Keep visual quality high without producing uncontrolled asset volume.
 
-## Asset categories
+Keep visual production focused around the current **four major maps** while building a separate reusable library for smaller objects.
 
-### A. Environment
-- walls/floors/ceilings
-- doors/windows
-- corridor/classroom architecture
-- stairs/railings
-- large furniture
+Authoritative references:
+- `docs/design/CURRENT_WORLD_MAP_SCOPE.md`
+- `docs/art/ASSET_PRODUCTION_PIPELINE_V2.md`
 
-### B. Props
-- desks/chairs
+## Two production layers
+
+### Layer A — Major maps
+
+Current approved high-level map set:
+1. Giảng đường 4
+2. Giảng đường Xuân Thủy
+3. Khu phố / phố trà đá
+4. Hòa Lạc / khu quân sự
+
+Large maps are authored as scene-level environments.
+
+For them, prioritize:
+- overall shell/frame
+- scale
+- traversal
+- major openings
+- stairs/corridors/roads
+- collision
+- lighting blockout
+- gameplay/social zones
+
+Only after that should the scene receive dense prop dressing.
+
+Do not require a whole large environment to be decomposed into dozens of small reusable modules before production can move forward.
+
+### Layer B — Reusable assets
+
+Small/repeated assets are produced separately and reused across the four maps.
+
+Examples:
+- bạt / tarps
+- ghế nhựa / chairs
+- tables
+- classroom desks/chairs
+- doors/frames
+- windows/frames
+- fans
+- air conditioners
+- lights
+- boards
+- signs/sign mounts
+- bins/benches/stools
+- bottles/cups
+- backpacks
 - books/notebooks
-- cabinets
-- electronics
-- lamps
-- archive boxes
+- laptops
+- chargers/cables
+- food/drink props
+- street furniture
+- camp/military-living props
+- plants and ordinary utility objects
 
-### C. Narrative images
-- class photographs
-- documents
-- notices
-- diary pages
-- maps
-- screenshots/files
-- posters
+## Sourcing options
 
-### D. Materials/decals
-- grime
-- stains
-- cracks
-- tape
-- paper residue
-- chalk
-- handwriting
-- labels/numbers
+For a reusable asset, choose the most practical route:
 
-### E. FX
-- rain
-- dust
-- fog
-- light flicker
-- subtle screen/noise effects
+### Custom
+- Blender/authored modeling
+- suitable when exact proportions, interaction or visual identity matter
 
-### F. Audio
-Tracked separately but versioned as production assets.
+### Existing online asset
+Allowed when:
+- source is known
+- license is compatible
+- attribution requirements are recorded
+- modification is permitted when needed
+- final asset is appropriate for shipping
 
-## Generation strategy
-Use AI image generation for:
-- concept art
-- scene references
-- prop references
-- narrative photographs/documents
-- texture/decal candidates
+### Generated/assisted asset
+May be used when the available production tooling can create a useful base/reference/output.
 
-Use 3D modeling or procedural geometry for:
-- navigable architecture
-- collision-critical objects
-- hero props that must rotate/open/animate
+Generated assets still require:
+- visual review
+- cleanup
+- scale/origin checking
+- license/provenance notes when relevant
+- real-engine testing
 
-AI-generated images must be reviewed for:
-- perspective
-- repeated artifacts
-- incorrect anatomy/faces
-- unreadable text
-- cultural/location mismatch
-- contradiction with the narrative bible
+Do not use uncertain-license ripped assets.
 
-## First prototype asset budget
-Do not build final chapter art yet.
+## Reusable asset packaging standard
 
-Required:
-- graybox hallway
-- graybox classroom
-- door
-- teacher desk
-- eight desk/chair sets plus ninth variant
-- one hero book
-- one inspection anchor setup
-- placeholder wall/notice detail
-- basic lighting
-- one subtle reality-shift visual change
+Each reusable production asset should have:
+- stable asset ID
+- source/master file where appropriate
+- runtime GLB/glTF when appropriate
+- consistent meter scale
+- sensible origin/pivot
+- reusable materials
+- simple collision proxy when needed
+- variants only when useful
+- source/license/provenance metadata
+- scene usage notes
+- in-engine visual check
 
-Optional only if time/performance allows:
-- rain exterior view
-- class photo placeholder
-- simple school signage
+## Major-map production order
 
-## Fidelity rule
-Spend detail where the camera gets close.
+For each of the four major maps:
 
-Priority:
-1. book / hero evidence
-2. nearby desk surfaces
-3. classroom focal wall/board
-4. corridor focal areas
-5. distant background
+1. reference/user description
+2. blockout / shell
+3. scale and traversal test
+4. major architecture/openings
+5. collision/player safety
+6. daylight/practical-light blockout
+7. gameplay/social anchors
+8. reusable-asset dressing
+9. material/surface pass
+10. secondary clutter/decals
+11. optimization
+12. actual-browser review
 
-## Runtime format direction
-- GLB/glTF for 3D runtime assets
-- optimized modern image formats where supported
-- source/master assets kept separate from runtime-optimized output
+## Iteration rule
 
-## Asset manifest requirement
-When production assets begin, maintain a manifest with:
+Preferred loop:
+
+**map shell → walk/playtest → identify missing objects → produce/source reusable asset → place it → playtest again**
+
+Avoid:
+- building a huge speculative asset library first
+- fully polishing small props before map scale is correct
+- embedding separate copies of the same prop into every map
+- expanding beyond the four-map scope without approval
+
+## Current map relationship
+
+- Giảng đường 4: active production on the separate environment branch
+- Giảng đường Xuân Thủy: planned for Chapter 0
+- Khu phố / phố trà đá: planned recurring social-life scene
+- Hòa Lạc / khu quân sự: planned for Chapter 1
+
+## Runtime/performance
+
+- GLB/glTF preferred
+- reuse materials/textures
+- instance repeated props when appropriate
+- simple collision meshes
+- load by map/zone rather than all environments at startup
+- optimize based on real profiling, not speculation
+
+## Asset manifest
+
+Track:
 - asset ID
 - type
+- custom / external / generated
 - source
-- chapter/scene
-- status
+- license
+- modifications
 - runtime path
+- maps/scenes used in
+- status
 - variants
-- rights/provenance notes if relevant
+- attribution/provenance notes

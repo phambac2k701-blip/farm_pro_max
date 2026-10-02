@@ -1,89 +1,102 @@
 # UI / UX Bible
 
 ## Principle
-The player should spend attention on the world, not on HUD.
+
+The player should spend attention on the 3D world, not on a permanent HUD.
 
 ## Default gameplay HUD
+
 Keep minimal:
 - small center reticle only when useful
 - interaction prompt only when a valid target exists
-- no permanent objective list
-- no minimap
-- no health/ammo HUD because the MVP has no combat
+- short contextual objective/hint only when needed
+- no health/ammo HUD for the current non-combat direction
+- no permanent minimap requirement
 
 ## Interaction prompt
-Prompt must:
+
+Prompts must:
 - be readable
 - appear consistently
-- avoid covering the inspected object
-- communicate the primary action only
-- disappear cleanly when target is lost or interaction starts
+- avoid covering the object/person
+- communicate the primary action clearly
+- disappear cleanly when the target is lost or interaction begins
 
-## Inspection mode
-When inspecting an object:
-- locomotion is locked
-- camera movement is intentionally constrained
-- the object remains the visual focus
-- controls for next page/rotate/exit appear only if needed
-- exit is always obvious and reliable
+## Interaction / seated states
 
-## Evidence/journal
-Journal is support, not the primary gameplay surface.
+When an authored interaction owns the camera or player:
+- control ownership must be obvious
+- cancel/exit must be reliable where cancellation is allowed
+- camera transitions must not snap unnecessarily
+- sit/stand transitions should return the player to a stable valid position
 
-It may contain:
-- discovered evidence
-- images/documents
-- audio entries
-- connected notes/hypotheses later
+## Phone
 
-It must not:
-- automatically solve every contradiction
-- replace physical inspection
-- flood the player with tutorial text
+The phone is a likely high-value student-life interface for:
+- messages
+- announcements
+- timetable/class information where approved
+- short notifications
+- story/context delivery
+
+Do not overload it before concrete gameplay needs are approved.
+
+## Dialogue / choices
+
+Choices should:
+- be concise
+- fit the situation
+- avoid presenting every small interaction as a dramatic moral decision
+- support short local branches where appropriate
+- clearly restore control after the exchange
+
+## Objectives and guidance
+
+Prefer believable guidance:
+- environmental cues
+- NPC reactions
+- protagonist thoughts
+- phone information
+- contextual prompts
+
+Use explicit markers only when they improve clarity more than they damage immersion.
 
 ## Pause/settings
-Required before public release:
+
+Before public release:
 - resume
 - sensitivity
 - FOV
 - motion/head-bob reduction
 - audio categories
 - subtitle/text settings
-- graphics preset where needed
+- graphics preset where useful
 - save/return controls
 
-## Diegetic direction
-Where useful, UI may resemble:
-- laptop/archive interface
-- case file
-- phone
-- document folders
-
-But usability outranks diegetic styling.
-
-## Motion
-UI transitions should be restrained and fast.
-Do not use large floating/elastic animation that clashes with the game tone.
-
 ## Typography
+
 Prioritize:
 - Vietnamese readability
-- clear accents/diacritics
-- comfortable document reading
-- distinguishable handwriting only when it is an in-world asset, not core UI text
+- correct accents/diacritics
+- comfortable phone/document reading
+- clear hierarchy
+- no mirrored or reversed in-world text
 
 ## Accessibility
+
 - scalable/readable text
 - keyboard operability for menus
-- contrast sufficient for dark scenes
-- interaction cues must not rely on color alone
+- sufficient contrast in normal and event lighting
+- interaction cues not dependent on color alone
+- reduced-flash/flicker option when effects are introduced
 
-## Prototype UI
-First prototype needs only:
+## Current P202 UI scope
+
+Keep the first classroom gameplay UI small:
 - loading/error state
-- center reticle
+- reticle
 - interaction prompt
-- minimal evidence discovery feedback
-- pause/unlock handling
-
-Everything else is deferred until interaction feel is proven.
+- contextual short guidance
+- subtitles/dialogue when required
+- phone presentation only when the approved sequence needs it
+- clean pointer-lock/pause handling

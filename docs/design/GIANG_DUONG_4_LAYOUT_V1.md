@@ -6,7 +6,7 @@ Branch: `phase-v2/gd4-geometry-corrections`
 
 ## 1. Scope
 
-This is the current playable world footprint while chapter/route narrative is still being rewritten.
+This is the approved Giảng đường 4 playable-world footprint for **UET không tệ**. Detailed chapter/event content remains separately approval-gated.
 
 The old Chapter 1 campus prototype is **retired from the current runtime**. Its technical checkpoint remains preserved by `chapter-1-vertical-slice`.
 
@@ -98,7 +98,7 @@ Future chapters/routes may reuse the same room shell and asset set while changin
 - notices/messages
 - timetable
 - dialogue
-- KCR/event state
+- chapter/event state
 - lighting state
 
 Do not rebuild a separate duplicate classroom unless the room is intentionally a different architectural type.
@@ -112,7 +112,7 @@ The following old prototype content is no longer instantiated by `src/main.ts`:
 - old corridor route
 - old standalone classroom placement
 - PA-room route
-- Chapter 1 KCR/climax/finale scene flow
+- retired old story-specific chapter/climax/finale scene flow
 
 Reusable technical systems were retained where useful:
 - player controller
@@ -196,7 +196,7 @@ Verified on fresh foreground Chrome / WebGPU after user acceptance:
 - full visible-storey count remains **5** for both buildings
 - authoritative runtime evidence: `docs/playtest/gd4-geometry-corrections-review/runtime-final-approved.json`
 
-The old Chapter 1/KCR implementation is intentionally not cleaned up project-wide in this pass; only retired GD4/WIP geometry paths were removed.
+The retired old story-specific implementation is intentionally not mass-deleted from generic/reusable runtime code. This map pass removed only obsolete GD4/WIP geometry paths.
 
 ## 13. Still TBD_USER_APPROVAL
 
@@ -206,5 +206,4 @@ Not decided by this document:
 - final chapter content
 - NPC placement
 - narrative routes
-- KCR story usage
 - any expansion outside the current Giảng đường 4 perimeter

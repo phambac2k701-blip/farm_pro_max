@@ -1,89 +1,118 @@
 # Testing and Playtest Strategy
 
 ## Why
-This project can be technically “correct” while still feeling bad. Automated tests and real playtests are both required.
+
+This project can be technically correct while still feeling wrong. Automated tests and real browser playtests are both required.
 
 ## Automated testing targets
-Prioritize logic that can break deterministically:
-- world-state updates
-- evidence discovery
-- reality-shift condition evaluation
+
+Prioritize deterministic logic:
+- world/event-state updates
 - save serialization/deserialization
-- chapter progression
+- chapter/scene progression
 - interaction state machine
-- camera-state transitions where testable without rendering
+- camera-state transitions
+- sit/stand state when introduced
+- choice/reconvergence logic
+- zone transitions
+- input recovery/focus handling
 
 ## Runtime smoke tests
+
 Every playable build should verify:
 - engine starts
 - scene loads
 - player spawns
 - pointer lock enters/exits
-- player can move
+- movement works
 - collision works
-- interaction target can be acquired
-- inspection can enter and exit
+- interaction targets can be acquired
+- authored interactions can enter and exit
 - no fatal console errors
+- required runtime assets load
 
 ## Manual game-feel pass
-For movement:
+
+Movement:
 - start/stop response
 - diagonal speed
 - wall sliding
 - corners
-- stairs/ramps
-- mouse sensitivity
+- classroom aisles
+- stairs/ramps when present
+- sensitivity
 - low/high FPS behavior
-- browser tab focus changes
+- browser focus changes
 
-For interaction:
+Interaction:
 - approach from different angles
 - trigger at distance boundary
-- spam interact
+- repeated interact input
 - cancel during camera blend
 - lose browser focus during interaction
 - exit and re-enter
-- interact after world state changes
+- sit/stand recovery when present
+- interact after local event-state changes
 
 ## Visual pass
+
 - camera clipping
 - shadow artifacts
 - unreadable dark areas
 - excessive post-processing
 - texture blur/pop
 - object scale
-- evidence text readability
+- desk/chair spacing
+- door/window fit
+- signage orientation
+- text readability
+- visible placeholder/procedural geometry that should have been upgraded
+
+## P202 review views
+
+At minimum capture:
+- entrance looking in
+- front looking back
+- back looking front
+- teacher/board area
+- desk/chair overview
+- desk/chair close-up
+- window areas
+- door open/closed
+- any bug being fixed
 
 ## Performance pass
+
 Record:
 - average FPS
-- worst obvious hitch
+- obvious hitching
 - scene load duration
 - major asset download size
-- GPU-heavy effects
+- expensive repeated geometry/materials
+- draw-call/instancing issues when relevant
 
 ## Browser matrix
-Prototype:
+
+Primary prototype:
 - Chrome/Chromium
-- Firefox
+- Firefox when practical
 
 Later:
 - Edge
 - Safari/macOS
 
-## Screenshot/capture rule
-Screenshots are evidence for visual regression and art direction, not a substitute for playing the build.
+## Screenshot rule
 
-Capture:
-- representative gameplay view
-- hero interaction
-- reality-shift before/after
-- any visual bug being fixed
+Screenshots are visual regression evidence, not a substitute for actually playing the build.
 
-## Release gate for a chapter
-A chapter is not “done” if:
-- a required clue can soft-lock
+## Release gate for a playable scene/chapter
+
+It is not done if:
+- required progression can soft-lock
 - camera can get stuck
-- save/load breaks its state
+- input becomes stuck
+- save/load breaks required state
 - browser refresh loses expected progress
-- performance is visibly unstable in target hardware class
+- assets fail to load
+- performance is visibly unstable on target hardware
+- the room is technically complete but visually not reviewed

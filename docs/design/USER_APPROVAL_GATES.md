@@ -14,14 +14,25 @@ If a required creative decision is missing, use an explicit placeholder such as:
 
 Do not silently convert placeholders into canon.
 
+## Already approved in current direction
+
+As of 2026-10-02, the user has explicitly approved:
+- project title: **UET không tệ**
+- UET as the student-life setting/context
+- current macro limited to Chapters 0–3
+- Chapter 4+ locked as future-life material
+- Chapter 3 vibe-coding thread at high level
+
+This does **not** approve official UET branding assets or imply official affiliation.
+
 ## Must stop and request user approval
 
 The following require explicit user review/approval:
 
-### Institutional identity
+### Institutional / brand identity
 
-- university name
-- university logo
+- any change away from the approved UET setting
+- official UET logo use
 - faculty/department identity
 - insignia/badge
 - official color system
@@ -42,14 +53,14 @@ The following require explicit user review/approval:
 
 ### Narrative canon
 
-- chapter canon
-- chapter ordering
+- detailed event canon inside Chapters 0–3
+- any Chapter 4+ content
+- any reordering/redefinition of the approved Chapter 0–3 macro
 - major story beats
-- mystery explanation
-- major KCR lore changes
 - major twists
+- major long-term route structure
 - character deaths/removals
-- endings
+- endings or retrospective closure
 - retroactive changes to approved canon
 
 ### Major visual direction
@@ -88,7 +99,7 @@ Every non-approved creative placeholder must be clearly marked.
 
 Examples:
 
-- `TBD_USER_APPROVAL_UNIVERSITY_NAME`
+- `TBD_USER_APPROVAL_FACULTY_OR_BRANDING`
 - `TBD_USER_APPROVAL_LOGO`
 - `TBD_USER_APPROVAL_PROTAGONIST_LOOK`
 

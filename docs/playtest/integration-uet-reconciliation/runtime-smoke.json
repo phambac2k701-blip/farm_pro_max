@@ -1,0 +1,35 @@
+{
+  "timestamp": "2026-10-02T10:36:24.751Z",
+  "branch": "integration/uet-source-of-truth-reconciliation",
+  "baseline": {
+    "fpsApprox": 59,
+    "meshes": 2549,
+    "vertices": 471012
+  },
+  "metrics": {
+    "title": "UET không tệ",
+    "ariaLabel": "UET không tệ 3D viewport",
+    "sceneReady": "lecture-hall-4-slice",
+    "currentMap": "giang-duong-4",
+    "backend": "webgpu",
+    "classroomAssets": "ready:408",
+    "meshes": 2549,
+    "vertices": 470676,
+    "activeMeshes": 153,
+    "playerFeet": "-14.800,0.009,2.200"
+  },
+  "perf": {
+    "rafFps": 60.27462877208222,
+    "engineFps": 59.99999999999975,
+    "activeMeshes": 153
+  },
+  "delta": {
+    "meshes": 0,
+    "vertices": -336,
+    "fpsVsApproxBaseline": 1.2746287720822167
+  },
+  "errors": [],
+  "consoleErrors": [],
+  "httpBad": [],
+  "smokePass": true
+}

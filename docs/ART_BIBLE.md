@@ -1,111 +1,86 @@
 # Art Bible
 
 ## Visual thesis
-**Real places, slightly wrong.**
 
-The player should initially believe the spaces could exist in ordinary life.
-The horror arrives through composition, lighting, absence, repetition, and contradictions.
+**Ordinary student life first.**
 
-## Reference mood
-- Vietnamese school corridors after hours
-- wet concrete
-- old painted walls
-- fluorescent practical lights
-- warm room light against cool rain/night
-- printed notices and class photos
-- worn desks
-- modest interiors
-- old electronics
-- paper archives
+University spaces should feel active, functional, familiar, and lived in. The baseline is bright and readable. Unusual visual states are reserved for specific authored events rather than defining the whole game.
+
+## Current reference mood
+
+- Vietnamese university classrooms
+- corridors, stairs and common areas
+- practical classroom lighting
+- daylight through windows
+- desks, chairs and teacher furniture
+- fans and air conditioners
+- notices, papers and ordinary student belongings
+- backpacks, laptops, chargers, bottles and notebooks
+- modest, believable materials and wear
 
 ## Rendering style
-Target: realistic stylization rather than photorealism-at-any-cost.
+
+Target: high-quality indie 3D with believable proportions and materials, optimized for the browser.
 
 Priorities:
-1. believable material response
-2. strong lighting composition
-3. texture storytelling
-4. readable silhouettes
-5. restrained post-processing
-6. performance
+1. correct scale and layout
+2. readable silhouettes
+3. believable PBR response
+4. useful reusable assets
+5. lighting that supports ordinary activity
+6. restrained environmental wear
+7. browser performance
 
-## Palette
-Base:
-- dirty neutral concrete
-- muted blue/green night
-- warm tungsten/fluorescent practical lights
-- aged paper
-- dark wood/metal
+## Modular production
 
-Accent:
-- red marks/string/pen only when narratively meaningful
+Prefer reusable authored assets and GLB/glTF-friendly modules over rebuilding environments from procedural boxes for every room.
 
-## Environment detail strategy
-Do not model every detail.
+Current golden-room production should establish reusable:
+- classroom shell
+- desks/chairs
+- teacher desk
+- board
+- doors/frames
+- windows/frames
+- fans
+- air conditioner
+- lighting fixtures
+- sockets/switches/conduits
+- ordinary classroom props
 
-Use:
-- decals
-- trim sheets where appropriate
-- posters/notices
-- stains
-- cracks
-- roughness variation
-- dirt masks
-- projected detail
-- layered props at hero locations
+Room variants should reuse these assets and alter layout, signage, props, occupants and event state.
 
-## Hero props
-Objects the player inspects closely receive the highest fidelity:
-- books
-- photographs
-- notebooks
-- audio equipment
-- old phones/computers
-- evidence documents
+## Materials
+
+Use reusable materials for painted plaster, tile, concrete, painted metal, laminate/wood, plastic, glass, fabric, and paper/cardboard.
+
+Where practical, use appropriate albedo/base color, roughness, normal, and AO information. Avoid unique heavyweight materials for every repeated object.
+
+## Environmental detail
+
+Use restrained everyday detail: mild scuffs, tape residue, ordinary dirt accumulation, edge wear, notices where approved, cables, utility details, and small student clutter.
+
+An active university should not look abandoned by default.
 
 ## Lighting
-Lighting must guide investigation without obvious gamey spotlights.
 
-Use:
-- motivated practical lights
-- darkness with readable navigation
-- localized contrast
-- occasional flicker only when meaningful
-- subtle volumetric/fog treatment where feasible
+Normal classroom/campus states:
+- bright enough for easy navigation
+- readable floor/furniture edges
+- daylight plus motivated practical fixtures
+- pleasant but not flat
+- minimal black crush
 
-## Horror rules
-Avoid:
-- excessive gore
-- constant red lighting
-- cliché monster silhouettes in every scene
-- nonstop glitch filters
-- visually noisy chromatic aberration
+Special-event states may alter color temperature, intensity, local contrast, or individual fixtures, but must remain navigable and event-specific.
 
-Prefer:
-- empty space
-- changed object count
-- a figure too far away to identify
-- altered photograph
-- impossible layout
-- sound with no visible source
-- room that remembers differently than the player
+## Characters
 
-## Generated asset policy
-AI-generated images may be used for:
-- concept art
-- moodboards
-- temporary textures
-- photo/document mockups
-- prop design references
+A reusable NPC/character pipeline is a future production target. Do not finalize protagonist or important NPC appearance without user approval.
 
-Before final use, check:
-- perspective consistency
-- readable text
-- culturally/location-appropriate details
-- repeated artifacts
-- style consistency
-- licensing/provenance requirements relevant to release
+## Asset provenance
 
-## First prototype visual target
-Do not chase final art immediately.
-Graybox first, then one polished classroom corner and one polished book interaction to validate the visual pipeline.
+Any external production asset must record its source, license, modification notes, attribution requirements, and shipping suitability. Do not use assets with unclear permission.
+
+## Current target
+
+P202 is the first environment-quality benchmark. Finish one believable classroom before multiplying unfinished quality across a large campus.
