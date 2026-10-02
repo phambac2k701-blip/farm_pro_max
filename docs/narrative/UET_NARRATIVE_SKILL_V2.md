@@ -1,4 +1,4 @@
-# UET KHÔNG TỆ — NARRATIVE SKILL V2
+# UETỐT — NARRATIVE SKILL V2
 
 Status: PROJECT-LOCAL NARRATIVE WORKFLOW
 Scope: Chapters 0–3 only
@@ -6,7 +6,7 @@ Canon authority: User / primary writer
 
 ## Purpose
 
-Use this skill to help the user research, organize, generate alternatives from, critique, revise, approve, and hand off narrative material for **UET không tệ** without allowing AI-generated material to replace the user's lived experience or silently become canon.
+Use this skill to help the user research, organize, generate alternatives from, creatively develop, critique, revise, approve, and hand off narrative material for **UETốt** without allowing AI-generated material to replace the user's lived experience or silently become canon.
 
 This is an **author-assist skill, not an author-replacement skill**. The user supplies lived experience, personal intent, important creative judgment and final canon decisions. AI structures, proposes, compares, critiques and converts approved material into playable narrative.
 
@@ -119,6 +119,46 @@ A routine system is not automatically a named story event.
 
 ### Ambient beat
 Optional texture that makes the world feel lived-in without being required for progression.
+
+## Creative-development boundary
+
+User-supplied scenes, interactions, dialogue fragments and examples are **seeds / a story spine, not a whitelist**.
+
+AI may expand them with:
+- connected micro-events;
+- interruptions;
+- side interactions;
+- extra local options;
+- visual/environment jokes;
+- callbacks;
+- short detours;
+- stronger playable expressions of the same underlying idea.
+
+Expansion is encouraged when it makes the material more playable, specific, funny, or memorable.
+
+AI still may not:
+- fabricate missing lived experience and present it as fact;
+- create an unrelated major plot to fill space;
+- create important recurring NPC canon without approval;
+- override a user-approved event meaning.
+
+Every AI-added element remains proposed material until approved.
+
+## Internet-culture window
+
+For scenes set in the current Chapter 0 period, research internet culture from roughly **June–December 2025**.
+
+Do not reduce this to a "meme list". Analyze humor mechanisms such as:
+- repetition / spam as punchline;
+- brainrot / low-semantic absurdity;
+- intentionally stale or corny phrases used ironically;
+- comment-section phrasing;
+- neutral/serious public moments remixed into meme formats;
+- a reference becoming funny because it is overused.
+
+"Meme spam" is not inherently wrong. It is wrong only when contextless or when repetition has no timing/escalation/payoff.
+
+Concrete references must be date-appropriate and replaceable. When based on real controversies, separate verified fact from meme culture and avoid treating unverified claims as truth.
 
 ## Two-worker narrative model
 
@@ -450,7 +490,9 @@ Useful structures include:
 
 The desired tone may be deadpan, absurd or "vô tri", but it must remain grounded in believable student behavior.
 
-Trend-aware rhythm is allowed. Concrete TikTok/meme/trend references:
+Trend-aware rhythm is allowed, especially for the **mid-to-late 2025** story window. Deliberately stale/nhạt jokes and repeated meme tokens are allowed when the mismatch, overuse, timing, or escalation is the actual joke.
+
+Concrete TikTok/meme/trend references:
 - must be researched near the time the scene is written;
 - must fit the character/context rather than being pasted in;
 - should be replaceable without breaking event causality;

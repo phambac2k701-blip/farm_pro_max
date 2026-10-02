@@ -1,4 +1,4 @@
-# UET không tệ — Narrative Research & Skill V2
+# UETốt — Narrative Research & Skill V2
 
 Status: RESEARCH / METHODOLOGY / NARRATIVE-SYSTEM DESIGN ONLY
 Date: 2026-10-02
@@ -28,7 +28,7 @@ Current repository status: there is **no approved detailed Ch0–Ch3 event set**
 
 # 1. Executive conclusion
 
-UET không tệ should use a constraint-first, state-led, artifact-based narrative workflow with human canon approval.
+UETốt should use a constraint-first, state-led, artifact-based narrative workflow with human canon approval.
 
 The recommended unit is not “chapter prose.” It is an event candidate with explicit pre-state, narrative function, player verbs, spatial use, local branch behavior, post-state, continuity obligations, and production cost.
 
@@ -54,7 +54,9 @@ Do not construct a detailed chapter event catalog from the macro alone. The macr
 
 The core design stance is: ordinary life becomes interesting through friction, timing, changing interpretation, relationships, repeated places, participatory comedy and small reversals — not through adding artificial mystery, horror, or oversized drama.
 
-The desired comedic presentation can be deadpan/absurd ("vô tri") and trend-aware, but concrete trends should remain replaceable presentation details. A small twist should reframe a believable situation rather than manufacture mystery lore.
+User material should be treated as a creative spine rather than a closed list of permitted beats. AI may propose connected micro-events, interruptions, side interactions, local options, visual jokes and callbacks when they strengthen the same scene without inventing an unrelated major plot or silently creating canon.
+
+The desired comedic presentation can be deadpan/absurd ("vô tri") and trend-aware. For the current Chapter 0 period, research roughly **June–December 2025** internet culture. Include repetition/spam, brainrot, intentionally stale jokes, comment-section logic and public moments remixed into meme formats—not only conventional "funny memes". Concrete trends should remain replaceable presentation details. A small twist should reframe a believable situation rather than manufacture mystery lore.
 
 ## Recommended content architecture
 
@@ -104,7 +106,7 @@ Research did not reveal a credible professional rule saying ordinary-life narrat
   Source: https://gdcvault.com/play/1028679/Independent-Games-Summit-Crafting-A
 - **Narrative Experience First: Fragments of Him — GDC Europe 2016:** the session describes many small interaction-design decisions used to keep the player involved and amplify story. Its published slides also prioritize play → show → tell, warn that choice workload escalates quickly, and recommend interactions that fit character and world.
   Sources: https://www.gdcvault.com/play/1023839/Narrative-Experience-First-Interaction-Design and https://media.gdcvault.com/gdceurope2016/presentations/Haggis_Mata_NarrativeExperienceFirst.pdf
-- **Comedy Through Patterns — GDC 2025:** the session argues that game comedy comes from structure and is supported across level design, music, and narrative design, not merely from funny lines. That matches UET không tệ's requirement that humor emerge from situations, timing, movement, and recurring patterns.
+- **Comedy Through Patterns — GDC 2025:** the session argues that game comedy comes from structure and is supported across level design, music, and narrative design, not merely from funny lines. That matches UETốt's requirement that humor emerge from situations, timing, movement, and recurring patterns.
   Source: https://gdcvault.com/play/1035068/Independent-Games-Summit-Comedy-Through
 - **Narrative approach to level design — GDC:** the professional framing treats space and pacing as part of the narrative experience. This supports using recurring GD4/street/camp locations as narrative instruments rather than neutral containers.
   Source: https://www.gdcvault.com/play/1024302/Level-Design-Workshop-A-Narrative
@@ -125,7 +127,7 @@ Therefore this project should use **no fixed event-count heuristic**. Event dens
 
 The table below separates repository facts from project-specific adoption judgment.
 
-| Candidate | Identity / activity | Strengths relevant to UET không tệ | Main mismatch | Verdict |
+| Candidate | Identity / activity | Strengths relevant to UETốt | Main mismatch | Verdict |
 | --- | --- | --- | --- | --- |
 | narrastory/story-architect-skill | MIT; created 2026-07-31; 3 stars; 1 visible commit at audit; novel/serial-oriented | source-of-truth order, proposal vs canon, character knowledge, timeline, thread/payoff tracking, lint/context packs | prose/novel-first lifecycle, scene-writing assumptions, too much manuscript scaffolding | ADAPT |
 | Stanestane/narrative-design-skills | created 2026-09-01; 0 stars; no repository license detected; very new | player verbs, choice intention, branch cost, objective/state change, production-scope thinking | quest vocabulary, combat/reward examples, immature, licensing unclear | CONCEPTS ONLY |
