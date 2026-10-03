@@ -1,5 +1,7 @@
 # Testing and Playtest Strategy
 
+Nghiệm thu toàn Ch0: [START_HERE](START_HERE.md), [gate cuối](PROJECT_MASTER_PLAN.md#8-nghiệm-thu-cuối-và-điểm-dừng) và từng gói P0–P7. Autoplay chỉ bổ sung, không thay manual và user acceptance. Các view P202 là tham khảo room-level, không đủ kiểm Ch0 street/bus/UET/flyby.
+
 ## Why
 
 This project can be technically correct while still feeling wrong. Automated tests and real browser playtests are both required.

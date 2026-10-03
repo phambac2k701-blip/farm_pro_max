@@ -1,5 +1,7 @@
 # GAME PIVOT V2 — CURRENT DRAFT NOTES
 
+**LỊCH SỬ / THAM KHẢO PIVOT.** Phần production/next-step trong snapshot này đã được thay bởi [START_HERE](../START_HERE.md) và master plan Ch0 ngày 03/10/2026. Macro đã duyệt lấy từ CURRENT_STORY_MACRO; không dùng nhãn “current” bên dưới để override cửa vào. Giữ file/đường dẫn vì các workflow cũ còn tham chiếu.
+
 Status: **CURRENT DIRECTION — DETAILS STILL USER-APPROVAL-GATED**
 Owner: **User / primary writer**
 

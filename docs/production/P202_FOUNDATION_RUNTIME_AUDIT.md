@@ -1,5 +1,7 @@
 # P202 Foundation Runtime Audit
 
+**THAM KHẢO KỸ THUẬT / SNAPSHOT TASK CŨ.** Không là lịch sản xuất hoặc tiêu chí nghiệm thu Ch0. Theo [START_HERE](../START_HERE.md) cho ưu tiên mới; không mở lại polish GD4/P202 để làm Ch0. Giữ đường dẫn và nội dung gốc để truy vết.
+
 Date: 2026-10-02
 Status: **CURRENT TECHNICAL EVIDENCE**
 

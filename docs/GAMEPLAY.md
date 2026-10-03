@@ -109,6 +109,8 @@ Generic conditional-state technology may remain in the engine, but content shoul
 
 ## Current environment/gameplay proof target
 
+Ưu tiên 03/10/2026: [START_HERE](START_HERE.md). Hoàn thiện toàn Ch0 trước; không bắt đầu Ch2/GD4 vì map sẵn. GD4 dưới đây là nền kỹ thuật được giữ, không là lịch sản xuất. Thoại cố định tự chạy có nhịp, người chơi được trao quyền rõ; không giải gameplay bằng thêm voice/choice/minigame vô nghĩa. Hiện chỉ được chỉnh docs và trình kế hoạch; gameplay mới chờ duyệt.
+
 The approved Giảng đường 4 shell is the current environment foundation.
 
 Current gameplay rule:

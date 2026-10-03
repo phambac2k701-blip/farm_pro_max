@@ -31,6 +31,8 @@ Still not approved by default:
 
 The game is an **open-ended student-life timeline**, not a closed retrospective story.
 
+Cập nhật sản xuất 03/10/2026: [START_HERE](../START_HERE.md). Ch0 phải có tiến trình và mốc kết thúc chương rõ; open-ended không có nghĩa chương không kết thúc. Điều này không cho phép viết finale toàn game hoặc Ch4+.
+
 The current authored timeline only goes as far as the creator's current lived/student-life material.
 
 Do not manufacture a finale merely because the current build reaches the latest known chapter.
@@ -232,10 +234,10 @@ P202 documents remain room-level technical references only. They do not override
 
 Do **not** expand the macro further yet.
 
-Next step after this checkpoint:
-- user supplies detailed real-life material for Chapter 0
-- organize it into scenes/events
-- identify links/foreshadowing/payoffs into Chapters 1–3
-- then repeat for the next chapter
+Current step after the 2026-10-03 user instruction:
+- Ch0 material already exists in the lived-material ledger and story package, with script V0 as a draft; do not ask the user to provide it again
+- review only unresolved specifics and the proposed complete-Ch0 plan in PROJECT_MASTER_PLAN
+- complete the whole Ch0 after plan approval and obtain manual user acceptance
+- only then plan Ch1 using the proven workflow; Ch1–Ch3 macro remains context, not parallel production authorization
 
 Chapter 4+ remains locked.

@@ -83,4 +83,4 @@ Any external production asset must record its source, license, modification note
 
 ## Current target
 
-P202 is the first environment-quality benchmark. Finish one believable classroom before multiplying unfinished quality across a large campus.
+P202 remains a technical environment-quality reference. The current target is the complete Ch0, with a short situation used to validate consistent quality before extending it across Ch0. See [START_HERE](START_HERE.md); do not polish GD4/P202 or open other chapters to replace that goal.

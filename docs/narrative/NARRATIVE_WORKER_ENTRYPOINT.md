@@ -1,5 +1,7 @@
 # UETốt — NARRATIVE WORKER ENTRYPOINT
 
+Trước mọi lượt narrative, đọc [START_HERE](../START_HERE.md) để biết task/ưu tiên hiện hành. Ch0 script V0 đã có, không viết lại từ đầu. Lượt này dừng ở chỉnh docs/trình kế hoạch; chỉ chỉnh creative draft theo phần người dùng giao, không tự canon hoặc triển khai gameplay.
+
 Status: ACTIVE PROJECT-LOCAL ENTRYPOINT
 
 Use this file to start any narrative worker pass.

@@ -1,91 +1,24 @@
 # UETốt
 
-Browser-first true-3D first-person student-life narrative game set around a UET student timeline in Hanoi.
+Game 3D góc nhìn thứ nhất về đời sống sinh viên UET tại Hà Nội. TypeScript, Vite, Babylon.js; ưu tiên WebGPU, có WebGL fallback.
 
-## Current project identity
+**Bắt đầu tại [docs/START_HERE.md](docs/START_HERE.md).** Đây là cửa vào duy nhất để biết nguồn hiện hành, bản chơi, trạng thái và việc tiếp theo.
 
-**UETốt** is the active project identity.
+Ưu tiên người dùng ngày 03/10/2026: **hoàn thiện toàn bộ Ch0 → người dùng chơi và nghiệm thu → mới lập kế hoạch Ch1**. Hiện đang rà soát tài liệu và trình kế hoạch; chưa được bắt đầu gameplay mới.
 
-The current direction is grounded student life: ordinary movement, friends, food, classes as context, recurring places, humor, routines, small incidents and longer continuity across chapters.
+Ch0 đã có greybox chạy tiến trình, chưa hoàn thiện về hình ảnh, NPC, diễn xuất, âm thanh và kiểm thử thủ công. Draft kịch bản không tự trở thành canon vì đã được dùng trong code.
 
-Retired story identities/mechanics are historical only and are not current source-of-truth.
+`main` tại checkpoint rà soát chỉ có README cũ. Dùng nhánh và commit được ghi trong START_HERE, không mặc định default branch là bản sản xuất.
 
-## Current story macro
+## Chạy bản Ch0 hiện có
 
-Only the following macro is approved:
+```bash
+npm ci
+npm run dev -- --host 127.0.0.1
+```
 
-- **Chapter 0** — entering university / admission-confirmation period / first Hanoi-UET impressions
-- **Chapter 1** — first-year military-training period
-- **Chapter 2** — ordinary university life begins; Giảng đường 4 becomes important
-- **Chapter 3** — broader everyday student life; subtle vibe-coding reflection
-- **Chapter 4+** — **LOCKED / TBD**
+Mở URL Vite hiển thị, không thêm `autoplay`. WASD để đi, chuột để nhìn sau khi click canvas, E tương tác; bản cũ còn nút Tiếp/Enter/Space cho thoại; 1–3 chọn câu trả lời; R chơi lại sau màn kết. Đây là hành vi hiện tại, không phải thiết kế thoại cuối.
 
-Do not invent Chapter 4+, a finale, or detailed chapter canon without user approval.
+Kiểm tra logic: `npm test`; kiểu dữ liệu: `npm run typecheck`; build: `npm run build`.
 
-## Current major-map scope
-
-Exactly four major map families are in current planning scope:
-
-1. **Giảng đường 4**
-2. **Giảng đường Xuân Thủy**
-3. **Khu phố / phố trà đá**
-4. **Hòa Lạc / khu quân sự**
-
-Do not add a fifth major map without explicit user approval.
-
-## Runtime / production architecture
-
-- bounded-open-world feel rather than one giant permanently loaded simulation
-- only the currently visited major map is resident at full gameplay fidelity
-- active-map zone fidelity: **FULL / NORMAL / LIGHT / BACKGROUND**
-- chapter/event variants reuse the same map through state layers instead of near-duplicate map copies
-- ordinary choices create local micro-branches and normally reconverge
-- only major decisions justify persistent long-term route state
-- repeated/static/background assets are instanced, batched, merged, simplified or card-based according to gameplay role
-
-See:
-- `docs/design/CURRENT_STORY_MACRO.md`
-- `docs/design/CURRENT_WORLD_MAP_SCOPE.md`
-- `docs/design/RUNTIME_WORLD_EVENT_ARCHITECTURE.md`
-- `docs/art/ASSET_PRODUCTION_PIPELINE_V2.md`
-
-## Giảng đường 4 checkpoint
-
-The approved Giảng đường 4 implementation is preserved from:
-
-- branch: `phase-v2/gd4-geometry-corrections`
-- commit: `7ed178251ae47074e7276f379492953448296149`
-- layout source: `docs/design/GIANG_DUONG_4_LAYOUT_V1.md`
-
-BAC-45 approved runtime baseline:
-- about **59 FPS**
-- **2549 meshes**
-- about **471k vertices**
-- runtime / console / network clean
-
-The automatic player safety/respawn controller was intentionally removed from the active runtime after it caused unwanted teleport-to-spawn behavior. Physical map colliders remain the movement-boundary mechanism.
-
-## Stack
-
-- TypeScript
-- Vite
-- Babylon.js
-- WebGPU preferred
-- WebGL fallback
-
-## Resume order
-
-Before continuing work, read:
-
-1. `README.md`
-2. `docs/PROGRESS.md`
-3. `docs/PROJECT_MASTER_PLAN.md`
-4. `docs/SESSION_CONTINUITY.md`
-5. `docs/design/CURRENT_STORY_MACRO.md`
-6. `docs/design/CURRENT_WORLD_MAP_SCOPE.md`
-7. `docs/design/RUNTIME_WORLD_EVENT_ARCHITECTURE.md`
-8. `docs/design/GIANG_DUONG_4_LAYOUT_V1.md`
-9. `docs/art/ASSET_PRODUCTION_PIPELINE_V2.md`
-10. relevant technical/art/gameplay docs
-
-The user remains the final narrative and production authority for new canon, Chapter 4+, major-map expansion, important characters and persistent routes.
+Nguồn thẩm quyền từng mảng, giới hạn bốn họ map, Ch4+ bị khóa và checkpoint GD4 đã duyệt đều được dẫn từ START_HERE. Không tự merge vào main hoặc nhánh người khác.

@@ -1,5 +1,7 @@
 # Chapter 0 Playable Greybox V0 — browser evidence
 
+Chú thích rà soát 03/10/2026: đây là báo cáo autoplay headless của checkpoint greybox, **không là manual playtest/đánh giá cảm giác hoặc nghiệm thu toàn Ch0**. [START_HERE](../../START_HERE.md) dẫn trạng thái/kế hoạch hiện hành; hình/NPC/audio/choreography vẫn thiếu.
+
 Date: 2026-10-03
 Branch: `phase-v2/ch0-playable-greybox-v0`
 Implementation base: coordinator remote `9c3efe9`

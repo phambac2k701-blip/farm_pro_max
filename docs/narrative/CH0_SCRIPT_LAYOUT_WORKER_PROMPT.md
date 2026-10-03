@@ -1,5 +1,7 @@
 # CH0 SCRIPT / LAYOUT WORKER HANDOFF
 
+**LỊCH SỬ NHIỆM VỤ V0 — OUTPUT ĐÃ CÓ** tại `CH0_SCRIPT_LAYOUT_V0.md` từ worker `c5c0af1`. Không tự chạy lại handoff này. Lượt tiếp theo theo [START_HERE](../START_HERE.md) và gói/phần được duyệt; các quy tắc giữ nguồn/canon bên dưới vẫn phù hợp.
+
 Read and follow:
 
 1. `docs/narrative/NARRATIVE_WORKER_ENTRYPOINT.md`

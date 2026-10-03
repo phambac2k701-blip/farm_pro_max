@@ -62,9 +62,11 @@ Future settings should separate master/music/ambience/SFX/voice when audio produ
 
 ## Current target
 
-Build the P202 classroom sound bed first:
-- normal classroom ambience
-- chair/desk interaction feedback
-- door/window/fan/AC sounds where used
-- phone/device feedback when gameplay requires it
-- room-ready spatial audio without horror-by-default presentation
+Ưu tiên mới: làm âm thanh Ch0 cùng từng tình huống, xem [START_HERE](START_HERE.md) và [ma trận cảnh](PROJECT_MASTER_PLAN.md#4-ch0-như-một-màn-chơi).
+- street/traffic và xe tới/đi, bus cabin/stop announcement
+- cuộc gọi mẹ, thoại driver/staff/NPC, phụ đề theo nhịp
+- cửa, giấy, ví/phone và tiếng bước chân đúng hành động
+- flyby có audio không gian khớp hình và camera
+- bản tạm được dùng trong gói đang làm, nhưng không qua gate cuối khi thiếu audio trọng yếu
+
+P202 là tham khảo sound bed, không là mục tiêu ưu tiên hiện hành. Ch01 legacy WAV không tự là audio được duyệt cho UETốt. Candidate Windows chưa đọc được: inspect/license/nghe thử trước dùng; không reset WIP. Nguồn uncanny/mystery chỉ thuộc tham khảo kỹ thuật, không được tự thêm Ch0.

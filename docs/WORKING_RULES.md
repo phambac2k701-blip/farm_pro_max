@@ -7,11 +7,11 @@ This file is the execution contract for any agent or future session working on t
 1. GitHub repository content is authoritative.
 2. Chat context is temporary and must never be the only place where a major decision exists.
 3. Every meaningful architecture, story, gameplay, art, or production decision must be written to `docs/`.
-4. `docs/PROGRESS.md` is the first file to read when resuming work.
+4. Start at [START_HERE](START_HERE.md), then read the status and sources it points to. Repository content has authority according to scope and approval evidence; current user instructions override stale repository text.
 
 ## Resume protocol
 Before making changes:
-1. Read `README.md`.
+1. Read `README.md` and `docs/START_HERE.md`; inspect status/HEAD/remote/worktrees and preserve modified/untracked WIP before edits.
 2. Read `docs/PROGRESS.md`.
 3. Read `docs/PROJECT_MASTER_PLAN.md`.
 4. Read the relevant spec for the current task.
@@ -20,7 +20,7 @@ Before making changes:
 7. Continue from the first unfinished checklist item. Do not restart completed work.
 
 ## Continuous execution authorization
-The user has explicitly requested continuous end-to-end execution for this project.
+The user previously requested continuous end-to-end execution. This applies only within the currently authorized task/approved plan. On 2026-10-03 the user explicitly authorized documentation corrections and a proposed Ch0 completion plan, then required a stop for plan review. Do not implement new gameplay or Ch1 in this pass. See [START_HERE](START_HERE.md) for the current boundary.
 
 This means:
 - when one planned task is completed, immediately continue to the next actionable task;
@@ -113,14 +113,8 @@ For each playable milestone:
 
 ## Scope discipline
 Do not expand the game simply because a feature is technically possible.
-The current milestone exists to prove:
-- first-person movement feels good
-- interaction feels good
-- one classroom can feel lived-in and fun
-- modular assets can reach production quality
-- small player choices can produce polished local reactions
-- one focused student-life sequence can look and sound polished
+The current production goal is the whole of Ch0, completed through playable situations with visuals, NPC performance, dialogue, audio, camera/input ownership and progression. A short slice may prove a workflow, but cannot replace the full chapter. The old classroom proof goal is a technical reference only. Final chapter acceptance is defined in [PROJECT_MASTER_PLAN](PROJECT_MASTER_PLAN.md#8-nghiệm-thu-cuối-và-điểm-dừng), including manual full play and user acceptance. Tests/autoplay, greybox/mannequin and text describing missing actions are insufficient.
 
 ## Naming
-Working title: **TBD_USER_APPROVAL**.
+Approved title: **UETốt**.
 Repository name may remain `farm_pro_max` until renaming is intentionally decided.

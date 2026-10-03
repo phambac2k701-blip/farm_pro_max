@@ -290,7 +290,7 @@ The user remains final authority for:
 
 ## 12. Chapter 0 current rule
 
-Chapter 0 does not need final ending/route design.
+Ch0 cần mốc kết thúc chương rõ theo chất liệu người dùng; không cần thiết kế finale toàn game hoặc major permanent route. Xem [START_HERE](../START_HERE.md): ưu tiên hoàn thiện Ch0, không phát triển đồng thời Ch0–Ch3.
 
 Focus on:
 - ordinary entry-to-university situations
@@ -301,4 +301,4 @@ Focus on:
 - small twists/reversals
 - establishing recurring details that may later be reused
 
-Do not invent final ending logic from Chapter 0 material.
+Không suy kết toàn game/Ch4+ từ chất liệu Ch0. Nhịp flyby/về gần trọ là kết chương theo hướng user; chi tiết presentation còn chờ duyệt.

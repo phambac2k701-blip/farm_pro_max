@@ -1,5 +1,7 @@
 # ASSET PRODUCTION PIPELINE V2 — UETỐT
 
+Cập nhật ưu tiên 03/10/2026: hoàn thiện tình huống Ch0, không mở full asset library/Ch1–Ch3. [START_HERE](../START_HERE.md); [hợp đồng metadata và sáu bước thực thi](../PROJECT_MASTER_PLAN.md#5-asset-và-tự-động-hóa-theo-cảnh). Đặt model chưa là nối gameplay; NPC/âm thanh/diễn xuất phải đi cùng cảnh. Nội dung cuối vẫn qua approval gates.
+
 Status: **CURRENT APPROVED PRODUCTION DIRECTION**
 Date: 2026-10-02
 Owner of final creative decisions: **User / primary writer**
@@ -54,7 +56,7 @@ Production rule:
 ### Scene B — Xuân Thủy main university / lecture-building context
 
 Status:
-- planned, not currently in active production
+- local Ch0 uet greybox exists at `db0792a`; final Xuân Thủy topology/art production is not complete and the new Ch0 plan awaits user approval
 
 Role:
 - important to the early university-entry / admission-confirmation material
@@ -67,7 +69,7 @@ Production rule:
 ### Scene C — Student street / phố trà đá
 
 Status:
-- planned at high level only
+- local Ch0 street greybox exists at `db0792a`; the full recurring street map remains high-level, not final production
 
 Role:
 - ordinary student-life street

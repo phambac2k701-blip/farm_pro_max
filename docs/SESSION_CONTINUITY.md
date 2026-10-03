@@ -1,141 +1,35 @@
-# Session Continuity & Handoff
+# Bàn giao phiên — UETốt
 
-## Purpose
+Đọc [START_HERE](START_HERE.md) trước; lịch sử và checkpoint ở [master plan](PROJECT_MASTER_PLAN.md#1-phạm-vi-và-bằng-chứng-rà-soát), tình trạng ở [PROGRESS](PROGRESS.md).
 
-The repository is the project source of truth.
+## Lệnh tiếp quản
 
-All new sessions must resume from the current **UETốt** direction. Retired story packages/mechanics may remain only as explicitly historical material and must not be treated as current canon.
+Tiếp tục trên nhánh tài liệu `docs/ch0-production-reconciliation-20261003`, gốc greybox `db0792af7880a2b082c4f54d82781888929bf0b2`. Đây là docs-only review và kế hoạch **chờ người dùng duyệt**, không phải lệnh bắt đầu gameplay. Không mặc định main là production; không reset/clean/ghi đè WIP. Duyệt toàn Ch0 trước rồi người dùng chơi và nghiệm thu, sau đó mới lập kế hoạch Ch1.
 
-## Fresh-session resume instruction
+## Kiểm tra trước khi sửa
 
-> Continue the **UETốt** project in `phambac2k701-blip/farm_pro_max`. Read the current source-of-truth docs first. Preserve the approved Giảng đường 4 checkpoint. Chapter 4+ is locked. Do not restore retired story canon or the removed automatic player respawn system.
+```bash
+git status --short --branch
+git rev-parse HEAD
+git remote -v
+git worktree list
+git log -5 --oneline
+```
 
-## Required resume sequence
+Đối chiếu remote heads mà không checkout worktree người khác. Đọc mọi modified/untracked có liên quan trước khi sửa. Tại phiên rà soát, worktree Windows/audio candidate chưa truy cập được; phải inspect thực tế nếu phiên sau có quyền truy cập, không suy rằng chúng sạch hoặc đã mất.
 
-1. Inspect current branch and recent commits.
-2. Read:
-   - `README.md`
-   - `docs/PROGRESS.md`
-   - `docs/PROJECT_MASTER_PLAN.md`
-   - `docs/SESSION_CONTINUITY.md`
-   - `docs/design/CURRENT_STORY_MACRO.md`
-   - `docs/design/CURRENT_WORLD_MAP_SCOPE.md`
-   - `docs/design/RUNTIME_WORLD_EVENT_ARCHITECTURE.md`
-   - `docs/design/GIANG_DUONG_4_LAYOUT_V1.md`
-   - `docs/art/ASSET_PRODUCTION_PIPELINE_V2.md`
-   - `docs/art/CHARACTER_ANIMATION_PLAN_V1.md`
-   - `docs/AI_COORDINATION.md`
-   - `docs/GAMEPLAY.md`
-   - `docs/ARCHITECTURE.md`
-   - `docs/TECHNICAL_REQUIREMENTS.md`
-   - other relevant current production docs
-3. Respect `docs/design/USER_APPROVAL_GATES.md`.
-4. Do not invent Chapter 4+.
-5. Do not add a fifth major map without explicit approval.
-6. Do not alter the approved GD4 topology unless the user explicitly reopens it.
-7. Update `docs/PROGRESS.md` after meaningful milestones.
+## Những gì phải giữ
 
-## Current identity
+- Macro Ch0–Ch3 và bốn họ map; Ch4+ khóa, không tự finale.
+- GD4 checkpoint `7ed178251ae47074e7276f379492953448296149`; không chỉnh để phục vụ Ch0, không phục hồi controller tự teleport spawn.
+- Tên Bắc/tính cách đã duyệt, driver tái xuất, ba cách tìm đường, câu chữ/chất liệu user và provenance từng mục.
+- Script V0 là draft. Helper/admin/ATM đã có trong greybox không tự thành canon.
+- Animation/performance có ở nhánh riêng, chưa nối Ch0; ChoiceEventFlow có trong greybox. Không merge toàn worker snapshot cũ vào nguồn mới.
 
-- title: **UETốt**
-- true-3D first-person student-life narrative game
-- UET student timeline in Hanoi
-- grounded ordinary-life baseline
-- humor and continuity are core
-- study is context/background, not the whole game
-- story is open-ended
+## Sau khi được duyệt
 
-## Current chapter macro
+Chỉ thực hiện phần kế hoạch/gói được duyệt. Rà soát code tái dùng và nhập file cần thiết có review; giữ thẩm quyền canon. Mỗi gói phải có hình/âm/diễn xuất/tương tác và kiểm cảnh thật; autoplay là bổ sung. Cập nhật PROGRESS, source SHA, evidence và hạn chế, không tạo prompt dài lặp lại docs.
 
-- **Ch0** — entering university / admission-confirmation / first Hanoi-UET impressions
-- **Ch1** — first-year military-training period
-- **Ch2** — ordinary university life begins / Giảng đường 4 becomes important
-- **Ch3** — broader everyday student life / subtle vibe-coding reflection
-- **Ch4+** — `LOCKED / TBD`
+## Điểm dừng hiện tại
 
-Detailed events remain approval-gated.
-
-## Current major-map scope
-
-Exactly four:
-1. Giảng đường 4
-2. Giảng đường Xuân Thủy
-3. Khu phố / phố trà đá
-4. Hòa Lạc / khu quân sự
-
-## Runtime/world-event rules
-
-- bounded-open-world architecture
-- one currently visited major map at full gameplay residency
-- local zone fidelity: **FULL / NORMAL / LIGHT / BACKGROUND**
-- reuse maps through chapter/event state layers
-- ordinary choice = local micro-branch, normally reconverging
-- persistent long-term routes only for major decisions
-- repeated/static/background assets should be instanced, batched, merged, simplified or card-based by role
-
-## Giảng đường 4 checkpoint
-
-Approved implementation:
-- branch: `phase-v2/gd4-geometry-corrections`
-- commit: `7ed178251ae47074e7276f379492953448296149`
-- layout: `docs/design/GIANG_DUONG_4_LAYOUT_V1.md`
-
-Approved baseline:
-- about 59 FPS
-- 2549 meshes
-- about 471k vertices
-- runtime / console / network clean
-
-The automatic `PlayerSafetyController` recovery path is intentionally removed. Normal movement boundaries use authored physical colliders. Do not restore the old controller merely because historical code/docs referenced it.
-
-## Integration checkpoint
-
-Narrative/production cleanup input:
-- `cleanup/remove-legacy-story-v1`
-- `82394dab70a4a48988a65286230251f3a7a79b9c`
-
-Current integration branch:
-- `integration/uet-source-of-truth-reconciliation`
-
-The integration branch starts from the final GD4 commit and reconciles current docs/direction onto that implementation.
-
-Integration gate:
-- 15/15 test files, 51/51 tests pass
-- typecheck/build/`git diff --check` pass
-- fresh Chrome/WebGPU smoke clean
-- 2549 meshes / 470676 vertices
-- 60.27 RAF FPS / 60.00 engine FPS in the integration smoke
-- no meaningful regression from BAC-45
-- evidence: `docs/playtest/integration-uet-reconciliation/`
-
-## Character animation roadmap
-
-Approved planning source:
-- `docs/art/CHARACTER_ANIMATION_PLAN_V1.md`
-
-Next intended proof, once explicitly started:
-- lightweight stick-figure/mannequin rig
-- six Prototype V0 clips only: Idle, Walk, Turn In Place, Sit Down, Seated Idle, Stand Up
-- prove the sequence `Idle -> Walk -> Idle -> Turn -> Idle -> Sit Down -> Seated Idle -> Stand Up -> Idle`
-- wider animation library remains backlog until this prototype passes
-- approved external motion assets should be stored locally when licensing permits and provenance must be recorded
-
-## Explicit non-goals until new user instruction
-
-Do not:
-- start final character-body production
-- start NPC/event production
-- start Giảng đường Xuân Thủy or any other second map
-- polish GD4 further
-- create Chapter 4+
-- invent new story canon
-- merge integration to main/default branch
-
-## End-of-session checkpoint
-
-Before handing off:
-- record current branch + commit
-- record gate status
-- record any approved ruling
-- record runtime/performance comparison if code/runtime changed
-- leave the repo in a clean or explicitly documented state
+Tài liệu đã chỉnh và kế hoạch Ch0 đã trình. **Chờ duyệt kế hoạch**, chưa gameplay mới, chưa Ch1, chưa merge main/coordinator/worker. Điểm dừng cũ của các worker không xóa gate canon nhưng không là lịch sản xuất hiện hành.

@@ -1,5 +1,7 @@
 # USER APPROVAL GATES
 
+Cập nhật 03/10/2026: [START_HERE](../START_HERE.md) xác định task đang được phép. Chỉ đạo ưu tiên toàn Ch0 đã có hiệu lực; kế hoạch và bổ sung sáng tạo chưa tự được duyệt. Kết một chương là mốc tiến trình cụ thể; không đồng nghĩa kết toàn câu chuyện. Mốc cuối Ch0 đã có hướng user (về gần trọ/flyby); chi tiết trình bày còn chờ duyệt. Giữ gate canon, Ch4+ và scope map.
+
 Status: **ACTIVE DRAFT RULESET — USER REVIEW REQUIRED FOR CANON**
 
 This document records which project decisions require explicit user approval before they become canon or production identity.
@@ -18,6 +20,8 @@ Do not silently convert placeholders into canon.
 
 As of 2026-10-02, the user has explicitly approved:
 - project title: **UETốt**
+- protagonist name **Bắc** and core personality recorded as user-approved in the Character Bible
+- Chapter 0 user-grounded spine and accepted directions recorded per item in the ledger/story package; do not treat all draft text as approved
 - UET as the student-life setting/context
 - current macro limited to Chapters 0–3
 - Chapter 4+ locked as future-life material
@@ -43,7 +47,7 @@ The following require explicit user review/approval:
 
 ### Main characters
 
-- protagonist final name
+- changes to the already approved protagonist name **Bắc**
 - protagonist final appearance
 - protagonist canonical personality changes
 - important NPC names

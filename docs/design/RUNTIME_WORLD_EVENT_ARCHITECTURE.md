@@ -1,5 +1,7 @@
 # RUNTIME WORLD & EVENT ARCHITECTURE — UETỐT
 
+Cập nhật 03/10/2026: [START_HERE](../START_HERE.md). Đây là định hướng kiến trúc, không bằng chứng tất cả runtime tiers/residency đã triển khai. Greybox Ch0 dựng ba roots rồi setEnabled, chưa unload/dispose inactive maps. Kế hoạch xử lý theo nhu cầu Ch0 ở master plan; không tự mở gameplay khi chưa duyệt. Mốc kết chương rõ là yêu cầu Ch0, không là quyền viết ending toàn game/Ch4+.
+
 Status: **APPROVED PRODUCTION DIRECTION**
 Date: 2026-10-02
 Owner of final creative decisions: **User / primary writer**

@@ -1,5 +1,7 @@
 # Content Pipeline
 
+Ưu tiên Ch0 và bản đồ công cụ thực tế: [START_HERE](START_HERE.md), [quy trình sáu bước](PROJECT_MASTER_PLAN.md#5-asset-và-tự-động-hóa-theo-cảnh). Các mục scene/NPC/asset bên dưới là phương pháp, không phải báo cáo đã triển khai. Audio/diễn xuất được làm cùng tình huống; không dồn hết về cuối. “Player-safety pass” ở pipeline là kiểm collision/boundary, không là phục hồi controller tự teleport spawn đã loại bỏ.
+
 ## Principle
 
 Content production is split between:

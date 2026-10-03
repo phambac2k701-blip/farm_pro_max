@@ -1,5 +1,7 @@
 # CURRENT WORLD MAP SCOPE — UETỐT
 
+Ưu tiên 03/10/2026: [START_HERE](../START_HERE.md). Giữ scope bốn họ map và GD4 đã duyệt. Ch0 `db0792a` đã có local street/bus/uet greybox; đó chưa là topology Xuân Thủy hay phố hoàn chỉnh đã duyệt. Kế hoạch Ch0 bao gồm các không gian cần chơi trong scope này, hiện chờ duyệt trước triển khai.
+
 Status: **APPROVED HIGH-LEVEL MAP SCOPE — DETAILS TBD**
 Date: 2026-10-02
 Owner: **User / primary writer**

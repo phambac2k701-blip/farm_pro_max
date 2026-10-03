@@ -1,5 +1,7 @@
 # CHARACTER ANIMATION PLAN V1 — UETỐT
 
+Tình trạng 03/10/2026: Prototype V0 đã có code/6 clip/proof ở `phase-v2/character-animation-prototype-v0` @ `498cf6c46c6cb981b43e190c778abc49df866cec`; chưa tích hợp Ch0, không là NPC final. [START_HERE](../START_HERE.md) và kế hoạch Ch0 quyết định thứ tự mới. STOP V0 bên dưới là giới hạn task prototype cũ; vẫn giữ gate duyệt final look và chỉ mở rộng clip theo tình huống/gói được duyệt, không mass-produce backlog.
+
 Status: **APPROVED ROADMAP / PROTOTYPE-FIRST**
 Date: 2026-10-02
 

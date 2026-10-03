@@ -1,6 +1,6 @@
 # UETốt — PROTAGONIST CHARACTER BIBLE V0
 
-Status: **TEMPLATE / AWAITING USER AUTHORSHIP**
+Status: **NGUỒN HỖN HỢP — TÊN BẮC/TÍNH CÁCH CORE ĐÃ DUYỆT; PHẦN MỞ VẪN CHỜ USER**
 Canon authority: User / primary writer
 Purpose: define the protagonist's stable voice, behavior, comedy, decision style, and permitted character development so narrative workers do not rewrite the protagonist scene by scene.
 
