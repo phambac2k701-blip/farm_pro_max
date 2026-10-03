@@ -1,0 +1,2 @@
+import {it,expect} from 'vitest';import {SceneClock} from '../../../src/content/ch0/p1/SceneClock';
+it('holds cue timing across a blur and releases waiters on teardown',async()=>{const c=new SceneClock();let done=false;const p=c.sleep(1000).then(()=>done=true);c.update(.4);await Promise.resolve();expect(done).toBe(false);c.update(.59);await Promise.resolve();expect(done).toBe(false);c.update(.01);await p;expect(done).toBe(true);let closed=false;const q=c.sleep(5000).then(()=>closed=true);c.dispose();await q;expect(closed).toBe(true)});

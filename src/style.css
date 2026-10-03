@@ -1,4 +1,4 @@
-﻿:root {
+:root {
   font-family:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
@@ -460,3 +460,29 @@ body {
     transition-duration: 80ms !important;
   }
 }
+
+/* P1 review candidate: only the small sample uses this presentation. */
+body[data-sample='p1'] { color: #f6f2e6; font-family: 'Segoe UI', sans-serif; }
+#p1-candidate-badge { position:fixed; top:20px; left:24px; padding:8px 12px; background:#163b3bd9; border:1px solid #c5d9cf44; border-radius:4px; color:#dce7df; font-size:12px; z-index:22; pointer-events:none; }
+#p1-landing { position:fixed; inset:0; z-index:30; display:flex; align-items:center; padding:7vw; background:linear-gradient(90deg,#102b32f5 0%,#122c32df 34%,#152e3540 70%,transparent); }
+#p1-landing[hidden], #p1-review[hidden], #p1-pause[hidden] { display:none; }
+#p1-landing small, #p1-review small { font-size:11px; letter-spacing:2px; color:#a9c5b7; }
+#p1-landing h1 { font-size:clamp(34px,5vw,68px); line-height:1.06; letter-spacing:-2px; margin:22px 0; font-weight:650; }
+#p1-landing p { font-size:17px; line-height:1.7; }
+#p1-landing .p1-note { font-size:13px; color:#baccc6; margin-bottom:30px; }
+#p1-landing button { background:#e7ddbb; border:0; border-radius:5px; padding:15px 23px; color:#193b3c; font:600 15px 'Segoe UI',sans-serif; cursor:pointer; box-shadow:0 5px 20px #08191b33; }
+#p1-landing button:disabled { opacity:.55; cursor:wait; }
+#p1-landing .p1-controls { color:#a9c0b7; font-size:12px; margin-top:22px; }
+body[data-sample='p1'] #ch0-objective { top:22px; padding:10px 17px; border-radius:5px; background:#173c3edb; font-size:13px; max-width:560px; text-align:center; }
+body[data-sample='p1'] #ch0-dialogue { inset:auto auto 28px 50%; transform:translateX(-50%); width:min(760px,calc(100vw - 40px)); display:block; padding:0; background:transparent; pointer-events:none; }
+body[data-sample='p1'] .ch0-dialogue-controls { pointer-events:auto; }
+body[data-sample='p1'] .ch0-dialogue-card { background:#102e36e8; border:1px solid #c2d4c033; border-radius:7px; padding:18px 24px; box-shadow:0 8px 28px #102e3644; }
+body[data-sample='p1'] .ch0-dialogue-text { font-size:19px; line-height:1.55; margin:6px 0; color:#f3efdf; }
+body[data-sample='p1'] .ch0-dialogue-speaker { font-size:11px; letter-spacing:1.8px; color:#b7d4bf; }
+body[data-sample='p1'] .ch0-dialogue-auto .ch0-dialogue-controls { display:none; }
+body[data-sample='p1'] .ch0-dialogue-controls button { padding:13px 17px; border-color:#8caf9a55; background:#2a5256; font-size:14px; }
+body[data-sample='p1'] #interaction-prompt { background:#153a3ee6; border:1px solid #cee1ca44; padding:10px 16px; font-size:14px; }
+#p1-review { position:fixed; top:105px; left:24px; width:320px; padding:22px; background:#163b3be8; border:1px solid #c8dfbf44; border-radius:7px; z-index:22; pointer-events:none; }
+#p1-review h2 { font-size:22px; line-height:1.3; margin:15px 0; }
+#p1-review p { font-size:13px; color:#d2ded1; line-height:1.65; }
+#p1-pause { position:fixed; inset:0; background:#132b3560; backdrop-filter:blur(4px); display:grid; place-items:center; z-index:29; font-size:18px; }

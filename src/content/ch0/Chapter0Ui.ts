@@ -1,6 +1,9 @@
 export interface DialogueLine {
   speaker?: string;
   text: string;
+  minDurationMs?: number;
+  pauseAfterMs?: number;
+  completion?: () => Promise<void>;
 }
 
 export interface DialogueOption<T extends string = string> {
@@ -116,6 +119,28 @@ export class Chapter0Ui {
     this.dialogue.hidden = true;
     this.controls.replaceChildren();
     return result;
+  }
+
+  async showAutoLine(line: DialogueLine): Promise<void> {
+    this.dialogue.hidden = false;
+    this.dialogue.classList.add("visible", "ch0-dialogue-auto");
+    this.speaker.textContent = line.speaker ?? "";
+    this.speaker.hidden = !line.speaker;
+    this.text.textContent = line.text;
+    this.controls.replaceChildren();
+    if (line.completion) await line.completion();
+    else await wait(Math.max(line.minDurationMs ?? 0, 900 + line.text.length * 24));
+    if (line.pauseAfterMs) await wait(line.pauseAfterMs);
+  }
+
+  hideDialogue(): void {
+    this.dialogue.classList.remove("visible", "ch0-dialogue-auto");
+    this.dialogue.hidden = true;
+    this.controls.replaceChildren();
+  }
+
+  choose<T extends string>(options: readonly DialogueOption<T>[], autoplayChoice?: T): Promise<T | null> {
+    return this.play({ lines: [], options, autoplayChoice });
   }
 
   showEnding(): void {

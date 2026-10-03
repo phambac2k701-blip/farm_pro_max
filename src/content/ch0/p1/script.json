@@ -1,0 +1,151 @@
+{
+  "status": "DRAFT_CANDIDATE_NOT_CANON",
+  "source": "Chapter0Game.ts @ 1a4e417; CH0_SCRIPT_LAYOUT_V0 draft",
+  "mother": [
+    {
+      "id": "call_01",
+      "speaker": "MẸ",
+      "text": "Đến nơi chưa con?"
+    },
+    {
+      "id": "call_02",
+      "speaker": "BẮC",
+      "text": "Con đến rồi."
+    },
+    {
+      "id": "call_03",
+      "speaker": "MẸ",
+      "text": "Thế giờ sang trường luôn à?"
+    },
+    {
+      "id": "call_04",
+      "speaker": "BẮC",
+      "text": "Vâng. Con đang ngoài đường đây. Lát con đi."
+    },
+    {
+      "id": "call_05",
+      "speaker": "MẸ",
+      "text": "Có gì không biết thì hỏi người ta. Đừng tự mò xong lại đi vòng."
+    },
+    {
+      "id": "call_06",
+      "speaker": "BẮC",
+      "text": "Con biết rồi."
+    },
+    {
+      "id": "call_07",
+      "speaker": "MẸ",
+      "text": "Biết thật không đấy?"
+    },
+    {
+      "id": "call_08",
+      "speaker": "BẮC",
+      "text": "Chưa biết thì lát biết."
+    },
+    {
+      "id": "call_09",
+      "speaker": "MẸ",
+      "text": "Ừ. Nhớ ăn uống."
+    },
+    {
+      "id": "call_10",
+      "speaker": "BẮC",
+      "text": "Vâng. Con đi đã nhé."
+    }
+  ],
+  "driver": [
+    {
+      "id": "driver_01",
+      "speaker": "TÀI XẾ",
+      "text": "Em đi đâu đấy? Lên anh chở."
+    },
+    {
+      "id": "driver_02",
+      "speaker": "BẮC",
+      "text": "Em đi xe buýt."
+    },
+    {
+      "id": "driver_03",
+      "speaker": "TÀI XẾ",
+      "text": "Xe buýt?"
+    },
+    {
+      "id": "driver_04",
+      "speaker": "TÀI XẾ",
+      "text": "Thế em đứng đây làm gì?"
+    },
+    {
+      "id": "driver_05",
+      "speaker": "BẮC",
+      "text": "Bắt xe."
+    },
+    {
+      "id": "driver_06",
+      "speaker": "TÀI XẾ",
+      "text": "Mới lên Hà Nội à?"
+    }
+  ],
+  "new": [
+    {
+      "id": "new_01",
+      "speaker": "TÀI XẾ",
+      "text": "Anh đoán thế. Xe buýt phải ra điểm dừng."
+    },
+    {
+      "id": "new_02",
+      "speaker": "TÀI XẾ",
+      "text": "Thấy cái biển kia không? Ra đấy."
+    },
+    {
+      "id": "new_03",
+      "speaker": "BẮC",
+      "text": "À. Bảo sao."
+    }
+  ],
+  "why": [
+    {
+      "id": "why_01",
+      "speaker": "TÀI XẾ",
+      "text": "Vì người quen đường không đứng đây vẫy xe buýt."
+    },
+    {
+      "id": "why_02",
+      "speaker": "BẮC",
+      "text": "Hợp lý."
+    },
+    {
+      "id": "why_03",
+      "speaker": "TÀI XẾ",
+      "text": "Ra cái biển kia. Xe vào điểm dừng thì hẵng lên."
+    }
+  ],
+  "assumed": [
+    {
+      "id": "assumed_01",
+      "speaker": "TÀI XẾ",
+      "text": "Không. Xe buýt phải vào điểm dừng."
+    },
+    {
+      "id": "assumed_02",
+      "speaker": "TÀI XẾ",
+      "text": "Cái biển kia kìa."
+    },
+    {
+      "id": "assumed_03",
+      "speaker": "BẮC",
+      "text": "À. Bảo sao."
+    }
+  ],
+  "thanks": [
+    {
+      "id": "thanks_01",
+      "speaker": "BẮC",
+      "text": "Vâng, em cảm ơn anh."
+    },
+    {
+      "id": "thanks_02",
+      "speaker": "TÀI XẾ",
+      "text": "Ừ."
+    }
+  ]
+}

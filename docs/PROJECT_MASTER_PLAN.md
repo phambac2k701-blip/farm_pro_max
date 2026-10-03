@@ -2,11 +2,13 @@
 
 Ngày đối chiếu: 03/10/2026. Người dùng là người duyệt cuối.
 
-**Đã có hiệu lực:** ưu tiên toàn bộ Ch0 → người dùng chơi và nghiệm thu → mới lập kế hoạch Ch1. **Chờ duyệt:** các gói sản xuất, lựa chọn trình bày và phần AI bổ sung dưới đây. Lượt này chỉ chỉnh tài liệu, không đổi runtime, không merge.
+**Đã có hiệu lực:** ưu tiên toàn bộ Ch0 → người dùng chơi và nghiệm thu → mới lập kế hoạch Ch1. **Được phép thực hiện:** P0 và đúng một mẫu P1 liên tục. **Chưa duyệt:** P2–P7, toàn draft, ngoại hình NPC final và mọi tính năng đề xuất. Không merge main/worker; dừng sau mẫu để người dùng chọn chất lượng. Chỉ đạo18:27: tạm bỏ audio khỏi review mẫu này, không xóa WIP và không bỏ yêu cầu audio khi nghiệm thu toàn Ch0.
 
 [Cửa vào duy nhất](START_HERE.md). Tài liệu này tái sử dụng master plan để chứa bảng rà soát, khoảng trống và kế hoạch; không mở thêm bộ tài liệu song song.
 
 ## 1. Phạm vi và bằng chứng rà soát
+
+**Snapshot tài liệu trước P0:** các nhận định không truy cập được bên dưới đúng tại checkpoint `1a4e417`; không dùng như trạng thái hiện tại. **Cập nhật P0/P1:** Windows đã truy cập, worktree/audio WIP đã đọc, kiểm toàn tuyến bằng input thường và dựng mẫu riêng tại `phase-v2/ch0-p1-quality-candidate-v0`. Chi tiết source/HEAD/WIP/phép đo/video ở [evidence P0/P1](playtest/ch0-p1-quality-candidate-v0/README.md).
 
 Repo được đọc qua plugin GitHub và clone riêng tại `/workspace/scratch/200be3eef68c/farm_pro_max`. Workspace ban đầu không có repo. Clone ban đầu: `main` @ `471dd332c76d5dcce38810508fb578f642ac57b2`, status sạch, một worktree. Remote `origin`: `https://github.com/phambac2k701-blip/farm_pro_max.git`. Không có AGENTS.md trong cây nguồn điều phối/greybox đã kiểm tra; đã đọc WORKING_RULES và ADR-0001.
 
@@ -70,7 +72,7 @@ Không lấy tên V2/V3 hoặc mtime làm tiêu chí. Không merge whole worker 
 - Thay ưu tiên đồng thời Ch0–Ch3 và GD4/Ch2 trước bằng hoàn thiện toàn Ch0. Macro Ch1–Ch3 vẫn giữ để bảo toàn hướng truyện, không là lịch sản xuất.
 - Thay audio “để cuối” bằng thiết kế/chọn/đồng bộ âm thanh trong mỗi cảnh. Có thể tạm trong gói đang làm, không qua gate cuối nếu placeholder quan trọng.
 - Sửa “animation chưa bắt đầu” thành “proof ở A, chưa nối Ch0”. Event core đã có trong G; performance ở P. Không nhập nhằng tồn tại remote với đã tích hợp.
-- STOP của reconciliation/animation worker là lịch sử đúng phạm vi. Điểm dừng **hiện tại**: bàn giao docs và chờ duyệt kế hoạch Ch0. Các gate canon/final character còn hiệu lực.
+- STOP của reconciliation/animation worker là lịch sử đúng phạm vi. Điểm dừng **hiện tại**: bàn giao một mẫu P1 và chờ chọn hướng chất lượng; P2–P7 chưa được phép. Các gate canon/final character còn hiệu lực.
 - Hạ tài liệu pivot, P202 và báo cáo GD4 xuống đúng phạm vi; không dùng nội dung cũ làm nguồn Ch0. Bảo toàn topology GD4 và việc loại bỏ tự teleport spawn.
 - Định nghĩa hoàn thành thêm diễn xuất/âm thanh/asset và người dùng nghiệm thu. Autoplay chỉ chứng minh đường chuyển state, không chứng minh di chuyển tới target, quan sát, hướng dẫn dễ hiểu hoặc cảm giác chơi.
 - Thoại cố định như gọi mẹ tự chạy có nhịp; không bắt Tiếp từng câu. Thêm voice đơn thuần không sửa được hành động thiếu. Chi tiết control ở §4.
@@ -78,9 +80,9 @@ Không lấy tên V2/V3 hoặc mtime làm tiêu chí. Không merge whole worker 
 
 ## 4. Ch0 như một màn chơi
 
-Mã cảnh lấy từ script S và `src/content/ch0/Chapter0Runtime.ts`. Cột “còn thiếu” là yêu cầu/đề xuất sản xuất, **chưa triển khai**. Có code ≠ đã chạy ≠ đã playtest thủ công ≠ đủ nghiệm thu.
+Mã cảnh lấy từ script S và `src/content/ch0/Chapter0Runtime.ts`. Bảng dưới đối chiếu **runtime greybox toàn chương**; các yêu cầu/đề xuất còn thiếu không tự là feature đã duyệt. Mẫu P1 riêng đã triển khai một phần S01/S02/S02A (tay/phone, audio tự chạy, bus pass, driver rig/gaze/point), nhưng chưa thay cả runtime toàn chương. Có code ≠ đã chạy ≠ đã playtest thủ công ≠ đủ nghiệm thu.
 
-Bằng chứng chung: G có báo cáo headless autoplay default/self-nav/missed-bus về CH0-END và ảnh. Đó là báo cáo chạy trước lượt này, chưa có báo cáo chơi thủ công toàn chương hoặc người dùng nghiệm thu. **Mọi cảnh dưới đây chưa đạt chất lượng nghiệm thu.**
+Bằng chứng chung: G có báo cáo headless autoplay default/self-nav/missed-bus về CH0-END và ảnh. Đó là báo cáo cũ. P0 mới chạy một tuyến đầu-cuối bằng AI gửi input thông thường; P1 có ảnh/video/số đo candidate riêng. Chưa có nghiệm thu do người dùng hoặc mọi tuyến/chất lượng toàn Ch0. **Mọi cảnh dưới đây chưa đạt chất lượng nghiệm thu.**
 
 | Cảnh / mục tiêu | Hành động người chơi | Phản ứng thế giới cần thấy | NPC/asset cần | Âm thanh/hiệu ứng | Điều kiện kết thúc | Code hiện có / phần còn thiếu |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -109,7 +111,7 @@ Bằng chứng chung: G có báo cáo headless autoplay default/self-nav/missed-
 
 ### Khoảng trống hệ thống liên cảnh
 
-`Chapter0World` dựng cả street/bus/uet rồi `setEnabled()` vùng không dùng: có giảm hiển thị, chưa dispose/lazy-resident đúng policy map. Ch0 `main.ts` không tạo `AudioDirector`, `SaveService`, `CameraDirector` cho choreography; foundation tồn tại không có nghĩa đã nối.
+`Chapter0World` dựng cả street/bus/uet rồi `setEnabled()` vùng không dùng: có giảm hiển thị, chưa dispose/lazy-resident đúng policy map. Bootstrap greybox toàn Ch0 chưa tạo `AudioDirector`, `SaveService`, `CameraDirector` cho choreography. Entry `?sample=p1` riêng hiện nối AudioDirector/listener/actual-ended và StoryBeatDirector; không suy đã nối audio/save cho toàn chương.
 
 `Chapter0Runtime` giữ attempts/missed/fare/nav trong field local; GameState snapshot hiện không bao phủ chúng. `completeChapter()` đổi `chapterId` sang ch01, nhưng Ch1 chưa chạy. P0/P6 phải phân biệt đã kết Ch0 và quyền bắt đầu Ch1. R hiện là reload, không là resume checkpoint. Save/restore cần xử lý phase + nhánh + money gate + vị trí hợp lệ + input/audio owner, không chỉ thêm nút lưu.
 
@@ -117,7 +119,7 @@ Bằng chứng chung: G có báo cáo headless autoplay default/self-nav/missed-
 
 ### Hợp đồng tích hợp cho từng asset
 
-Đây là **đề xuất checklist metadata**, chưa có manifest/validator Ch0 được triển khai. Lưu cùng file catalog của bộ asset khi P1/P2 bắt đầu, không tạo registry service mới. Mỗi record phải có:
+Checklist toàn Ch0 còn là đề xuất. Bộ P1 đã có [catalog tích hợp](../public/assets/ch0/p1/catalog.json) và `tools/ch0/validateP1Assets.cjs`; validator chỉ kiểm file/hash/URI/stream/clip, không xác nhận chất lượng hình/diễn xuất. Lưu cùng file catalog của bộ asset khi P1/P2 bắt đầu, không tạo registry service mới. Mỗi record phải có:
 
 `id, file, status, role(background/interactable/character), source, author, license, attribution, modifications, unitMeters, dimensions, forward/up, pivot, materials/textures, collisionProxy, interactionAnchors, rig/clipIds, audioCueIds, sceneIds, placements(position/rotation/scale), reviewEvidence`.
 
@@ -125,7 +127,7 @@ Từng trường không áp dụng ghi `not_applicable`; chưa có ghi `missing`
 
 ### Danh sách phục vụ Ch0
 
-ID mới dưới đây là **đề xuất**, file mới chưa tồn tại. Vị trí là slot/zone cần dùng; P1/P2 phải bổ sung transform kiểm chứng.
+ID của toàn chương dưới đây là **đề xuất**. File của bộ P1 đã có trong catalog; không suy rằng các slot P2–P7 đã tồn tại. Vị trí là slot/zone cần dùng; P1/P2 phải bổ sung transform kiểm chứng.
 
 | Asset/nhóm | Loại, cảnh và slot | File/mức có hiện tại | Điểm cần nối hoặc kiểm |
 | --- | --- | --- | --- |
@@ -158,7 +160,7 @@ Generator viết vào thư mục asset hiện có: chạy ở branch gói riêng
 
 ## 6. Kế hoạch hoàn thiện toàn bộ Ch0
 
-**ĐỀ XUẤT CHỜ DUYỆT.** Thực thi trực tiếp tuần tự bởi coordinator; không tự mở agent/worker mới. Mỗi gói đi qua đủ asset, gameplay, NPC, thoại, audio, camera, kiểm cảnh; hạ tầng làm cùng gói cần nó. P1 là thử quy trình, mục tiêu bàn giao cuối vẫn P7 toàn chương.
+**P0 + một mẫu P1 đã được phép; phần còn lại chờ duyệt.** Thực thi trực tiếp tuần tự bởi coordinator; không tự mở agent/worker mới. Mỗi gói đi qua đủ asset, gameplay, NPC, thoại, audio, camera, kiểm cảnh; hạ tầng làm cùng gói cần nó. P1 là thử quy trình, mục tiêu bàn giao cuối vẫn P7 toàn chương.
 
 Giả định ước lượng: một người + AI, desktop browser, tái dùng foundations và asset licensed/DCC phù hợp, bộ rig tái dùng, tối đa ba micro-branch đã có, không exact campus master reconstruction, không multiplayer/physics traffic/full transport sim. Khoảng là **giờ làm hữu ích**, không là giờ chạy AI hay lời hứa lịch. Thời gian chờ duyệt/tìm license/thu voice không nằm trong khoảng. Chưa đo chất lượng NPC/asset cuối nên phải ước lượng lại sau P1.
 
@@ -175,11 +177,23 @@ Giả định ước lượng: một người + AI, desktop browser, tái dùng 
 
 Tổng cộng **108–216 giờ hữu ích**; dự phòng khoảng 20–30% cho cleanup/retarget/voice/rework: khoảng **130–280 giờ**, cần đánh giá lại sau P1. Nếu cần dựng nhân vật/xe/topology chính xác từ đầu hoặc cinematic lip sync cao hơn, dừng để cập nhật phạm vi/ước lượng; không âm thầm hạ chất lượng cuối xuống mannequin.
 
+### Phân loại tính năng sau P0 — không mặc nhiên duyệt mọi đề xuất
+
+| Mục | Bắt buộc để kể/chơi cảnh | Cần cho chất lượng được chọn | Tùy chọn/chưa được duyệt |
+| --- | --- | --- | --- |
+| P1 gọi mẹ/vẫy/hỏi stop | Thoại tự chạy, giao quyền, E, xe thật đi qua, driver phản ứng/chỉ stop, UI/replay ổn định | Tay/điện thoại, nhân vật có rig, gaze/gesture, street/vehicle/voice/subtitles trong ánh sáng thật | Lip-sync, traffic simulation, full phố; không xây trong mẫu |
+| Ngồi/đứng trong bus | Truyền đạt đang ở trên xe và tới mốc xuống | Camera an toàn, chuyển cảnh và âm thanh chuyến đi | Hệ tương tác ngồi/đứng đầy đủ chỉ giữ nếu playtest chứng minh giá trị; P1 không có |
+| Nhường lối | Nếu chọn tình huống đó, phản ứng/đường đi phải nhìn thấy | NPC né hoặc khoảng mở đủ đọc | Chưa duyệt crowd AI/yield system; không thêm để tăng thao tác |
+| Ví/vé | Kết quả giải quyết vé và continuity tiền nếu S04 A/B được chốt | Một prop/thao tác rõ, phản hồi nhìn thấy được khi tình huống cần | Ví inventory, lấy/đếm từng tờ, mô phỏng vé chưa duyệt |
+| ATM | Không bắt buộc với Ch0; cần một cách hợp lý chuẩn bị chuyến về | Chỉ asset/hành vi nếu phương án chuyện chọn ATM | Máy/menus/minigame ATM chưa duyệt; có thể dùng cách chuẩn bị tiền đơn giản hơn |
+
+Ước lượng trước mẫu **130–280 giờ** vẫn là khoảng cho toàn Ch0 với giả định cũ, không phải cam kết. Mẫu đã chứng minh pipeline input/audio/rig/export, nhưng cũng cho thấy giới hạn base body/áo và TTS. Sau khi chọn hướng: dự kiến riêng sửa P1 để đạt hướng stylized này **8–20 giờ hữu ích**, gồm model/trang phục/pose/camera/audio mix và kiểm lại; nếu thay base rig/voice diễn viên, **20–40 giờ**, chưa tính chờ tìm/mua asset hay thu giọng. P2–P7 chỉ ước lượng lại sau quyết định đó. Công sức thực tế và số đo ở evidence, không quy thời gian chạy AI thành giờ nhân công.
+
 ### Thứ tự và kiểm soát nghiệm thu
 
-- [ ] Người dùng duyệt kế hoạch và phương án cần cho P1; ghi rõ phần duyệt, không “approved all” cho cả draft.
-- [ ] P0 dựng baseline; review chỉ file reuse A/P cần dùng, tránh merge whole worker.
-- [ ] P1 chứng minh một tình huống đủ hình/âm/interaction; user xem mẫu chất lượng, cập nhật ước lượng.
+- [x] Người dùng cho phép P0 và một mẫu P1 dùng draft/candidate để đánh giá; không “approved all” cho cả draft.
+- [x] P0: input thường đầu-cuối ask_staff, inspect actual Windows WIP, chọn một file snapshot performance và StoryBeatDirector; không merge worker.
+- [ ] P1 candidate đã dựng và bàn giao evidence; còn người dùng xem/chọn hướng chất lượng. Không tự coi gói đã nghiệm thu.
 - [ ] P2–P5 lần lượt nối các tình huống thành toàn chương; mỗi gói có nhánh riêng/commit/evidence và checklist đạt.
 - [ ] P6 hoàn tất kết chương/replay/restore; lưu ở mốc an toàn, không serialise giữa animation chưa xong. Đề xuất checkpoint S02 sau call, S04 vào bus, S06 entry UET, S08 sau admin và terminal Ch0; tiền/nhánh theo checkpoint phải khôi phục đủ.
 - [ ] P7 nghiệm thu toàn bộ Ch0; người dùng chơi và chấp nhận; chỉ sau đó mới lập kế hoạch Ch1.

@@ -3,10 +3,32 @@ import { describe, expect, it, vi } from "vitest";
 
 import {
   AudioDirector,
+  synchronizeAudioPause,
   type AudioBackend,
   type AudioCueDefinition,
   type AudioSoundHandle,
 } from "../../src/audio/AudioDirector";
+
+it('survives duplicate focus before a blur/resume without caching a no-op resume', async () => {
+  // Babylon 9.29 caches resumeAsync promises. Calling it while already running
+  // has no statechange to clear that cache, so the next resume can be a no-op.
+  const transport = {
+    state: 'running',
+    cached: false,
+    pauseAsync: vi.fn(async () => { transport.state = 'suspended'; }),
+    resumeAsync: vi.fn(async () => {
+      if (transport.cached) return;
+      transport.cached = true;
+      if (transport.state === 'suspended') { transport.state = 'running'; transport.cached = false; }
+    }),
+  };
+  await synchronizeAudioPause(transport, false);
+  await synchronizeAudioPause(transport, false);
+  await synchronizeAudioPause(transport, true);
+  await synchronizeAudioPause(transport, false);
+  expect(transport.state).toBe('running');
+  expect(transport.resumeAsync).toHaveBeenCalledTimes(1);
+});
 
 function createSound() {
   return {
@@ -117,4 +139,19 @@ describe("AudioDirector", () => {
     expect(backend.dispose).toHaveBeenCalledOnce();
     expect(director.play("ambience")).toBe(false);
   });
+});
+
+describe('AudioDirector authored speech',()=>{
+ it('waits for the real ended callback, then removes it',async()=>{
+  let done!:()=>void;const remove=vi.fn();const sound={...createSound(),onEnded:vi.fn((f:()=>void)=>{done=f;return remove})};
+  const backend:AudioBackend={unlockAsync:async()=>{},setVolume:vi.fn(),load:async()=>sound,dispose:vi.fn()};
+  const d=await AudioDirector.forTest({voice:{file:'voice.mp3'}},backend);let ended=false;const playing=d.playUntilEnd('voice').then(v=>ended=v);
+  expect(ended).toBe(false);done();await playing;expect(ended).toBe(true);expect(remove).toHaveBeenCalledOnce();
+ });
+ it('cancels speech cleanly without leaving the sequence blocked',async()=>{
+  const remove=vi.fn();const sound={...createSound(),onEnded:vi.fn(()=>remove)};
+  const backend:AudioBackend={unlockAsync:async()=>{},setVolume:vi.fn(),load:async()=>sound,dispose:vi.fn()};
+  const d=await AudioDirector.forTest({voice:{file:'voice.mp3'}},backend);const abort=new AbortController();const playing=d.playUntilEnd('voice',undefined,abort.signal);abort.abort();
+  expect(await playing).toBe(false);expect(sound.stop).toHaveBeenCalled();expect(remove).toHaveBeenCalledOnce();
+ });
 });

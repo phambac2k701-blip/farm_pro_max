@@ -1,0 +1,459 @@
+{
+  "method": "AI uses ordinary keyboard/mouse through Playwright; diagnostics read only. Not a human subjective playtest, not runtime autoplay.",
+  "createdAt": 1791025920465,
+  "clickedAt": 1791025926490,
+  "audioStartedAt": 1791025922144,
+  "audioOffsetSeconds": 1.679,
+  "trace": [
+    {
+      "label": "call",
+      "seconds": 11.476,
+      "interactionTarget": "",
+      "playerFeet": "0.000,0.124,-4.700",
+      "p1Movement": "false",
+      "p1Look": "false",
+      "p1Paused": "false",
+      "sceneReady": "ch0-p1-quality-candidate-v0",
+      "renderBackend": "webgpu",
+      "p1Stage": "call",
+      "p1Complete": "false",
+      "ch0Complete": "false",
+      "focused": true,
+      "audioState": "running",
+      "p": [
+        0,
+        0.12400001101940902,
+        -4.7
+      ],
+      "r": [
+        0,
+        0
+      ],
+      "lock": true,
+      "line": "Thế giờ sang trường luôn à?",
+      "buttons": [],
+      "bus": [
+        -26,
+        0,
+        2.5
+      ],
+      "audioFailures": [],
+      "fps": 46.91898655164006
+    },
+    {
+      "label": "blur-pause",
+      "seconds": 12.476,
+      "interactionTarget": "",
+      "playerFeet": "0.000,0.124,-4.700",
+      "p1Movement": "false",
+      "p1Look": "false",
+      "p1Paused": "true",
+      "sceneReady": "ch0-p1-quality-candidate-v0",
+      "renderBackend": "webgpu",
+      "p1Stage": "call",
+      "p1Complete": "false",
+      "ch0Complete": "false",
+      "focused": false,
+      "audioState": "suspended",
+      "p": [
+        0,
+        0.12400001101940902,
+        -4.7
+      ],
+      "r": [
+        0,
+        0
+      ],
+      "lock": false,
+      "line": "Thế giờ sang trường luôn à?",
+      "buttons": [],
+      "bus": [
+        -26,
+        0,
+        2.5
+      ],
+      "audioFailures": [],
+      "fps": 36.95946778420672
+    },
+    {
+      "label": "focus-resume",
+      "seconds": 16.403,
+      "interactionTarget": "",
+      "playerFeet": "0.000,0.124,-4.700",
+      "p1Movement": "false",
+      "p1Look": "false",
+      "p1Paused": "false",
+      "sceneReady": "ch0-p1-quality-candidate-v0",
+      "renderBackend": "webgpu",
+      "p1Stage": "call",
+      "p1Complete": "false",
+      "ch0Complete": "false",
+      "focused": true,
+      "audioState": "running",
+      "p": [
+        0,
+        0.12400001101940902,
+        -4.7
+      ],
+      "r": [
+        0,
+        0
+      ],
+      "lock": false,
+      "line": "Thế giờ sang trường luôn à?",
+      "buttons": [],
+      "bus": [
+        -26,
+        0,
+        2.5
+      ],
+      "audioFailures": [],
+      "fps": 40.55698255951714
+    },
+    {
+      "label": "handoff",
+      "seconds": 41.465,
+      "interactionTarget": "p1-hail",
+      "playerFeet": "0.000,0.124,-4.700",
+      "p1Movement": "true",
+      "p1Look": "true",
+      "p1Paused": "false",
+      "sceneReady": "ch0-p1-quality-candidate-v0",
+      "renderBackend": "webgpu",
+      "p1Stage": "wave",
+      "p1Complete": "false",
+      "ch0Complete": "false",
+      "focused": true,
+      "audioState": "running",
+      "p": [
+        0,
+        0.12400001101940902,
+        -4.7
+      ],
+      "r": [
+        0,
+        0
+      ],
+      "lock": true,
+      "buttons": [],
+      "bus": [
+        -26,
+        0,
+        2.5
+      ],
+      "audioFailures": [],
+      "fps": 47.573739294109814
+    },
+    {
+      "label": "wait-and-walk-back",
+      "seconds": 44.33,
+      "interactionTarget": "p1-hail",
+      "playerFeet": "0.000,0.124,-5.511",
+      "p1Movement": "true",
+      "p1Look": "true",
+      "p1Paused": "false",
+      "sceneReady": "ch0-p1-quality-candidate-v0",
+      "renderBackend": "webgpu",
+      "p1Stage": "wave",
+      "p1Complete": "false",
+      "ch0Complete": "false",
+      "focused": true,
+      "audioState": "running",
+      "p": [
+        0,
+        0.12400001101940902,
+        -5.511499999999999
+      ],
+      "r": [
+        0,
+        0
+      ],
+      "lock": true,
+      "buttons": [],
+      "bus": [
+        -26,
+        0,
+        2.5
+      ],
+      "audioFailures": [],
+      "fps": 42.826552462526635
+    },
+    {
+      "label": "moving-bus",
+      "seconds": 47.501,
+      "interactionTarget": "",
+      "playerFeet": "0.000,0.124,-5.511",
+      "p1Movement": "false",
+      "p1Look": "true",
+      "p1Paused": "false",
+      "sceneReady": "ch0-p1-quality-candidate-v0",
+      "renderBackend": "webgpu",
+      "p1Stage": "bus-pass",
+      "p1Complete": "false",
+      "ch0Complete": "false",
+      "focused": true,
+      "audioState": "running",
+      "p": [
+        0,
+        0.12400001101940902,
+        -5.511499999999999
+      ],
+      "r": [
+        0.11880000000000004,
+        0.07700000000000023
+      ],
+      "lock": true,
+      "buttons": [],
+      "bus": [
+        -1.948799999952314,
+        0,
+        2.5
+      ],
+      "audioFailures": [],
+      "fps": 41.82350480900785
+    },
+    {
+      "label": "driver-target",
+      "seconds": 56.924,
+      "interactionTarget": "p1-driver",
+      "playerFeet": "0.929,0.124,-3.945",
+      "p1Movement": "true",
+      "p1Look": "true",
+      "p1Paused": "false",
+      "sceneReady": "ch0-p1-quality-candidate-v0",
+      "renderBackend": "webgpu",
+      "p1Stage": "driver-ready",
+      "p1Complete": "false",
+      "ch0Complete": "false",
+      "focused": true,
+      "audioState": "running",
+      "p": [
+        0.9290975610679948,
+        0.12400001101940902,
+        -3.9453568140024604
+      ],
+      "r": [
+        0.06819999999999979,
+        0.6974000000000007
+      ],
+      "lock": true,
+      "buttons": [],
+      "bus": [
+        24.114400000095408,
+        0,
+        2.5
+      ],
+      "audioFailures": [],
+      "fps": 52.13764337797899
+    },
+    {
+      "label": "point-cue",
+      "seconds": 76.541,
+      "interactionTarget": "",
+      "playerFeet": "0.929,0.124,-3.945",
+      "p1Movement": "false",
+      "p1Look": "true",
+      "p1Paused": "false",
+      "sceneReady": "ch0-p1-quality-candidate-v0",
+      "renderBackend": "webgpu",
+      "p1Stage": "driver-talk",
+      "p1Complete": "false",
+      "ch0Complete": "false",
+      "p1Reply": "new",
+      "focused": true,
+      "audioState": "running",
+      "p": [
+        0.9290975610679948,
+        0.12400001101940902,
+        -3.9453568140024604
+      ],
+      "r": [
+        0.29479999999999973,
+        1.2980000000000014
+      ],
+      "lock": true,
+      "line": "Thấy cái biển kia không? Ra đấy.",
+      "buttons": [],
+      "bus": [
+        24.114400000095408,
+        0,
+        2.5
+      ],
+      "audioFailures": [],
+      "fps": 54.43658138327762
+    },
+    {
+      "label": "review",
+      "seconds": 87.478,
+      "interactionTarget": "",
+      "playerFeet": "0.888,0.124,-3.798",
+      "p1Movement": "true",
+      "p1Look": "true",
+      "p1Paused": "false",
+      "sceneReady": "ch0-p1-quality-candidate-v0",
+      "renderBackend": "webgpu",
+      "p1Stage": "review",
+      "p1Complete": "true",
+      "ch0Complete": "false",
+      "p1Reply": "new",
+      "focused": true,
+      "audioState": "running",
+      "p": [
+        0.8877946459170791,
+        0.12400001101940902,
+        -3.7977256547082456
+      ],
+      "r": [
+        0.29479999999999973,
+        1.2980000000000014
+      ],
+      "lock": true,
+      "buttons": [],
+      "bus": [
+        24.114400000095408,
+        0,
+        2.5
+      ],
+      "audioFailures": [],
+      "fps": 47.69475357710623
+    },
+    {
+      "label": "escape",
+      "seconds": 89.905,
+      "interactionTarget": "",
+      "playerFeet": "1.952,0.124,-4.068",
+      "p1Movement": "true",
+      "p1Look": "true",
+      "p1Paused": "false",
+      "sceneReady": "ch0-p1-quality-candidate-v0",
+      "renderBackend": "webgpu",
+      "p1Stage": "review",
+      "p1Complete": "true",
+      "ch0Complete": "false",
+      "p1Reply": "new",
+      "focused": true,
+      "audioState": "running",
+      "p": [
+        1.9515397787751763,
+        0.12400001101940902,
+        -4.067854703692211
+      ],
+      "r": [
+        -0.16280000000000028,
+        0.48180000000000134
+      ],
+      "lock": true,
+      "buttons": [],
+      "bus": [
+        24.114400000095408,
+        0,
+        2.5
+      ],
+      "audioFailures": [],
+      "fps": 51.16834385283093
+    },
+    {
+      "label": "reacquire-and-move",
+      "seconds": 90.248,
+      "interactionTarget": "",
+      "playerFeet": "2.228,0.124,-3.539",
+      "p1Movement": "true",
+      "p1Look": "true",
+      "p1Paused": "false",
+      "sceneReady": "ch0-p1-quality-candidate-v0",
+      "renderBackend": "webgpu",
+      "p1Stage": "review",
+      "p1Complete": "true",
+      "ch0Complete": "false",
+      "p1Reply": "new",
+      "focused": true,
+      "audioState": "running",
+      "p": [
+        2.2278966392038577,
+        0.12400001101940902,
+        -3.539347517613667
+      ],
+      "r": [
+        0.29479999999999973,
+        1.3200000000000014
+      ],
+      "lock": true,
+      "buttons": [],
+      "bus": [
+        24.114400000095408,
+        0,
+        2.5
+      ],
+      "audioFailures": [],
+      "fps": 49.08376963207156
+    }
+  ],
+  "subtitles": [
+    {
+      "seconds": 58.269,
+      "text": "Em đi xe buýt."
+    },
+    {
+      "seconds": 60.557,
+      "text": "Xe buýt?"
+    },
+    {
+      "seconds": 62.882,
+      "text": "Thế em đứng đây làm gì?"
+    },
+    {
+      "seconds": 65.198,
+      "text": "Bắt xe."
+    },
+    {
+      "seconds": 67.381,
+      "text": "Mới lên Hà Nội à?"
+    },
+    {
+      "seconds": 70.385,
+      "text": "Anh đoán thế. Xe buýt phải ra điểm dừng."
+    },
+    {
+      "seconds": 74.426,
+      "text": "Thấy cái biển kia không? Ra đấy."
+    },
+    {
+      "seconds": 78.344,
+      "text": "À. Bảo sao."
+    },
+    {
+      "seconds": 82.899,
+      "text": "Vâng, em cảm ơn anh."
+    },
+    {
+      "seconds": 85.592,
+      "text": "Ừ."
+    }
+  ],
+  "performance": {
+    "snapshot": {
+      "capturedAt": "2026-10-03T11:13:31.292Z",
+      "backend": "webgpu",
+      "engineDescription": "WebGPU1",
+      "rafFps": 52.06463195691203,
+      "engineFps": 52.19206680476279,
+      "totalMeshes": 321,
+      "activeMeshes": 89,
+      "totalVertices": 43805,
+      "activeIndices": 104316,
+      "activeTriangles": 34772,
+      "materials": 53,
+      "textures": 19,
+      "animationGroups": 3,
+      "skeletons": 1,
+      "drawCalls": 189
+    },
+    "frames": 3891,
+    "p50": 20.5,
+    "p95": 27.100000023841858,
+    "p99": 33.39999997615814
+  },
+  "errors": [],
+  "warnings": [],
+  "limit": "Full P1 reached review with native blur/audio resume; visible browser was closed during R check. R separately verified in headless recording. Not used as main video."
+}

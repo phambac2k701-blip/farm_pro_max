@@ -1,6 +1,6 @@
 # Điều phối AI — UETốt
 
-Cửa vào: [START_HERE](START_HERE.md). Ưu tiên có hiệu lực 03/10/2026: **toàn Ch0 → người dùng chơi/nghiệm thu → lập kế hoạch Ch1**. Kế hoạch P0–P7 còn chờ duyệt. Lượt này docs-only, không gameplay mới.
+Cửa vào: [START_HERE](START_HERE.md). Ưu tiên có hiệu lực 03/10/2026: **toàn Ch0 → người dùng chơi/nghiệm thu → lập kế hoạch Ch1**. P0 và một mẫu P1 đã được người dùng cho phép; P2–P7, canon/final và Ch1 chưa được phép. Bàn giao mẫu rồi dừng cho người dùng đánh giá. Chỉ đạo18:27 tạm bỏ audio khỏi review lần này; giữ code/asset/WIP, chưa coi audio final của toàn Ch0 đã đạt.
 
 ## Vai trò và giới hạn
 
@@ -20,9 +20,9 @@ Bảng HEAD đầy đủ và bằng chứng ở [master plan §1](PROJECT_MASTER
 | Animation `498cf6c` | Worker committed/pushed; 6 clip prototype | Review chọn file reuse cho P1/P4; final rig/skin chưa có |
 | Performance `f9d6b63` | Worker committed/pushed, correction activeMeshes đúng | Review nhập module/test cho baseline Ch0; không nhập docs cũ |
 | Event `a0af373` | Worker committed/pushed; code/test đã trùng G | Reuse consumer hiện có, không redo foundation |
-| Audio Windows `phase-v2/audio-asset-library-v1` | PARKED WIP được docs ghi; không có remote branch trong lần kiểm kê | Inspect candidate tree/catalog/tooling trước khi dùng; lên kế hoạch audio cùng cảnh |
+| Audio Windows `phase-v2/audio-asset-library-v1` | PARKED WIP đã truy cập P0, giữ nguyên modified/untracked | Inspect candidate tree/catalog/tooling trước khi dùng; lên kế hoạch audio cùng cảnh |
 
-Đường dẫn audio được ghi trước đây: `C:\Users\Dell\projects\farm_pro_max_audio`, `assets/audio/catalog/audio_candidates.json`, `tools/audio_library/`. Chưa truy cập được trong phiên này, không khẳng định đã đọc. Không reset/clean/xóa WIP.
+Đường dẫn audio được ghi trước đây: `C:\Users\Dell\projects\farm_pro_max_audio`, `assets/audio/catalog/audio_candidates.json`, `tools/audio_library/`. Đã truy cập trong P0: nhánh audio local @ `409536b5eb8b34e2dc91647711a6509b111c4ed7`, catalog/tooling/asset untracked được đọc, giữ nguyên. Chọn riêng ambient `amb_urban_traffic_05` có nguồn CC0 cho P1; không nhập cả WIP. Chi tiết/hashes ở evidence P1. Không reset/clean/xóa WIP.
 
 Audio không phải điều kiện để viết draft, nhưng **âm thanh/diễn xuất là phần của mỗi tình huống được hoàn thiện**, không trì hoãn tích hợp hết tới cuối. Candidate cần provenance/license/nghe thử và gate phù hợp trước APPROVED_FINAL. Không dùng asset cốt truyện cũ như thoại UET.
 
@@ -44,4 +44,4 @@ Mẫu handoff ngắn: task/gói được duyệt, nhánh+SHA, file sửa, source
 
 ## Điểm dừng
 
-Chờ người dùng duyệt kế hoạch Ch0 và creative slots theo gói. Chưa triển khai gameplay mới, chưa Ch1. Các ưu tiên cũ “event Ch0–Ch3 trước”, “GD4/Ch2 trước vì map có”, “audio cuối” được thay thế bởi chỉ đạo mới; bản lịch sử còn trong git.
+Dừng sau mẫu P1 để người dùng chọn hướng chất lượng. Chưa P2–P7/Ch1; không tự duyệt thoại/diện mạo qua việc đã code. Các ưu tiên cũ “event Ch0–Ch3 trước”, “GD4/Ch2 trước vì map có”, “audio cuối” được thay thế bởi chỉ đạo mới; bản lịch sử còn trong git.

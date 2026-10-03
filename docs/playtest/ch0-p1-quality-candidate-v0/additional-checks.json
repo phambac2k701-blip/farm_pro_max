@@ -1,0 +1,111 @@
+{
+  "timestamp": "2026-10-03",
+  "scope": "P0 + một mẫu P1 candidate; âm thanh tạm để sau theo chỉ đạo người dùng",
+  "verification": {
+    "unitTests": {
+      "files": 20,
+      "passed": 75,
+      "failed": 0,
+      "local": true,
+      "windows": true
+    },
+    "productionBuild": {
+      "passed": true,
+      "warning": "Chunk lớn hơn 500KB; chưa tối ưu bundle toàn dự án"
+    },
+    "assetValidator": {
+      "assets": 11,
+      "voices": 27,
+      "errors": []
+    },
+    "gd4Blob": "c52b81ec0bc0ba1a8cb602ddab3973cfdce14238",
+    "diffCheck": "passed",
+    "relativeLinks": {
+      "checked": 57,
+      "missing": []
+    },
+    "packageSha256": "7cf8fb4864b43aa5a0347395a06fc9646412a6eb17fbe0cc25fefe340fa208df"
+  },
+  "preservedWip": {
+    "uiSha256": "2E772B2D936BA098A2BCF0A2ABD1C25718E5B64CE68476A516C9CE64EED59D17",
+    "directorSha256": "7079DEAB02D4FD68F688013EB9F898BE5DB9C3BF6A4897CE9BBFFC09F4FF065D",
+    "finalCheck": "Hashes unchanged; original greybox modified UI/untracked director; audio assets/docs/audio/tools/audio_library remain untracked; no reset/clean/merge"
+  },
+  "mutedBackendSmoke": {
+    "timestamp": "2026-10-03T11:37:33.921Z",
+    "method": "Muted production build ordinary Start input; 3s smoke per backend; not full fallback playthrough",
+    "results": [
+      {
+        "fallback": false,
+        "label": "Bắt đầu mẫu · tạm tắt tiếng",
+        "dataset": {
+          "interactionTarget": "",
+          "playerFeet": "0.000,0.124,-4.700",
+          "p1Movement": "false",
+          "p1Look": "false",
+          "p1Paused": "false",
+          "sceneReady": "ch0-p1-quality-candidate-v0",
+          "renderBackend": "webgpu",
+          "p1Stage": "call",
+          "p1Complete": "false",
+          "ch0Complete": "false"
+        },
+        "backend": "e",
+        "fatal": "",
+        "driver": [
+          2.1,
+          0.15,
+          -2.55
+        ],
+        "errors": [],
+        "warnings": []
+      },
+      {
+        "fallback": true,
+        "label": "Bắt đầu mẫu · tạm tắt tiếng",
+        "dataset": {
+          "engine": "Babylon.js v9.29.0",
+          "interactionTarget": "",
+          "playerFeet": "0.000,0.124,-4.700",
+          "p1Movement": "false",
+          "p1Look": "false",
+          "p1Paused": "false",
+          "sceneReady": "ch0-p1-quality-candidate-v0",
+          "renderBackend": "webgl",
+          "p1Stage": "call",
+          "p1Complete": "false",
+          "ch0Complete": "false"
+        },
+        "backend": "e",
+        "fatal": "",
+        "driver": [
+          2.1,
+          0.15,
+          -2.55
+        ],
+        "errors": [],
+        "warnings": [
+          "BJS - [18:37:28]: WebGPU is not supported by your browser."
+        ]
+      }
+    ]
+  },
+  "normalInput": {
+    "source": "normal-input.json",
+    "escape": "pointer lock false after Esc",
+    "reacquire": "click canvas + movement checked",
+    "replay": "R returns ready; p1Complete/ch0Complete false",
+    "otherReplies": [
+      "why-normal-input.json",
+      "assumed-normal-input.json"
+    ],
+    "headfulFocus": "focus-check.json; actual blur/focus passed; browser closed during later R so rely on separate primary replay evidence"
+  },
+  "limits": [
+    "AI controls ordinary input, not subjective human playtest",
+    "Video records earlier same gameplay code before mute URL/review-label change; delivered video has no audio track",
+    "Current muted URL and forced WebGL receive 3-second visual smoke only; full flow recorded with WebGPU",
+    "Forced WebGL support warning expected; no page/request errors",
+    "No Ch0 quality acceptance, no P2–P7, no Ch1 work"
+  ]
+}

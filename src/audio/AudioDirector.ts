@@ -35,11 +35,14 @@ export interface AudioSoundHandle {
   stop(): void;
   dispose(): void;
   attach(node: Node): void;
+  onEnded?(callback: () => void): () => void;
   setVolume(value: number, durationSeconds?: number): void;
 }
 
 export interface AudioBackend {
   unlockAsync(): Promise<void>;
+  setPaused?(paused: boolean): Promise<void>;
+  attachListener?(node: Node): void;
   setVolume(value: number, durationSeconds?: number): void;
   load(
     id: string,
@@ -51,6 +54,11 @@ export interface AudioBackend {
 
 class BabylonSoundHandle implements AudioSoundHandle {
   constructor(private readonly sound: StaticSound) {}
+
+  onEnded(callback: () => void): () => void {
+    const observer = this.sound.onEndedObservable.add(callback);
+    return () => { this.sound.onEndedObservable.remove(observer); };
+  }
 
   play(options?: { loop?: boolean; volume?: number }): void {
     this.sound.play(options);
@@ -75,6 +83,22 @@ class BabylonSoundHandle implements AudioSoundHandle {
     );
   }
 }
+export interface AudioPauseTransport {
+  readonly state: string;
+  pauseAsync(): Promise<void>;
+  resumeAsync(): Promise<void>;
+}
+
+export async function synchronizeAudioPause(
+  transport: AudioPauseTransport,
+  paused: boolean,
+): Promise<void> {
+  // Avoid Babylon's cached no-op resume promise when a focus event repeats
+  // while the context is already running. Resume only a suspended transport.
+  if (paused && transport.state === "running") await transport.pauseAsync();
+  else if (!paused && transport.state !== "running") await transport.resumeAsync();
+}
+
 class BabylonAudioBackend implements AudioBackend {
   private constructor(private readonly engine: AudioEngineV2) {}
 
@@ -87,11 +111,18 @@ class BabylonAudioBackend implements AudioBackend {
     return new BabylonAudioBackend(engine);
   }
 
+  attachListener(node: Node): void {
+    this.engine.listener.attach(node);
+  }
+
+  async setPaused(paused: boolean): Promise<void> {
+    await synchronizeAudioPause(this.engine, paused);
+  }
+
   async unlockAsync(): Promise<void> {
-    await this.engine.unlockAsync();
-    if (this.engine.state !== "running") {
-      await this.engine.resumeAsync();
-    }
+    // In Babylon 9.29 unlockAsync delegates to resumeAsync. Calling it on an
+    // already-running context caches a fulfilled promise that survives pause.
+    await synchronizeAudioPause(this.engine, false);
   }
 
   setVolume(value: number, durationSeconds = 0): void {
@@ -260,6 +291,33 @@ export class AudioDirector {
     } catch {
       return false;
     }
+  }
+
+  attachListener(node: Node): void { this.backend?.attachListener?.(node); }
+
+  async setPaused(paused: boolean): Promise<boolean> {
+    try { await this.backend?.setPaused?.(paused); return this.isReady; }
+    catch { return false; }
+  }
+
+  playUntilEnd(id: string, node?: Node, signal?: AbortSignal): Promise<boolean> {
+    const sound = this.sounds.get(id);
+    if (!sound?.onEnded || signal?.aborted || this.manifest[id]?.loop) return Promise.resolve(false);
+    return new Promise<boolean>((resolve) => {
+      let settled = false;
+      let remove = () => {};
+      const finish = (ok: boolean) => {
+        if (settled) return;
+        settled = true;
+        remove();
+        signal?.removeEventListener("abort", abort);
+        resolve(ok);
+      };
+      const abort = () => { finish(false); sound.stop(); };
+      remove = sound.onEnded!(() => finish(true));
+      signal?.addEventListener("abort", abort, { once: true });
+      if (!this.play(id, node)) finish(false);
+    });
   }
 
   stop(id: string): boolean {

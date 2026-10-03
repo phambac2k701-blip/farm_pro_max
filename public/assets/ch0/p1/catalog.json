@@ -1,0 +1,276 @@
+{
+  "status": "CANDIDATE_FOR_P1_USER_REVIEW",
+  "units": "meters; Babylon scene Y up; character source authoring Z up converted by glTF importer",
+  "runtime": "src/content/ch0/p1/P1World.ts; transforms below are actual runtime anchors, POV transforms camera-local",
+  "art_limit": "CC0 superhero male topology remains visibly muscular; authored material clothing not final tailored clothes; face does not have speech/lip sync. Background street/vehicles stylized authoring proof, not final city.",
+  "voice_manifest": "audio/voice_provenance.json",
+  "assets": [
+    {
+      "id": "ch0_driver_candidate",
+      "file": "models/driver_candidate.glb",
+      "kind": "character",
+      "scene": "S02A",
+      "status": "CANDIDATE_NOT_FINAL",
+      "source": {
+        "credit": "Quaternius Universal Base Characters [Standard] Superhero male; authored material/clothes/helmet/idle/talk/point derivative",
+        "url": "https://quaternius.com/packs/universalbasecharacters.html",
+        "license": "CC0-1.0"
+      },
+      "position": [
+        2.1,
+        0.15,
+        -2.55
+      ],
+      "scale_orientation_pivot": "feet at origin; 1m=1unit; author Z up/front -Y; exported glTF Y up; runtime anchor yaw pi+.3",
+      "materials_textures": "GLB embedded PBR candidates, normal-map missing links stripped; one UV, no unused color layers",
+      "collision": "Interaction capsule is separate: height1.82m radius.29m; no body collider",
+      "interaction_animation": "Head gaze + driver_idle/driver_talk/driver_point; E range3m",
+      "sha256": "895ae66075fc0dfa3ccd0985338266d2cf8d2d6ea654d79da32ae45470d79945",
+      "bytes": 2382008,
+      "clips": [
+        "driver_idle",
+        "driver_point",
+        "driver_talk"
+      ],
+      "textures": [
+        "embedded-bufferView",
+        "embedded-bufferView"
+      ],
+      "max_vertex_attributes": 5
+    },
+    {
+      "id": "ch0_bus_candidate",
+      "file": "models/bus_candidate.glb",
+      "kind": "background-moving",
+      "scene": "S02",
+      "status": "CANDIDATE_NOT_FINAL",
+      "source": {
+        "credit": "Authored in buildP1Candidates.py; no brand/reference identity",
+        "url": "repo:tools/ch0/buildP1Candidates.py",
+        "license": "project-authored"
+      },
+      "position": [
+        -24,
+        0,
+        2.5
+      ],
+      "scale_orientation_pivot": "ground origin midway wheelbase; meters; glTF Y up/+X front; Babylon conversion corrected by anchor yaw pi",
+      "materials_textures": "GLB embedded PBR candidates, normal-map missing links stripped; one UV, no unused color layers",
+      "collision": "Non-solid passing scenery; road boundary prevents entering lane",
+      "interaction_animation": "Path x -24→24 at8m/s; engine attached; hail triggers pass",
+      "sha256": "e98dd58383f2b879c046435e46f3a62ddfe9546d9d5e18dee8030a659d6776c7",
+      "bytes": 443012,
+      "clips": [],
+      "textures": [],
+      "max_vertex_attributes": 3
+    },
+    {
+      "id": "ch0_phone_candidate",
+      "file": "models/phone_candidate.glb",
+      "kind": "interactive-presentation",
+      "scene": "S01",
+      "status": "CANDIDATE_NOT_FINAL",
+      "source": {
+        "credit": "Authored",
+        "url": "repo:tools/ch0/buildP1Candidates.py",
+        "license": "project-authored"
+      },
+      "position": [
+        0.018,
+        0.073,
+        -0.055
+      ],
+      "scale_orientation_pivot": "phone center pivot; .079×.163m; glTF Y up; runtime yaw pi",
+      "materials_textures": "GLB embedded PBR candidates, normal-map missing links stripped; one UV, no unused color layers",
+      "collision": "No collision; camera child",
+      "interaction_animation": "Readable screen plane in runtime; lowered at call end",
+      "sha256": "490e8616d53b7bc25703b773cc4d2eac09a6422aa6eeb131103370c76367b608",
+      "bytes": 41156,
+      "clips": [],
+      "textures": [],
+      "max_vertex_attributes": 3
+    },
+    {
+      "id": "ch0_hand_grip_candidate",
+      "file": "models/pov_grip.glb",
+      "kind": "character-pov",
+      "scene": "S01",
+      "status": "CANDIDATE_NOT_FINAL",
+      "source": {
+        "credit": "Baked anatomical forearm/hand from Quaternius CC0 male rig",
+        "url": "https://quaternius.com/packs/universalbasecharacters.html",
+        "license": "CC0-1.0"
+      },
+      "position": [
+        0.22,
+        -0.18,
+        0.48
+      ],
+      "scale_orientation_pivot": "wrist pivot, meters, camera local; baked fingers",
+      "materials_textures": "GLB embedded PBR candidates, normal-map missing links stripped; one UV, no unused color layers",
+      "collision": "No collision; separate rendering group1",
+      "interaction_animation": "Phone child; lowerPhone transition",
+      "sha256": "dcb52d9318e8e013fb16507cfbed87265e159e69e4b3f89dc4df08dbb20f3f02",
+      "bytes": 53444,
+      "clips": [],
+      "textures": [],
+      "max_vertex_attributes": 3
+    },
+    {
+      "id": "ch0_hand_wave_candidate",
+      "file": "models/pov_wave.glb",
+      "kind": "character-pov",
+      "scene": "S02",
+      "status": "CANDIDATE_NOT_FINAL",
+      "source": {
+        "credit": "Baked Quaternius CC0 anatomical forearm/hand",
+        "url": "https://quaternius.com/packs/universalbasecharacters.html",
+        "license": "CC0-1.0"
+      },
+      "position": [
+        0.34,
+        -0.28,
+        0.54
+      ],
+      "scale_orientation_pivot": "wrist pivot, meters, camera local; open fingers",
+      "materials_textures": "GLB embedded PBR candidates, normal-map missing links stripped; one UV, no unused color layers",
+      "collision": "No collision",
+      "interaction_animation": "Enabled for2s with rotation on hail",
+      "sha256": "6685618f63f247779b756e42526513816fd2857c6c500d45b8685a6f3b1048f1",
+      "bytes": 53444,
+      "clips": [],
+      "textures": [],
+      "max_vertex_attributes": 3
+    },
+    {
+      "id": "ch0_scooter_candidate",
+      "file": "models/scooter_candidate.glb",
+      "kind": "background-prop",
+      "scene": "S02A",
+      "status": "CANDIDATE_NOT_FINAL",
+      "source": {
+        "credit": "Authored no brand",
+        "url": "repo:tools/ch0/buildP1Candidates.py",
+        "license": "project-authored"
+      },
+      "position": [
+        3.15,
+        0.14,
+        -1.4
+      ],
+      "scale_orientation_pivot": "ground pivot; wheelbase1.38m; glTF Y up/+X front",
+      "materials_textures": "GLB embedded PBR candidates, normal-map missing links stripped; one UV, no unused color layers",
+      "collision": "No collision; no gameplay boarding",
+      "interaction_animation": "Driver context prop only; not declared gameplay-connected",
+      "sha256": "ec742372413788ce412b0048fb3c5794618b052b56ac50e1335803ad06279845",
+      "bytes": 126860,
+      "clips": [],
+      "textures": [],
+      "max_vertex_attributes": 3
+    },
+    {
+      "id": "ch0_passing_sedan",
+      "file": "models/sedan.glb",
+      "kind": "background-moving",
+      "scene": "S01–S02A",
+      "status": "CANDIDATE_NOT_FINAL",
+      "source": {
+        "credit": "Kenney Car Kit sedan",
+        "url": "https://kenney.nl/assets/car-kit",
+        "license": "CC0-1.0"
+      },
+      "position": [
+        -19,
+        0.05,
+        4.75
+      ],
+      "scale_orientation_pivot": "original ground pivot; runtime scale1.55, yaw pi/2; Y up",
+      "materials_textures": "GLB embedded PBR candidates, normal-map missing links stripped; one UV, no unused color layers",
+      "collision": "No collision; road boundary",
+      "interaction_animation": "Background movement + reset off screen",
+      "sha256": "b532ea7d2c59f7f6b22b138cf1955218a2c1898f1cea932af4d3fd563c3959b7",
+      "bytes": 172216,
+      "clips": [],
+      "textures": [
+        "Textures/colormap.png"
+      ],
+      "max_vertex_attributes": 4
+    },
+    {
+      "id": "ch0_sedan_texture",
+      "file": "models/Textures/colormap.png",
+      "kind": "texture",
+      "scene": "S01–S02A",
+      "status": "CANDIDATE_NOT_FINAL",
+      "source": {
+        "credit": "Kenney Car Kit",
+        "url": "https://kenney.nl/assets/car-kit",
+        "license": "CC0-1.0"
+      },
+      "position": null,
+      "scale_orientation_pivot": "UV from supplied model",
+      "materials_textures": "N/A",
+      "collision": "N/A",
+      "interaction_animation": "External relative URI used by sedan.glb",
+      "sha256": "f3622a03a20c6696065cae9cbe391351be873508af190c2ebd1d420c055787a5",
+      "bytes": 12371
+    },
+    {
+      "id": "ch0_street_audio_candidate",
+      "file": "audio/street_candidate.mp3",
+      "kind": "ambient-audio",
+      "scene": "S01–S02A",
+      "status": "CANDIDATE_NOT_FINAL",
+      "source": {
+        "credit": "Traffic_Suburbs_HoChiMinhCity_Nov2014_NK by Kanny100, Freesound835521; actual Windows audio WIP amb_urban_traffic_05",
+        "url": "https://freesound.org/people/Kanny100/sounds/835521/",
+        "license": "CC0-1.0"
+      },
+      "position": null,
+      "scale_orientation_pivot": "49.181s; recorded HCM City, not identified as Hanoi",
+      "materials_textures": "N/A",
+      "collision": "N/A",
+      "interaction_animation": "Loop; gain.24; PENDING_USER_REVIEW",
+      "sha256": "4cd1995a3967b7548f517f9c6e3463b43ec32f1daa1cb9c8c5c55c2487c553b1",
+      "bytes": 1104428
+    },
+    {
+      "id": "ch0_bus_audio_candidate",
+      "file": "audio/bus_engine_candidate.mp3",
+      "kind": "spatial-audio",
+      "scene": "S02",
+      "status": "CANDIDATE_NOT_FINAL",
+      "source": {
+        "credit": "busmid.wav MAN/Solaris 2000RPM by Mihacappy, Freesound803761; HQpreview",
+        "url": "https://freesound.org/people/Mihacappy/sounds/803761/",
+        "license": "CC0-1.0"
+      },
+      "position": null,
+      "scale_orientation_pivot": "3.837s loop, MP3 preview",
+      "materials_textures": "N/A",
+      "collision": "N/A",
+      "interaction_animation": "Attached bus node, HRTF/range4–35m; stopped after pass",
+      "sha256": "9d61f99aa1c667e2dba6f88f1e1d586d0cd202ef96c246045ce1e781b73fb74a",
+      "bytes": 73151
+    },
+    {
+      "id": "ch0_hangup_candidate",
+      "file": "audio/hangup_candidate.wav",
+      "kind": "interaction-audio",
+      "scene": "S01",
+      "status": "CANDIDATE_NOT_FINAL",
+      "source": {
+        "credit": "Authored simple660Hzdecay beep",
+        "url": "repo:tools/ch0/generateP1Voice.py",
+        "license": "project-authored"
+      },
+      "position": null,
+      "scale_orientation_pivot": ".15s",
+      "materials_textures": "N/A",
+      "collision": "N/A",
+      "interaction_animation": "Cue at lowerPhone",
+      "sha256": "84289f70ba3fbd3817e966ed5c203811ec27683158250ee3eaf2b9013c0b0c2c",
+      "bytes": 7244
+    }
+  ]
+}

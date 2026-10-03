@@ -4,7 +4,7 @@
 
 ## Lệnh tiếp quản
 
-Tiếp tục trên nhánh tài liệu `docs/ch0-production-reconciliation-20261003`, gốc greybox `db0792af7880a2b082c4f54d82781888929bf0b2`. Đây là docs-only review và kế hoạch **chờ người dùng duyệt**, không phải lệnh bắt đầu gameplay. Không mặc định main là production; không reset/clean/ghi đè WIP. Duyệt toàn Ch0 trước rồi người dùng chơi và nghiệm thu, sau đó mới lập kế hoạch Ch1.
+Tiếp quản nhánh `phase-v2/ch0-p1-quality-candidate-v0`, được tạo từ checkpoint tài liệu `1a4e4171245ed7c8cd1d25ca34f0428791a7153e`. P0 + một mẫu P1 đã được cho phép. Đọc [evidence và cách mở](playtest/ch0-p1-quality-candidate-v0/README.md), chờ đánh giá chất lượng mẫu trước gói tiếp. Không bắt đầu lại từ main hoặc merge cả worker. Toàn Ch0 phải được người dùng chơi/nghiệm thu rồi mới lập kế hoạch Ch1.
 
 ## Kiểm tra trước khi sửa
 
@@ -16,7 +16,7 @@ git worktree list
 git log -5 --oneline
 ```
 
-Đối chiếu remote heads mà không checkout worktree người khác. Đọc mọi modified/untracked có liên quan trước khi sửa. Tại phiên rà soát, worktree Windows/audio candidate chưa truy cập được; phải inspect thực tế nếu phiên sau có quyền truy cập, không suy rằng chúng sạch hoặc đã mất.
+Đối chiếu remote heads mà không checkout worktree người khác. Đọc mọi modified/untracked có liên quan trước khi sửa. Trong P0 đã truy cập Windows, tạo worktree riêng `C:\Users\Dell\projects\farm_pro_max_p1`. WIP Ui.ts/StoryBeatDirector.ts ở greybox và audio untracked còn nguyên; hash/HEAD được ghi trong evidence. Mỗi phiên vẫn phải inspect lại trạng thái mới.
 
 ## Những gì phải giữ
 
@@ -24,7 +24,7 @@ git log -5 --oneline
 - GD4 checkpoint `7ed178251ae47074e7276f379492953448296149`; không chỉnh để phục vụ Ch0, không phục hồi controller tự teleport spawn.
 - Tên Bắc/tính cách đã duyệt, driver tái xuất, ba cách tìm đường, câu chữ/chất liệu user và provenance từng mục.
 - Script V0 là draft. Helper/admin/ATM đã có trong greybox không tự thành canon.
-- Animation/performance có ở nhánh riêng, chưa nối Ch0; ChoiceEventFlow có trong greybox. Không merge toàn worker snapshot cũ vào nguồn mới.
+- Animation prototype còn ở nhánh riêng; P1 chỉ lấy snapshot performance `f9d6b63`, đọc/cải chính StoryBeatDirector WIP trong bản sao riêng; audio nối ở sample. ChoiceEventFlow vẫn có trong greybox. Không merge toàn worker snapshot cũ vào nguồn mới.
 
 ## Sau khi được duyệt
 
@@ -32,4 +32,4 @@ Chỉ thực hiện phần kế hoạch/gói được duyệt. Rà soát code t�
 
 ## Điểm dừng hiện tại
 
-Tài liệu đã chỉnh và kế hoạch Ch0 đã trình. **Chờ duyệt kế hoạch**, chưa gameplay mới, chưa Ch1, chưa merge main/coordinator/worker. Điểm dừng cũ của các worker không xóa gate canon nhưng không là lịch sản xuất hiện hành.
+**Dừng sau mẫu P1:** người dùng đánh giá hình ảnh, diễn xuất và điều khiển; âm thanh tạm để sau theo chỉ đạo18:27. P2–P7 chưa bắt đầu; canon, ngoại hình NPC và tính năng tùy chọn chưa mặc nhiên được duyệt. Không merge main/coordinator/worker.

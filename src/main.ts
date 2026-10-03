@@ -195,4 +195,12 @@ async function bootstrap(): Promise<void> {
   }
 }
 
-void bootstrap();
+if (new URLSearchParams(location.search).get("sample") === "p1") {
+  void import("./content/ch0/p1/P1Game").then(m => m.bootstrapP1()).catch(error => {
+    console.error(error);
+    const fatal = document.querySelector<HTMLElement>("#fatal-error");
+    if (fatal) { fatal.hidden = false; fatal.textContent = String(error); }
+  });
+} else {
+  void bootstrap();
+}

@@ -1,16 +1,17 @@
 # Bắt đầu tại đây — UETốt
 
-Cập nhật theo chỉ đạo người dùng 03/10/2026. **Quyết định thứ tự sản xuất đã có hiệu lực; kế hoạch chi tiết vẫn chờ duyệt.**
+Cập nhật theo chỉ đạo người dùng 03/10/2026. **Thứ tự sản xuất đã duyệt. P0 và một mẫu P1 được phép thực hiện; P2–P7 và canon/final chưa được duyệt.**
 
 ## Hiện đang làm gì?
 
-Hoàn thiện **toàn bộ Chương 0**, rồi người dùng chơi và nghiệm thu, mới tiếp tục Ch1. Lượt rà soát này chỉ chỉnh tài liệu và trình kế hoạch. Không phát triển gameplay mới, không triển khai Ch1.
+Hoàn thiện **toàn bộ Chương 0**, rồi người dùng chơi và nghiệm thu, mới tiếp tục Ch1. Lượt hiện tại xác minh P0 và dựng đúng một mẫu P1 liên tục: gọi mẹ → giao quyền → vẫy xe chạy qua → tài xế chỉ điểm dừng. Dừng để người dùng đánh giá chất lượng mẫu; chưa P2–P7, chưa Ch1.
 
 ## Nhánh và bản chơi
 
 | Vai trò | Nhánh / checkpoint |
 | --- | --- |
-| Bàn giao tài liệu lần này, có cùng code greybox | `docs/ch0-production-reconciliation-20261003`, gốc `db0792af7880a2b082c4f54d82781888929bf0b2` |
+| Mẫu chơi hiện hành, candidate | `phase-v2/ch0-p1-quality-candidate-v0`; gốc bàn giao đã duyệt `1a4e4171245ed7c8cd1d25ca34f0428791a7153e`, mở `?sample=p1` |
+| Bàn giao tài liệu gốc, có cùng code greybox | `docs/ch0-production-reconciliation-20261003`, gốc `db0792af7880a2b082c4f54d82781888929bf0b2` |
 | Bản chơi Ch0 hiện có, chưa nghiệm thu | `phase-v2/ch0-playable-greybox-v0` @ `db0792af7880a2b082c4f54d82781888929bf0b2` |
 | Nguồn điều phối trước lần này | `integration/uet-source-of-truth-reconciliation` @ `9c3efe9ada6a2e350deada6a16c2ddc8e83bfcc7` |
 | Kịch bản draft đã được kiểm kê | `phase-v2/ch0-script-layout-v0` @ `c5c0af12ac3a141431dd0c7674cb0c598ed70a06` |
@@ -21,7 +22,7 @@ Không có một bản đã tích hợp mọi worker. `main` @ `471dd33` chỉ c
 
 | Mảng | Nguồn có thẩm quyền / cách sử dụng |
 | --- | --- |
-| Ưu tiên, kế hoạch Ch0, khoảng trống và bảng tài liệu | [PROJECT_MASTER_PLAN](PROJECT_MASTER_PLAN.md); phần kế hoạch là **đề xuất chờ duyệt** |
+| Ưu tiên, kế hoạch Ch0, khoảng trống và bảng tài liệu | [PROJECT_MASTER_PLAN](PROJECT_MASTER_PLAN.md); P0 + một mẫu P1 được phép; phần còn lại **đề xuất chờ duyệt** |
 | Tình trạng và bằng chứng | [PROGRESS](PROGRESS.md), code tại checkpoint được ghi; test/code không đồng nghĩa nghiệm thu |
 | Duyệt canon | [USER_APPROVAL_GATES](design/USER_APPROVAL_GATES.md); người dùng quyết định cuối |
 | Macro và bốn họ map | [CURRENT_STORY_MACRO](design/CURRENT_STORY_MACRO.md), [CURRENT_WORLD_MAP_SCOPE](design/CURRENT_WORLD_MAP_SCOPE.md) |
@@ -35,17 +36,17 @@ Khi mâu thuẫn: chỉ đạo người dùng mới nhất → quyết định �
 
 ## Ch0 có gì, thiếu gì?
 
-Có controller, tương tác E, checkpoint S01–S09, lựa chọn tìm đường/hội tụ, lỡ xe một lần, chuẩn bị tiền vé, chuyển vùng dip-to-black và chơi lại bằng reload. Có báo cáo autoplay ba tuyến và ảnh greybox.
+Có nền greybox S01–S09 và lần chạy đầu-cuối bằng input thông thường ở P0. Có mẫu P1 riêng với thoại tự chạy theo audio kết thúc thật, POV tay/điện thoại, xe chạy trong 3D, model/rig tài xế candidate, gaze/gesture, lựa chọn draft và âm thanh phố/xe/giọng Việt. Mẫu không báo hoàn tất Ch0. [Bản chơi, video, ảnh, số đo và giới hạn](playtest/ch0-p1-quality-candidate-v0/README.md).
 
-Thiếu cảnh/asset hoàn chỉnh, NPC thực và diễn xuất, xe/cửa/giấy tờ thực hiện đúng hành động, âm thanh Ch0, thoại cố định tự chạy, xử lý đứng yên/đi sai, checkpoint lưu/tải nối Ch0, hiệu năng Ch0 trên bản thật và nghiệm thu thủ công. [Ma trận từng cảnh](PROJECT_MASTER_PLAN.md#4-ch0-như-một-màn-chơi).
+Phần còn lại của toàn Ch0 vẫn thiếu cảnh/asset/NPC/diễn xuất/âm thanh, xe/cửa/giấy tờ thật, checkpoint lưu/tải và kiểm tất cả nhánh. Hình/giọng/diễn xuất P1 là candidate, còn cần người dùng đánh giá; chưa nghiệm thu. [Ma trận từng cảnh](PROJECT_MASTER_PLAN.md#4-ch0-như-một-màn-chơi).
 
 ## Việc tiếp theo và duyệt
 
-Người dùng xem [gói P0–P7](PROJECT_MASTER_PLAN.md#6-kế-hoạch-hoàn-thiện-toàn-bộ-ch0) và [quyết định sáng tạo](PROJECT_MASTER_PLAN.md#7-quyết-định-thật-sự-cần-người-dùng-duyệt). Dừng tại đây cho tới khi kế hoạch được duyệt. Đã duyệt tên Bắc, chức năng tài xế tái xuất, ba cách tìm đường và chất liệu người dùng: không hỏi lại các điểm đó.
+Người dùng đánh giá mẫu riêng theo **hình ảnh, diễn xuất, cảm giác điều khiển (âm thanh tạm để sau theo chỉ đạo18:27)**. Chưa tự đổi candidate thành canon hoặc tiếp tục gói khác. Các quyết định tiền vé/admin/kết chương ở [master plan §7](PROJECT_MASTER_PLAN.md#7-quyết-định-thật-sự-cần-người-dùng-duyệt) để dành trước gói tương ứng; không yêu cầu duyệt lại tên Bắc, tài xế tái xuất, ba cách tìm đường.
 
 ## Chạy và tiếp tục phiên sau
 
-Trong checkout riêng của nhánh bản chơi hoặc nhánh bàn giao: `npm ci`, `npm run dev -- --host 127.0.0.1`, mở URL Vite. Điều khiển/kiểm tra ở [README](../README.md#chạy-bản-ch0-hiện-có). Autoplay bổ sung: `?autoplay=1&route=default`, `self-nav`, `missed-bus`; không dùng chúng để nghiệm thu cảm giác chơi.
+Trong checkout riêng của nhánh candidate: `npm ci`, `npm run build`, `npx vite preview --host 127.0.0.1 --port 5180`, mở `http://127.0.0.1:5180/?sample=p1&mute=1`. Máy Windows đã kiểm tra: `C:\Users\Dell\projects\farm_pro_max_p1`. Bấm **Bắt đầu mẫu · tạm tắt tiếng**; WASD/chuột/E, 1–3 chỉ ở lựa chọn, R chơi lại. Mở `/` không query để so greybox nguyên tuyến. Điều khiển/kiểm tra ở [README](../README.md#chạy-bản-ch0-hiện-có). Autoplay bổ sung: `?autoplay=1&route=default`, `self-nav`, `missed-bus`; không dùng chúng để nghiệm thu cảm giác chơi.
 
 Trước khi sửa: kiểm tra `git status --short --branch`, `git rev-parse HEAD`, `git remote -v`, `git worktree list`, remote heads; đọc và bảo toàn modified/untracked. Không checkout/reset/clean worktree người khác. Không phục hồi controller tự teleport về spawn. Chuyển vùng có chủ đích không phải hệ thống tự respawn.
 
