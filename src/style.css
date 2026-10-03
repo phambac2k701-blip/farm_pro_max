@@ -318,3 +318,145 @@ body {
   color: rgb(194 202 196 / 64%);
   font-size: 13px;
 }
+
+/* Chapter 0 playable greybox V0 */
+#ch0-objective {
+  position: fixed;
+  top: 22px;
+  left: 50%;
+  z-index: 18;
+  transform: translateX(-50%);
+  max-width: min(720px, calc(100vw - 48px));
+  padding: 8px 12px;
+  border: 1px solid rgb(255 255 255 / 10%);
+  border-radius: 7px;
+  background: rgb(8 10 12 / 68%);
+  color: rgb(246 246 240 / 92%);
+  font-size: 13px;
+  text-align: center;
+  pointer-events: none;
+}
+
+#ch0-dialogue {
+  position: fixed;
+  inset: 0;
+  z-index: 32;
+  display: grid;
+  place-items: end center;
+  padding: 0 22px 7vh;
+  background: linear-gradient(transparent 42%, rgb(4 5 7 / 44%));
+  pointer-events: auto;
+}
+
+.ch0-dialogue-card {
+  width: min(760px, calc(100vw - 44px));
+  padding: 18px 20px 16px;
+  border: 1px solid rgb(255 255 255 / 13%);
+  border-radius: 10px;
+  background: rgb(8 10 12 / 92%);
+  box-shadow: 0 18px 56px rgb(0 0 0 / 40%);
+}
+
+.ch0-dialogue-speaker {
+  margin-bottom: 8px;
+  color: rgb(198 207 213 / 74%);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.ch0-dialogue-text {
+  min-height: 48px;
+  margin: 0;
+  color: rgb(246 246 240 / 96%);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.ch0-dialogue-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+  color: rgb(194 198 201 / 72%);
+  font-size: 11px;
+}
+
+.ch0-dialogue-controls button {
+  appearance: none;
+  padding: 8px 11px;
+  border: 1px solid rgb(255 255 255 / 14%);
+  border-radius: 7px;
+  background: rgb(255 255 255 / 5%);
+  color: rgb(246 246 240 / 94%);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.ch0-dialogue-controls button:focus-visible,
+.ch0-dialogue-controls button:hover {
+  outline: 1px solid rgb(255 255 255 / 32%);
+  background: rgb(255 255 255 / 10%);
+}
+
+#ch0-debug {
+  position: fixed;
+  right: 12px;
+  bottom: 12px;
+  z-index: 17;
+  max-width: calc(100vw - 24px);
+  padding: 6px 8px;
+  border-radius: 5px;
+  background: rgb(0 0 0 / 58%);
+  color: rgb(220 226 229 / 76%);
+  font: 11px/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  pointer-events: none;
+}
+
+#chapter-transition.ch0-blink-transition {
+  z-index: 60;
+  display: block;
+  background: #050607;
+  opacity: 0;
+  transition: opacity var(--ch0-reveal-ms, 210ms) ease;
+}
+
+#chapter-transition.ch0-blink-transition.visible {
+  opacity: 1;
+  transition-duration: var(--ch0-cover-ms, 190ms);
+}
+
+#ch0-ending {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  display: grid;
+  place-items: center;
+  background: #050607;
+  color: rgb(245 245 238 / 95%);
+  text-align: center;
+}
+
+#ch0-ending small {
+  color: rgb(188 194 196 / 68%);
+  letter-spacing: 0.18em;
+}
+
+#ch0-ending h1 {
+  margin: 12px 0 8px;
+  font-size: clamp(28px, 6vw, 50px);
+  font-weight: 500;
+}
+
+#ch0-ending p {
+  margin: 0;
+  color: rgb(194 199 201 / 70%);
+  font-size: 13px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #chapter-transition.ch0-blink-transition {
+    transition-duration: 80ms !important;
+  }
+}

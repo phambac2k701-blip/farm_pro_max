@@ -1,13 +1,16 @@
+import { Color4 } from "@babylonjs/core/Maths/math.color";
 import { Scene } from "@babylonjs/core/scene";
 
-import { hydrateClassroomProductionAssets } from "./art/classroom/ClassroomProductionAssets";
-import { buildLectureHall4Scene } from "./content/slice/buildLectureHall4Scene";
+import {
+  Chapter0ActionBehavior,
+  Chapter0Game,
+  type Chapter0AutoplayRoute,
+} from "./content/ch0/Chapter0Game";
+import { Chapter0Ui } from "./content/ch0/Chapter0Ui";
+import { Chapter0World } from "./content/ch0/Chapter0World";
+import { SceneTransitionDirector } from "./content/ch0/SceneTransitionDirector";
 import { EngineAdapter } from "./engine/EngineAdapter";
 import { InteractionBehaviorHost } from "./interaction/behaviors/InteractionBehaviorHost";
-import {
-  createHingedOpenableAdapter,
-  OpenableController,
-} from "./interaction/behaviors/OpenableController";
 import { InteractionStateMachine } from "./interaction/InteractionStateMachine";
 import { InteractionSystem } from "./interaction/InteractionSystem";
 import { PlayerController } from "./player/PlayerController";
@@ -19,9 +22,17 @@ async function bootstrap(): Promise<void> {
   const interactionPrompt =
     document.querySelector<HTMLDivElement>("#interaction-prompt");
   const reticle = document.querySelector<HTMLDivElement>("#reticle");
+  const transitionOverlay =
+    document.querySelector<HTMLDivElement>("#chapter-transition");
 
-  if (!canvas || !fatalError || !interactionPrompt || !reticle) {
-    throw new Error("Required application DOM nodes are missing.");
+  if (
+    !canvas ||
+    !fatalError ||
+    !interactionPrompt ||
+    !reticle ||
+    !transitionOverlay
+  ) {
+    throw new Error("Required Chapter 0 application DOM nodes are missing.");
   }
 
   for (const selector of [
@@ -29,7 +40,6 @@ async function bootstrap(): Promise<void> {
     "#phone-overlay",
     "#evidence-notification",
     "#subtitle",
-    "#chapter-transition",
   ]) {
     const element = document.querySelector<HTMLElement>(selector);
     if (element) {
@@ -41,74 +51,14 @@ async function bootstrap(): Promise<void> {
   try {
     const engineAdapter = await EngineAdapter.create(canvas);
     const scene = new Scene(engineAdapter.engine);
-    const slice = buildLectureHall4Scene(scene);
+    scene.clearColor = new Color4(0.68, 0.71, 0.73, 1);
 
-    const classroomAssets = await hydrateClassroomProductionAssets(
-      scene,
-      new URL(import.meta.env.BASE_URL, window.location.origin).toString(),
-      slice.classrooms.map((room) => ({
-        prefix: `gd4-${room.roomKey}`,
-        parent: room.prefab.assetParent,
-      })),
-    );
-
+    const world = new Chapter0World(scene);
     const player = PlayerController.create(scene, canvas, {
-      spawn: slice.spawn,
+      spawn: world.spawns.streetStart,
       mouseSensitivity: 0.0022,
-      movementSpeed: 3.1,
+      movementSpeed: 3.2,
     });
-    player.camera.rotation.y = Math.PI / 2;
-
-    const roomRuntime = slice.classrooms.map((room) => {
-      const prefix = room.prefab.root.name.replace(/-root$/, "");
-      return {
-        room,
-        furnitureColliders: room.prefab.root
-          .getChildMeshes(false)
-          .filter(
-            (mesh) =>
-              mesh.name.includes("-desk-") ||
-              mesh.name.includes("-chair-") ||
-              mesh.name.endsWith("-teacher-collider"),
-          ),
-        localLights: scene.lights.filter((light) =>
-          light.name.startsWith(`${prefix}-light-`),
-        ),
-        active: true,
-      };
-    });
-
-    const ROOM_ACTIVE_RADIUS = 14.5;
-    const updateRoomActivity = (): void => {
-      const feet = player.getFeetPosition();
-      const activeKeys: string[] = [];
-
-      for (const entry of roomRuntime) {
-        const roomCenter =
-          entry.room.prefab.activityAnchor.getAbsolutePosition();
-        const dx = feet.x - roomCenter.x;
-        const dz = feet.z - roomCenter.z;
-        const active =
-          dx * dx + dz * dz <= ROOM_ACTIVE_RADIUS * ROOM_ACTIVE_RADIUS;
-
-        if (entry.active !== active) {
-          entry.active = active;
-          entry.room.prefab.assetParent.setEnabled(active);
-          entry.furnitureColliders.forEach((mesh) => {
-            mesh.checkCollisions = active;
-          });
-          entry.localLights.forEach((light) => light.setEnabled(active));
-        }
-
-        if (active) {
-          activeKeys.push(entry.room.roomKey);
-        }
-      }
-
-      canvas.dataset.activeRooms = activeKeys.join(",");
-    };
-    updateRoomActivity();
-
     const interactionState = new InteractionStateMachine(player);
     const interaction = new InteractionSystem(
       scene,
@@ -116,72 +66,75 @@ async function bootstrap(): Promise<void> {
       interactionState,
     );
     const behaviorHost = new InteractionBehaviorHost(interaction);
+    const ui = new Chapter0Ui(canvas);
+    const transition = new SceneTransitionDirector(
+      transitionOverlay,
+      player,
+    );
+    const game = new Chapter0Game(
+      canvas,
+      player,
+      world,
+      ui,
+      transition,
+    );
+
+    for (const target of world.interactionTargets) {
+      interaction.register(target.mesh, {
+        id: `ch0-action-${target.actionId}`,
+        prompt: target.prompt,
+        maxDistance: target.maxDistance,
+        priority: 20,
+      });
+      behaviorHost.register(
+        `ch0-action-${target.actionId}`,
+        new Chapter0ActionBehavior(game, target.actionId),
+      );
+    }
     interaction.attachInput(canvas);
 
-    const doorControllers = new Map<string, OpenableController>();
-    for (const room of slice.classrooms) {
-      const interactionId = `gd4-door-${room.roomKey}`;
-      const controller = new OpenableController({
-        adapter: createHingedOpenableAdapter(
-          room.prefab.door.hinge,
-          room.prefab.door.closedRotationY,
-          room.prefab.door.openRotationY,
-        ),
-        duration: 0.38,
-        initiallyOpen: false,
-      });
-
-      interaction.register(room.prefab.door.leaf, {
-        id: interactionId,
-        prompt: room.visibleLabel
-          ? `E · Mở ${room.visibleLabel}`
-          : "E · Mở phòng học",
-        maxDistance: 2.2,
-        priority: 10,
-      });
-      behaviorHost.register(interactionId, controller);
-      doorControllers.set(room.roomKey, controller);
-    }
-
     canvas.dataset.renderBackend = engineAdapter.backend;
-    canvas.dataset.sceneReady = "lecture-hall-4-slice";
-    canvas.dataset.classroomAssets =
-      `ready:${classroomAssets.roots.length}`;
-    canvas.dataset.classroomCount = String(slice.classrooms.length);
-    canvas.dataset.currentMap = "giang-duong-4";
+    canvas.dataset.sceneReady = "chapter-0-playable-greybox-v0";
+    canvas.dataset.currentMap = "zone-ch0-street";
     canvas.dataset.controllerReady = "true";
+    canvas.dataset.ch0Complete = "false";
     fatalError.hidden = true;
 
-    if (import.meta.env.DEV) {
-      const debugWindow = window as typeof window & {
-        __NTC_DEBUG__?: {
-          player: PlayerController;
-          slice: typeof slice;
-          interaction: InteractionSystem;
-          behaviorHost: InteractionBehaviorHost;
-          doorControllers: Map<string, OpenableController>;
-        };
-      };
-      debugWindow.__NTC_DEBUG__ = {
-        player,
-        slice,
-        interaction,
-        behaviorHost,
-        doorControllers,
-      };
-    }
+    const autoplayParam = new URLSearchParams(window.location.search).get(
+      "autoplay",
+    );
+    const routeParam = new URLSearchParams(window.location.search).get(
+      "route",
+    );
+    const autoplay = autoplayParam === "1" || autoplayParam === "true";
+    const route: Chapter0AutoplayRoute =
+      routeParam === "self-nav" || routeParam === "missed-bus"
+        ? routeParam
+        : "default";
+
+    const restart = (event: KeyboardEvent): void => {
+      if (
+        event.code === "KeyR" &&
+        canvas.dataset.ch0Complete === "true"
+      ) {
+        window.location.reload();
+      }
+    };
+    window.addEventListener("keydown", restart);
 
     engineAdapter.run(() => {
       const deltaSeconds = engineAdapter.engine.getDeltaTime() / 1000;
-      updateRoomActivity();
       player.update(deltaSeconds);
       behaviorHost.update(deltaSeconds);
       interaction.update();
+      game.update(deltaSeconds);
 
       const prompt = interaction.promptState;
       interactionPrompt.hidden = !prompt.visible;
       interactionPrompt.textContent = prompt.text;
-      reticle.hidden = interaction.activeInteraction !== null;
+      reticle.hidden =
+        interaction.activeInteraction !== null ||
+        document.querySelector("#ch0-dialogue.visible") !== null;
 
       canvas.dataset.interactionTarget = prompt.interactableId ?? "";
       canvas.dataset.interactionActive =
@@ -196,15 +149,39 @@ async function bootstrap(): Promise<void> {
       scene.render();
     });
 
+    if (autoplay) {
+      game.setAutoplay(true);
+    }
+    await game.start();
+    if (autoplay) {
+      await game.runAutoplay(route);
+    }
+
+    if (import.meta.env.DEV) {
+      const debugWindow = window as typeof window & {
+        __UET_CH0__?: {
+          game: Chapter0Game;
+          player: PlayerController;
+          world: Chapter0World;
+          interaction: InteractionSystem;
+        };
+      };
+      debugWindow.__UET_CH0__ = {
+        game,
+        player,
+        world,
+        interaction,
+      };
+    }
+
     window.addEventListener(
       "beforeunload",
       () => {
+        window.removeEventListener("keydown", restart);
         interaction.dispose();
         behaviorHost.dispose();
+        game.dispose();
         player.dispose();
-        classroomAssets.sourceContainers.forEach((container) =>
-          container.dispose(),
-        );
         scene.dispose();
         engineAdapter.dispose();
       },
